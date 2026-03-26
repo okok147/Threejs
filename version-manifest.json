@@ -1,0 +1,160 @@
+{
+  "lab": {
+    "title": "光軌 Style Laboratory",
+    "defaultVersion": "v003",
+    "switcherMode": "hybrid-browser",
+    "compareMode": "nearby-summary",
+    "lastUpdated": "2026-03-26T21:52:10+08:00"
+  },
+  "versions": [
+    {
+      "versionNumber": "v001",
+      "slug": "orbit-cinematic",
+      "title": "Orbit Cinematic",
+      "concept": "把品牌首頁當成宇宙海報來閱讀，讓單一核心物件帶著文字與章節完成整頁敘事。",
+      "sourcePrinciples": [
+        "Poster-first hero with one dominant visual anchor",
+        "Scroll phases that move the scene instead of just the document",
+        "Thin technical stack with explicit cleanup and deploy readiness"
+      ],
+      "sourceFamiliesConsulted": [
+        "official three.js documentation",
+        "official accessibility guidance",
+        "curated motion-led inspiration"
+      ],
+      "styleFamily": "Cinematic orbital narrative",
+      "useCaseEmphasis": "品牌發表頁 / 世界觀首頁",
+      "bestFor": "第一次進實驗室時先理解世界觀型首頁的基線。",
+      "keyTraits": [
+        "滿版 cinematic hero",
+        "單一核心物件敘事",
+        "scroll-phase scene choreography"
+      ],
+      "navigationModel": "固定頂部導覽對應長頁章節",
+      "motionLanguage": "高對比 orbital drift 與 section-driven camera shift",
+      "narrativeStructure": "海報式 hero -> scroll narrative -> implementation stack -> archive closing",
+      "sceneTreatment": "全頁舞台中央的單一 3D 主物件",
+      "notableUxIdeas": [
+        "單一核心物件隨頁面進度切換三種閱讀狀態",
+        "固定頁首導覽對應長頁面章節",
+        "以 reference archive 收束整頁，不讓結尾失焦"
+      ],
+      "notableFeatureIdeas": [
+        "versioned scene preset system",
+        "shared content separated from presentation",
+        "research links embedded in the page narrative"
+      ],
+      "performanceNotes": [
+        "Renderer pixel ratio capped at 1.8.",
+        "Scene teardown disposes geometry, materials, textures, env map, and renderer context.",
+        "Single-core geometry language avoids heavy model loading."
+      ],
+      "entryFile": "versions/v001-orbit-cinematic/index.js",
+      "route": "/?v=v001",
+      "tokenFile": "tokens/v001.json",
+      "screenshotPaths": ["screenshots/v001/poster.svg"],
+      "timestamp": "2026-03-26T21:10:38+08:00",
+      "status": "stable"
+    },
+    {
+      "versionNumber": "v002",
+      "slug": "signal-ledger",
+      "title": "Signal Ledger",
+      "concept": "把作品集首頁翻成可翻閱的編輯帳冊，讓版本、方法與研究來源一起成為主要內容。",
+      "sourcePrinciples": [
+        "Editorial layout with fluid columns and strong reading rhythm",
+        "In-page navigation that keeps long-form pages scannable",
+        "Reduced-motion aware 3D ambiance instead of full-canvas spectacle"
+      ],
+      "sourceFamiliesConsulted": [
+        "official three.js documentation",
+        "official design systems",
+        "accessibility guidance",
+        "curated editorial inspiration"
+      ],
+      "styleFamily": "Editorial atlas / signal ledger",
+      "useCaseEmphasis": "作品集索引 / 方法論首頁",
+      "bestFor": "快速瀏覽版本治理、方法論與研究來源。",
+      "keyTraits": [
+        "paper-toned editorial grid",
+        "右側 clipped 3D instrument",
+        "方法論前台化"
+      ],
+      "navigationModel": "雜誌式頁首導覽與長文 section anchors",
+      "motionLanguage": "低振幅 editorial drift 與溫和 reveal",
+      "narrativeStructure": "manifesto hero -> version collection -> lab method -> archive notes",
+      "sceneTreatment": "被裁切為右側儀表面板的 3D ambience",
+      "notableUxIdeas": [
+        "把 style family 與 use-case 直接做成條目清單",
+        "方法區塊把 research -> distill -> generate -> validate 顯性化",
+        "把研究來源與版本治理拉進前台而不是藏在 README"
+      ],
+      "notableFeatureIdeas": [
+        "paper-toned layout with clipped 3D instrument panel",
+        "version registry surfaced in the global dock",
+        "journal-ready archive structure for future searchable browser"
+      ],
+      "performanceNotes": [
+        "Scene motion multipliers reduced for calmer editorial reading.",
+        "Canvas is visually clipped but still uses the same cleanup-safe renderer lifecycle.",
+        "No extra framework or component runtime added."
+      ],
+      "entryFile": "versions/v002-signal-ledger/index.js",
+      "route": "/?v=v002",
+      "tokenFile": "tokens/v002.json",
+      "screenshotPaths": ["screenshots/v002/poster.svg"],
+      "timestamp": "2026-03-26T21:10:38+08:00",
+      "status": "stable"
+    },
+    {
+      "versionNumber": "v003",
+      "slug": "museum-monograph",
+      "title": "Museum Monograph",
+      "concept": "把版本實驗室翻成策展型作品頁，讓 3D 核心物件像被置入展櫃的展件，文字則像 curator note、specimen register 與 study room。",
+      "sourcePrinciples": [
+        "One dominant exhibit with metadata kept quiet and peripheral",
+        "Visible in-page wayfinding and skip paths for long-form reading",
+        "Framed WebGL presentation with restrained motion and explicit cleanup discipline"
+      ],
+      "sourceFamiliesConsulted": [
+        "official three.js documentation",
+        "official design systems",
+        "accessibility guidance",
+        "curated exhibition inspiration"
+      ],
+      "styleFamily": "Museum monograph / exhibition dossier",
+      "useCaseEmphasis": "案例深讀頁 / 策展型作品展示",
+      "bestFor": "深讀單一案例與版本家族關係。",
+      "keyTraits": [
+        "策展型雙軸閱讀",
+        "framed exhibit case",
+        "study room version wall"
+      ],
+      "navigationModel": "左側固定 rail + 右側展件視窗的雙軸導覽",
+      "motionLanguage": "展牌式 reveal 與 gallery drift",
+      "narrativeStructure": "curator note -> exhibition plates -> specimen register -> study room",
+      "sceneTreatment": "被框進展櫃的 3D 展件",
+      "notableUxIdeas": [
+        "左側固定章節 rail，右側固定展櫃視窗，形成雙軸閱讀",
+        "把 performance notes 與 UX ideas 改寫成 specimen register",
+        "在 study room 內直接展示 version wall，而不只依賴外層 dock"
+      ],
+      "notableFeatureIdeas": [
+        "framed exhibit case around the shared three.js scene",
+        "curator note + version wall composition",
+        "monograph-style reading rhythm with dark gallery atmosphere"
+      ],
+      "performanceNotes": [
+        "Canvas remains on the shared renderer lifecycle with full teardown on version switch.",
+        "Motion multipliers are reduced to gallery drift and reduced-motion still collapses animation.",
+        "Framed presentation avoids expensive post-processing and keeps the 1.8 pixel ratio cap."
+      ],
+      "entryFile": "versions/v003-museum-monograph/index.js",
+      "route": "/?v=v003",
+      "tokenFile": "tokens/v003.json",
+      "screenshotPaths": ["screenshots/v003/poster.svg"],
+      "timestamp": "2026-03-26T21:26:40+08:00",
+      "status": "stable"
+    }
+  ]
+}

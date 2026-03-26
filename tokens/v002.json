@@ -1,0 +1,25 @@
+{
+  "version": "v002",
+  "title": "Signal Ledger",
+  "colors": {
+    "background": "#f0e6d4",
+    "surface": "rgba(255,250,240,0.08)",
+    "text": "#1b241d",
+    "muted": "rgba(27,36,29,0.72)",
+    "accent": "#b77545",
+    "accentAlt": "#31473a"
+  },
+  "typography": {
+    "display": "Fraunces / Noto Serif TC",
+    "body": "Noto Sans TC"
+  },
+  "spacing": {
+    "pageInset": "36px",
+    "sectionPaddingDesktop": "96px",
+    "sectionPaddingMobile": "72px"
+  },
+  "motion": {
+    "heroEntrance": "820ms ease",
+    "sceneProfile": "editorial instrument drift"
+  }
+}

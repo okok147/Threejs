@@ -1,0 +1,25 @@
+{
+  "version": "v003",
+  "title": "Museum Monograph",
+  "colors": {
+    "background": "#0f0d0a",
+    "surface": "rgba(247,237,221,0.05)",
+    "text": "#f4ead8",
+    "muted": "rgba(244,234,216,0.72)",
+    "accent": "#dcc08d",
+    "accentAlt": "#7a8b80"
+  },
+  "typography": {
+    "display": "Cormorant Garamond / Noto Serif TC",
+    "body": "Noto Sans TC"
+  },
+  "spacing": {
+    "pageInset": "48px",
+    "sectionPaddingDesktop": "96px",
+    "sectionPaddingMobile": "72px"
+  },
+  "motion": {
+    "heroEntrance": "820ms ease",
+    "sceneProfile": "framed gallery drift"
+  }
+}

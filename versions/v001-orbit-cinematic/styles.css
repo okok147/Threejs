@@ -1,0 +1,592 @@
+.version-shell-v001 {
+  --orbit-bg: #02050f;
+  --orbit-bg-deep: #071022;
+  --orbit-surface: rgba(255, 255, 255, 0.04);
+  --orbit-text: #f3f7ff;
+  --orbit-muted: rgba(226, 234, 247, 0.74);
+  --orbit-muted-strong: rgba(205, 217, 239, 0.88);
+  --orbit-line: rgba(144, 169, 217, 0.16);
+  --orbit-line-strong: rgba(157, 198, 255, 0.4);
+  --orbit-accent: #90ecff;
+  --orbit-warm: #f0c47b;
+  color: var(--orbit-text);
+  background:
+    radial-gradient(circle at 14% 16%, rgba(67, 108, 244, 0.28), transparent 24%),
+    radial-gradient(circle at 79% 18%, rgba(72, 231, 255, 0.16), transparent 22%),
+    radial-gradient(circle at 50% 90%, rgba(15, 41, 89, 0.32), transparent 28%),
+    linear-gradient(180deg, #061025 0%, #02050f 48%, #060d1c 100%);
+  isolation: isolate;
+}
+
+.version-shell-v001 .version-canvas,
+.version-shell-v001 .orbit-ambient,
+.version-shell-v001 .orbit-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v001 .version-canvas {
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.version-shell-v001.is-ready .version-canvas {
+  opacity: 1;
+}
+
+.version-shell-v001 .orbit-ambient {
+  z-index: 1;
+  filter: blur(110px);
+}
+
+.version-shell-v001 .orbit-ambient-left {
+  opacity: 0.68;
+  background: radial-gradient(circle at 20% 28%, rgba(73, 111, 255, 0.52), transparent 52%);
+}
+
+.version-shell-v001 .orbit-ambient-right {
+  opacity: 0.52;
+  background: radial-gradient(circle at 80% 24%, rgba(72, 238, 255, 0.32), transparent 44%);
+  transform: translateY(calc(var(--scroll-progress, 0) * -80px));
+}
+
+.version-shell-v001 .orbit-noise {
+  z-index: 1;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 120px 120px;
+  mix-blend-mode: soft-light;
+}
+
+.version-shell-v001 .orbit-header {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  z-index: 6;
+  width: min(1240px, calc(100% - 220px));
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  transform: translateX(-50%);
+}
+
+.version-shell-v001 .orbit-brand,
+.version-shell-v001 .orbit-link,
+.version-shell-v001 .orbit-nav a,
+.version-shell-v001 .orbit-eyebrow,
+.version-shell-v001 .orbit-section-label,
+.version-shell-v001 .orbit-meta-title,
+.version-shell-v001 .orbit-signal span,
+.version-shell-v001 .orbit-chapter-step,
+.version-shell-v001 .orbit-metric span,
+.version-shell-v001 .orbit-line-item span,
+.version-shell-v001 .orbit-reference-row span {
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orbit-muted-strong);
+}
+
+.version-shell-v001 .orbit-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.version-shell-v001 .orbit-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--orbit-accent) 0%, var(--orbit-warm) 100%);
+  box-shadow: 0 0 24px rgba(144, 236, 255, 0.84);
+}
+
+.version-shell-v001 .orbit-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.version-shell-v001 .orbit-nav a,
+.version-shell-v001 .orbit-link {
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid transparent;
+  opacity: 0.68;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    opacity 180ms ease;
+}
+
+.version-shell-v001 .orbit-nav a:hover,
+.version-shell-v001 .orbit-nav a.is-active,
+.version-shell-v001 .orbit-link:hover {
+  border-color: var(--orbit-line-strong);
+  color: var(--orbit-text);
+  opacity: 1;
+}
+
+.version-shell-v001 .orbit-nav a:focus-visible,
+.version-shell-v001 .orbit-link:focus-visible,
+.version-shell-v001 .orbit-button:focus-visible,
+.version-shell-v001 .orbit-scroll-cue:focus-visible,
+.version-shell-v001 .orbit-reference-row:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px rgba(144, 236, 255, 0.9),
+    0 0 0 5px rgba(144, 236, 255, 0.12);
+}
+
+.version-shell-v001 .orbit-page {
+  position: relative;
+  z-index: 2;
+}
+
+.version-shell-v001 .orbit-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100svh;
+  padding: 7rem 0 2rem;
+}
+
+.version-shell-v001 .orbit-gridlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(138, 176, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 176, 255, 0.08) 1px, transparent 1px);
+  background-size: 110px 110px;
+  mask-image: radial-gradient(circle at 50% 38%, black 32%, transparent 86%);
+}
+
+.version-shell-v001 .orbit-hero-inner,
+.version-shell-v001 .orbit-hero-footer,
+.version-shell-v001 .orbit-section,
+.version-shell-v001 .orbit-closing {
+  position: relative;
+  width: min(1240px, calc(100% - 72px));
+  margin: 0 auto;
+}
+
+.version-shell-v001 .orbit-hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: end;
+  gap: 3rem;
+  flex: 1;
+}
+
+.version-shell-v001 .orbit-copy {
+  max-width: 54rem;
+  padding-bottom: 3.6rem;
+  transform: translateY(calc(var(--experience-progress, 0) * -28px));
+}
+
+.version-shell-v001 .orbit-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.version-shell-v001 h1,
+.version-shell-v001 h2 {
+  font-family: 'Noto Serif TC', serif;
+  line-height: 1.04;
+}
+
+.version-shell-v001 .orbit-copy h1 {
+  max-width: 13ch;
+  font-size: clamp(3rem, 6vw, 6.2rem);
+  letter-spacing: -0.04em;
+}
+
+.version-shell-v001 .orbit-copy h1 span {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: clamp(5.3rem, 14vw, 10.5rem);
+  line-height: 0.88;
+  letter-spacing: 0.08em;
+}
+
+.version-shell-v001 .orbit-lede,
+.version-shell-v001 .orbit-section-copy,
+.version-shell-v001 .orbit-chapter p,
+.version-shell-v001 .orbit-chapter-note,
+.version-shell-v001 .orbit-line-item p,
+.version-shell-v001 .orbit-reference-row p {
+  color: var(--orbit-muted);
+}
+
+.version-shell-v001 .orbit-lede {
+  max-width: 36rem;
+  margin-top: 1.35rem;
+  font-size: clamp(1rem, 1.65vw, 1.18rem);
+}
+
+.version-shell-v001 .orbit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.version-shell-v001 .orbit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0.85rem 1.4rem;
+  border: 1px solid var(--orbit-line);
+  border-radius: 999px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.version-shell-v001 .orbit-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--orbit-line-strong);
+}
+
+.version-shell-v001 .orbit-button-primary {
+  background: rgba(144, 236, 255, 0.12);
+}
+
+.version-shell-v001 .orbit-button-primary:hover {
+  background: rgba(144, 236, 255, 0.18);
+}
+
+.version-shell-v001 .orbit-button-secondary {
+  color: var(--orbit-muted);
+}
+
+.version-shell-v001 .orbit-button-secondary:hover {
+  color: var(--orbit-text);
+}
+
+.version-shell-v001 .orbit-aside {
+  width: min(100%, 320px);
+  margin-bottom: 5rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--orbit-line);
+  transform: translateY(calc(var(--experience-progress, 0) * -42px));
+}
+
+.version-shell-v001 .orbit-meta-title {
+  margin-bottom: 0.55rem;
+}
+
+.version-shell-v001 .orbit-signal {
+  padding: 0.95rem 0 0.1rem;
+  border-top: 1px solid var(--orbit-line);
+}
+
+.version-shell-v001 .orbit-signal p {
+  margin-top: 0.42rem;
+  color: var(--orbit-muted);
+}
+
+.version-shell-v001 .orbit-hero-footer {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v001 .orbit-rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--orbit-line);
+}
+
+.version-shell-v001 .orbit-rail span {
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--orbit-muted-strong);
+}
+
+.version-shell-v001 .orbit-scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: fit-content;
+  font-size: 0.92rem;
+  color: var(--orbit-muted);
+}
+
+.version-shell-v001 .orbit-scroll-cue span {
+  display: inline-block;
+  width: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), var(--orbit-accent));
+}
+
+.version-shell-v001 .orbit-section,
+.version-shell-v001 .orbit-closing {
+  padding: 6rem 0;
+  border-top: 1px solid var(--orbit-line);
+}
+
+.version-shell-v001 .orbit-closing {
+  padding-bottom: 10rem;
+}
+
+.version-shell-v001 .orbit-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.version-shell-v001 .orbit-section-head h2,
+.version-shell-v001 .orbit-system-copy h2,
+.version-shell-v001 .orbit-closing h2 {
+  max-width: 12ch;
+  font-size: clamp(2.3rem, 5vw, 4.6rem);
+}
+
+.version-shell-v001 .orbit-section-copy {
+  max-width: 24rem;
+  padding-top: 0.3rem;
+}
+
+.version-shell-v001 .orbit-chapter-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+
+.version-shell-v001 .orbit-chapter {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 250px;
+  gap: 1.4rem;
+  align-items: start;
+  padding: 1.4rem 0 1.65rem;
+  border-top: 1px solid var(--orbit-line);
+  opacity: 0.46;
+  transition:
+    opacity 280ms ease,
+    transform 280ms ease,
+    border-color 280ms ease;
+}
+
+.version-shell-v001 .orbit-chapter.is-current {
+  opacity: 1;
+  transform: translateX(8px);
+  border-top-color: var(--orbit-line-strong);
+}
+
+.version-shell-v001 .orbit-chapter-copy h3 {
+  margin-bottom: 0.45rem;
+  font-size: 1.72rem;
+  line-height: 1.2;
+}
+
+.version-shell-v001 .orbit-system-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 430px;
+  gap: 2.5rem;
+}
+
+.version-shell-v001 .orbit-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--orbit-line);
+}
+
+.version-shell-v001 .orbit-metric strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  line-height: 1;
+}
+
+.version-shell-v001 .orbit-system-lines {
+  display: flex;
+  flex-direction: column;
+}
+
+.version-shell-v001 .orbit-line-item {
+  padding: 1rem 0 1.25rem;
+  border-top: 1px solid var(--orbit-line);
+}
+
+.version-shell-v001 .orbit-line-item:first-child {
+  border-top-color: var(--orbit-line-strong);
+}
+
+.version-shell-v001 .orbit-line-item strong {
+  display: block;
+  margin: 0.4rem 0 0.42rem;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.version-shell-v001 .orbit-reference-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.version-shell-v001 .orbit-reference-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) 24px;
+  gap: 1.2rem;
+  align-items: center;
+  padding: 1.2rem 0 1.3rem;
+  border-top: 1px solid var(--orbit-line);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.version-shell-v001 .orbit-reference-row:hover {
+  transform: translateX(8px);
+  border-top-color: var(--orbit-line-strong);
+}
+
+.version-shell-v001 .orbit-reference-row strong {
+  display: block;
+  margin-bottom: 0.28rem;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.version-shell-v001 .orbit-reference-row i {
+  justify-self: end;
+  font-style: normal;
+  color: var(--orbit-accent);
+}
+
+.version-shell-v001 .orbit-closing h2 {
+  margin: 0.2rem 0 1rem;
+}
+
+.version-shell-v001 .orbit-closing .orbit-section-copy {
+  max-width: 34rem;
+}
+
+.version-shell-v001.no-webgl .version-canvas {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .version-shell-v001 .orbit-header {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .version-shell-v001 .orbit-hero-inner,
+  .version-shell-v001 .orbit-section-head,
+  .version-shell-v001 .orbit-system-layout,
+  .version-shell-v001 .orbit-chapter {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v001 .orbit-aside {
+    width: min(100%, 420px);
+    margin-bottom: 1.5rem;
+  }
+
+  .version-shell-v001 .orbit-reference-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .version-shell-v001 .orbit-reference-row span {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .version-shell-v001 .orbit-header,
+  .version-shell-v001 .orbit-hero-inner,
+  .version-shell-v001 .orbit-hero-footer,
+  .version-shell-v001 .orbit-section,
+  .version-shell-v001 .orbit-closing {
+    width: calc(100% - 32px);
+  }
+
+  .version-shell-v001 .orbit-header {
+    top: 16px;
+    gap: 0.8rem;
+  }
+
+  .version-shell-v001 .orbit-nav {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .version-shell-v001 .orbit-brand,
+  .version-shell-v001 .orbit-link,
+  .version-shell-v001 .orbit-nav a,
+  .version-shell-v001 .orbit-eyebrow,
+  .version-shell-v001 .orbit-section-label,
+  .version-shell-v001 .orbit-meta-title,
+  .version-shell-v001 .orbit-signal span,
+  .version-shell-v001 .orbit-chapter-step,
+  .version-shell-v001 .orbit-metric span,
+  .version-shell-v001 .orbit-line-item span,
+  .version-shell-v001 .orbit-reference-row span,
+  .version-shell-v001 .orbit-rail span {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  .version-shell-v001 .orbit-hero {
+    padding-top: 7.2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .version-shell-v001 .orbit-copy h1 {
+    font-size: clamp(2.4rem, 10.8vw, 4.1rem);
+  }
+
+  .version-shell-v001 .orbit-copy h1 span {
+    font-size: clamp(4rem, 19vw, 6rem);
+  }
+
+  .version-shell-v001 .orbit-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .version-shell-v001 .orbit-button {
+    width: 100%;
+  }
+
+  .version-shell-v001 .orbit-rail,
+  .version-shell-v001 .orbit-metrics {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .version-shell-v001 .orbit-section,
+  .version-shell-v001 .orbit-closing {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .version-shell-v001 .orbit-closing {
+    padding-bottom: 12rem;
+  }
+
+  .version-shell-v001 .orbit-chapter-copy h3 {
+    font-size: 1.44rem;
+  }
+}

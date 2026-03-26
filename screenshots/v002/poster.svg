@@ -1,0 +1,15 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#F0E6D4"/>
+  <rect x="900" y="72" width="640" height="856" rx="34" fill="#D6C5A9" fill-opacity="0.46"/>
+  <rect x="930" y="102" width="580" height="796" rx="24" fill="#EAD9BF"/>
+  <circle cx="1192" cy="462" r="176" stroke="#B77545" stroke-width="4" stroke-opacity="0.42"/>
+  <circle cx="1192" cy="462" r="108" stroke="#31473A" stroke-width="3" stroke-opacity="0.62"/>
+  <path d="M1038 596C1098 560 1224 354 1372 428" stroke="#6D735C" stroke-width="7" stroke-linecap="round" stroke-opacity="0.42"/>
+  <path d="M96 228H760" stroke="#7F6244" stroke-opacity="0.28"/>
+  <path d="M96 744H760" stroke="#7F6244" stroke-opacity="0.28"/>
+  <text x="96" y="138" fill="#1B241D" font-size="26" letter-spacing="6" font-family="Helvetica, Arial, sans-serif">V002 / SIGNAL LEDGER</text>
+  <text x="96" y="320" fill="#1B241D" font-size="118" font-family="Georgia, serif">光軌</text>
+  <text x="96" y="424" fill="#1B241D" font-size="58" font-family="Georgia, serif">Editorial atlas for a versioned portfolio</text>
+  <text x="96" y="502" fill="#4F5C50" font-size="30" font-family="Helvetica, Arial, sans-serif">紙質版面、版本條目、方法論前台化、被裁切的 3D 儀表面板</text>
+  <text x="96" y="862" fill="#4F5C50" font-size="24" letter-spacing="5" font-family="Helvetica, Arial, sans-serif">STYLE FAMILY / EDITORIAL ATLAS · SIGNAL LEDGER</text>
+</svg>

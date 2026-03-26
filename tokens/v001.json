@@ -1,0 +1,25 @@
+{
+  "version": "v001",
+  "title": "Orbit Cinematic",
+  "colors": {
+    "background": "#02050f",
+    "surface": "rgba(255,255,255,0.04)",
+    "text": "#f3f7ff",
+    "muted": "rgba(226,234,247,0.74)",
+    "accent": "#90ecff",
+    "accentAlt": "#f0c47b"
+  },
+  "typography": {
+    "display": "Noto Serif TC",
+    "body": "Noto Sans TC"
+  },
+  "spacing": {
+    "pageInset": "36px",
+    "sectionPaddingDesktop": "96px",
+    "sectionPaddingMobile": "72px"
+  },
+  "motion": {
+    "heroEntrance": "820ms ease",
+    "sceneProfile": "orbital drift"
+  }
+}

@@ -1,0 +1,470 @@
+.version-shell-v002 {
+  --ledger-paper: #f0e6d4;
+  --ledger-ink: #1b241d;
+  --ledger-muted: rgba(27, 36, 29, 0.72);
+  --ledger-line: rgba(81, 65, 45, 0.18);
+  --ledger-line-strong: rgba(164, 114, 60, 0.36);
+  --ledger-accent: #b77545;
+  --ledger-forest: #31473a;
+  color: var(--ledger-ink);
+  background:
+    radial-gradient(circle at 22% 12%, rgba(255, 245, 224, 0.74), transparent 28%),
+    radial-gradient(circle at 80% 24%, rgba(197, 160, 118, 0.18), transparent 24%),
+    linear-gradient(180deg, #f3ebdd 0%, #efe3cf 100%);
+  isolation: isolate;
+}
+
+.version-shell-v002 .version-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  clip-path: inset(72px 32px 72px 54% round 32px);
+  mix-blend-mode: multiply;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+.version-shell-v002.is-ready .version-canvas {
+  opacity: 0.94;
+}
+
+.version-shell-v002 .ledger-film,
+.version-shell-v002 .ledger-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v002 .ledger-film {
+  z-index: 1;
+  opacity: 0.08;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.55) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 36, 29, 0.05) 1px, transparent 1px);
+  background-size: 18px 18px, 120px 120px;
+  mix-blend-mode: multiply;
+}
+
+.version-shell-v002 .ledger-grid {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, transparent 0, transparent calc(54% - 1px), rgba(77, 61, 41, 0.12) calc(54% - 1px), rgba(77, 61, 41, 0.12) 54%, transparent 54%),
+    linear-gradient(180deg, rgba(77, 61, 41, 0.08) 0, rgba(77, 61, 41, 0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 160px;
+}
+
+.version-shell-v002 .ledger-header {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  z-index: 6;
+  width: min(1240px, calc(100% - 220px));
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  transform: translateX(-50%);
+}
+
+.version-shell-v002 .ledger-issue,
+.version-shell-v002 .ledger-nav a,
+.version-shell-v002 .ledger-link,
+.version-shell-v002 .ledger-kicker,
+.version-shell-v002 .ledger-label,
+.version-shell-v002 .ledger-aside-label,
+.version-shell-v002 .ledger-note span,
+.version-shell-v002 .ledger-track-index,
+.version-shell-v002 .ledger-step span,
+.version-shell-v002 .ledger-reference span {
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.version-shell-v002 .ledger-brand-block {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.version-shell-v002 .ledger-brand {
+  font-family: 'Fraunces', 'Noto Serif TC', serif;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.version-shell-v002 .ledger-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.1rem;
+}
+
+.version-shell-v002 .ledger-nav a,
+.version-shell-v002 .ledger-link {
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid transparent;
+  color: var(--ledger-muted);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.version-shell-v002 .ledger-nav a:hover,
+.version-shell-v002 .ledger-nav a.is-active,
+.version-shell-v002 .ledger-link:hover {
+  border-color: var(--ledger-line-strong);
+  color: var(--ledger-ink);
+}
+
+.version-shell-v002 .ledger-nav a:focus-visible,
+.version-shell-v002 .ledger-link:focus-visible,
+.version-shell-v002 .ledger-button:focus-visible,
+.version-shell-v002 .ledger-reference:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px rgba(183, 117, 69, 0.9),
+    0 0 0 4px rgba(183, 117, 69, 0.14);
+}
+
+.version-shell-v002 .ledger-page {
+  position: relative;
+  z-index: 2;
+}
+
+.version-shell-v002 .ledger-hero,
+.version-shell-v002 .ledger-section {
+  width: min(1240px, calc(100% - 72px));
+  margin: 0 auto;
+}
+
+.version-shell-v002 .ledger-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 3rem;
+  min-height: 100svh;
+  padding: 8.5rem 0 4rem;
+}
+
+.version-shell-v002 .ledger-hero-copy {
+  align-self: center;
+  max-width: 42rem;
+}
+
+.version-shell-v002 h1,
+.version-shell-v002 h2,
+.version-shell-v002 h3,
+.version-shell-v002 .ledger-brand {
+  font-family: 'Fraunces', 'Noto Serif TC', serif;
+  line-height: 1.05;
+}
+
+.version-shell-v002 .ledger-hero-copy h1 {
+  max-width: 12ch;
+  font-size: clamp(3rem, 6vw, 6.3rem);
+  letter-spacing: -0.04em;
+}
+
+.version-shell-v002 .ledger-intro,
+.version-shell-v002 .ledger-copy,
+.version-shell-v002 .ledger-track p,
+.version-shell-v002 .ledger-step p,
+.version-shell-v002 .ledger-note p,
+.version-shell-v002 .ledger-archive-note p {
+  color: var(--ledger-muted);
+}
+
+.version-shell-v002 .ledger-intro {
+  max-width: 34rem;
+  margin-top: 1.4rem;
+  font-size: clamp(1rem, 1.55vw, 1.14rem);
+}
+
+.version-shell-v002 .ledger-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.version-shell-v002 .ledger-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.85rem 1.3rem;
+  border: 1px solid var(--ledger-line);
+  border-radius: 999px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.version-shell-v002 .ledger-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--ledger-line-strong);
+}
+
+.version-shell-v002 .ledger-button-primary {
+  background: rgba(183, 117, 69, 0.12);
+}
+
+.version-shell-v002 .ledger-button-secondary {
+  background: rgba(49, 71, 58, 0.08);
+}
+
+.version-shell-v002 .ledger-aside {
+  align-self: end;
+  display: grid;
+  gap: 0.8rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--ledger-line);
+  transform: translateY(calc(var(--experience-progress, 0) * -24px));
+}
+
+.version-shell-v002 .ledger-note {
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--ledger-line);
+}
+
+.version-shell-v002 .ledger-note p {
+  margin-top: 0.35rem;
+}
+
+.version-shell-v002 .ledger-section {
+  padding: 6rem 0;
+  border-top: 1px solid var(--ledger-line);
+}
+
+.version-shell-v002 .ledger-section:last-of-type {
+  padding-bottom: 11rem;
+}
+
+.version-shell-v002 .ledger-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.version-shell-v002 .ledger-section-head h2,
+.version-shell-v002 .ledger-method-intro h2 {
+  max-width: 11ch;
+  font-size: clamp(2.35rem, 5vw, 4.7rem);
+}
+
+.version-shell-v002 .ledger-copy {
+  max-width: 24rem;
+  padding-top: 0.25rem;
+}
+
+.version-shell-v002 .ledger-track-list,
+.version-shell-v002 .ledger-method-steps,
+.version-shell-v002 .ledger-reference-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.version-shell-v002 .ledger-track {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 280px;
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1.35rem 0 1.5rem;
+  border-top: 1px solid var(--ledger-line);
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease;
+}
+
+.version-shell-v002 .ledger-track:hover {
+  transform: translateX(8px);
+  border-top-color: var(--ledger-line-strong);
+}
+
+.version-shell-v002 .ledger-track-copy h3 {
+  margin-bottom: 0.34rem;
+  font-size: 1.66rem;
+}
+
+.version-shell-v002 .ledger-track-meta {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.2rem;
+}
+
+.version-shell-v002 .ledger-track-meta strong {
+  font-size: 1rem;
+}
+
+.version-shell-v002 .ledger-track-meta span {
+  color: var(--ledger-muted);
+}
+
+.version-shell-v002 .ledger-method-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 430px;
+  gap: 2.8rem;
+}
+
+.version-shell-v002 .ledger-step {
+  padding: 1rem 0 1.2rem;
+  border-top: 1px solid var(--ledger-line);
+}
+
+.version-shell-v002 .ledger-step:first-child {
+  border-top-color: var(--ledger-line-strong);
+}
+
+.version-shell-v002 .ledger-step strong {
+  display: block;
+  margin: 0.35rem 0 0.4rem;
+  font-size: 1.1rem;
+  line-height: 1.35;
+}
+
+.version-shell-v002 .ledger-archive-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.version-shell-v002 .ledger-archive-notes {
+  display: flex;
+  flex-direction: column;
+}
+
+.version-shell-v002 .ledger-archive-note {
+  padding: 1.05rem 0 1.2rem;
+  border-top: 1px solid var(--ledger-line);
+}
+
+.version-shell-v002 .ledger-archive-note h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1.25rem;
+}
+
+.version-shell-v002 .ledger-reference {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 1rem;
+  padding: 1rem 0 1.1rem;
+  border-top: 1px solid var(--ledger-line);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.version-shell-v002 .ledger-reference:hover {
+  transform: translateX(6px);
+  border-top-color: var(--ledger-line-strong);
+}
+
+.version-shell-v002 .ledger-reference strong {
+  grid-column: 1 / 2;
+  font-size: 1rem;
+  line-height: 1.38;
+}
+
+.version-shell-v002 .ledger-reference i {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-style: normal;
+  color: var(--ledger-accent);
+}
+
+.version-shell-v002.no-webgl .version-canvas {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .version-shell-v002 .ledger-header {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .version-shell-v002 .ledger-nav {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .version-shell-v002 .ledger-hero,
+  .version-shell-v002 .ledger-section-head,
+  .version-shell-v002 .ledger-method-layout,
+  .version-shell-v002 .ledger-archive-grid,
+  .version-shell-v002 .ledger-track {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v002 .version-canvas {
+    clip-path: inset(96px 24px 96px 40% round 28px);
+  }
+}
+
+@media (max-width: 760px) {
+  .version-shell-v002 .ledger-header,
+  .version-shell-v002 .ledger-hero,
+  .version-shell-v002 .ledger-section {
+    width: calc(100% - 32px);
+  }
+
+  .version-shell-v002 .ledger-header {
+    top: 16px;
+    gap: 0.8rem;
+  }
+
+  .version-shell-v002 .ledger-kicker,
+  .version-shell-v002 .ledger-label,
+  .version-shell-v002 .ledger-aside-label,
+  .version-shell-v002 .ledger-note span,
+  .version-shell-v002 .ledger-track-index,
+  .version-shell-v002 .ledger-step span,
+  .version-shell-v002 .ledger-reference span,
+  .version-shell-v002 .ledger-nav a,
+  .version-shell-v002 .ledger-link,
+  .version-shell-v002 .ledger-issue {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  .version-shell-v002 .version-canvas {
+    clip-path: inset(96px 16px auto 16px round 24px);
+    height: 42svh;
+    bottom: auto;
+  }
+
+  .version-shell-v002 .ledger-grid {
+    background-size: 100% 100%, 100% 120px;
+  }
+
+  .version-shell-v002 .ledger-hero {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+  }
+
+  .version-shell-v002 .ledger-hero-copy h1 {
+    font-size: clamp(2.5rem, 10vw, 4.2rem);
+  }
+
+  .version-shell-v002 .ledger-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .version-shell-v002 .ledger-button {
+    width: 100%;
+  }
+
+  .version-shell-v002 .ledger-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .version-shell-v002 .ledger-section:last-of-type {
+    padding-bottom: 12rem;
+  }
+}
