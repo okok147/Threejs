@@ -5,8 +5,12 @@ import {
   BufferAttribute,
   BufferGeometry,
   CanvasTexture,
+  CatmullRomCurve3,
   Clock,
+  CylinderGeometry,
+  DoubleSide,
   EdgesGeometry,
+  FogExp2,
   Group,
   IcosahedronGeometry,
   LineBasicMaterial,
@@ -19,18 +23,25 @@ import {
   PointLight,
   Points,
   PointsMaterial,
+  RingGeometry,
   Scene,
   SphereGeometry,
   Sprite,
   SpriteMaterial,
   SRGBColorSpace,
   TorusGeometry,
+  TubeGeometry,
   Vector2,
   Vector3,
   WebGLRenderer,
 } from 'three'
 
 const repoUrl = 'https://github.com/okok147/Threejs'
+const referenceUrls = {
+  blueyard: 'https://www.awwwards.com/sites/blueyard',
+  igloo: 'https://www.awwwards.com/igloo-inc-case-study.html',
+  starAtlas: 'https://www.awwwards.com/sites/star-atlas',
+}
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 document.querySelector('#app').innerHTML = `
@@ -43,113 +54,228 @@ document.querySelector('#app').innerHTML = `
     <header class="site-header reveal is-visible">
       <a class="brand" href="#top">
         <span class="brand-mark"></span>
-        <span>光軌 / THREE.JS</span>
+        <span>光軌</span>
       </a>
+
+      <nav class="site-nav" aria-label="頁面導覽">
+        <a href="#experience" data-nav="experience">Experience</a>
+        <a href="#stack" data-nav="stack">Stack</a>
+        <a href="#references" data-nav="references">References</a>
+      </nav>
+
       <a class="header-link" href="${repoUrl}" target="_blank" rel="noreferrer">
         GitHub
       </a>
     </header>
 
     <main class="page" id="top">
-      <section class="hero section">
-        <div class="hero-copy reveal is-visible">
-          <p class="hero-brand">光軌</p>
-          <p class="eyebrow">簡單 three.js 網站</p>
-          <h1>只用一個發光物件，做出乾淨而有存在感的首頁。</h1>
-          <p class="lede">
-            這是一個輕量單頁網站，包含即時 WebGL 場景、細緻視差，與可直接部署到
-            GitHub Pages 的流程。
-          </p>
-          <div class="actions">
-            <a class="button button-primary" href="#details">查看結構</a>
-            <a class="button button-secondary" href="${repoUrl}" target="_blank" rel="noreferrer">
-              打開原始碼
-            </a>
+      <section class="hero">
+        <div class="hero-gridlines" aria-hidden="true"></div>
+
+        <div class="hero-inner">
+          <div class="hero-copy reveal is-visible">
+            <p class="eyebrow">Three.js cinematic landing page / 2026 reference build</p>
+            <h1>
+              <span>光軌</span>
+              把 three.js 首頁做成可讀、可記住、可上線的敘事場景。
+            </h1>
+            <p class="lede">
+              這一版不是單純把 WebGL 放進 hero，而是把 BlueYard、Igloo Inc、
+              Star Atlas 這類得獎站常用的畫面語言，翻譯成一個乾淨、節制、可部署的單頁體驗。
+            </p>
+
+            <div class="actions">
+              <a class="button button-primary" href="#experience">進入體驗</a>
+              <a class="button button-secondary" href="${repoUrl}" target="_blank" rel="noreferrer">
+                檢視原始碼
+              </a>
+            </div>
           </div>
+
+          <aside class="hero-aside reveal is-visible" aria-label="Reference DNA">
+            <p class="meta-title">Reference DNA</p>
+
+            <div class="signal">
+              <span>BlueYard</span>
+              <p>取它的軌道感、宇宙導覽感與克制配色。</p>
+            </div>
+
+            <div class="signal">
+              <span>Igloo Inc</span>
+              <p>取它的滾動敘事節奏與場景先行的資訊編排。</p>
+            </div>
+
+            <div class="signal">
+              <span>Star Atlas</span>
+              <p>取它的世界觀氣氛與高對比 cinematic 首屏。</p>
+            </div>
+          </aside>
         </div>
 
-        <aside class="hero-meta reveal is-visible" aria-label="互動資訊">
-          <p class="meta-kicker">互動摘要</p>
-          <div class="meta-row">
-            <span>滑鼠</span>
-            <p>鏡頭與幾何會跟著游標緩慢偏移，避免畫面太死。</p>
+        <div class="hero-footer reveal is-visible">
+          <div class="hero-rail">
+            <span>Poster-first hero</span>
+            <span>Scroll-driven scene shift</span>
+            <span>Restrained stack narrative</span>
           </div>
-          <div class="meta-row">
-            <span>滾動</span>
-            <p>光環、衛星與段落會依頁面進度產生細微位移。</p>
-          </div>
-          <div class="meta-row">
-            <span>部署</span>
-            <p>推送到 main 後，GitHub Actions 會自動建置並發布 Pages。</p>
-          </div>
-        </aside>
+
+          <a class="scroll-cue" href="#experience">
+            <span></span>
+            向下滾動
+          </a>
+        </div>
       </section>
 
-      <section class="details section" id="details">
+      <section class="story section" id="experience" data-section="experience">
+        <div class="section-head story-head reveal">
+          <div>
+            <p class="section-label">Scroll Narrative</p>
+            <h2>同一顆核心物件，隨著頁面進度切換三種閱讀狀態。</h2>
+          </div>
+          <p class="section-copy">
+            這裡不靠切頁轉場，而是讓文字、鏡頭與光環一起移動。讀者會感覺自己正在穿過一個有方向感的介面，而不是翻一份靜態簡報。
+          </p>
+        </div>
+
+        <div class="chapter-list">
+          <article class="chapter reveal is-current" data-chapter="0">
+            <span class="chapter-step">01 / ORBIT</span>
+            <div class="chapter-copy">
+              <h3>先把品牌做成海報，而不是功能清單。</h3>
+              <p>
+                第一屏只做一件事：讓品牌名稱、光軌主體與行動按鈕在同一個視覺節奏裡成立。
+              </p>
+            </div>
+            <p class="chapter-note">大字品牌、窄文案欄、低噪音背景。</p>
+          </article>
+
+          <article class="chapter reveal" data-chapter="1">
+            <span class="chapter-step">02 / DRIFT</span>
+            <div class="chapter-copy">
+              <h3>讓滾動變成鏡頭指令，而不是只推動內容往下。</h3>
+              <p>
+                中段開始，場景的光環、軌跡與相機會慢慢偏移，形成像案例影片一樣的運鏡感。
+              </p>
+            </div>
+            <p class="chapter-note">場景位移、字幕跟隨、段落依序接管注意力。</p>
+          </article>
+
+          <article class="chapter reveal" data-chapter="2">
+            <span class="chapter-step">03 / DEPLOY</span>
+            <div class="chapter-copy">
+              <h3>最後把創意收束成一個真的能上線的 repo。</h3>
+              <p>
+                體驗感做夠之後，落點要清楚，所以最後一段只保留 stack、參考來源與可部署狀態。
+              </p>
+            </div>
+            <p class="chapter-note">不是炫技展示，而是能繼續迭代的起點。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="system section" id="stack" data-section="stack">
+        <div class="system-layout">
+          <div class="system-copy reveal">
+            <p class="section-label">Implementation Stack</p>
+            <h2>畫面像得獎站，但技術結構刻意保持薄。</h2>
+            <p class="section-copy">
+              我沒有直接把整套 stack 換成更重的框架，而是保留目前這個 repo 最適合的組合，讓 three.js 場景、文案層與部署流程全部維持可控。
+            </p>
+
+            <div class="metric-strip reveal">
+              <div class="metric">
+                <strong>3</strong>
+                <span>scroll phases</span>
+              </div>
+              <div class="metric">
+                <strong>1</strong>
+                <span>scene core</span>
+              </div>
+              <div class="metric">
+                <strong>auto</strong>
+                <span>GitHub deploy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-lines">
+            <article class="line-item reveal">
+              <span>Scene Core</span>
+              <strong>Three.js + 自訂幾何軌跡 + 粒子場</strong>
+              <p>用單一核心物件、軌道、粒子帶與光環把畫面做厚，而不是用一堆模型撐滿場景。</p>
+            </article>
+
+            <article class="line-item reveal">
+              <span>Page Layer</span>
+              <strong>原生 HTML + CSS，讓版面保持高控制度</strong>
+              <p>文字層不依賴 UI 框架，版面能更直接貼合 three.js 場景和 scroll 節奏。</p>
+            </article>
+
+            <article class="line-item reveal">
+              <span>Delivery</span>
+              <strong>Vite 建置，GitHub Actions 發佈 GitHub Pages</strong>
+              <p>從本地開發到上線都留在同一個 repo 裡，不需要額外平台或 CMS 才能展示成品。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="reference section" id="references" data-section="references">
         <div class="section-head reveal">
           <div>
-            <p class="section-label">互動重點</p>
-            <h2>這個頁面沒有堆功能，而是把動態集中在三個必要的手勢。</h2>
+            <p class="section-label">Reference Translation</p>
+            <h2>不是照抄得獎站，而是抽出它們真正有效的骨架。</h2>
           </div>
           <p class="section-copy">
-            第一屏像海報，後續段落只負責解釋互動、技術與部署方式，避免把體驗做成示範牆。
+            這三個 reference 我都保留了原始連結，方便你之後繼續對照。這一版實作採的是它們的結構邏輯，不是複製視覺表層。
           </p>
         </div>
 
-        <div class="feature-list">
-          <article class="feature reveal">
-            <span class="feature-number">01</span>
-            <h3>游標漂移</h3>
-            <p>相機不是直接跟著滑鼠跑，而是帶著阻尼慢慢追上，畫面更穩。</p>
-          </article>
-          <article class="feature reveal">
-            <span class="feature-number">02</span>
-            <h3>場景呼吸</h3>
-            <p>主體、光環與衛星以不同速度旋轉，讓畫面保持深度與節奏。</p>
-          </article>
-          <article class="feature reveal">
-            <span class="feature-number">03</span>
-            <h3>捲動節奏</h3>
-            <p>背景物件與文字在滾動時產生細小落差，頁面不會像靜態截圖。</p>
-          </article>
-        </div>
-      </section>
+        <div class="reference-list">
+          <a class="reference-row reveal" href="${referenceUrls.blueyard}" target="_blank" rel="noreferrer">
+            <span>BlueYard</span>
+            <div>
+              <strong>把 3D 當成導覽系統，而不是背景動畫。</strong>
+              <p>我把這種「軌道式資訊架構」轉成現在首頁的 hero 世界觀和中段章節節奏。</p>
+            </div>
+            <i>↗</i>
+          </a>
 
-      <section class="build section">
-        <div class="build-copy reveal">
-          <p class="section-label">技術與部署</p>
-          <h2>前端結構保持很薄，方便改字、換場景，然後直接上 GitHub。</h2>
-          <p class="section-copy">
-            網站只用 Vite、three.js 與原生 CSS，沒有多餘框架負擔，也讓後續擴充很直接。
-          </p>
-        </div>
+          <a class="reference-row reveal" href="${referenceUrls.igloo}" target="_blank" rel="noreferrer">
+            <span>Igloo Inc</span>
+            <div>
+              <strong>用滾動推動場景敘事，讓每一段都有鏡頭感。</strong>
+              <p>我把這種敘事方式壓縮成更輕量的 scroll phases，保留戲劇性但不把專案做得過重。</p>
+            </div>
+            <i>↗</i>
+          </a>
 
-        <div class="build-list">
-          <article class="build-item reveal">
-            <span>技術堆疊</span>
-            <strong>Vite + three.js + 原生 CSS</strong>
-            <p>保留最少依賴，建置、調整與部署都很直接。</p>
-          </article>
-          <article class="build-item reveal">
-            <span>場景策略</span>
-            <strong>單一主物件 + 粒子星點 + 發光光環</strong>
-            <p>在視覺有記憶點的同時，把渲染成本壓在合理範圍內。</p>
-          </article>
-          <article class="build-item reveal">
-            <span>發布方式</span>
-            <strong>GitHub Actions 自動部署 Pages</strong>
-            <p>每次推送 main 都會重新建置，站點可以自動更新。</p>
-          </article>
+          <a class="reference-row reveal" href="${referenceUrls.starAtlas}" target="_blank" rel="noreferrer">
+            <span>Star Atlas</span>
+            <div>
+              <strong>強世界觀、強對比、強第一印象。</strong>
+              <p>我借的是它的氣氛密度與文案口吻，不是複製遊戲式 UI 元件。</p>
+            </div>
+            <i>↗</i>
+          </a>
         </div>
       </section>
 
       <section class="closing section reveal">
-        <p class="section-label">已可上線</p>
-        <h2>這個專案現在可以直接推上 GitHub，並發佈成可公開瀏覽的網站。</h2>
-        <a class="button button-primary" href="${repoUrl}" target="_blank" rel="noreferrer">
-          前往 GitHub 倉庫
-        </a>
-        <p class="footer-note">如果要換成你的品牌，只需要改文案、色盤與場景參數。</p>
+        <p class="section-label">Ready To Ship</p>
+        <h2>這個版本已經把參考研究、視覺翻譯、前端實作與部署串成同一條流程。</h2>
+        <p class="section-copy">
+          你現在拿到的不是 moodboard，而是一個已上線的起點。後面如果要換成品牌官網、產品發表頁或作品集，只要換文案與場景方向即可。
+        </p>
+
+        <div class="actions">
+          <a class="button button-primary" href="${repoUrl}" target="_blank" rel="noreferrer">
+            打開 GitHub
+          </a>
+          <a class="button button-secondary" href="https://okok147.github.io/Threejs/" target="_blank" rel="noreferrer">
+            查看 Live Site
+          </a>
+        </div>
       </section>
     </main>
   </div>
@@ -157,22 +283,37 @@ document.querySelector('#app').innerHTML = `
 
 const revealItems = [...document.querySelectorAll('.reveal:not(.is-visible)')]
 const canvas = document.querySelector('[data-canvas]')
+const chapterItems = [...document.querySelectorAll('.chapter')]
+const navLinks = [...document.querySelectorAll('[data-nav]')]
+const sections = {
+  experience: document.querySelector('#experience'),
+  stack: document.querySelector('#stack'),
+  references: document.querySelector('#references'),
+}
 
 setupReveals(revealItems, reducedMotion)
+const uiController = createUiController({ chapterItems, navLinks, sections })
 
 if (canvas) {
-  const sceneController = createScene(canvas, reducedMotion)
+  const sceneController = createScene(canvas, reducedMotion, sections)
 
   window.addEventListener('resize', sceneController.handleResize)
+  window.addEventListener('resize', uiController.handleResize)
   window.addEventListener('pointermove', sceneController.handlePointerMove, {
     passive: true,
   })
   window.addEventListener('scroll', sceneController.handleScroll, { passive: true })
+  window.addEventListener('scroll', uiController.handleScroll, { passive: true })
 
   sceneController.handleResize()
   sceneController.handleScroll()
   sceneController.start()
+} else {
+  window.addEventListener('resize', uiController.handleResize)
+  window.addEventListener('scroll', uiController.handleScroll, { passive: true })
 }
+
+uiController.handleScroll()
 
 requestAnimationFrame(() => {
   document.body.classList.add('is-ready')
@@ -199,12 +340,34 @@ function setupReveals(elements, prefersReducedMotion) {
   )
 
   elements.forEach((element, index) => {
-    element.style.setProperty('--reveal-delay', `${index * 90}ms`)
+    element.style.setProperty('--reveal-delay', `${index * 80}ms`)
     observer.observe(element)
   })
 }
 
-function createScene(canvasElement, prefersReducedMotion) {
+function createUiController({ chapterItems: items, navLinks: links, sections: trackedSections }) {
+  const sectionOrder = ['experience', 'stack', 'references']
+
+  function handleScroll() {
+    const activeSection = getActiveSection(sectionOrder, trackedSections)
+    const activeChapter = getActiveChapter(items)
+
+    links.forEach((link) => {
+      link.classList.toggle('is-active', link.dataset.nav === activeSection)
+    })
+
+    items.forEach((item, index) => {
+      item.classList.toggle('is-current', index === activeChapter)
+    })
+  }
+
+  return {
+    handleScroll,
+    handleResize: handleScroll,
+  }
+}
+
+function createScene(canvasElement, prefersReducedMotion, trackedSections) {
   const noop = {
     handlePointerMove: () => {},
     handleResize: () => {},
@@ -230,7 +393,9 @@ function createScene(canvasElement, prefersReducedMotion) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
 
   const scene = new Scene()
-  const camera = new PerspectiveCamera(44, window.innerWidth / window.innerHeight, 0.1, 60)
+  scene.fog = new FogExp2(0x050816, 0.055)
+
+  const camera = new PerspectiveCamera(34, window.innerWidth / window.innerHeight, 0.1, 80)
   const cameraTarget = new Vector3()
   const clock = new Clock()
 
@@ -239,90 +404,167 @@ function createScene(canvasElement, prefersReducedMotion) {
     pointerTarget: new Vector2(),
     scroll: 0,
     scrollTarget: 0,
+    sections: {
+      experience: 0,
+      stack: 0,
+      references: 0,
+    },
   }
 
-  const orbitGroup = new Group()
-  scene.add(orbitGroup)
+  const layout = {
+    cameraX: -1.25,
+    cameraY: 0.1,
+    cameraZ: 8,
+    worldX: 2.35,
+    worldY: 0.15,
+  }
+
+  const world = new Group()
+  scene.add(world)
 
   const glowTexture = createGlowTexture()
   const aura = new Sprite(
     new SpriteMaterial({
       map: glowTexture,
-      color: 0x69deff,
+      color: 0x79e4ff,
       transparent: true,
-      opacity: 0.48,
+      opacity: 0.32,
       blending: AdditiveBlending,
       depthWrite: false,
     })
   )
-  aura.scale.set(6.6, 6.6, 1)
-  orbitGroup.add(aura)
+  aura.scale.set(8.4, 8.4, 1)
+  world.add(aura)
 
-  const coreGeometry = new IcosahedronGeometry(1.24, 1)
+  const warmAura = new Sprite(
+    new SpriteMaterial({
+      map: glowTexture,
+      color: 0xf0c47b,
+      transparent: true,
+      opacity: 0.12,
+      blending: AdditiveBlending,
+      depthWrite: false,
+    })
+  )
+  warmAura.position.set(-0.4, 0.2, -0.2)
+  warmAura.scale.set(4.8, 4.8, 1)
+  world.add(warmAura)
+
+  const coreGeometry = new IcosahedronGeometry(1.12, 2)
   const core = new Mesh(
     coreGeometry,
     new MeshStandardMaterial({
-      color: 0x96f0ff,
-      emissive: 0x17336f,
-      emissiveIntensity: 1.35,
-      roughness: 0.18,
+      color: 0xb7eeff,
+      emissive: 0x1a3a78,
+      emissiveIntensity: 1.2,
+      roughness: 0.2,
       metalness: 0.08,
       flatShading: true,
     })
   )
-  orbitGroup.add(core)
+  world.add(core)
 
   const shell = new Mesh(
-    new IcosahedronGeometry(1.5, 1),
+    new IcosahedronGeometry(1.42, 1),
     new MeshBasicMaterial({
-      color: 0xdaf6ff,
+      color: 0xdff7ff,
       wireframe: true,
       transparent: true,
-      opacity: 0.1,
+      opacity: 0.12,
     })
   )
-  orbitGroup.add(shell)
+  world.add(shell)
 
   const edges = new LineSegments(
     new EdgesGeometry(coreGeometry),
     new LineBasicMaterial({
-      color: 0xf7fcff,
+      color: 0xffffff,
       transparent: true,
-      opacity: 0.38,
+      opacity: 0.25,
     })
   )
-  orbitGroup.add(edges)
+  world.add(edges)
 
   const halo = new Mesh(
-    new TorusGeometry(1.95, 0.05, 18, 160),
+    new TorusGeometry(2.05, 0.055, 24, 180),
     new MeshBasicMaterial({
-      color: 0x84e5ff,
+      color: 0x82e8ff,
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.5,
     })
   )
-  halo.rotation.x = 1.14
-  halo.rotation.y = 0.38
-  orbitGroup.add(halo)
+  halo.rotation.x = 1.16
+  halo.rotation.y = 0.28
+  world.add(halo)
 
-  const accentRing = new Mesh(
-    new TorusGeometry(1.58, 0.015, 12, 160),
+  const haloSecondary = new Mesh(
+    new TorusGeometry(1.58, 0.018, 16, 180),
     new MeshBasicMaterial({
       color: 0xf0c47b,
       transparent: true,
       opacity: 0.9,
     })
   )
-  accentRing.rotation.x = 1.9
-  accentRing.rotation.z = 0.78
-  orbitGroup.add(accentRing)
+  haloSecondary.rotation.x = 2.02
+  haloSecondary.rotation.z = 0.76
+  world.add(haloSecondary)
+
+  const portal = new Mesh(
+    new RingGeometry(2.28, 2.62, 96),
+    new MeshBasicMaterial({
+      color: 0x8fe9ff,
+      transparent: true,
+      opacity: 0.16,
+      side: DoubleSide,
+    })
+  )
+  portal.rotation.x = 1.34
+  portal.rotation.z = 0.12
+  world.add(portal)
+
+  const beam = new Mesh(
+    new CylinderGeometry(0.18, 0.03, 7.2, 32, 1, true),
+    new MeshBasicMaterial({
+      color: 0x7fdfff,
+      transparent: true,
+      opacity: 0.06,
+      side: DoubleSide,
+    })
+  )
+  beam.rotation.z = 0.5
+  beam.position.set(-0.35, -0.2, -0.8)
+  world.add(beam)
+
+  const trailCurve = new CatmullRomCurve3([
+    new Vector3(-3.6, -0.1, -1.7),
+    new Vector3(-1.8, 0.95, -0.5),
+    new Vector3(0.7, 0.4, 0.4),
+    new Vector3(3.1, -0.85, 1.35),
+  ])
+
+  const trail = new Mesh(
+    new TubeGeometry(trailCurve, 140, 0.04, 18, false),
+    new MeshBasicMaterial({
+      color: 0x9befff,
+      transparent: true,
+      opacity: 0.32,
+    })
+  )
+  trail.rotation.z = -0.08
+  world.add(trail)
+
+  const dustBand = createOrbitalDust()
+  world.add(dustBand)
+
+  const stars = createStarField()
+  scene.add(stars)
 
   const satellites = []
-  const satelliteGeometry = new SphereGeometry(0.12, 24, 24)
+  const satelliteGeometry = new SphereGeometry(0.11, 24, 24)
   const satelliteConfigs = [
-    { radius: 2.45, speed: 0.8, phase: 0.35, yScale: 0.35, scale: 0.95, color: 0xf0c47b },
-    { radius: 3.05, speed: 0.55, phase: 2.2, yScale: 0.5, scale: 0.7, color: 0x8feaff },
-    { radius: 2.75, speed: 1.05, phase: 4.6, yScale: 0.25, scale: 0.55, color: 0xbabaff },
+    { radius: 2.6, speed: 0.78, phase: 0.3, yScale: 0.34, scale: 1, color: 0xf0c47b },
+    { radius: 3.15, speed: 0.56, phase: 2.4, yScale: 0.54, scale: 0.72, color: 0x87e7ff },
+    { radius: 2.82, speed: 1.02, phase: 4.8, yScale: 0.22, scale: 0.58, color: 0xbfc0ff },
   ]
 
   satelliteConfigs.forEach((config) => {
@@ -331,53 +573,30 @@ function createScene(canvasElement, prefersReducedMotion) {
       new MeshStandardMaterial({
         color: config.color,
         emissive: config.color,
-        emissiveIntensity: 0.45,
-        roughness: 0.2,
-        metalness: 0.08,
+        emissiveIntensity: 0.55,
+        roughness: 0.18,
+        metalness: 0.05,
       })
     )
 
     mesh.scale.setScalar(config.scale)
-    orbitGroup.add(mesh)
+    world.add(mesh)
     satellites.push({ mesh, ...config })
   })
 
-  const starCount = 1400
-  const starPositions = new Float32Array(starCount * 3)
+  scene.add(new AmbientLight(0x9bb5ff, 1.2))
 
-  for (let index = 0; index < starCount; index += 1) {
-    const radius = 8 + Math.random() * 18
-    const theta = Math.random() * Math.PI * 2
-    const phi = Math.acos(2 * Math.random() - 1)
-
-    starPositions[index * 3] = radius * Math.sin(phi) * Math.cos(theta)
-    starPositions[index * 3 + 1] = radius * Math.cos(phi)
-    starPositions[index * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta)
-  }
-
-  const stars = new Points(
-    new BufferGeometry(),
-    new PointsMaterial({
-      color: 0xe4f6ff,
-      size: 0.035,
-      sizeAttenuation: true,
-      transparent: true,
-      opacity: 0.95,
-      depthWrite: false,
-    })
-  )
-  stars.geometry.setAttribute('position', new BufferAttribute(starPositions, 3))
-  scene.add(stars)
-
-  scene.add(new AmbientLight(0x88a6ff, 1.25))
-
-  const keyLight = new PointLight(0x83eaff, 22, 22, 2)
-  keyLight.position.set(3.4, 2.8, 5.2)
+  const keyLight = new PointLight(0x8ce9ff, 28, 28, 2)
+  keyLight.position.set(4.5, 3.2, 5.8)
   scene.add(keyLight)
 
-  const fillLight = new PointLight(0x203a7c, 18, 24, 2)
-  fillLight.position.set(-4.6, -1.8, 3.5)
+  const fillLight = new PointLight(0x223d89, 16, 22, 2)
+  fillLight.position.set(-5, -2.4, 3.4)
   scene.add(fillLight)
+
+  const warmLight = new PointLight(0xf0c47b, 10, 18, 2)
+  warmLight.position.set(-0.8, 1.1, 3)
+  scene.add(warmLight)
 
   function handlePointerMove(event) {
     if (prefersReducedMotion) {
@@ -391,23 +610,33 @@ function createScene(canvasElement, prefersReducedMotion) {
   function handleScroll() {
     const pageHeight = document.documentElement.scrollHeight - window.innerHeight
     motionState.scrollTarget = pageHeight > 0 ? window.scrollY / pageHeight : 0
-    document.documentElement.style.setProperty(
-      '--scroll-progress',
-      motionState.scrollTarget.toFixed(3)
-    )
+
+    Object.entries(trackedSections).forEach(([key, element]) => {
+      motionState.sections[key] = getElementProgress(element)
+      document.documentElement.style.setProperty(
+        `--${key}-progress`,
+        motionState.sections[key].toFixed(3)
+      )
+    })
+
+    document.documentElement.style.setProperty('--scroll-progress', motionState.scrollTarget.toFixed(3))
   }
 
   function handleResize() {
     const width = window.innerWidth
     const height = window.innerHeight
-    const compactLayout = width < 980
+    const compactLayout = width < 1100
+    const mobileLayout = width < 760
 
     camera.aspect = width / height
-    camera.fov = compactLayout ? 54 : 44
-    camera.position.set(compactLayout ? 0 : -0.6, compactLayout ? 0.2 : 0.3, compactLayout ? 7.4 : 6.2)
+    camera.fov = mobileLayout ? 46 : compactLayout ? 40 : 34
     camera.updateProjectionMatrix()
 
-    orbitGroup.position.set(compactLayout ? 0 : 1.75, compactLayout ? -0.45 : 0.1, 0)
+    layout.cameraX = mobileLayout ? 0 : compactLayout ? -0.2 : -1.25
+    layout.cameraY = mobileLayout ? 0.9 : compactLayout ? 0.5 : 0.1
+    layout.cameraZ = mobileLayout ? 9.2 : compactLayout ? 8.4 : 8
+    layout.worldX = mobileLayout ? 0 : compactLayout ? 1.25 : 2.35
+    layout.worldY = mobileLayout ? 1.55 : compactLayout ? 0.9 : 0.15
 
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
@@ -415,7 +644,9 @@ function createScene(canvasElement, prefersReducedMotion) {
 
   function renderFrame() {
     const elapsed = clock.getElapsedTime()
-    const compactLayout = window.innerWidth < 980
+    const experience = MathUtils.smoothstep(motionState.sections.experience, 0.06, 0.92)
+    const stack = MathUtils.smoothstep(motionState.sections.stack, 0.08, 0.94)
+    const references = MathUtils.smoothstep(motionState.sections.references, 0.08, 0.94)
 
     if (prefersReducedMotion) {
       motionState.pointer.set(0, 0)
@@ -425,33 +656,66 @@ function createScene(canvasElement, prefersReducedMotion) {
       motionState.scroll = MathUtils.lerp(motionState.scroll, motionState.scrollTarget, 0.08)
     }
 
-    orbitGroup.rotation.y = elapsed * 0.28 + motionState.pointer.x * 0.7 + motionState.scroll * 0.95
-    orbitGroup.rotation.x = Math.sin(elapsed * 0.45) * 0.1 + motionState.pointer.y * 0.32
-    orbitGroup.position.y =
-      (compactLayout ? -0.45 : 0.1) + Math.sin(elapsed * 0.9) * 0.16 - motionState.scroll * 0.9
+    world.rotation.y = elapsed * 0.18 + motionState.pointer.x * 0.8 + experience * 1.05 + stack * 0.38
+    world.rotation.x = Math.sin(elapsed * 0.32) * 0.07 + motionState.pointer.y * 0.28
+    world.position.x = layout.worldX - experience * 0.55 - references * 0.35
+    world.position.y =
+      layout.worldY +
+      Math.sin(elapsed * 0.72) * 0.15 -
+      stack * 0.38 -
+      motionState.scroll * 0.16
+    world.position.z = -stack * 0.35
 
-    halo.rotation.z = elapsed * 0.24 + motionState.scroll * 1.4
-    accentRing.rotation.y = elapsed * 0.62
-    shell.rotation.y = -elapsed * 0.18
-    edges.rotation.y = elapsed * 0.24
-    aura.material.opacity = 0.42 + Math.sin(elapsed * 1.6) * 0.06
+    core.rotation.x = elapsed * 0.26
+    core.rotation.y = -elapsed * 0.34 + experience * 1.42
+    core.scale.setScalar(1 + experience * 0.05 + references * 0.08)
+
+    shell.rotation.y = elapsed * 0.14 + stack * 0.6
+    shell.rotation.z = elapsed * 0.06
+    shell.scale.setScalar(1 + stack * 0.1)
+
+    edges.rotation.y = elapsed * 0.18
+    halo.rotation.z = elapsed * 0.24 + experience * 1.15
+    halo.scale.setScalar(1 + experience * 0.2 + references * 0.08)
+
+    haloSecondary.rotation.y = -elapsed * 0.5 + stack * 1.2
+    haloSecondary.scale.setScalar(1 + stack * 0.14)
+
+    portal.rotation.z = elapsed * 0.08 + stack * 0.8
+    portal.scale.setScalar(1 + stack * 0.22 + references * 0.16)
+    portal.material.opacity = 0.12 + experience * 0.1 + references * 0.07
+
+    beam.scale.y = 0.85 + stack * 0.35 + references * 0.22
+    beam.material.opacity = 0.05 + stack * 0.05 + references * 0.04
+
+    trail.rotation.y = elapsed * 0.14 + experience * 0.85
+    trail.rotation.x = Math.sin(elapsed * 0.2) * 0.06
+    trail.scale.setScalar(1 + references * 0.05)
+
+    dustBand.rotation.y = elapsed * 0.05 + experience * 0.55
+    dustBand.rotation.x = 1.02 - stack * 0.12
+    dustBand.material.opacity = 0.4 + Math.sin(elapsed * 0.6) * 0.04 + references * 0.04
+
+    aura.material.opacity = 0.26 + Math.sin(elapsed * 1.2) * 0.04 + references * 0.06
+    warmAura.material.opacity = 0.09 + stack * 0.06 + Math.sin(elapsed * 0.9) * 0.02
 
     satellites.forEach((satellite) => {
-      const angle = elapsed * satellite.speed + satellite.phase + motionState.scroll * Math.PI * 2
+      const angle = elapsed * satellite.speed + satellite.phase + experience * Math.PI * 2
       satellite.mesh.position.set(
         Math.cos(angle) * satellite.radius,
-        Math.sin(angle * 1.15) * satellite.yScale,
-        Math.sin(angle) * satellite.radius * 0.58
+        Math.sin(angle * 1.2) * satellite.yScale - stack * 0.25,
+        Math.sin(angle) * satellite.radius * 0.56 + references * 0.25
       )
     })
 
-    stars.rotation.y = elapsed * 0.014
-    stars.rotation.x = Math.sin(elapsed * 0.08) * 0.08
+    stars.rotation.y = elapsed * 0.01
+    stars.rotation.x = Math.sin(elapsed * 0.06) * 0.05
 
-    camera.position.x = (compactLayout ? 0 : -0.6) + motionState.pointer.x * 0.9
+    camera.position.x = layout.cameraX + motionState.pointer.x * 0.85 - experience * 0.15
     camera.position.y =
-      (compactLayout ? 0.2 : 0.3) - motionState.pointer.y * 0.55 - motionState.scroll * 0.42
-    camera.lookAt(cameraTarget.set(orbitGroup.position.x * 0.14, orbitGroup.position.y * 0.18, 0))
+      layout.cameraY - motionState.pointer.y * 0.42 - stack * 0.2 + references * 0.06
+    camera.position.z = layout.cameraZ - experience * 0.22 + stack * 0.26
+    camera.lookAt(cameraTarget.set(world.position.x * 0.16, world.position.y * 0.18, 0))
 
     renderer.render(scene, camera)
     requestAnimationFrame(renderFrame)
@@ -484,12 +748,119 @@ function createGlowTexture() {
   )
 
   gradient.addColorStop(0, 'rgba(255,255,255,1)')
-  gradient.addColorStop(0.22, 'rgba(154,239,255,0.95)')
-  gradient.addColorStop(0.58, 'rgba(45,96,186,0.42)')
-  gradient.addColorStop(1, 'rgba(5,8,22,0)')
+  gradient.addColorStop(0.25, 'rgba(155,239,255,0.92)')
+  gradient.addColorStop(0.58, 'rgba(37,92,196,0.38)')
+  gradient.addColorStop(1, 'rgba(4,8,18,0)')
 
   context.fillStyle = gradient
   context.fillRect(0, 0, size, size)
 
   return new CanvasTexture(canvas)
+}
+
+function createOrbitalDust() {
+  const count = 1800
+  const positions = new Float32Array(count * 3)
+
+  for (let index = 0; index < count; index += 1) {
+    const angle = Math.random() * Math.PI * 2
+    const radius = 2.1 + (Math.random() - 0.5) * 0.8
+    const spread = (Math.random() - 0.5) * 0.34
+
+    positions[index * 3] = Math.cos(angle) * radius
+    positions[index * 3 + 1] = spread
+    positions[index * 3 + 2] = Math.sin(angle) * radius * 0.5
+  }
+
+  const geometry = new BufferGeometry()
+  geometry.setAttribute('position', new BufferAttribute(positions, 3))
+
+  return new Points(
+    geometry,
+    new PointsMaterial({
+      color: 0xbfeeff,
+      size: 0.026,
+      transparent: true,
+      opacity: 0.42,
+      depthWrite: false,
+      sizeAttenuation: true,
+    })
+  )
+}
+
+function createStarField() {
+  const count = 1800
+  const positions = new Float32Array(count * 3)
+
+  for (let index = 0; index < count; index += 1) {
+    const radius = 10 + Math.random() * 22
+    const theta = Math.random() * Math.PI * 2
+    const phi = Math.acos(2 * Math.random() - 1)
+
+    positions[index * 3] = radius * Math.sin(phi) * Math.cos(theta)
+    positions[index * 3 + 1] = radius * Math.cos(phi)
+    positions[index * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta)
+  }
+
+  const geometry = new BufferGeometry()
+  geometry.setAttribute('position', new BufferAttribute(positions, 3))
+
+  return new Points(
+    geometry,
+    new PointsMaterial({
+      color: 0xe9f7ff,
+      size: 0.034,
+      transparent: true,
+      opacity: 0.9,
+      depthWrite: false,
+      sizeAttenuation: true,
+    })
+  )
+}
+
+function getElementProgress(element) {
+  if (!element) {
+    return 0
+  }
+
+  const rect = element.getBoundingClientRect()
+  const total = rect.height + window.innerHeight
+  return clamp((window.innerHeight - rect.top) / total, 0, 1)
+}
+
+function getActiveSection(sectionOrder, trackedSections) {
+  const threshold = window.innerHeight * 0.4
+  let activeSection = sectionOrder[0]
+
+  sectionOrder.forEach((key) => {
+    const element = trackedSections[key]
+    if (element && element.getBoundingClientRect().top <= threshold) {
+      activeSection = key
+    }
+  })
+
+  return activeSection
+}
+
+function getActiveChapter(items) {
+  const focusLine = window.innerHeight * 0.45
+  let activeIndex = 0
+  let smallestDistance = Number.POSITIVE_INFINITY
+
+  items.forEach((item, index) => {
+    const rect = item.getBoundingClientRect()
+    const center = rect.top + rect.height / 2
+    const distance = Math.abs(center - focusLine)
+
+    if (distance < smallestDistance) {
+      smallestDistance = distance
+      activeIndex = index
+    }
+  })
+
+  return activeIndex
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max)
 }
