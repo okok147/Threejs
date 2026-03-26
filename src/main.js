@@ -1,5 +1,6 @@
 import './style.css'
 import {
+  ACESFilmicToneMapping,
   AdditiveBlending,
   AmbientLight,
   BufferAttribute,
@@ -19,6 +20,7 @@ import {
   Mesh,
   MeshBasicMaterial,
   MeshStandardMaterial,
+  PMREMGenerator,
   PerspectiveCamera,
   PointLight,
   Points,
@@ -35,6 +37,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from 'three'
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
 
 const repoUrl = 'https://github.com/okok147/Threejs'
 const referenceUrls = {
@@ -291,29 +294,60 @@ const sections = {
   references: document.querySelector('#references'),
 }
 
-setupReveals(revealItems, reducedMotion)
+const revealCleanup = setupReveals(revealItems, reducedMotion)
 const uiController = createUiController({ chapterItems, navLinks, sections })
+const cleanups = [revealCleanup]
+
+function addManagedEventListener(target, type, handler, options) {
+  target.addEventListener(type, handler, options)
+  cleanups.push(() => target.removeEventListener(type, handler, options))
+}
 
 if (canvas) {
   const sceneController = createScene(canvas, reducedMotion, sections)
+  const handleVisibilityChange = () => {
+    if (document.hidden) {
+      sceneController.stop()
+      return
+    }
 
-  window.addEventListener('resize', sceneController.handleResize)
-  window.addEventListener('resize', uiController.handleResize)
-  window.addEventListener('pointermove', sceneController.handlePointerMove, {
+    sceneController.start()
+  }
+
+  cleanups.push(() => sceneController.destroy())
+
+  addManagedEventListener(window, 'resize', sceneController.handleResize)
+  addManagedEventListener(window, 'resize', uiController.handleResize)
+  addManagedEventListener(window, 'pointermove', sceneController.handlePointerMove, {
     passive: true,
   })
-  window.addEventListener('scroll', sceneController.handleScroll, { passive: true })
-  window.addEventListener('scroll', uiController.handleScroll, { passive: true })
+  addManagedEventListener(window, 'scroll', sceneController.handleScroll, { passive: true })
+  addManagedEventListener(window, 'scroll', uiController.handleScroll, { passive: true })
+  addManagedEventListener(document, 'visibilitychange', handleVisibilityChange)
 
   sceneController.handleResize()
   sceneController.handleScroll()
-  sceneController.start()
+
+  if (!document.hidden) {
+    sceneController.start()
+  }
 } else {
-  window.addEventListener('resize', uiController.handleResize)
-  window.addEventListener('scroll', uiController.handleScroll, { passive: true })
+  addManagedEventListener(window, 'resize', uiController.handleResize)
+  addManagedEventListener(window, 'scroll', uiController.handleScroll, { passive: true })
 }
 
 uiController.handleScroll()
+
+window.addEventListener(
+  'pagehide',
+  () => {
+    while (cleanups.length) {
+      const cleanup = cleanups.pop()
+      cleanup?.()
+    }
+  },
+  { once: true }
+)
 
 requestAnimationFrame(() => {
   document.body.classList.add('is-ready')
@@ -322,7 +356,7 @@ requestAnimationFrame(() => {
 function setupReveals(elements, prefersReducedMotion) {
   if (prefersReducedMotion) {
     elements.forEach((element) => element.classList.add('is-visible'))
-    return
+    return () => {}
   }
 
   const observer = new IntersectionObserver(
@@ -343,6 +377,8 @@ function setupReveals(elements, prefersReducedMotion) {
     element.style.setProperty('--reveal-delay', `${index * 80}ms`)
     observer.observe(element)
   })
+
+  return () => observer.disconnect()
 }
 
 function createUiController({ chapterItems: items, navLinks: links, sections: trackedSections }) {
@@ -373,6 +409,8 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
     handleResize: () => {},
     handleScroll: () => {},
     start: () => {},
+    stop: () => {},
+    destroy: () => {},
   }
 
   let renderer
@@ -390,6 +428,8 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
   }
 
   renderer.outputColorSpace = SRGBColorSpace
+  renderer.toneMapping = ACESFilmicToneMapping
+  renderer.toneMappingExposure = 0.92
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
 
   const scene = new Scene()
@@ -421,6 +461,13 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
 
   const world = new Group()
   scene.add(world)
+
+  const pmremGenerator = new PMREMGenerator(renderer)
+  const environmentScene = new RoomEnvironment()
+  const environmentMap = pmremGenerator.fromScene(environmentScene, 0.04)
+  scene.environment = environmentMap.texture
+  disposeObjectTree(environmentScene)
+  pmremGenerator.dispose()
 
   const glowTexture = createGlowTexture()
   const aura = new Sprite(
@@ -597,6 +644,8 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
   const warmLight = new PointLight(0xf0c47b, 10, 18, 2)
   warmLight.position.set(-0.8, 1.1, 3)
   scene.add(warmLight)
+  const disposables = [glowTexture, environmentMap]
+  let isRunning = false
 
   function handlePointerMove(event) {
     if (prefersReducedMotion) {
@@ -718,7 +767,6 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
     camera.lookAt(cameraTarget.set(world.position.x * 0.16, world.position.y * 0.18, 0))
 
     renderer.render(scene, camera)
-    requestAnimationFrame(renderFrame)
   }
 
   return {
@@ -726,7 +774,29 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
     handleResize,
     handleScroll,
     start() {
-      renderFrame()
+      if (isRunning) {
+        return
+      }
+
+      isRunning = true
+      clock.start()
+      renderer.setAnimationLoop(renderFrame)
+    },
+    stop() {
+      if (!isRunning) {
+        return
+      }
+
+      isRunning = false
+      clock.stop()
+      renderer.setAnimationLoop(null)
+    },
+    destroy() {
+      this.stop()
+      scene.environment = null
+      disposeObjectTree(scene)
+      disposables.forEach((resource) => resource.dispose?.())
+      renderer.dispose()
     },
   }
 }
@@ -863,4 +933,17 @@ function getActiveChapter(items) {
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
+}
+
+function disposeObjectTree(object) {
+  object.traverse((child) => {
+    child.geometry?.dispose?.()
+
+    if (Array.isArray(child.material)) {
+      child.material.forEach((material) => material.dispose?.())
+      return
+    }
+
+    child.material?.dispose?.()
+  })
 }
