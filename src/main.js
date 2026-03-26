@@ -997,14 +997,33 @@ function clamp(value, min, max) {
 }
 
 function disposeObjectTree(object) {
+  const textures = new Set()
+
   object.traverse((child) => {
     child.geometry?.dispose?.()
 
     if (Array.isArray(child.material)) {
-      child.material.forEach((material) => material.dispose?.())
+      child.material.forEach((material) => disposeMaterial(material, textures))
       return
     }
 
-    child.material?.dispose?.()
+    disposeMaterial(child.material, textures)
   })
+}
+
+function disposeMaterial(material, textures) {
+  if (!material) {
+    return
+  }
+
+  Object.values(material).forEach((value) => {
+    if (!value?.isTexture || textures.has(value)) {
+      return
+    }
+
+    textures.add(value)
+    value.dispose()
+  })
+
+  material.dispose?.()
 }
