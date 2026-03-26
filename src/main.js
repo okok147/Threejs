@@ -429,7 +429,7 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
 
   renderer.outputColorSpace = SRGBColorSpace
   renderer.toneMapping = ACESFilmicToneMapping
-  renderer.toneMappingExposure = 0.92
+  renderer.toneMappingExposure = 1.08
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
 
   const scene = new Scene()
@@ -438,6 +438,12 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
   const camera = new PerspectiveCamera(34, window.innerWidth / window.innerHeight, 0.1, 80)
   const cameraTarget = new Vector3()
   const clock = new Clock()
+  clock.stop()
+
+  let elapsed = 0
+  let isRunning = false
+  let isDisposed = false
+  let warmupPromise = null
 
   const motionState = {
     pointer: new Vector2(),
@@ -464,9 +470,9 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
 
   const pmremGenerator = new PMREMGenerator(renderer)
   const environmentScene = new RoomEnvironment()
-  const environmentMap = pmremGenerator.fromScene(environmentScene, 0.04)
+  const environmentMap = pmremGenerator.fromScene(environmentScene, 0.05)
   scene.environment = environmentMap.texture
-  disposeObjectTree(environmentScene)
+  environmentScene.dispose()
   pmremGenerator.dispose()
 
   const glowTexture = createGlowTexture()
@@ -504,8 +510,9 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
       color: 0xb7eeff,
       emissive: 0x1a3a78,
       emissiveIntensity: 1.2,
-      roughness: 0.2,
-      metalness: 0.08,
+      roughness: 0.24,
+      metalness: 0.12,
+      envMapIntensity: 0.95,
       flatShading: true,
     })
   )
@@ -621,8 +628,9 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
         color: config.color,
         emissive: config.color,
         emissiveIntensity: 0.55,
-        roughness: 0.18,
-        metalness: 0.05,
+        roughness: 0.22,
+        metalness: 0.08,
+        envMapIntensity: 0.7,
       })
     )
 
@@ -644,8 +652,10 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
   const warmLight = new PointLight(0xf0c47b, 10, 18, 2)
   warmLight.position.set(-0.8, 1.1, 3)
   scene.add(warmLight)
-  const disposables = [glowTexture, environmentMap]
-  let isRunning = false
+
+  function getAnimationTime() {
+    return prefersReducedMotion ? 2.4 : elapsed
+  }
 
   function handlePointerMove(event) {
     if (prefersReducedMotion) {
@@ -669,6 +679,10 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
     })
 
     document.documentElement.style.setProperty('--scroll-progress', motionState.scrollTarget.toFixed(3))
+
+    if (prefersReducedMotion && !isRunning) {
+      renderFrame()
+    }
   }
 
   function handleResize() {
@@ -689,10 +703,22 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
 
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8))
+
+    if (prefersReducedMotion && !isRunning) {
+      renderFrame()
+    }
   }
 
   function renderFrame() {
-    const elapsed = clock.getElapsedTime()
+    if (isDisposed) {
+      return
+    }
+
+    if (!prefersReducedMotion) {
+      elapsed += Math.min(clock.getDelta(), 0.05)
+    }
+
+    const animationTime = getAnimationTime()
     const experience = MathUtils.smoothstep(motionState.sections.experience, 0.06, 0.92)
     const stack = MathUtils.smoothstep(motionState.sections.stack, 0.08, 0.94)
     const references = MathUtils.smoothstep(motionState.sections.references, 0.08, 0.94)
@@ -705,51 +731,54 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
       motionState.scroll = MathUtils.lerp(motionState.scroll, motionState.scrollTarget, 0.08)
     }
 
-    world.rotation.y = elapsed * 0.18 + motionState.pointer.x * 0.8 + experience * 1.05 + stack * 0.38
-    world.rotation.x = Math.sin(elapsed * 0.32) * 0.07 + motionState.pointer.y * 0.28
+    world.rotation.y =
+      animationTime * 0.18 + motionState.pointer.x * 0.8 + experience * 1.05 + stack * 0.38
+    world.rotation.x = Math.sin(animationTime * 0.32) * 0.07 + motionState.pointer.y * 0.28
     world.position.x = layout.worldX - experience * 0.55 - references * 0.35
     world.position.y =
       layout.worldY +
-      Math.sin(elapsed * 0.72) * 0.15 -
+      Math.sin(animationTime * 0.72) * 0.15 -
       stack * 0.38 -
       motionState.scroll * 0.16
     world.position.z = -stack * 0.35
 
-    core.rotation.x = elapsed * 0.26
-    core.rotation.y = -elapsed * 0.34 + experience * 1.42
+    core.rotation.x = animationTime * 0.26
+    core.rotation.y = -animationTime * 0.34 + experience * 1.42
     core.scale.setScalar(1 + experience * 0.05 + references * 0.08)
 
-    shell.rotation.y = elapsed * 0.14 + stack * 0.6
-    shell.rotation.z = elapsed * 0.06
+    shell.rotation.y = animationTime * 0.14 + stack * 0.6
+    shell.rotation.z = animationTime * 0.06
     shell.scale.setScalar(1 + stack * 0.1)
 
-    edges.rotation.y = elapsed * 0.18
-    halo.rotation.z = elapsed * 0.24 + experience * 1.15
+    edges.rotation.y = animationTime * 0.18
+    halo.rotation.z = animationTime * 0.24 + experience * 1.15
     halo.scale.setScalar(1 + experience * 0.2 + references * 0.08)
 
-    haloSecondary.rotation.y = -elapsed * 0.5 + stack * 1.2
+    haloSecondary.rotation.y = -animationTime * 0.5 + stack * 1.2
     haloSecondary.scale.setScalar(1 + stack * 0.14)
 
-    portal.rotation.z = elapsed * 0.08 + stack * 0.8
+    portal.rotation.z = animationTime * 0.08 + stack * 0.8
     portal.scale.setScalar(1 + stack * 0.22 + references * 0.16)
     portal.material.opacity = 0.12 + experience * 0.1 + references * 0.07
 
     beam.scale.y = 0.85 + stack * 0.35 + references * 0.22
     beam.material.opacity = 0.05 + stack * 0.05 + references * 0.04
 
-    trail.rotation.y = elapsed * 0.14 + experience * 0.85
-    trail.rotation.x = Math.sin(elapsed * 0.2) * 0.06
+    trail.rotation.y = animationTime * 0.14 + experience * 0.85
+    trail.rotation.x = Math.sin(animationTime * 0.2) * 0.06
     trail.scale.setScalar(1 + references * 0.05)
 
-    dustBand.rotation.y = elapsed * 0.05 + experience * 0.55
+    dustBand.rotation.y = animationTime * 0.05 + experience * 0.55
     dustBand.rotation.x = 1.02 - stack * 0.12
-    dustBand.material.opacity = 0.4 + Math.sin(elapsed * 0.6) * 0.04 + references * 0.04
+    dustBand.material.opacity =
+      0.4 + Math.sin(animationTime * 0.6) * 0.04 + references * 0.04
 
-    aura.material.opacity = 0.26 + Math.sin(elapsed * 1.2) * 0.04 + references * 0.06
-    warmAura.material.opacity = 0.09 + stack * 0.06 + Math.sin(elapsed * 0.9) * 0.02
+    aura.material.opacity = 0.26 + Math.sin(animationTime * 1.2) * 0.04 + references * 0.06
+    warmAura.material.opacity =
+      0.09 + stack * 0.06 + Math.sin(animationTime * 0.9) * 0.02
 
     satellites.forEach((satellite) => {
-      const angle = elapsed * satellite.speed + satellite.phase + experience * Math.PI * 2
+      const angle = animationTime * satellite.speed + satellite.phase + experience * Math.PI * 2
       satellite.mesh.position.set(
         Math.cos(angle) * satellite.radius,
         Math.sin(angle * 1.2) * satellite.yScale - stack * 0.25,
@@ -757,8 +786,8 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
       )
     })
 
-    stars.rotation.y = elapsed * 0.01
-    stars.rotation.x = Math.sin(elapsed * 0.06) * 0.05
+    stars.rotation.y = animationTime * 0.01
+    stars.rotation.x = Math.sin(animationTime * 0.06) * 0.05
 
     camera.position.x = layout.cameraX + motionState.pointer.x * 0.85 - experience * 0.15
     camera.position.y =
@@ -773,30 +802,60 @@ function createScene(canvasElement, prefersReducedMotion, trackedSections) {
     handlePointerMove,
     handleResize,
     handleScroll,
-    start() {
+    async start() {
+      if (isDisposed) {
+        return
+      }
+
+      if (prefersReducedMotion) {
+        renderFrame()
+        return
+      }
+
       if (isRunning) {
         return
       }
 
-      isRunning = true
+      if (!warmupPromise && typeof renderer.compileAsync === 'function') {
+        warmupPromise = renderer.compileAsync(scene, camera).catch(() => {})
+      }
+
+      if (warmupPromise) {
+        await warmupPromise
+      }
+
+      if (isDisposed || isRunning || document.hidden) {
+        return
+      }
+
       clock.start()
       renderer.setAnimationLoop(renderFrame)
+      isRunning = true
     },
     stop() {
       if (!isRunning) {
         return
       }
 
-      isRunning = false
-      clock.stop()
       renderer.setAnimationLoop(null)
+      clock.stop()
+      isRunning = false
     },
     destroy() {
+      if (isDisposed) {
+        return
+      }
+
       this.stop()
+      isDisposed = true
       scene.environment = null
       disposeObjectTree(scene)
-      disposables.forEach((resource) => resource.dispose?.())
+      environmentMap.dispose()
       renderer.dispose()
+
+      if (typeof renderer.forceContextLoss === 'function') {
+        renderer.forceContextLoss()
+      }
     },
   }
 }
@@ -825,7 +884,9 @@ function createGlowTexture() {
   context.fillStyle = gradient
   context.fillRect(0, 0, size, size)
 
-  return new CanvasTexture(canvas)
+  const texture = new CanvasTexture(canvas)
+  texture.colorSpace = SRGBColorSpace
+  return texture
 }
 
 function createOrbitalDust() {
