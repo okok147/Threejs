@@ -7,12 +7,12 @@
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v005|committed-not-pushed|2026-03-27T23:42:35+08:00",
-    "releaseStatus": "committed-not-pushed",
-    "releaseNotes": "v005 Tidal Atlas 已完成本地實作、研究註記與驗證，但這份最新工作樹尚未推送 main；目前 hosted site 仍以最後一次已部署的 bundle 為準。",
+    "releaseFingerprint": "v005|pushed-main|2026-03-27T23:45:48+08:00",
+    "releaseStatus": "pushed-main",
+    "releaseNotes": "v005 Tidal Atlas 與最新 lab registry 已推送 main；目前 hosted site 仍以最後一次已部署的 bundle 為準，是否完成部署仍待新的 live verification。",
     "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
     "liveVerificationNotes": "已確認 GitHub Pages 可達，且最新已部署 bundle 為 v004；這份本地 v005 工作樹尚未進入 hosted site。",
-    "lastUpdated": "2026-03-27T23:42:35+08:00"
+    "lastUpdated": "2026-03-27T23:45:48+08:00"
   },
   "versions": [
     {
@@ -76,8 +76,8 @@
       "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
       "timestamp": "2026-03-26T21:10:38+08:00",
       "status": "stable",
-      "releaseStatus": "committed-not-pushed",
-      "releaseNotes": "這份版本註冊與共享 browser shell 已完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。"
+      "releaseStatus": "pushed-main",
+      "releaseNotes": "這份版本註冊已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
     },
     {
       "versionNumber": "v002",
@@ -141,8 +141,8 @@
       "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
       "timestamp": "2026-03-26T21:10:38+08:00",
       "status": "stable",
-      "releaseStatus": "committed-not-pushed",
-      "releaseNotes": "這份版本註冊與共享 browser shell 已完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。"
+      "releaseStatus": "pushed-main",
+      "releaseNotes": "這份版本註冊已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
     },
     {
       "versionNumber": "v003",
@@ -206,8 +206,8 @@
       "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
       "timestamp": "2026-03-26T21:26:40+08:00",
       "status": "stable",
-      "releaseStatus": "committed-not-pushed",
-      "releaseNotes": "這份版本註冊與共享 browser shell 已完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。"
+      "releaseStatus": "pushed-main",
+      "releaseNotes": "這份版本註冊已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
     },
     {
       "versionNumber": "v004",
@@ -271,8 +271,8 @@
       "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
       "timestamp": "2026-03-27T22:52:40+08:00",
       "status": "stable",
-      "releaseStatus": "committed-not-pushed",
-      "releaseNotes": "這份版本註冊與實作已完成本地 commit，但 sandbox 無法解析 github.com，尚未推送 main 或觸發 GitHub Pages 部署。"
+      "releaseStatus": "pushed-main",
+      "releaseNotes": "這份版本註冊與實作已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
     },
     {
       "versionNumber": "v005",
@@ -336,8 +336,8 @@
       "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
       "timestamp": "2026-03-27T23:42:35+08:00",
       "status": "stable",
-      "releaseStatus": "committed-not-pushed",
-      "releaseNotes": "這份版本註冊、研究註記與實作已完成本地驗證，但尚未推送 main 或觸發 GitHub Pages 部署。"
+      "releaseStatus": "pushed-main",
+      "releaseNotes": "這份版本註冊、研究註記與實作已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
     }
   ]
 }
