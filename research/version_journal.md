@@ -376,3 +376,27 @@
   - sandbox 內仍無法從 repo 腳本直接對外抓 hosted HTML，因此 live verification 仍需依賴外部觀測結果。
 - Next likely direction：
   - 若網路限制解除，優先 push 最新 commit，然後重新核對 hosted HTML title 與 release fingerprint 是否和本地 manifest 一致。
+
+## 2026-03-27T23:42:35+08:00 / v005-tidal-atlas
+
+- 動作：新增第五個不可覆蓋版本，從操作型控制台轉向潮汐圖譜與海圖桌語言，完成一個新的 style world 與 art direction。
+- Visual thesis：tidal atlas + illuminated archive + bathymetric light case。
+- Content plan：chart preface -> current routes -> soundings -> beacon room。
+- Interaction thesis：
+  - hero 改成單一 chart window，3D 核心像被封存在海圖光盒裡，而不是佔滿整頁舞台。
+  - 版本列表被改寫成 route bands，切換版本時像選擇航道與閱讀方向，而不是切 mode row。
+  - 方法、UX 與效能紀錄被翻成 sounding sheets 與 annotation corridor，讓資訊層級跟主題世界一致。
+- 為何它明顯不同：v004 是控制台與 verification log 的操作介面；v005 則把同一份實驗室翻成導航型長頁，主視覺、版面骨架、敘事順序、互動語氣與 3D 呈現都轉為 cartographic / atlas 語境。
+- 研究轉譯：
+  - NOAA Nautical Chart Manual -> 控制 landmark 密度，讓 contours、route marks 與關鍵 annotation 有主從，而不是堆滿 nautical 裝飾。
+  - three.js responsive manual -> 維持 bounded chart window 的 renderer resize 與 pixel ratio discipline。
+  - W3C in-page navigation -> 用固定 header 與清楚 anchor 讓 atlas 式長頁仍保有方向感。
+  - Apple reduce motion -> 把 tidal drift 與 beacon pulse 收斂到 reduced-motion 可接受的節奏。
+- 快照：`screenshots/v005/poster.svg`
+- 驗證：
+  - `npm run lab:sync-html`
+  - `npm test`
+  - `npm run lab:validate`
+  - `npm run build`
+- 風險：目前快照仍是概念 poster，不是真實瀏覽器截圖；此外這份最新 v005 工作樹尚未推送 main，因此 hosted site 仍停留在上一個已部署版本。
+- 下一個最佳方向：先把這輪 commit 推上 main 並核對 hosted HTML fingerprint；若部署成功，再補最小 browser screenshot / smoke test 來替 v005 留下更可信的視覺證據。

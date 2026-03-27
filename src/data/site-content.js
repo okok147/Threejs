@@ -106,6 +106,12 @@ export const siteContent = {
       summary: '把版本、發布狀態與場景線索變成可掃描的 mode registry 與 verification log。',
     },
     {
+      name: 'Tidal Atlas',
+      family: 'Cartographic memory',
+      fit: '介於氣氛首頁與方法索引之間的探索頁',
+      summary: '把版本當成海流與航道來讀，讓場景、導航與 annotation 像一張會發光的潮汐圖譜。',
+    },
+    {
       name: 'Exhibition Monograph',
       family: 'Museum monograph',
       fit: '案例深讀 / 策展型作品頁',

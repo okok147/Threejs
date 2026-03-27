@@ -1,0 +1,26 @@
+{
+  "version": "v005",
+  "title": "Tidal Atlas",
+  "colors": {
+    "background": "#08161a",
+    "surface": "rgba(10,24,28,0.82)",
+    "text": "#e8f4ef",
+    "muted": "rgba(219,233,229,0.76)",
+    "accent": "#82d8d0",
+    "accentAlt": "#ef976b"
+  },
+  "typography": {
+    "display": "Fraunces / Noto Serif TC",
+    "body": "Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "24px",
+    "sectionPaddingDesktop": "68px",
+    "sectionPaddingMobile": "44px"
+  },
+  "motion": {
+    "heroEntrance": "820ms ease",
+    "sceneProfile": "tidal drift with beacon pulse"
+  }
+}

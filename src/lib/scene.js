@@ -248,6 +248,58 @@ export const scenePresets = {
       warm: { color: 0xf2b257, intensity: 9, distance: 18, decay: 2, position: [-0.5, 0.8, 3] },
     },
   },
+  tidalAtlas: {
+    toneMappingExposure: 0.98,
+    fog: { color: 0x09171c, density: 0.042 },
+    glowStops: [
+      [0, 'rgba(248,255,252,0.98)'],
+      [0.24, 'rgba(130,216,208,0.84)'],
+      [0.58, 'rgba(239,151,107,0.22)'],
+      [1, 'rgba(4,11,14,0)'],
+    ],
+    motion: {
+      pointer: 0.34,
+      drift: 0.56,
+      experience: 0.74,
+      stack: 0.68,
+      references: 0.48,
+    },
+    layout: {
+      desktop: { fov: 30, cameraX: 0.38, cameraY: 0.14, cameraZ: 8.45, worldX: 1.15, worldY: 0.18 },
+      compact: { fov: 36, cameraX: 0.16, cameraY: 0.38, cameraZ: 8.98, worldX: 0.68, worldY: 0.48 },
+      mobile: { fov: 45, cameraX: 0, cameraY: 0.92, cameraZ: 9.55, worldX: 0, worldY: 1.24 },
+    },
+    aura: { color: 0x82d8d0, opacity: 0.22, scale: 7.4 },
+    warmAura: { color: 0xef976b, opacity: 0.14, scale: 4.9, position: [-0.34, 0.18, -0.24] },
+    core: {
+      color: 0xd6fff6,
+      emissive: 0x113b44,
+      emissiveIntensity: 0.96,
+      roughness: 0.3,
+      metalness: 0.24,
+      envMapIntensity: 1.02,
+    },
+    shell: { color: 0xbdebe5, opacity: 0.14 },
+    edges: { color: 0xe9fff8, opacity: 0.18 },
+    halo: { color: 0x82d8d0, opacity: 0.32 },
+    haloSecondary: { color: 0xef976b, opacity: 0.7 },
+    portal: { color: 0x86d7d2, opacity: 0.11 },
+    beam: { color: 0x8be5de, opacity: 0.06 },
+    trail: { color: 0x9fe6df, opacity: 0.2 },
+    dust: { color: 0x95dfd8, size: 0.022, opacity: 0.22 },
+    stars: { color: 0xe8f7f3, size: 0.029, opacity: 0.38 },
+    satellites: [
+      { radius: 2.18, speed: 0.62, phase: 0.16, yScale: 0.12, scale: 0.72, color: 0xef976b },
+      { radius: 2.92, speed: 0.48, phase: 2.4, yScale: 0.28, scale: 0.56, color: 0x82d8d0 },
+      { radius: 2.52, speed: 0.82, phase: 4.48, yScale: 0.18, scale: 0.44, color: 0xb4f0e6 },
+    ],
+    lights: {
+      ambient: { color: 0xa9ddd7, intensity: 1.2 },
+      key: { color: 0x7bdbd2, intensity: 18, distance: 28, decay: 2, position: [4.3, 2.9, 5.2] },
+      fill: { color: 0x0f3140, intensity: 9, distance: 22, decay: 2, position: [-4.7, -2.1, 3.7] },
+      warm: { color: 0xef976b, intensity: 8, distance: 18, decay: 2, position: [-0.6, 0.9, 3.1] },
+    },
+  },
 }
 
 export function createLabScene({ canvas, prefersReducedMotion, trackedSections, preset }) {

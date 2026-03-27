@@ -370,3 +370,53 @@
 - 完整複製 GitHub command palette 的 `>` command mode 與 scope token 標記：互動語氣太像產品工作台。
 - 直接採用 Carbon UI shell 的資訊密度與比例：會把實驗室導覽做得過於企業產品化。
 - 把 compare 做成 Framer/marketplace 式卡片牆：看起來漂亮，但對版本差異的辨識價值太低。
+
+## 2026-03-27 / v005 Tidal Atlas Research
+
+### Sources reviewed
+
+- [NOAA Nautical Chart Manual](https://ocsdata.ncd.noaa.gov/mcs/03_ncm_vol1.pdf)
+- [three.js responsive manual](https://threejs.org/manual/en/responsive.html)
+- [W3C WAI in-page navigation tutorial](https://www.w3.org/WAI/tutorials/page-structure/in-page-navigation/)
+- [Apple design guidance on reduced motion](https://developer.apple.com/news/?id=g9q8j4i8)
+
+### Source quality notes
+
+- NOAA chart manual：官方海圖規範，對 landmarks、contours 與 detail density 的取捨有直接原則，可拿來避免 nautical 風格淪為純裝飾。
+- three.js responsive manual：持續作為 bounded chart window 的 renderer resize 與 pixel ratio 紀律來源。
+- W3C in-page navigation：確保海圖式長頁仍有清楚章節定位，而不是只有氣氛與術語。
+- Apple reduced motion：讓潮汐漂移與 beacon pulse 在 reduced-motion 下能確實收斂。
+
+### Extracted principles
+
+- 海圖語言的重點不是堆滿 nautical props，而是讓重要 landmarks 從較低密度的背景資訊中被辨識出來。
+- contours、grid 與 route markings 應該服務導覽與節奏，不應和主內容競爭注意力。
+- 只保留一個主 chart window，其他 annotation 退居為 route bands、sounding sheets 與 beacon panels，頁面才會像 atlas 而不是 themed dashboard。
+- 3D 場景放進 light case 比 full-bleed 更符合 chart-table 的閱讀姿態，也更容易維持效能與部署穩定度。
+- 長頁若採 cartographic framing，章節命名、固定 header 與 anchor flow 必須一樣清楚，否則使用者只會記得氣氛，不會記得方向。
+
+### Anti-patterns
+
+- 把海圖元素當貼紙，卻沒有真的改變資訊階層與導航邏輯。
+- 一次疊太多等高線、符號與紋理，讓版面只剩質感噪音。
+- 3D 場景仍佔滿整頁，導致 chart-language 只是外框皮膚。
+- beacon / route / sounding 同時高對比搶戲，失去 atlas 應有的主從秩序。
+
+### Possible style families
+
+- Tidal atlas / illuminated archive
+- Bathymetric reading room
+- Survey table / route ledger
+- Harbor signal bulletin
+
+### Preserve
+
+- 共享 navigator 與版本切換辨識性
+- renderer cleanup discipline 與 bounded WebGL 結構
+- manifest / tokens / journal / preview artifact 這條版本治理鏈
+
+### Reinvent
+
+- 首頁敘事從 dashboard 轉成 cartographic navigation
+- annotation 的角色分配與空間階層
+- scene 與 metadata 的結合方式

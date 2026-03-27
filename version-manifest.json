@@ -1,18 +1,18 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v004",
+    "defaultVersion": "v005",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v004|blocked|2026-03-27T23:25:58+08:00",
-    "releaseStatus": "blocked",
-    "releaseNotes": "已把 manifest 與 index.html 的 release fingerprint / metadata 同步納入 validator；2026-03-27 再次觀測 hosted URL 時仍顯示舊的 Cinematic 標題，且 sandbox 無法解析 github.com，因此無法 push 或部署。",
-    "lastLiveVerificationAt": "2026-03-27T23:25:58+08:00",
-    "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前 hosted page 仍顯示舊的單版本 Cinematic HTML 標題，尚未反映這份本地 versioned lab 工作樹。",
-    "lastUpdated": "2026-03-27T23:25:58+08:00"
+    "releaseFingerprint": "v005|committed-not-pushed|2026-03-27T23:42:35+08:00",
+    "releaseStatus": "committed-not-pushed",
+    "releaseNotes": "v005 Tidal Atlas 已完成本地實作、研究註記與驗證，但這份最新工作樹尚未推送 main；目前 hosted site 仍以最後一次已部署的 bundle 為準。",
+    "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
+    "liveVerificationNotes": "已確認 GitHub Pages 可達，且最新已部署 bundle 為 v004；這份本地 v005 工作樹尚未進入 hosted site。",
+    "lastUpdated": "2026-03-27T23:42:35+08:00"
   },
   "versions": [
     {
@@ -273,6 +273,71 @@
       "status": "stable",
       "releaseStatus": "committed-not-pushed",
       "releaseNotes": "這份版本註冊與實作已完成本地 commit，但 sandbox 無法解析 github.com，尚未推送 main 或觸發 GitHub Pages 部署。"
+    },
+    {
+      "versionNumber": "v005",
+      "slug": "tidal-atlas",
+      "title": "Tidal Atlas",
+      "concept": "把版本實驗室翻成潮汐圖譜與海圖桌，讓每個版本像航道、測深點與海流一起被閱讀，而 3D 核心則像被封存在光盒裡的海玻璃標本。",
+      "sourcePrinciples": [
+        "Cartographic layouts should use contours, route marks, and restrained landmark density so key annotations guide scanning without collapsing into ornament",
+        "A strong atmospheric hero can coexist with technical detail when the annotations are spatially ranked and the page keeps one dominant chart window",
+        "Bounded WebGL inside a light-case viewport preserves presence while keeping the reading surface calm and deployable"
+      ],
+      "sourceFamiliesConsulted": [
+        "official three.js documentation",
+        "official accessibility guidance",
+        "official cartographic guidance",
+        "curated cartographic inspiration"
+      ],
+      "styleFamily": "Tidal cartography / illuminated archive",
+      "useCaseEmphasis": "版本探索頁 / 導航型首頁",
+      "bestFor": "想先感受風格氛圍，同時又要快速辨識版本航向、用途與敘事差異。",
+      "keyTraits": [
+        "bathymetric chart window",
+        "route bands",
+        "beacon room"
+      ],
+      "navigationModel": "latitude header + route bands + sounding sections",
+      "motionLanguage": "tidal drift 與 beacon pulse",
+      "narrativeStructure": "chart preface -> current routes -> soundings -> beacon room",
+      "sceneTreatment": "被封存在 bathymetric light case 的 sea-glass core",
+      "notableUxIdeas": [
+        "把版本清單改寫成航道列，讓切換像選擇潮流與路徑",
+        "把 method、UX 與 performance notes 改寫成 soundings，維持導航感而不是文件感",
+        "讓研究來源與 feature tracks 變成 beacon room，讓頁面最後仍保有方向線索"
+      ],
+      "notableFeatureIdeas": [
+        "chart-window hero with bounded sea-glass scene",
+        "route list that foregrounds best-for and narrative direction",
+        "annotation corridor that turns lab metadata into navigational markings"
+      ],
+      "performanceNotes": [
+        "Scene remains on the shared renderer lifecycle with the same disposal discipline on version switch.",
+        "The chart window keeps WebGL bounded to a single hero viewport instead of returning to full-page spectacle.",
+        "Motion stays on the shared reduced-motion path and preserves the 1.8 renderer pixel ratio cap."
+      ],
+      "entryFile": "versions/v005-tidal-atlas/index.js",
+      "route": "/?v=v005",
+      "tokenFile": "tokens/v005.json",
+      "screenshotPaths": [
+        "screenshots/v005/poster.svg"
+      ],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v005/poster.svg",
+          "label": "Tidal Atlas poster preview",
+          "alt": "v005 Tidal Atlas 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-27T23:42:35+08:00",
+      "status": "stable",
+      "releaseStatus": "committed-not-pushed",
+      "releaseNotes": "這份版本註冊、研究註記與實作已完成本地驗證，但尚未推送 main 或觸發 GitHub Pages 部署。"
     }
   ]
 }
