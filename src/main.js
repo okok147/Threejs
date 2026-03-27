@@ -1,6 +1,15 @@
 import './style.css'
 import manifest from '../version-manifest.json'
 import { siteContent } from './data/site-content.js'
+import {
+  buildSearchIndex as buildNavigatorSearchIndex,
+  getCompareAxes as getNavigatorCompareAxes,
+  getSuggestedCompareVersions as getNavigatorSuggestedCompareVersions,
+  getVersionTabIntent,
+  isValidCompareTarget as isValidNavigatorCompareTarget,
+  resolveInitialCompareVersion,
+  resolveInitialVersion,
+} from './lib/version-navigator.js'
 import { renderVersion as renderOrbitCinematic } from '../versions/v001-orbit-cinematic/index.js'
 import { renderVersion as renderSignalLedger } from '../versions/v002-signal-ledger/index.js'
 import { renderVersion as renderMuseumMonograph } from '../versions/v003-museum-monograph/index.js'
@@ -53,9 +62,20 @@ const versions = manifest.versions
 const versionNumbers = versions.map((version) => version.versionNumber)
 const versionMap = new Map(versions.map((version) => [version.versionNumber, version]))
 const hostedUrl = manifest.lab.hostedUrl || siteContent.liveUrl
+const initialParams = new URLSearchParams(window.location.search)
 
-let activeVersionNumber = resolveInitialVersion()
-let compareVersionNumber = resolveInitialCompareVersion(activeVersionNumber)
+let activeVersionNumber = resolveInitialVersion({
+  requestedVersion: initialParams.get('v'),
+  storedVersion: window.localStorage.getItem(STORAGE_KEY),
+  defaultVersion: manifest.lab.defaultVersion,
+  versionMap,
+})
+let compareVersionNumber = resolveInitialCompareVersion({
+  activeVersion: activeVersionNumber,
+  requestedCompare: initialParams.get('compare'),
+  storedCompare: window.localStorage.getItem(COMPARE_STORAGE_KEY),
+  versionMap,
+})
 let disposeActiveVersion = () => {}
 let isBrowserOpen = false
 let lastFilteredVersions = versions
@@ -326,38 +346,6 @@ window.addEventListener(
 
 renderLabVersion(activeVersionNumber)
 
-function resolveInitialVersion() {
-  const params = new URLSearchParams(window.location.search)
-  const requestedVersion = params.get('v')
-
-  if (requestedVersion && versionMap.has(requestedVersion)) {
-    return requestedVersion
-  }
-
-  const storedVersion = window.localStorage.getItem(STORAGE_KEY)
-  if (storedVersion && versionMap.has(storedVersion)) {
-    return storedVersion
-  }
-
-  return manifest.lab.defaultVersion
-}
-
-function resolveInitialCompareVersion(versionNumber) {
-  const params = new URLSearchParams(window.location.search)
-  const requestedCompare = params.get('compare')
-
-  if (isValidCompareTarget(versionNumber, requestedCompare)) {
-    return requestedCompare
-  }
-
-  const storedCompare = window.localStorage.getItem(COMPARE_STORAGE_KEY)
-  if (isValidCompareTarget(versionNumber, storedCompare)) {
-    return storedCompare
-  }
-
-  return ''
-}
-
 function renderLabVersion(versionNumber) {
   const manifestEntry = versionMap.get(versionNumber) ?? versionMap.get(manifest.lab.defaultVersion)
   const renderer = VERSION_RENDERERS[manifestEntry.versionNumber]
@@ -366,7 +354,13 @@ function renderLabVersion(versionNumber) {
     throw new Error(`Missing renderer for ${manifestEntry.versionNumber}`)
   }
 
-  if (!isValidCompareTarget(manifestEntry.versionNumber, compareVersionNumber)) {
+  if (
+    !isValidNavigatorCompareTarget({
+      activeVersion: manifestEntry.versionNumber,
+      compareVersion: compareVersionNumber,
+      versionMap,
+    })
+  ) {
     compareVersionNumber = ''
   }
 
@@ -437,7 +431,7 @@ function renderBrowserList(query = '') {
       return true
     }
 
-    return buildSearchIndex(version).includes(normalizedQuery)
+    return buildNavigatorSearchIndex({ version, lab: manifest.lab }).includes(normalizedQuery)
   })
 
   if (!lastFilteredVersions.length) {
@@ -720,39 +714,14 @@ function renderBrowserCard(version) {
   `
 }
 
-function buildSearchIndex(version) {
-  return [
-    version.versionNumber,
-    version.slug,
-    version.title,
-    version.concept,
-    version.styleFamily,
-    version.useCaseEmphasis,
-    version.bestFor,
-    version.navigationModel,
-    version.motionLanguage,
-    version.narrativeStructure,
-    version.sceneTreatment,
-    version.snapshotReadiness,
-    version.snapshotNotes,
-    version.releaseStatus,
-    version.releaseNotes,
-    manifest.lab.releaseStatus,
-    manifest.lab.releaseNotes,
-    manifest.lab.hostedUrl,
-    manifest.lab.liveVerificationNotes,
-    ...(version.keyTraits ?? []),
-    ...(version.sourceFamiliesConsulted ?? []),
-    ...(version.notableUxIdeas ?? []),
-    ...(version.notableFeatureIdeas ?? []),
-    ...((version.previewArtifacts ?? []).flatMap((artifact) => [artifact.label, artifact.kind, artifact.origin])),
-  ]
-    .join(' ')
-    .toLowerCase()
-}
-
 function toggleCompareVersion(versionNumber) {
-  if (!isValidCompareTarget(activeVersionNumber, versionNumber)) {
+  if (
+    !isValidNavigatorCompareTarget({
+      activeVersion: activeVersionNumber,
+      compareVersion: versionNumber,
+      versionMap,
+    })
+  ) {
     clearCompareVersion()
     return
   }
@@ -776,67 +745,11 @@ function clearCompareVersion() {
 }
 
 function getSuggestedCompareVersions(versionNumber) {
-  const currentIndex = versionNumbers.indexOf(versionNumber)
-  const candidates = []
-
-  pushUniqueVersion(candidates, versions[currentIndex - 1], versionNumber)
-  pushUniqueVersion(candidates, versions[currentIndex + 1], versionNumber)
-  pushUniqueVersion(candidates, versions[0], versionNumber)
-  pushUniqueVersion(candidates, versions.at(-1), versionNumber)
-
-  return candidates.slice(0, 2)
+  return getNavigatorSuggestedCompareVersions({ versionNumber, versions })
 }
 
 function getCompareAxes(currentVersion, compareVersion) {
-  const axes = [
-    {
-      label: 'Visual language',
-      current: currentVersion.styleFamily,
-      target: compareVersion.styleFamily,
-    },
-    {
-      label: 'Best for',
-      current: currentVersion.bestFor,
-      target: compareVersion.bestFor,
-    },
-    {
-      label: 'Navigation',
-      current: currentVersion.navigationModel,
-      target: compareVersion.navigationModel,
-    },
-    {
-      label: 'Motion',
-      current: currentVersion.motionLanguage,
-      target: compareVersion.motionLanguage,
-    },
-    {
-      label: 'Scene treatment',
-      current: currentVersion.sceneTreatment,
-      target: compareVersion.sceneTreatment,
-    },
-    {
-      label: 'Narrative',
-      current: currentVersion.narrativeStructure,
-      target: compareVersion.narrativeStructure,
-    },
-  ]
-
-  const distinctAxes = axes.filter((axis) => axis.current !== axis.target)
-  return distinctAxes.length ? distinctAxes.slice(0, 4) : axes.slice(0, 3)
-}
-
-function pushUniqueVersion(list, version, activeVersion) {
-  if (!version || version.versionNumber === activeVersion) {
-    return
-  }
-
-  if (!list.some((entry) => entry.versionNumber === version.versionNumber)) {
-    list.push(version)
-  }
-}
-
-function isValidCompareTarget(activeVersion, compareVersion) {
-  return Boolean(compareVersion && compareVersion !== activeVersion && versionMap.has(compareVersion))
+  return getNavigatorCompareAxes(currentVersion, compareVersion)
 }
 
 function handleVersionTabKeydown(event) {
@@ -852,43 +765,25 @@ function handleVersionTabKeydown(event) {
     return
   }
 
-  const currentIndex = versionNumbers.indexOf(currentVersion)
+  const intent = getVersionTabIntent({
+    key: event.key,
+    currentVersion,
+    versionNumbers,
+  })
 
-  if (currentIndex === -1) {
+  if (!intent) {
     return
   }
 
-  const movementByKey = {
-    ArrowRight: 1,
-    ArrowDown: 1,
-    ArrowLeft: -1,
-    ArrowUp: -1,
-  }
+  event.preventDefault()
 
-  if (event.key in movementByKey) {
-    event.preventDefault()
-    const nextIndex = (currentIndex + movementByKey[event.key] + versionTabs.length) % versionTabs.length
-    focusVersionTab(versionNumbers[nextIndex])
+  if (intent.type === 'focus') {
+    focusVersionTab(intent.versionNumber)
     return
   }
 
-  if (event.key === 'Home') {
-    event.preventDefault()
-    focusVersionTab(versionNumbers[0])
-    return
-  }
-
-  if (event.key === 'End') {
-    event.preventDefault()
-    focusVersionTab(versionNumbers.at(-1))
-    return
-  }
-
-  if (event.key === 'Enter' || event.key === ' ') {
-    event.preventDefault()
-    focusVersionTab(currentVersion)
-    renderLabVersion(currentVersion)
-  }
+  focusVersionTab(intent.versionNumber)
+  renderLabVersion(intent.versionNumber)
 }
 
 function focusVersionTab(versionNumber) {

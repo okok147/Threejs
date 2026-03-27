@@ -7,6 +7,7 @@
 ```bash
 npm install
 npm run dev
+npm test
 npm run lab:validate
 ```
 
@@ -53,6 +54,7 @@ npm run build
 - `version-manifest.json` 現在把設計狀態與發布狀態分開記錄：版本繼續用 `status` 表示設計成熟度，另用 `releaseStatus` 表示目前是否只在本地、已推送、或已 live 驗證。
 - `lab.hostedUrl`、`lastLiveVerificationAt` 與 `liveVerificationNotes` 會明確記錄目前觀察到的 hosted site 證據，避免把「URL 可達」誤當成「本地工作樹已上線」。
 - 若本地變更尚未 push / deploy，就算既有 GitHub Pages URL 仍可開啟，也必須維持 `local-only` 或其他較低 release 狀態，不能直接宣稱 live。
+- `npm test` 目前會先覆蓋共享 navigator 的核心規則，包括初始版本解析、manual-activation tabs、compare target 驗證與 search index 組裝，作為跨版本切換的最小保護網。
 
 官方參考：
 

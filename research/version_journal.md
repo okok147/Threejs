@@ -189,3 +189,35 @@
   - version browser 仍未做完整 focus trap；雖然 `Esc` 與 focus return 已存在，但 modal 行為還不算完全封閉。
 - Next likely direction：
   - 若環境允許，先補最小 browser smoke test，覆蓋 tabs keyboard flow、drawer 開關與 mobile navigator 主要互動。
+
+## 2026-03-27T11:20:41+08:00 / Navigator Testability Upgrade
+
+- 動作類型：improve version-switching UX。
+- Thesis：不再只靠手動驗證共享 navigator，而是把版本解析、manual-activation tabs、compare 合法性與 search index 抽成可測核心規則，讓後續版本增長時仍能守住切換可信度。
+- Sources consulted：
+  - repo 內既有 `src/main.js`、`version-manifest.json` 與前一輪 journal 的 manual-activation 原則
+  - Node.js 內建 `node:test` / `node:assert` 能力（無新增外部測試框架）
+- Principles extracted：
+  - 共享 shell 的高風險邏輯應先抽離成 pure module，否則測試只能綁整個 DOM 與 three.js renderer。
+  - tabs 的 keyboard 規則要以 intent 層測試，而不是只在事件處理器裡重複寫一次不可驗證的邏輯。
+  - compare target 與初始 version resolution 屬於跨版本治理邏輯，應和畫面 rendering 分開驗證。
+  - 在 browser automation 缺席的情況下，內建 test runner 是目前最強、最可持續的保護網。
+- Implementation summary：
+  - 新增 `src/lib/version-navigator.js`，集中管理 `resolveInitialVersion`、`resolveInitialCompareVersion`、`isValidCompareTarget`、`getVersionTabIntent`、`buildSearchIndex`、`getSuggestedCompareVersions` 與 `getCompareAxes`。
+  - 簡化 `src/main.js`，改為消費上述可測邏輯，避免 shared shell 再把搜尋、compare 與 tabs 規則散落在 UI handler 裡。
+  - 新增 `tests/version-navigator.test.mjs` 與 `npm test`，覆蓋版本解析、compare 驗證、manual tabs、compare suggestion、search index 與差異軸線。
+  - `README.md` 補上測試入口，讓後續 run 能先用相同檢查保護 switchability。
+- Validation results：
+  - `npm test`：通過，7 個 navigator 核心規則測試全數通過。
+  - `npm run lab:validate`：通過，3 個 versions registry 仍可正確驗證。
+  - `npm run build`：通過，production bundle 成功，JS 約 625.56 kB、CSS 約 59.54 kB（未 gzip 前）。
+  - 目前 repo 仍沒有 typecheck、lint、browser automation、mobile smoke test 或真實 screenshot capture 可執行。
+- Release results：
+  - 本輪將以本地 commit 收束，但無法在此 sandbox 內證明 push / deploy 成功。
+- Live verification results：
+  - 本輪沒有新的 hosted verification；既有 GitHub Pages URL 不能代表這份本地工作樹的新測試保護層已上線。
+- Risks：
+  - 測試目前只覆蓋 pure rules，尚未涵蓋 drawer focus trap、`Esc` 關閉後 focus return 與 mobile shell 實際互動。
+  - 仍沒有 browser-level smoke test 驗證 `searchInput`、`compare panel` 與 DOM aria wiring 的整體流程。
+- Next likely direction：
+  - 若環境允許，下一步應補最小 browser smoke test，直接驗證 drawer 開關、focus 管理與 mobile navigator 主要互動。
