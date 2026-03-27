@@ -3,8 +3,9 @@ import assert from 'node:assert/strict'
 
 import { createBrowserDialogController, resolveFocusTrapTarget } from '../src/lib/browser-dialog.js'
 
-test('browser dialog 開啟與關閉時會同步 inert 狀態並回復焦點', () => {
+test('browser dialog 開啟與關閉時會同步 inert 狀態並回復觸發焦點', () => {
   const fixture = createDialogFixture()
+  fixture.setActiveElement(fixture.compareTrigger)
 
   fixture.controller.setOpen(true)
 
@@ -29,7 +30,7 @@ test('browser dialog 開啟與關閉時會同步 inert 狀態並回復焦點', (
   assert.equal(fixture.toolbar.inert, false)
   assert.equal(fixture.stage.inert, false)
   assert.equal(fixture.toolbar.hasAttribute('aria-hidden'), false)
-  assert.equal(fixture.activeElement(), fixture.browserToggle)
+  assert.equal(fixture.activeElement(), fixture.compareTrigger)
 })
 
 test('browser dialog 會在 Tab 與 Shift+Tab 時維持焦點循環', () => {
@@ -58,11 +59,13 @@ test('browser dialog 會在 Tab 與 Shift+Tab 時維持焦點循環', () => {
   assert.equal(fixture.activeElement(), fixture.footerLink)
 })
 
-test('browser dialog 支援 Escape 關閉與最小焦點規則', () => {
+test('browser dialog 支援 Escape 關閉、fallback 焦點與最小焦點規則', () => {
   const fixture = createDialogFixture()
+  fixture.setActiveElement(fixture.compareTrigger)
   fixture.controller.setOpen(true)
 
   fixture.setActiveElement(fixture.closeButton)
+  fixture.compareTrigger.isConnected = false
   const escapeEvent = createKeyboardEvent('Escape')
 
   assert.equal(fixture.controller.handleKeydown(escapeEvent), true)
@@ -96,6 +99,7 @@ function createDialogFixture() {
   const compareButton = new FakeElement('compareButton')
   const footerLink = new FakeElement('footerLink')
   const externalButton = new FakeElement('externalButton')
+  const compareTrigger = new FakeElement('compareTrigger')
 
   searchInput.select = () => {
     searchInput.wasSelected = true
@@ -104,7 +108,20 @@ function createDialogFixture() {
   const focusableChildren = [searchInput, closeButton, compareButton, footerLink]
   browserPanel.querySelectorAll = () => focusableChildren
 
-  ;[body, toolbar, stage, browserPanel, browserBackdrop, browserToggle, searchInput, closeButton, compareButton, footerLink, externalButton].forEach(
+  ;[
+    body,
+    toolbar,
+    stage,
+    browserPanel,
+    browserBackdrop,
+    browserToggle,
+    searchInput,
+    closeButton,
+    compareButton,
+    footerLink,
+    externalButton,
+    compareTrigger,
+  ].forEach(
     (element) => {
       element.focus = () => {
         activeElement = element
@@ -132,6 +149,7 @@ function createDialogFixture() {
     browserToggle,
     closeButton,
     compareButton,
+    compareTrigger,
     controller,
     externalButton,
     footerLink,
@@ -162,6 +180,7 @@ class FakeElement {
     this.attributes = new Map()
     this.classList = new FakeClassList()
     this.inert = false
+    this.isConnected = true
     this.tabIndex = 0
     this.wasSelected = false
   }

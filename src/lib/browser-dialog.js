@@ -50,8 +50,20 @@ export function createBrowserDialogController({
   getActiveElement = () => null,
 }) {
   let isOpen = false
+  let restoreFocusTarget = null
 
   function setOpen(nextState, { returnFocus = true } = {}) {
+    if (nextState === isOpen) {
+      return
+    }
+
+    if (nextState) {
+      restoreFocusTarget = resolveReturnFocusTarget({
+        activeElement: getActiveElement(),
+        fallbackElement: returnFocusElement,
+      })
+    }
+
     isOpen = nextState
 
     dialogElement.classList.toggle('is-open', nextState)
@@ -70,8 +82,13 @@ export function createBrowserDialogController({
     }
 
     if (returnFocus) {
-      returnFocusElement?.focus?.({ preventScroll: true })
+      resolveReturnFocusTarget({
+        activeElement: restoreFocusTarget,
+        fallbackElement: returnFocusElement,
+      })?.focus?.({ preventScroll: true })
     }
+
+    restoreFocusTarget = null
   }
 
   function handleKeydown(event) {
@@ -113,6 +130,14 @@ export function createBrowserDialogController({
   }
 }
 
+function resolveReturnFocusTarget({ activeElement = null, fallbackElement = null }) {
+  if (canRestoreFocus(activeElement)) {
+    return activeElement
+  }
+
+  return fallbackElement
+}
+
 function isFocusableElement(element) {
   if (!element || typeof element.focus !== 'function') {
     return false
@@ -131,6 +156,18 @@ function isFocusableElement(element) {
   }
 
   if (typeof element.tabIndex === 'number' && element.tabIndex < 0) {
+    return false
+  }
+
+  return true
+}
+
+function canRestoreFocus(element) {
+  if (!isFocusableElement(element)) {
+    return false
+  }
+
+  if ('isConnected' in element && element.isConnected === false) {
     return false
   }
 

@@ -11,6 +11,12 @@ import {
   resolveInitialCompareVersion,
   resolveInitialVersion,
 } from './lib/version-navigator.js'
+import {
+  getBrowserShortcutAction,
+  handleBrowserSearchSubmit,
+  handleVersionTabKeydownIntent,
+  syncVersionTabs,
+} from './lib/version-navigator-ui.js'
 import { renderVersion as renderOrbitCinematic } from '../versions/v001-orbit-cinematic/index.js'
 import { renderVersion as renderSignalLedger } from '../versions/v002-signal-ledger/index.js'
 import { renderVersion as renderMuseumMonograph } from '../versions/v003-museum-monograph/index.js'
@@ -301,19 +307,12 @@ searchInput.addEventListener('input', () => {
 })
 
 searchInput.addEventListener('keydown', (event) => {
-  if (event.key !== 'Enter') {
-    return
-  }
-
-  const [firstVersion] = lastFilteredVersions
-
-  if (!firstVersion) {
-    return
-  }
-
-  event.preventDefault()
-  renderLabVersion(firstVersion.versionNumber)
-  setBrowserOpen(false)
+  handleBrowserSearchSubmit({
+    event,
+    filteredVersions: lastFilteredVersions,
+    activateVersion: renderLabVersion,
+    setBrowserOpen,
+  })
 })
 
 browserToggle.addEventListener('click', () => {
@@ -333,20 +332,17 @@ document.addEventListener('keydown', (event) => {
     return
   }
 
-  if (isTypingTarget(event.target)) {
-    return
-  }
+  const shortcutAction = getBrowserShortcutAction({
+    event,
+    isBrowserOpen: browserDialog.isOpen,
+  })
 
-  const isOpenShortcut =
-    (event.key === '/' && !event.metaKey && !event.ctrlKey && !event.altKey) ||
-    ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k')
-
-  if (!isOpenShortcut) {
+  if (!shortcutAction) {
     return
   }
 
   event.preventDefault()
-  setBrowserOpen(true)
+  setBrowserOpen(shortcutAction === 'open')
 })
 
 window.addEventListener(
@@ -416,12 +412,10 @@ function renderLabVersion(versionNumber) {
 }
 
 function updateDock(manifestEntry) {
-  versionTabs.forEach((tab) => {
-    const isActive = tab.dataset.versionTab === manifestEntry.versionNumber
-    const isFocusable = tab.dataset.versionTab === focusableVersionNumber
-    tab.classList.toggle('is-active', isActive)
-    tab.setAttribute('aria-selected', String(isActive))
-    tab.tabIndex = isFocusable ? 0 : -1
+  syncVersionTabs({
+    versionTabs,
+    activeVersionNumber: manifestEntry.versionNumber,
+    focusableVersionNumber,
   })
 
   stage.setAttribute('aria-labelledby', `lab-tab-${manifestEntry.versionNumber}`)
@@ -766,37 +760,13 @@ function getCompareAxes(currentVersion, compareVersion) {
 }
 
 function handleVersionTabKeydown(event) {
-  const target = event.target instanceof HTMLElement ? event.target.closest('[data-version-tab]') : null
-
-  if (!target) {
-    return
-  }
-
-  const currentVersion = target.dataset.versionTab
-
-  if (!currentVersion) {
-    return
-  }
-
-  const intent = getVersionTabIntent({
-    key: event.key,
-    currentVersion,
+  handleVersionTabKeydownIntent({
+    event,
     versionNumbers,
+    getVersionTabIntent,
+    focusVersionTab,
+    activateVersion: renderLabVersion,
   })
-
-  if (!intent) {
-    return
-  }
-
-  event.preventDefault()
-
-  if (intent.type === 'focus') {
-    focusVersionTab(intent.versionNumber)
-    return
-  }
-
-  focusVersionTab(intent.versionNumber)
-  renderLabVersion(intent.versionNumber)
 }
 
 function focusVersionTab(versionNumber) {
@@ -805,14 +775,12 @@ function focusVersionTab(versionNumber) {
   }
 
   focusableVersionNumber = versionNumber
-  syncVersionTabFocusability()
-  getVersionTab(versionNumber)?.focus({ preventScroll: true })
-}
-
-function syncVersionTabFocusability() {
-  versionTabs.forEach((tab) => {
-    tab.tabIndex = tab.dataset.versionTab === focusableVersionNumber ? 0 : -1
+  syncVersionTabs({
+    versionTabs,
+    activeVersionNumber,
+    focusableVersionNumber,
   })
+  getVersionTab(versionNumber)?.focus({ preventScroll: true })
 }
 
 function getVersionTab(versionNumber) {
@@ -903,14 +871,6 @@ function formatStatus(status) {
 
 function formatReleaseStatus(releaseStatus) {
   return RELEASE_STATUS_LABELS[releaseStatus] ?? releaseStatus
-}
-
-function isTypingTarget(target) {
-  if (!(target instanceof HTMLElement)) {
-    return false
-  }
-
-  return Boolean(target.closest('input, textarea, select, [contenteditable="true"]'))
 }
 
 function escapeHtml(value) {
