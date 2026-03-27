@@ -2,14 +2,14 @@
   "lab": {
     "title": "光軌 Style Laboratory",
     "defaultVersion": "v003",
-    "switcherMode": "hybrid-browser-compare",
+    "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "releaseStatus": "committed-not-pushed",
-    "releaseNotes": "目前共享 navigator、preview provenance 與 release truth 更新已完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。",
+    "releaseNotes": "目前共享 navigator 已補 manual-activation tabs 並完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。",
     "lastLiveVerificationAt": "2026-03-27T08:58:09+08:00",
     "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前線上頁面仍未反映這份本地工作樹的最新 lab 標題與 shared shell 變更。",
-    "lastUpdated": "2026-03-27T09:01:44+08:00"
+    "lastUpdated": "2026-03-27T09:03:21+08:00"
   },
   "versions": [
     {

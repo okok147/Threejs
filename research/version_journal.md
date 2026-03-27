@@ -160,3 +160,32 @@
   - 但 hosted page 仍未反映這份本地工作樹的最新 lab shell，因此不能標成 `deployed-production` 或 `live-verified`。
 - Next likely direction：
   - 若網路與權限允許，下一步應在 commit / push 後再次核對 hosted HTML 與 deploy 結果，讓 releaseStatus 從 `local-only` 真實推進。
+
+## 2026-03-27T09:03:21+08:00 / Manual Activation Tab Completion
+
+- 動作類型：improve version-switching UX。
+- Thesis：把共享 quick switcher 從「看起來像 tabs」補成真正可用的 manual-activation tabs，避免鍵盤使用者只能停在目前版本，卻無法直接切換。
+- Sources consulted：
+  - repo 內既有 `research/version_journal.md` 的 tabs/manual-activation 原則
+  - 當前 `src/main.js`、`src/style.css` 與 `version-manifest.json` 的 navigator/release metadata
+- Principles extracted：
+  - active version 應維持 `aria-selected`，方向鍵只移動 focus，不應立即觸發整頁版本重建。
+  - quick switcher 需要 roving `tabIndex`、`Home` / `End`、`Enter` / `Space`，才能符合 keyboard-first 版本切換。
+  - tablist 應清楚關聯單一 version panel，並對輔助科技揭露鍵盤操作模型。
+- Implementation summary：
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js)，加入 quick switcher roving focus、方向鍵巡覽、`Home` / `End` 快速移動，以及 `Enter` / `Space` 手動啟用版本。
+  - 為 tabs 與共享 panel 補上 `id`、`aria-controls`、`aria-labelledby`，並加入供輔助科技使用的 hidden keyboard hint。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/style.css`](/Users/kelvinlau/Desktop/Repo/Threejs/src/style.css) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json)，把 switcher metadata 明確標記為 `hybrid-browser-compare-manual-tabs`。
+- Validation results：
+  - `npm run lab:validate`：通過，3 個 versions registry 仍可正確驗證。
+  - `npm run build`：通過，production bundle 成功，JS 約 624.76 kB、CSS 約 59.54 kB（未 gzip 前）。
+  - 目前 repo 仍沒有 typecheck、lint、tests、browser automation 或 mobile navigator smoke test 可執行。
+- Release results：
+  - 這輪僅完成本地驗證與本地 commit 準備，尚未推送 main，也未觸發 GitHub Pages deploy。
+- Live verification results：
+  - 本輪沒有新的 live verification；現有 hosted URL 仍無法代表這份本地工作樹的最新 navigator 修補。
+- Risks：
+  - 目前仍沒有 browser automation 來驗證 tabs、drawer 與 mobile shell 的實際鍵盤流程。
+  - version browser 仍未做完整 focus trap；雖然 `Esc` 與 focus return 已存在，但 modal 行為還不算完全封閉。
+- Next likely direction：
+  - 若環境允許，先補最小 browser smoke test，覆蓋 tabs keyboard flow、drawer 開關與 mobile navigator 主要互動。
