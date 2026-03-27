@@ -247,3 +247,33 @@
   - deploy workflow 現在會擋 manifest 與 navigator regression，但還沒有真實 screenshot 或 browser smoke tests。
 - Next likely direction：
   - 若環境允許 browser automation，補最小 e2e smoke test，優先覆蓋 tabs keyboard flow、browser drawer 開關與 mobile shell。
+
+## 2026-03-27T20:35:09+08:00 / Browser Dialog Focus Governance
+
+- 動作類型：improve universal version navigator。
+- Thesis：把 version browser 從「能打開的 drawer」補成真正的 modal dialog，讓焦點不再漏到背景，並把 open/close / focus trap 規則納入可測保護層。
+- Sources consulted：
+  - WAI-ARIA APG modal dialog pattern
+  - MDN `inert` global attribute
+  - repo 內既有 manual-activation tabs / release truth journal 原則
+- Principles extracted：
+  - modal dialog 開啟後，`Tab` / `Shift+Tab` 必須在 dialog 內循環，不能穿透到底層頁面。
+  - dialog 關閉後要把焦點回送到觸發來源，維持使用者的 point of regard。
+  - `aria-modal` 不是視覺宣告而已；背景內容也需要真的進入 inert / hidden 狀態，避免 modal 邏輯與實際互動不一致。
+- Implementation summary：
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/browser-dialog.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/browser-dialog.js)，抽出 shared browser drawer 的 open/close、focus trap、background inert/aria-hidden 與 focus return 控制邏輯。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js)，把 browser panel 改接新 controller，並補上 dialog 的 `aria-labelledby` / `aria-describedby` 關聯。
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/tests/browser-dialog.test.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/tests/browser-dialog.test.mjs)，用 Node 內建 test runner 驗證 open/close 狀態同步、Tab 循環、`Escape` 關閉與 focus return。
+- Validation results：
+  - `npm test`：通過，10 個測試全部成功；新增 browser dialog 焦點治理覆蓋。
+  - `npm run lab:validate`：通過，3 個 lab versions registry 驗證成功。
+  - `npm run build`：通過，production bundle 成功，JS 約 627.45 kB、CSS 約 59.54 kB（未 gzip 前）。
+- Release results：
+  - 這輪僅完成本地驗證與本地 commit 準備，尚未推送 main，也未觸發 GitHub Pages deploy。
+- Live verification results：
+  - 本輪沒有新的 hosted verification；既有 Pages URL 不能代表這份最新 drawer accessibility 修補已上線。
+- Risks：
+  - 目前仍是 Node-level dialog smoke tests，不是真實瀏覽器或行動裝置上的完整 keyboard / screen reader 驗證。
+  - 背景 inert 已補上，但尚未有 browser automation 驗證不同瀏覽器對 `inert` 與 dialog aria 行為的一致性。
+- Next likely direction：
+  - 若環境允許 browser automation，下一步應補最小 e2e smoke test，直接驗證 drawer 開關、focus trap、`Escape` 關閉與 mobile shell 主要互動。

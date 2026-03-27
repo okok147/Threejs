@@ -1,6 +1,7 @@
 import './style.css'
 import manifest from '../version-manifest.json'
 import { siteContent } from './data/site-content.js'
+import { createBrowserDialogController } from './lib/browser-dialog.js'
 import {
   buildSearchIndex as buildNavigatorSearchIndex,
   getCompareAxes as getNavigatorCompareAxes,
@@ -77,7 +78,6 @@ let compareVersionNumber = resolveInitialCompareVersion({
   versionMap,
 })
 let disposeActiveVersion = () => {}
-let isBrowserOpen = false
 let lastFilteredVersions = versions
 
 if (!app) {
@@ -156,12 +156,13 @@ app.innerHTML = `
       role="dialog"
       aria-modal="true"
       aria-hidden="true"
-      aria-label="版本瀏覽器"
+      aria-labelledby="lab-browser-title"
+      aria-describedby="lab-browser-summary"
     >
       <div class="lab-browser-head">
         <div>
           <p class="lab-kicker">${escapeHtml(manifest.lab.title)}</p>
-          <h2 class="lab-browser-title">切換、搜尋與比較版本</h2>
+          <h2 class="lab-browser-title" id="lab-browser-title">切換、搜尋與比較版本</h2>
         </div>
 
         <div class="lab-browser-head-actions">
@@ -175,7 +176,7 @@ app.innerHTML = `
         </div>
       </div>
 
-      <p class="lab-summary">${escapeHtml(siteContent.labSummary)}</p>
+      <p class="lab-summary" id="lab-browser-summary">${escapeHtml(siteContent.labSummary)}</p>
 
       <label class="lab-search" for="version-search">
         <span class="lab-search-label">搜尋版本</span>
@@ -217,6 +218,8 @@ const comparePanel = app.querySelector('[data-compare-panel]')
 const versionList = app.querySelector('[data-version-list]')
 const versionTabs = [...app.querySelectorAll('[data-version-tab]')]
 const quickSwitcher = app.querySelector('.lab-quick-switcher')
+const skipLink = app.querySelector('.lab-skip-link')
+const toolbar = app.querySelector('.lab-toolbar')
 const browserPanel = app.querySelector('[data-browser-panel]')
 const browserBackdrop = app.querySelector('[data-browser-backdrop]')
 const browserToggle = app.querySelector('[data-browser-toggle]')
@@ -225,6 +228,17 @@ const browserToggleLabel = app.querySelector('[data-browser-toggle-label]')
 const searchInput = app.querySelector('[data-version-search]')
 const descriptionMeta = document.querySelector('meta[name="description"]')
 let focusableVersionNumber = activeVersionNumber
+
+const browserDialog = createBrowserDialogController({
+  dialogElement: browserPanel,
+  backdropElement: browserBackdrop,
+  returnFocusElement: browserToggle,
+  initialFocusElement: searchInput,
+  inertRoots: [skipLink, toolbar, stage],
+  body: document.body,
+  requestAnimationFrame: window.requestAnimationFrame.bind(window),
+  getActiveElement: () => document.activeElement,
+})
 
 versionTabs.forEach((tab) => {
   tab.addEventListener('click', () => {
@@ -303,7 +317,7 @@ searchInput.addEventListener('keydown', (event) => {
 })
 
 browserToggle.addEventListener('click', () => {
-  setBrowserOpen(!isBrowserOpen)
+  setBrowserOpen(!browserDialog.isOpen)
 })
 
 browserClose.addEventListener('click', () => {
@@ -315,8 +329,7 @@ browserBackdrop.addEventListener('click', () => {
 })
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && isBrowserOpen) {
-    setBrowserOpen(false)
+  if (browserDialog.handleKeydown(event)) {
     return
   }
 
@@ -807,23 +820,11 @@ function getVersionTab(versionNumber) {
 }
 
 function setBrowserOpen(nextState) {
-  isBrowserOpen = nextState
-  browserPanel.classList.toggle('is-open', nextState)
-  browserBackdrop.classList.toggle('is-open', nextState)
-  browserPanel.setAttribute('aria-hidden', String(!nextState))
-  browserToggle.setAttribute('aria-expanded', String(nextState))
-  document.body.classList.toggle('is-browser-open', nextState)
-
   if (nextState) {
     renderBrowserList(searchInput.value)
-    requestAnimationFrame(() => {
-      searchInput.focus()
-      searchInput.select()
-    })
-    return
   }
 
-  browserToggle.focus({ preventScroll: true })
+  browserDialog.setOpen(nextState)
 }
 
 function updateUrl(versionNumber, compareVersion) {
