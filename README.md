@@ -29,6 +29,7 @@ npm run build
 
 - `v001 / Orbit Cinematic`: 品牌世界觀首頁，強調 cinematic single-object narrative
 - `v002 / Signal Ledger`: 編輯式作品集索引，強調版本條目、方法論與 research archive
+- `v003 / Museum Monograph`: 策展型案例深讀頁，強調展件框景、固定 rail 與 version wall
 
 ## Three.js 實作品質基線
 
@@ -40,6 +41,18 @@ npm run build
 - 對 `CanvasTexture` 標註 `colorSpace`，避免 glow texture 的色彩解讀錯誤。
 - 以 scene preset 方式重用 three.js 核心結構，讓不同版本可以共用資源管理與 responsive discipline。
 - 在頁面隱藏與銷毀時停止動畫並釋放 geometry、material、texture 與 renderer 資源。
+
+## Preview / Snapshot Provenance
+
+- `version-manifest.json` 會同時保留 `screenshotPaths` 與 `previewArtifacts`；前者維持 registry 相容性，後者則明確標註預覽資產的 `kind`、`origin` 與 `snapshotReadiness`。
+- 目前 `v001` 到 `v003` 都只有 repo 內維護的概念海報預覽，不是假裝成真實瀏覽器截圖。
+- 這個 sandbox 無法在本輪開本地 HTTP listener，因此真實 browser screenshot pipeline 仍待後續環境放行後再接上。
+
+## Release Truth
+
+- `version-manifest.json` 現在把設計狀態與發布狀態分開記錄：版本繼續用 `status` 表示設計成熟度，另用 `releaseStatus` 表示目前是否只在本地、已推送、或已 live 驗證。
+- `lab.hostedUrl`、`lastLiveVerificationAt` 與 `liveVerificationNotes` 會明確記錄目前觀察到的 hosted site 證據，避免把「URL 可達」誤當成「本地工作樹已上線」。
+- 若本地變更尚未 push / deploy，就算既有 GitHub Pages URL 仍可開啟，也必須維持 `local-only` 或其他較低 release 狀態，不能直接宣稱 live。
 
 官方參考：
 

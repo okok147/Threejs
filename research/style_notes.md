@@ -187,3 +187,186 @@
 - full e-commerce comparison table：太像商品規格比較頁，且在手機上效率差。
 - command-palette 式全螢幕切換器：互動語氣過於產品化，會稀釋版本實驗室的展示感。
 - 多層 filter chip 面板：對目前資料量過度設計，也容易變成 Carbon 明示要避免的擁擠 disclosure。
+
+## 2026-03-26 / Run 4
+
+### Sources reviewed
+
+- [W3C WebDriver Screen Capture](https://www.w3.org/TR/webdriver/#screen-capture)
+- [Playwright screenshot assertions](https://playwright.dev/docs/next/api/class-snapshotassertions)
+- [Vite static asset handling](https://v4.vite.dev/guide/assets)
+
+### Source quality notes
+
+- W3C WebDriver：官方標準，直接定義 screenshot 的語意邊界，適合拿來區分「viewport framebuffer dump」與一般概念預覽資產。
+- Playwright：官方自動化文件，清楚說明 screenshot 應該進入可比對、可落檔的 snapshot 流程，而不是只是做一張展示圖。
+- Vite asset handling：官方框架文件，對「資產是否真的進 build graph」這件事有直接指引，適合修正 repo 內存在但部署時不可達的 preview 路徑問題。
+
+### Extracted principles
+
+- 版本實驗室的預覽資產必須揭露 fidelity 與 provenance；只有檔案路徑，沒有來源型別，會讓使用者誤把概念海報當成真實截圖。
+- 若 preview asset 不在 build graph 內，registry 就算指向了檔案，部署後也不是真正可瀏覽的比較證據。
+- compare UI 不應只比較文字 metadata；至少要同時帶一張可視化預覽與其來源說明，讓使用者知道自己在比較什麼。
+- screenshot pipeline 尚未可用時，應該把狀態顯式標成 `preview-only` 或 `capture-blocked`，而不是用含糊命名掩蓋缺口。
+
+### Anti-patterns
+
+- `screenshots/` 內有檔案，但 build 後根本不會被部署。
+- 用 `poster.svg` 當預覽，卻在 UI 與 manifest 裡暗示那是真實網站截圖。
+- compare drawer 只顯示 style family 與概念，沒有任何可視化證據。
+- 把 screenshot pipeline 的失敗靜默吞掉，最後讓 stable 版本看起來像已完整留檔。
+
+### Possible feature ideas
+
+- browser screenshot pipeline 一旦環境允許，就把 `preview-only` 升級成 `browser-captured` 並保留 provenance 歷史。
+- 後續補 section-level capture strip，讓 compare panel 不只比較首頁海報，還能比較 narrative 片段。
+- 增加 preview fidelity filter，例如只看真實瀏覽器截圖、只看概念海報、或顯示混合狀態。
+
+### Interaction ideas
+
+- 在 version browser 卡片頂部固定顯示 preview thumb，讓搜尋結果不是只剩文字。
+- compare summary card 同時顯示預覽與 `snapshotReadiness`，縮短使用者判讀成本。
+- current-version meta 區直接揭露 preview kind 與 origin，避免使用者要打開檔案才知道那是什麼。
+
+### Preserve
+
+- 版本切換與 compare 的快速可達性
+- manifest / tokens / journal / screenshots 這條註冊鏈
+- 同一份內容被不同視覺語言翻譯後的可比較性
+
+### Reinvent
+
+- preview asset 的部署路徑
+- 預覽證據的誠實度與可辨識性
+- metadata 與 visual evidence 在 browser 內的關係
+
+### Ideas rejected for being too derivative
+
+- 用假裝是 macOS / iPhone device frame 的縮圖牆來增加「作品集感」：太像成品展示平台，反而模糊版本研究的重點。
+- 把 compare panel 做成 dashboard heatmap：資料語氣過強，會蓋掉每個版本本身的敘事差異。
+
+## 2026-03-27 / Run 5
+
+### Sources reviewed
+
+- repo 內的 GitHub Pages workflow：`.github/workflows/deploy.yml`
+- 目前工作樹與 `version-manifest.json` 的治理欄位
+- 現有 GitHub Pages hosted URL 的可達性檢查
+
+### Extracted principles
+
+- 設計成熟度與發布真實度必須分開記錄；`stable` 不能自動等於「已上線」。
+- 版本實驗室應把 `hostedUrl` 與最近一次 live 驗證時間寫進 manifest，而不是只在內容層留一個靜態連結。
+- live verification 要記錄「看到了什麼」而不是只記錄「有個網址存在」；URL 可達不代表目前本地工作樹已部署。
+- shared navigator 若提供 Hosted Site 入口，就必須同步揭露 release 狀態，否則使用者會把本地 registry 誤判成已發布版本。
+
+### Anti-patterns
+
+- 把既有 GitHub Pages URL 的存在，直接當成目前工作樹已部署的證據。
+- 只用單一 `status` 欄位，同時描述設計成熟度與發佈狀態。
+- browser shell 提供 live 連結，卻不說明目前 registry 是否只是 local-only。
+
+### Possible feature ideas
+
+- 之後可加入 release history strip，顯示每次推送、部署與 live 驗證節點。
+- 若環境允許，可做 post-deploy probe，比對 hosted HTML title 或 manifest hash 是否與本地一致。
+
+## 2026-03-26 / Run 4
+
+### Sources reviewed
+
+- [W3C WCAG Consistent Navigation](https://www.w3.org/WAI/GL/WCAG20/WD-UNDERSTANDING-WCAG20-20071211/consistent-behavior-consistent-locations.html)
+- [Carbon UI shell header](https://v10.carbondesignsystem.com/components/UI-shell-header/usage/)
+- [GitHub Command Palette docs](https://docs.github.com/en/get-started/accessibility/github-command-palette)
+- [three.js disposal guide](https://threejs.org/manual/en/how-to-dispose-of-objects.html)
+
+### Source scoring
+
+- W3C / official accessibility guidance
+  - 類別：官方可及性規範
+  - credibility：5/5
+  - originality：3/5
+  - usability：5/5
+  - technical relevance：4/5
+  - derivative risk：1/5
+- Carbon / official design system
+  - 類別：官方設計系統
+  - credibility：5/5
+  - originality：3/5
+  - usability：4/5
+  - technical relevance：4/5
+  - derivative risk：1/5
+- GitHub docs / official product docs
+  - 類別：官方產品文件
+  - credibility：5/5
+  - originality：4/5
+  - usability：4/5
+  - technical relevance：4/5
+  - derivative risk：2/5
+- three.js manual / official docs
+  - 類別：官方 framework 文件
+  - credibility：5/5
+  - originality：3/5
+  - usability：4/5
+  - technical relevance：5/5
+  - derivative risk：1/5
+
+### Source quality notes
+
+- W3C 給的是結構穩定性與一致位置原則，直接支撐「目前版本資訊不能只藏在 drawer 裡」。
+- Carbon UI shell header 幫忙確認桌機 header 與小螢幕側欄/抽屜之間的 collapse 邏輯，適合做共享 navigator 的殼。
+- GitHub Command Palette 提供 `Cmd/Ctrl+K`、scope-aware 搜尋與 Enter-to-open 的互動語意，但不能直接照抄它的產品語氣。
+- three.js disposal guide 提醒版本切換仍然是 scene teardown 的高風險點，compare/navigation 升級不能破壞 cleanup discipline。
+
+### Extracted principles
+
+- 重複出現的版本導覽要維持一致位置與相對順序，讓使用者不用重新找目前版本與切換入口。
+- 版本數仍少時，桌機保留可見 tabs，比強迫使用者每次都打開 browser 更直接。
+- searchable browser 應該支援 version id、slug、title、concept、style family、traits、best-for 等多欄位索引，而不是只搜標題。
+- compare 應先支援相鄰版本的快速摘要，比完整 side-by-side rendering 更適合目前版本數與手機情境。
+- 版本切換與 compare 更新都不能影響 three.js 資源釋放，否則實驗室會在長時間切換後退化。
+
+### Anti-patterns
+
+- 只把 `Cmd/Ctrl+K` 當成漂亮捷徑，卻沒有讓 Enter 能直接進入第一個結果。
+- mobile browser 只是縮小 desktop 面板，沒有轉成更清楚的 bottom-sheet 行為。
+- version card 只有標題與概念，缺少 best-for / status / traits，導致無法快速比較。
+- compare 做得像規格表，但完全沒有指出敘事、導覽與 scene treatment 的質性差異。
+
+### Possible style families
+
+- Instrument dashboard portfolio
+- Search-first archive browser
+- Monochrome taxonomy index
+- Swiss minimal comparison desk
+
+### Possible feature ideas
+
+- compare query param 持久化，讓分享連結可直接開在某版 vs 某版
+- version browser 顯示 screenshot thumbnail 與 status badge
+- 之後補 keyboard roving focus，讓 tabs 更接近完整 APG 行為
+- 建立真正的 side-by-side section compare route，而不是只比較 metadata
+
+### Interaction ideas
+
+- 工具列中央固定 current-version capsule，避免關掉 browser 後失去方向感
+- 桌機以 nearby compare pills 提供一跳比較，手機則把 compare 放進 browser 區塊
+- 搜尋欄 Enter 直接開第一個版本結果，減少 palette 多一步點擊
+
+### Preserve
+
+- manifest 驅動的版本註冊與 route 穩定性
+- shared scene lifecycle / cleanup discipline
+- 小版本數時的一鍵 tabs 體驗
+
+### Reinvent
+
+- archive browser 的 metadata 密度
+- compare 的開啟方式與分享能力
+- current-version awareness 的全域可見性
+
+### Ideas rejected for being too derivative
+
+- 完整複製 GitHub command palette 的 `>` command mode 與 scope token 標記：互動語氣太像產品工作台。
+- 直接採用 Carbon UI shell 的資訊密度與比例：會把實驗室導覽做得過於企業產品化。
+- 把 compare 做成 Framer/marketplace 式卡片牆：看起來漂亮，但對版本差異的辨識價值太低。
