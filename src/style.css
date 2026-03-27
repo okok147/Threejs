@@ -669,14 +669,36 @@ body[data-active-version='v003'] .lab-key-hint {
   line-height: 1.45;
 }
 
+.lab-code {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.08rem 0.42rem;
+  border: 1px solid rgba(142, 170, 226, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  font-family: ui-monospace, SFMono-Regular, SFMono, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.02em;
+}
+
 body[data-active-version='v002'] .lab-meta-note,
 body[data-active-version='v002'] .lab-browser-card-evidence {
   color: rgba(247, 241, 229, 0.72);
 }
 
+body[data-active-version='v002'] .lab-code {
+  border-color: rgba(192, 161, 122, 0.18);
+  background: rgba(255, 250, 240, 0.05);
+}
+
 body[data-active-version='v003'] .lab-meta-note,
 body[data-active-version='v003'] .lab-browser-card-evidence {
   color: rgba(245, 234, 213, 0.72);
+}
+
+body[data-active-version='v003'] .lab-code {
+  border-color: rgba(226, 196, 149, 0.18);
+  background: rgba(255, 248, 236, 0.04);
 }
 
 .lab-preview-frame {

@@ -540,6 +540,14 @@ function renderBrowserMeta(version) {
             ${escapeHtml(hostedUrl)}
           </a>
         </p>
+        <p class="lab-meta-note">
+          Expected HTML title:
+          <span class="lab-code">${escapeHtml(manifest.lab.htmlTitle)}</span>
+        </p>
+        <p class="lab-meta-note">
+          Expected fingerprint:
+          <span class="lab-code">${escapeHtml(manifest.lab.releaseFingerprint)}</span>
+        </p>
         <p class="lab-meta-note">${escapeHtml(manifest.lab.liveVerificationNotes)}</p>
         <p class="lab-meta-note">Last check: ${escapeHtml(manifest.lab.lastLiveVerificationAt)}</p>
       </div>

@@ -8,6 +8,7 @@
 npm install
 npm run dev
 npm test
+npm run lab:sync-html
 npm run lab:validate
 npm run lab:check
 ```
@@ -55,6 +56,7 @@ npm run build
 
 - `version-manifest.json` 現在把設計狀態與發布狀態分開記錄：版本繼續用 `status` 表示設計成熟度，另用 `releaseStatus` 表示目前是否只在本地、已推送、或已 live 驗證。
 - `lab.hostedUrl`、`lastLiveVerificationAt` 與 `liveVerificationNotes` 會明確記錄目前觀察到的 hosted site 證據，避免把「URL 可達」誤當成「本地工作樹已上線」。
+- `npm run lab:sync-html` 會把 `lab.htmlTitle`、`lab.htmlDescription` 與 `releaseFingerprint` 同步到 [`/Users/kelvinlau/Desktop/Repo/Threejs/index.html`](/Users/kelvinlau/Desktop/Repo/Threejs/index.html)，讓 hosted 原始 HTML 也能暴露可驗證的版本指紋。
 - 若本地變更尚未 push / deploy，就算既有 GitHub Pages URL 仍可開啟，也必須維持 `local-only` 或其他較低 release 狀態，不能直接宣稱 live。
 - `npm test` 目前會先覆蓋共享 navigator 的核心規則，以及 quick-switcher tabs、browser drawer、search submit、keyboard shortcut、`Escape` 關閉與 focus return / fallback 等 shared UI smoke tests，作為跨版本切換的最小保護網。
 - `npm run lab:check` 會串起 `npm test`、`npm run lab:validate` 與 `npm run build`；GitHub Pages workflow 也會在 build 前先跑同一組保護檢查。

@@ -5,11 +5,14 @@
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
+    "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
+    "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
+    "releaseFingerprint": "v004|blocked|2026-03-27T23:25:58+08:00",
     "releaseStatus": "blocked",
-    "releaseNotes": "v004 Instrument Deck 已完成註冊、README / journal 更新與本地驗證，並已做出本地 commit；嘗試 git push origin main 時 sandbox 無法解析 github.com，因此無法完成 push 或部署。",
-    "lastLiveVerificationAt": "2026-03-27T08:58:09+08:00",
-    "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前線上頁面仍未反映這份本地工作樹的最新 lab 標題與 shared shell 變更。",
-    "lastUpdated": "2026-03-27T22:55:22+08:00"
+    "releaseNotes": "已把 manifest 與 index.html 的 release fingerprint / metadata 同步納入 validator；2026-03-27 再次觀測 hosted URL 時仍顯示舊的 Cinematic 標題，且 sandbox 無法解析 github.com，因此無法 push 或部署。",
+    "lastLiveVerificationAt": "2026-03-27T23:25:58+08:00",
+    "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前 hosted page 仍顯示舊的單版本 Cinematic HTML 標題，尚未反映這份本地 versioned lab 工作樹。",
+    "lastUpdated": "2026-03-27T23:25:58+08:00"
   },
   "versions": [
     {
@@ -57,7 +60,9 @@
       "entryFile": "versions/v001-orbit-cinematic/index.js",
       "route": "/?v=v001",
       "tokenFile": "tokens/v001.json",
-      "screenshotPaths": ["screenshots/v001/poster.svg"],
+      "screenshotPaths": [
+        "screenshots/v001/poster.svg"
+      ],
       "previewArtifacts": [
         {
           "path": "screenshots/v001/poster.svg",
@@ -120,7 +125,9 @@
       "entryFile": "versions/v002-signal-ledger/index.js",
       "route": "/?v=v002",
       "tokenFile": "tokens/v002.json",
-      "screenshotPaths": ["screenshots/v002/poster.svg"],
+      "screenshotPaths": [
+        "screenshots/v002/poster.svg"
+      ],
       "previewArtifacts": [
         {
           "path": "screenshots/v002/poster.svg",
@@ -183,7 +190,9 @@
       "entryFile": "versions/v003-museum-monograph/index.js",
       "route": "/?v=v003",
       "tokenFile": "tokens/v003.json",
-      "screenshotPaths": ["screenshots/v003/poster.svg"],
+      "screenshotPaths": [
+        "screenshots/v003/poster.svg"
+      ],
       "previewArtifacts": [
         {
           "path": "screenshots/v003/poster.svg",
@@ -246,7 +255,9 @@
       "entryFile": "versions/v004-instrument-deck/index.js",
       "route": "/?v=v004",
       "tokenFile": "tokens/v004.json",
-      "screenshotPaths": ["screenshots/v004/poster.svg"],
+      "screenshotPaths": [
+        "screenshots/v004/poster.svg"
+      ],
       "previewArtifacts": [
         {
           "path": "screenshots/v004/poster.svg",

@@ -1,9 +1,13 @@
 import { access, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
+import { buildLabReleaseFingerprint } from '../src/lib/release-fingerprint.js'
+
 const root = process.cwd()
 const manifestPath = path.join(root, 'version-manifest.json')
+const indexPath = path.join(root, 'index.html')
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'))
+const indexHtml = await readFile(indexPath, 'utf8')
 
 const labRequiredFields = [
   'title',
@@ -11,6 +15,9 @@ const labRequiredFields = [
   'switcherMode',
   'compareMode',
   'hostedUrl',
+  'htmlTitle',
+  'htmlDescription',
+  'releaseFingerprint',
   'releaseStatus',
   'releaseNotes',
   'lastLiveVerificationAt',
@@ -96,6 +103,25 @@ if (!manifest.lab || typeof manifest.lab !== 'object') {
   if (typeof manifest.lab.hostedUrl !== 'string' || !/^https?:\/\//.test(manifest.lab.hostedUrl)) {
     errors.push('Lab metadata hostedUrl must be an absolute http(s) URL.')
   }
+
+  const expectedFingerprint = buildLabReleaseFingerprint({
+    defaultVersion: manifest.lab.defaultVersion,
+    releaseStatus: manifest.lab.releaseStatus,
+    lastUpdated: manifest.lab.lastUpdated,
+  })
+
+  if (manifest.lab.releaseFingerprint !== expectedFingerprint) {
+    errors.push(
+      `Lab releaseFingerprint must match defaultVersion|releaseStatus|lastUpdated: ${expectedFingerprint}`
+    )
+  }
+
+  validateIndexHtml({
+    errorsList: errors,
+    indexHtml,
+    lab: manifest.lab,
+    expectedFingerprint,
+  })
 }
 
 for (const entry of manifest.versions ?? []) {
@@ -202,4 +228,50 @@ async function ensureFile(filePath, errorsList) {
   } catch (error) {
     errorsList.push(`Missing file: ${filePath}`)
   }
+}
+
+function validateIndexHtml({ errorsList, indexHtml: html, lab, expectedFingerprint }) {
+  const title = getTagContent(html, 'title')
+  if (title !== lab.htmlTitle) {
+    errorsList.push(`index.html title does not match manifest lab.htmlTitle: ${lab.htmlTitle}`)
+  }
+
+  const description = getMetaContent(html, 'description')
+  if (description !== lab.htmlDescription) {
+    errorsList.push('index.html meta[name="description"] does not match manifest lab.htmlDescription')
+  }
+
+  const fingerprint = getMetaContent(html, 'lab-release-fingerprint')
+  if (fingerprint !== expectedFingerprint) {
+    errorsList.push(`index.html lab-release-fingerprint must equal ${expectedFingerprint}`)
+  }
+
+  const defaultVersion = getMetaContent(html, 'lab-default-version')
+  if (defaultVersion !== lab.defaultVersion) {
+    errorsList.push(`index.html lab-default-version must equal ${lab.defaultVersion}`)
+  }
+
+  const releaseStatus = getMetaContent(html, 'lab-release-status')
+  if (releaseStatus !== lab.releaseStatus) {
+    errorsList.push(`index.html lab-release-status must equal ${lab.releaseStatus}`)
+  }
+
+  const lastUpdated = getMetaContent(html, 'lab-last-updated')
+  if (lastUpdated !== lab.lastUpdated) {
+    errorsList.push(`index.html lab-last-updated must equal ${lab.lastUpdated}`)
+  }
+}
+
+function getMetaContent(html, metaName) {
+  const match = html.match(new RegExp(`<meta\\s+name="${escapeRegExp(metaName)}"\\s+content="([^"]*)"\\s*\\/?>`, 'i'))
+  return match?.[1] ?? ''
+}
+
+function getTagContent(html, tagName) {
+  const match = html.match(new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)</${tagName}>`, 'i'))
+  return match?.[1]?.trim() ?? ''
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }

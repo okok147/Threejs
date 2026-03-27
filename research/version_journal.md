@@ -346,3 +346,33 @@
   - 共享 navigator 有 Node-level 測試，但沒有 browser-level smoke test 覆蓋 mobile shell 與實際 DOM 互動。
 - Next likely direction：
   - 若環境允許 browser automation，優先補最小 e2e smoke test，驗證 v004 成為 default 後的 tabs、drawer、compare 與 mobile shell 行為。
+
+## 2026-03-27T23:25:58+08:00 / Hosted HTML Release Fingerprint
+
+- 動作類型：improve deployment / release reliability。
+- Thesis：把 lab-level HTML metadata 與 release fingerprint 同步進 manifest、`index.html` 與 validator，讓 hosted 原始 HTML 有可比對的版本指紋，而不是只剩手寫 release notes。
+- Sources consulted：
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/index.html`](/Users/kelvinlau/Desktop/Repo/Threejs/index.html)
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json)
+  - hosted GitHub Pages URL `https://okok147.github.io/Threejs/` 的目前可觀測頁面標題
+- Principles extracted：
+  - deployment truth 不該只靠 app hydration 後的 UI 敘述；原始 HTML 也需要暴露足夠的 lab metadata，讓 hosted state 可直接比對。
+  - `title`、`description` 與 release fingerprint 若沒有與 manifest 綁定，很容易讓部署後仍殘留舊單版本語境。
+  - validator 必須直接檢查 `index.html` 與 manifest 的對齊，否則 release truth 仍會退化成手動約定。
+- Implementation summary：
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/release-fingerprint.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/release-fingerprint.js) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/scripts/sync-html-metadata.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/scripts/sync-html-metadata.mjs)，用 `defaultVersion|releaseStatus|lastUpdated` 產生穩定的 lab release fingerprint。
+  - 擴充 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json) 的 `lab.htmlTitle`、`lab.htmlDescription` 與 `lab.releaseFingerprint`，並同步更新 live verification notes。
+  - 讓 [`/Users/kelvinlau/Desktop/Repo/Threejs/scripts/validate-lab.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/scripts/validate-lab.mjs) 直接檢查 `index.html` 的 `<title>`、`description`、`lab-default-version`、`lab-release-status`、`lab-last-updated` 與 `lab-release-fingerprint`。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/style.css`](/Users/kelvinlau/Desktop/Repo/Threejs/src/style.css)，在 shared browser meta 直接顯示預期 HTML title 與 fingerprint。
+- Validation results：
+  - `npm run lab:sync-html`：通過，已同步 manifest 與 `index.html` 的 lab metadata。
+  - `npm test`：通過，16 個 tests 全數成功，包含新的 fingerprint utility test。
+  - `npm run lab:validate`：通過，4 個 lab versions 與 HTML metadata 對齊檢查全部成功。
+  - `npm run build`：通過，production bundle 成功；`dist/index.html` 內含新的 fingerprint metadata，JS 約 644.93 kB、CSS 約 72.81 kB（未 gzip 前）。
+- Live verification results：
+  - 2026-03-27 觀測 hosted URL 時，頁面標題仍是舊的 Cinematic 單版本標題，顯示目前線上頁面尚未跟上這份本地工作樹。
+- Risks：
+  - 目前 release fingerprint 只保證本地 manifest 與 `index.html` 對齊；真正的 hosted update 仍要等 push / deploy 成功。
+  - sandbox 內仍無法從 repo 腳本直接對外抓 hosted HTML，因此 live verification 仍需依賴外部觀測結果。
+- Next likely direction：
+  - 若網路限制解除，優先 push 最新 commit，然後重新核對 hosted HTML title 與 release fingerprint 是否和本地 manifest 一致。
