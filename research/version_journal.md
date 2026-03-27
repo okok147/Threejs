@@ -300,9 +300,12 @@
   - `npm run lab:validate`：通過，3 個 lab versions registry 驗證成功。
   - `npm run build`：通過，production bundle 成功，JS 約 628.35 kB、CSS 約 59.54 kB（未 gzip 前）。
 - Release results：
-  - 這輪僅完成本地驗證與本地 commit 準備，尚未推送 main，也未觸發 GitHub Pages deploy。
+  - 已完成本地 commit，並嘗試執行 `git push origin main`。
+  - `git push origin main` 失敗：sandbox 無法解析 `github.com`，因此未推送 main，也未觸發 GitHub Pages deploy。
 - Live verification results：
   - 本輪沒有新的 hosted verification；既有 Pages URL 不能代表這份最新 navigator smoke coverage 已上線。
+- Blocker：
+  - sandbox DNS 無法解析 `github.com`，目前無法從這個環境完成 push / deploy。
 - Risks：
   - 目前仍是 Node-level smoke tests，不是真實瀏覽器或行動裝置上的完整 keyboard / screen reader 驗證。
   - 仍未涵蓋 compare panel 與 mobile shell 的實際 DOM/browser 互動。
