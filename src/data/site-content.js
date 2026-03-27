@@ -100,10 +100,10 @@ export const siteContent = {
       summary: '主角變成版本與方法，3D 被壓成氣氛儀表而不是舞台中央。',
     },
     {
-      name: 'Archive Browser',
-      family: 'Searchable version library',
-      fit: '版本變多後的檢索入口',
-      summary: '之後可延伸成搜尋、篩選、比較與快照瀏覽的控制台。',
+      name: 'Instrument Deck',
+      family: 'Telemetry console',
+      fit: '版本控制台 / 操作型首頁',
+      summary: '把版本、發布狀態與場景線索變成可掃描的 mode registry 與 verification log。',
     },
     {
       name: 'Exhibition Monograph',

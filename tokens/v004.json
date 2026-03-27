@@ -1,0 +1,26 @@
+{
+  "version": "v004",
+  "title": "Instrument Deck",
+  "colors": {
+    "background": "#060b12",
+    "surface": "rgba(11,20,31,0.9)",
+    "text": "#e7f6ff",
+    "muted": "rgba(207,231,241,0.72)",
+    "accent": "#6edcff",
+    "accentAlt": "#f2b257"
+  },
+  "typography": {
+    "display": "IBM Plex Sans Condensed / Noto Sans TC",
+    "body": "IBM Plex Sans / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "24px",
+    "sectionPaddingDesktop": "64px",
+    "sectionPaddingMobile": "40px"
+  },
+  "motion": {
+    "heroEntrance": "760ms ease",
+    "sceneProfile": "scoped telemetry drift"
+  }
+}

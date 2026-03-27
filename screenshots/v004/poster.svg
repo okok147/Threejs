@@ -1,0 +1,56 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="960" fill="#060B12"/>
+  <rect width="1600" height="960" fill="url(#bg)"/>
+  <g opacity="0.22">
+    <path d="M0 160H1600" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M0 320H1600" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M0 480H1600" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M0 640H1600" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M0 800H1600" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M240 0V960" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M480 0V960" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M720 0V960" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M960 0V960" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M1200 0V960" stroke="#3DBEEA" stroke-width="1"/>
+    <path d="M1440 0V960" stroke="#3DBEEA" stroke-width="1"/>
+  </g>
+  <rect x="72" y="84" width="1456" height="792" rx="32" fill="#09141F" stroke="#17384A"/>
+  <rect x="104" y="124" width="300" height="712" rx="24" fill="#0C1623" stroke="#17384A"/>
+  <rect x="1196" y="124" width="300" height="712" rx="24" fill="#0C1623" stroke="#17384A"/>
+  <rect x="436" y="124" width="728" height="712" rx="32" fill="#08111A" stroke="#1E4A61"/>
+  <circle cx="800" cy="430" r="230" stroke="#57D8FF" stroke-width="2" opacity="0.25"/>
+  <circle cx="800" cy="430" r="170" stroke="#57D8FF" stroke-width="2" stroke-dasharray="8 12" opacity="0.24"/>
+  <circle cx="800" cy="430" r="92" stroke="#57D8FF" stroke-width="2" opacity="0.28"/>
+  <path d="M570 430H1030" stroke="#57D8FF" stroke-width="1.5" opacity="0.24"/>
+  <path d="M800 200V660" stroke="#57D8FF" stroke-width="1.5" opacity="0.24"/>
+  <rect x="520" y="626" width="560" height="120" rx="22" fill="#081521" stroke="#1E4A61"/>
+  <rect x="132" y="160" width="244" height="118" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="1228" y="160" width="236" height="112" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="1228" y="296" width="236" height="126" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="1228" y="444" width="236" height="156" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="1228" y="624" width="236" height="180" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="132" y="304" width="244" height="94" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="132" y="420" width="244" height="124" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <rect x="132" y="566" width="244" height="238" rx="18" fill="#0B1B2A" stroke="#1B4458"/>
+  <text x="132" y="68" fill="#6EDCFF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="4">V004 / INSTRUMENT DECK</text>
+  <text x="132" y="196" fill="#E7F6FF" font-family="IBM Plex Sans, sans-serif" font-size="44" font-weight="700">光軌</text>
+  <text x="132" y="242" fill="#9AB8C8" font-family="IBM Plex Sans, sans-serif" font-size="24">Operator mode / telemetry console</text>
+  <text x="548" y="678" fill="#E7F6FF" font-family="IBM Plex Sans, sans-serif" font-size="34" font-weight="700">把版本實驗室翻成可操作的觀測控制桌</text>
+  <text x="548" y="716" fill="#A6C0CE" font-family="IBM Plex Sans, sans-serif" font-size="22">Scoped live well / mode registry / verification log</text>
+  <text x="1260" y="206" fill="#6EDCFF" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="3">RELEASE</text>
+  <text x="1260" y="242" fill="#F2B257" font-family="IBM Plex Sans, sans-serif" font-size="26" font-weight="700">Committed</text>
+  <text x="1260" y="340" fill="#6EDCFF" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="3">SCENE</text>
+  <text x="1260" y="378" fill="#E7F6FF" font-family="IBM Plex Sans, sans-serif" font-size="24" font-weight="700">Scoped telemetry core</text>
+  <text x="1260" y="488" fill="#6EDCFF" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="3">NOTABLE UX</text>
+  <text x="1260" y="526" fill="#E7F6FF" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="700">Mode registry rows</text>
+  <text x="1260" y="560" fill="#A6C0CE" font-family="IBM Plex Sans, sans-serif" font-size="18">Current-state highlighting</text>
+  <text x="1260" y="662" fill="#6EDCFF" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="3">VERIFICATION</text>
+  <text x="1260" y="700" fill="#E7F6FF" font-family="IBM Plex Sans, sans-serif" font-size="22" font-weight="700">Method / implementation / performance</text>
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 180) rotate(135) scale(968 1144.32)">
+      <stop stop-color="#0D2432"/>
+      <stop offset="0.48" stop-color="#060B12"/>
+      <stop offset="1" stop-color="#04070C"/>
+    </radialGradient>
+  </defs>
+</svg>

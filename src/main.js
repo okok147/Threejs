@@ -20,6 +20,7 @@ import {
 import { renderVersion as renderOrbitCinematic } from '../versions/v001-orbit-cinematic/index.js'
 import { renderVersion as renderSignalLedger } from '../versions/v002-signal-ledger/index.js'
 import { renderVersion as renderMuseumMonograph } from '../versions/v003-museum-monograph/index.js'
+import { renderVersion as renderInstrumentDeck } from '../versions/v004-instrument-deck/index.js'
 
 const STORAGE_KEY = 'threejs-style-lab-version'
 const COMPARE_STORAGE_KEY = 'threejs-style-lab-compare-version'
@@ -27,6 +28,7 @@ const VERSION_RENDERERS = {
   v001: renderOrbitCinematic,
   v002: renderSignalLedger,
   v003: renderMuseumMonograph,
+  v004: renderInstrumentDeck,
 }
 const previewAssetModules = import.meta.glob('../screenshots/**/*.{avif,jpg,jpeg,png,svg,webp}', {
   eager: true,

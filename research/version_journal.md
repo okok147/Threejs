@@ -311,3 +311,38 @@
   - 仍未涵蓋 compare panel 與 mobile shell 的實際 DOM/browser 互動。
 - Next likely direction：
   - 若環境允許 browser automation，下一步應補最小 e2e smoke test，優先覆蓋 tabs keyboard flow、drawer 開關、compare panel 與 mobile shell。
+
+## 2026-03-27T22:54:05+08:00 / v004-instrument-deck
+
+- 動作類型：create one new version。
+- Thesis：把 version browser 的邏輯直接拉進首頁主敘事，讓「掃描模式、判斷狀態、再進入版本」本身成為新的閱讀姿態，而不是再做一個外層切換工具。
+- Theme world：telemetry console / instrument deck。
+- 為何它明顯不同：
+  - visual language 從 museum exhibit 轉成冷色監測台與 scanline scope。
+  - layout system 從雙軸 monograph 改成三欄 operator console + registry rows。
+  - navigation model 從 curator rail 改成 sticky command header 與 mode registry。
+  - narrative structure 從案例深讀改成 operator command -> verification log -> signal library。
+  - scene treatment 從 framed exhibit case 改成 scoped live well 內的 telemetry core。
+- Sources / inspiration families consulted：
+  - repo 內既有 official three.js documentation principles
+  - repo 內既有 official design systems / typography guidance
+  - repo 內既有 accessibility / dialog-navigation research
+  - curated telemetry dashboard inspiration
+- Implementation summary：
+  - 整合工作樹中已存在的 [`/Users/kelvinlau/Desktop/Repo/Threejs/versions/v004-instrument-deck/index.js`](/Users/kelvinlau/Desktop/Repo/Threejs/versions/v004-instrument-deck/index.js)、[`/Users/kelvinlau/Desktop/Repo/Threejs/versions/v004-instrument-deck/styles.css`](/Users/kelvinlau/Desktop/Repo/Threejs/versions/v004-instrument-deck/styles.css)、[`/Users/kelvinlau/Desktop/Repo/Threejs/tokens/v004.json`](/Users/kelvinlau/Desktop/Repo/Threejs/tokens/v004.json) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/screenshots/v004/poster.svg`](/Users/kelvinlau/Desktop/Repo/Threejs/screenshots/v004/poster.svg)。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js)、[`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/scene.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/scene.js) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/data/site-content.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/data/site-content.js)，把 v004 renderer、scene preset 與 feature track 接回 shared lab。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/README.md`](/Users/kelvinlau/Desktop/Repo/Threejs/README.md)，正式註冊第四個版本並把 defaultVersion 切到 `v004`。
+- Validation results：
+  - `npm test`：通過，15 個 shared navigator / dialog / tabs tests 全數成功。
+  - `npm run lab:validate`：通過，已驗證 4 個 lab versions。
+  - `npm run build`：通過，production bundle 成功，JS 約 644.23 kB、CSS 約 72.39 kB（未 gzip 前）。
+- Release results：
+  - 本輪會先做本地 commit，再嘗試 `git push origin main`。
+  - 依目前 sandbox 限制，預期無法解析 `github.com`，因此無法在這個環境完成 push / deploy。
+- Live verification results：
+  - 本輪沒有新的 live verification；既有 GitHub Pages URL 仍不能代表這份 v004 工作樹已上線。
+- Risks：
+  - 目前仍只有概念海報 preview，沒有真實瀏覽器快照。
+  - 共享 navigator 有 Node-level 測試，但沒有 browser-level smoke test 覆蓋 mobile shell 與實際 DOM 互動。
+- Next likely direction：
+  - 若環境允許 browser automation，優先補最小 e2e smoke test，驗證 v004 成為 default 後的 tabs、drawer、compare 與 mobile shell 行為。

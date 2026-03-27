@@ -1,15 +1,15 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v003",
+    "defaultVersion": "v004",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "releaseStatus": "blocked",
-    "releaseNotes": "目前共享 navigator 已補上 browser drawer 的 focus trap、background inert/aria-hidden、trigger focus fallback，以及 tabs/search/shortcut 的 node UI smoke tests；本輪已完成本地 commit，但嘗試 git push origin main 時因 sandbox 無法解析 github.com 而受阻，尚未推送或部署。",
+    "releaseNotes": "v004 Instrument Deck 已完成註冊、README / journal 更新與本地驗證；本輪將以本地 commit 收束，但 sandbox 仍無法解析 github.com，因此無法完成 push 或部署。",
     "lastLiveVerificationAt": "2026-03-27T08:58:09+08:00",
     "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前線上頁面仍未反映這份本地工作樹的最新 lab 標題與 shared shell 變更。",
-    "lastUpdated": "2026-03-27T20:39:12+08:00"
+    "lastUpdated": "2026-03-27T22:54:05+08:00"
   },
   "versions": [
     {
@@ -199,6 +199,69 @@
       "status": "stable",
       "releaseStatus": "committed-not-pushed",
       "releaseNotes": "這份版本註冊與共享 browser shell 已完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。"
+    },
+    {
+      "versionNumber": "v004",
+      "slug": "instrument-deck",
+      "title": "Instrument Deck",
+      "concept": "把版本實驗室翻成可操作的觀測控制桌，讓 mode registry、verification log 與 scoped telemetry scene 一起成為首頁主體。",
+      "sourcePrinciples": [
+        "Operator dashboards should frontload state, hierarchy, and decision cues instead of hiding them behind decorative panels",
+        "Mode switching can become the primary narrative as long as the current state and next action stay legible",
+        "Scoped WebGL wells create a controllable live instrument without returning to full-bleed spectacle"
+      ],
+      "sourceFamiliesConsulted": [
+        "official three.js documentation",
+        "official design systems",
+        "accessibility guidance",
+        "curated telemetry dashboard inspiration"
+      ],
+      "styleFamily": "Telemetry console / instrument deck",
+      "useCaseEmphasis": "版本控制台 / 操作型首頁",
+      "bestFor": "先掃描整個版本庫與發布真實度，再決定要深入哪個介面世界。",
+      "keyTraits": [
+        "scoped live well",
+        "mode registry rows",
+        "verification log frontstage"
+      ],
+      "navigationModel": "sticky command header + mode registry rows + verification anchors",
+      "motionLanguage": "scanline telemetry drift 與受控 scope pulse",
+      "narrativeStructure": "operator command -> live scope -> mode registry -> verification log -> signal library",
+      "sceneTreatment": "被收束進 scoped live well 的 telemetry core",
+      "notableUxIdeas": [
+        "把所有版本先排成 mode registry rows，讓切換本身成為主要閱讀節奏",
+        "把 release truth、scene treatment 與 best-for 直接並排，縮短判斷時間",
+        "把方法、實作與 performance notes 攤成 verification log，而不是藏在 repo 說明"
+      ],
+      "notableFeatureIdeas": [
+        "operator-style hero with scoped live scene well",
+        "mode registry rows that surface release state and scene profile",
+        "verification board that turns method and implementation into visible console modules"
+      ],
+      "performanceNotes": [
+        "The shared renderer lifecycle and disposal path remain unchanged on version switch.",
+        "The scene stays bounded inside a scoped well, avoiding a return to full-bleed WebGL spectacle.",
+        "Motion stays on the shared reduced-motion path and still respects the 1.8 renderer pixel ratio cap."
+      ],
+      "entryFile": "versions/v004-instrument-deck/index.js",
+      "route": "/?v=v004",
+      "tokenFile": "tokens/v004.json",
+      "screenshotPaths": ["screenshots/v004/poster.svg"],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v004/poster.svg",
+          "label": "Instrument Deck poster preview",
+          "alt": "v004 Instrument Deck 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-27T22:52:40+08:00",
+      "status": "stable",
+      "releaseStatus": "committed-not-pushed",
+      "releaseNotes": "這份版本註冊與實作已完成本地 commit，但 sandbox 無法解析 github.com，尚未推送 main 或觸發 GitHub Pages 部署。"
     }
   ]
 }
