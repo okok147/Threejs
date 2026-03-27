@@ -32,6 +32,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run unit tests
+        run: npm test
+
+      - name: Validate lab registry
+        run: npm run lab:validate
+
       - name: Build site
         run: npm run build
 

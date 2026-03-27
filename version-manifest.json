@@ -6,10 +6,10 @@
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "releaseStatus": "committed-not-pushed",
-    "releaseNotes": "目前共享 navigator 已補上可測核心規則與 node smoke tests，並完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。",
+    "releaseNotes": "目前共享 navigator 已補上可測核心規則、node smoke tests 與 deploy 前 checks gate，並完成本地 commit，但尚未推送 main 或觸發 GitHub Pages 部署。",
     "lastLiveVerificationAt": "2026-03-27T08:58:09+08:00",
     "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前線上頁面仍未反映這份本地工作樹的最新 lab 標題與 shared shell 變更。",
-    "lastUpdated": "2026-03-27T11:20:41+08:00"
+    "lastUpdated": "2026-03-27T18:32:49+08:00"
   },
   "versions": [
     {

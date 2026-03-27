@@ -9,6 +9,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lab:validate": "node scripts/validate-lab.mjs",
+    "lab:check": "npm test && npm run lab:validate && npm run build",
     "test": "node --test"
   },
   "dependencies": {

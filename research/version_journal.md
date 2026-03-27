@@ -221,3 +221,29 @@
   - 仍沒有 browser-level smoke test 驗證 `searchInput`、`compare panel` 與 DOM aria wiring 的整體流程。
 - Next likely direction：
   - 若環境允許，下一步應補最小 browser smoke test，直接驗證 drawer 開關、focus 管理與 mobile navigator 主要互動。
+
+## 2026-03-27T18:32:49+08:00 / Navigator Verification Gate
+
+- 動作類型：improve universal version navigator。
+- Thesis：把共享 navigator 的核心規則抽成可測純函式，並把 unit tests 與 lab registry validation 接進本地與 deploy workflow，讓版本切換回歸不再只靠手動目測。
+- Sources consulted：
+  - repo 內既有 `research/version_journal.md` 的 manual-activation tabs / release truth 原則
+  - 目前 `.github/workflows/deploy.yml` 的 GitHub Pages 發布流程
+- Implementation summary：
+  - 把 `src/main.js` 內與版本初始化、compare 合法性、search index、manual-activation tabs 相關的共享規則抽到 `src/lib/version-navigator.js`，讓 UI shell 與規則判斷分離。
+  - 新增 `tests/version-navigator.test.mjs`，用 Node 內建 test runner 覆蓋初始版本解析、compare target 驗證、manual-activation intent、鄰近 compare 建議與 search index 組裝。
+  - `package.json` 新增 `npm test` 與 `npm run lab:check`；GitHub Pages workflow 在 build 前先跑 `npm test` 與 `npm run lab:validate`，避免共享 navigator regression 直接進部署路徑。
+  - `README.md` 與 `version-manifest.json` 同步更新目前的檢查入口與 release truth 描述。
+- Validation results：
+  - `npm test`：通過，7 個 navigator 單元測試全部成功。
+  - `npm run lab:validate`：通過，3 個 lab versions registry 驗證成功。
+  - `npm run build`：通過，production bundle 成功，JS 約 625.58 kB、CSS 約 59.54 kB（未 gzip 前）。
+- Release results：
+  - 這輪只完成本地驗證與 release gate 調整，尚未推送 main，也未觸發 GitHub Pages deploy。
+- Live verification results：
+  - 本輪沒有新的 live verification；仍只有先前確認的 hosted URL 可達證據，不能代表這份最新工作樹已上線。
+- Risks：
+  - 目前測試仍停在 pure logic 層，尚未覆蓋 drawer focus management、mobile navigator 與實際 DOM 鍵盤流程。
+  - deploy workflow 現在會擋 manifest 與 navigator regression，但還沒有真實 screenshot 或 browser smoke tests。
+- Next likely direction：
+  - 若環境允許 browser automation，補最小 e2e smoke test，優先覆蓋 tabs keyboard flow、browser drawer 開關與 mobile shell。
