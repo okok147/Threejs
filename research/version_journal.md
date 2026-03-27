@@ -335,10 +335,10 @@
 - Validation results：
   - `npm test`：通過，15 個 shared navigator / dialog / tabs tests 全數成功。
   - `npm run lab:validate`：通過，已驗證 4 個 lab versions。
-  - `npm run build`：通過，production bundle 成功，JS 約 644.23 kB、CSS 約 72.39 kB（未 gzip 前）。
+  - `npm run build`：通過，production bundle 成功，JS 約 644.32 kB、CSS 約 72.39 kB（未 gzip 前）。
 - Release results：
-  - 本輪會先做本地 commit，再嘗試 `git push origin main`。
-  - 依目前 sandbox 限制，預期無法解析 `github.com`，因此無法在這個環境完成 push / deploy。
+  - 已完成本地 commit：`fb1766c` (`Add v004 instrument deck`)。
+  - `git push origin main` 失敗：sandbox 無法解析 `github.com`，因此未推送 main，也未觸發 GitHub Pages deploy。
 - Live verification results：
   - 本輪沒有新的 live verification；既有 GitHub Pages URL 仍不能代表這份 v004 工作樹已上線。
 - Risks：

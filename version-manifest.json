@@ -6,10 +6,10 @@
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "releaseStatus": "blocked",
-    "releaseNotes": "v004 Instrument Deck 已完成註冊、README / journal 更新與本地驗證；本輪將以本地 commit 收束，但 sandbox 仍無法解析 github.com，因此無法完成 push 或部署。",
+    "releaseNotes": "v004 Instrument Deck 已完成註冊、README / journal 更新與本地驗證，並已做出本地 commit；嘗試 git push origin main 時 sandbox 無法解析 github.com，因此無法完成 push 或部署。",
     "lastLiveVerificationAt": "2026-03-27T08:58:09+08:00",
     "liveVerificationNotes": "已確認 GitHub Pages URL 可達，但目前線上頁面仍未反映這份本地工作樹的最新 lab 標題與 shared shell 變更。",
-    "lastUpdated": "2026-03-27T22:54:05+08:00"
+    "lastUpdated": "2026-03-27T22:55:22+08:00"
   },
   "versions": [
     {
