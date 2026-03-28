@@ -460,8 +460,8 @@
   - `npm run lab:validate`：通過，5 個 versions registry 與 HTML metadata schema 仍然有效。
   - `npm run build`：通過，production bundle 成功；JS 約 666.71 kB、CSS 約 86.60 kB（未 gzip 前）。
 - Release results：
-  - 目前尚未建立新的本地 commit；本輪完成 shared system 變更與本地驗證後，下一步會先收斂成本地 commit。
-  - 依 sandbox 現況，仍不能假設 push / deploy 可成功。
+  - 已建立本地 commit：`a60d10d Clarify effective route release truth`。
+  - 已嘗試執行 `git push origin main`，但 sandbox DNS 無法解析 `github.com`，因此 push 失敗；本輪最高真實狀態仍是 `committed-not-pushed`。
 - Live verification results：
   - 本輪沒有新的 hosted verification。
   - 仍只保留最後一次已知觀測：2026-03-27T23:37:13+08:00 的 hosted page 尚未反映當時的 v005 工作樹。
