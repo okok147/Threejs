@@ -7,12 +7,12 @@
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v009|committed-not-pushed|2026-03-28T16:29:24+08:00",
+    "releaseFingerprint": "v009|committed-not-pushed|2026-03-28T16:30:13+08:00",
     "releaseStatus": "committed-not-pushed",
-    "releaseNotes": "v009 Network Concourse 預定以本輪 commit 收束；在成功 push 前不得宣稱已部署或已上線驗證。",
+    "releaseNotes": "v009 Network Concourse 已建立本地 commit，但 `git push origin main` 因 sandbox DNS 無法解析 github.com 而失敗。",
     "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
-    "liveVerificationNotes": "最後一次可確認的線上觀測仍停在 2026-03-27T23:37:13+08:00；本輪尚未重新驗證 hosted page 是否已反映 v009 或其前序本地工作樹。",
-    "lastUpdated": "2026-03-28T16:29:24+08:00"
+    "liveVerificationNotes": "最後一次可確認的線上觀測仍停在 2026-03-27T23:37:13+08:00；本輪因 sandbox DNS 無法解析 okok147.github.io，未能重新驗證 hosted page 是否已反映 v009。",
+    "lastUpdated": "2026-03-28T16:30:13+08:00"
   },
   "versions": [
     {
@@ -596,7 +596,7 @@
       "timestamp": "2026-03-28T16:28:00+08:00",
       "status": "stable",
       "releaseStatus": "committed-not-pushed",
-      "releaseNotes": "v009 Network Concourse 預定以本輪 commit 收束；在成功 push 前不得宣稱已部署或已上線驗證。"
+      "releaseNotes": "v009 Network Concourse 已建立本地 commit，但 `git push origin main` 因 sandbox DNS 無法解析 github.com 而失敗。"
     }
   ]
 }
