@@ -2,6 +2,7 @@ import { access, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 import { buildLabReleaseFingerprint } from '../src/lib/release-fingerprint.js'
+import { hasRenderVersionExport } from '../src/lib/version-registry.js'
 
 const root = process.cwd()
 const manifestPath = path.join(root, 'version-manifest.json')
@@ -199,6 +200,7 @@ for (const entry of manifest.versions ?? []) {
   seenSlugs.add(entry.slug)
 
   await ensureFile(entry.entryFile, errors)
+  await ensureVersionEntryExport(entry, errors)
   await ensureFile(entry.tokenFile, errors)
 
   for (const screenshotPath of entry.screenshotPaths ?? []) {
@@ -227,6 +229,22 @@ async function ensureFile(filePath, errorsList) {
     await access(path.join(root, filePath))
   } catch (error) {
     errorsList.push(`Missing file: ${filePath}`)
+  }
+}
+
+async function ensureVersionEntryExport(entry, errorsList) {
+  if (!entry?.entryFile) {
+    return
+  }
+
+  try {
+    const source = await readFile(path.join(root, entry.entryFile), 'utf8')
+
+    if (!hasRenderVersionExport(source)) {
+      errorsList.push(`${entry.versionNumber ?? 'unknown'} entry file must export renderVersion`)
+    }
+  } catch (error) {
+    errorsList.push(`Unable to inspect renderer export for: ${entry.entryFile}`)
   }
 }
 

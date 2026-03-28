@@ -26,7 +26,7 @@ npm run build
 - `screenshots/v###/`: 版本快照資產
 - `research/style_notes.md`: 可信來源研究與原則整理
 - `research/version_journal.md`: 每次版本演化的紀錄
-- `version-manifest.json`: 穩定的版本註冊表與切換器來源
+- `version-manifest.json`: 穩定的版本註冊表與切換器來源；shared shell 會依 `entryFile` 自動註冊 renderer
 
 ## 目前版本
 

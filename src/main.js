@@ -3,6 +3,7 @@ import manifest from '../version-manifest.json'
 import { siteContent } from './data/site-content.js'
 import { createBrowserDialogController } from './lib/browser-dialog.js'
 import { resolveEffectiveReleaseTruth } from './lib/release-truth.js'
+import { createVersionRendererRegistry } from './lib/version-registry.js'
 import {
   buildNavigatorUrl,
   buildSearchIndex as buildNavigatorSearchIndex,
@@ -18,21 +19,13 @@ import {
   handleVersionTabKeydownIntent,
   syncVersionTabs,
 } from './lib/version-navigator-ui.js'
-import { renderVersion as renderOrbitCinematic } from '../versions/v001-orbit-cinematic/index.js'
-import { renderVersion as renderSignalLedger } from '../versions/v002-signal-ledger/index.js'
-import { renderVersion as renderMuseumMonograph } from '../versions/v003-museum-monograph/index.js'
-import { renderVersion as renderInstrumentDeck } from '../versions/v004-instrument-deck/index.js'
-import { renderVersion as renderTidalAtlas } from '../versions/v005-tidal-atlas/index.js'
 
 const STORAGE_KEY = 'threejs-style-lab-version'
 const COMPARE_STORAGE_KEY = 'threejs-style-lab-compare-version'
-const VERSION_RENDERERS = {
-  v001: renderOrbitCinematic,
-  v002: renderSignalLedger,
-  v003: renderMuseumMonograph,
-  v004: renderInstrumentDeck,
-  v005: renderTidalAtlas,
-}
+const versionRendererModules = import.meta.glob('../versions/**/index.js', {
+  eager: true,
+})
+const versionRendererRegistry = createVersionRendererRegistry(versionRendererModules)
 const previewAssetModules = import.meta.glob('../screenshots/**/*.{avif,jpg,jpeg,png,svg,webp}', {
   eager: true,
   import: 'default',
@@ -362,10 +355,10 @@ renderLabVersion(activeVersionNumber, { historyMode: 'replace' })
 
 function renderLabVersion(versionNumber, { historyMode = 'push' } = {}) {
   const manifestEntry = versionMap.get(versionNumber) ?? versionMap.get(manifest.lab.defaultVersion)
-  const renderer = VERSION_RENDERERS[manifestEntry.versionNumber]
+  const renderer = versionRendererRegistry.get(manifestEntry.entryFile)
 
   if (!renderer) {
-    throw new Error(`Missing renderer for ${manifestEntry.versionNumber}`)
+    throw new Error(`Missing renderer export for ${manifestEntry.entryFile}`)
   }
 
   if (
