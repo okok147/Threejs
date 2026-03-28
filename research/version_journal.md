@@ -506,3 +506,37 @@
 - Next likely direction：
   - 若網路限制解除，先 push 目前累積的本地 commits，並重新核對 hosted HTML fingerprint。
   - 若網路限制仍存在，優先補最小 browser smoke test，覆蓋 tabs、history 與 browser dialog 的真實互動層。
+
+## 2026-03-28T15:04:15+08:00 / Auto Renderer Registry
+
+- 動作類型：improve universal version navigator。
+- Thesis：version manifest 已經是註冊真相來源，shared shell 就不該再手寫 `VERSION_RENDERERS`；renderer registry 必須直接從 `entryFile` 自動建立，才能避免新增版本時 manifest 已註冊、切換器卻漏接 renderer 的靜默失配。
+- Sources consulted：
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js) 的手寫 renderer registry
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json) 的 `entryFile` 註冊欄位
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/scripts/validate-lab.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/scripts/validate-lab.mjs) 的現有 manifest 驗證流程
+- Principles extracted：
+  - 版本切換器若要可持續擴充，版本 renderer 的來源必須和 manifest 註冊保持單一真相。
+  - shared shell 不應要求每新增一版就手動維護第二份 version-to-renderer 對照表，否則 switchability 會先被註冊漂移擊穿。
+  - validator 除了檢查檔案存在，也應確認版本 entry module 真的暴露 `renderVersion` 介面，避免 runtime 才爆出缺口。
+- Implementation summary：
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-registry.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-registry.js)，集中處理 `import.meta.glob()` module path 正規化、renderer registry 建立，以及 `renderVersion` export 偵測。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js)，移除手寫 `VERSION_RENDERERS`，改為從 `../versions/**/index.js` 自動建立 registry，並以 `manifestEntry.entryFile` 取得 renderer。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/scripts/validate-lab.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/scripts/validate-lab.mjs)，在既有檔案存在檢查外，再驗證每個 version entry file 具備 `renderVersion` export。
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/tests/version-registry.test.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/tests/version-registry.test.mjs)，覆蓋 module path 正規化、自動 registry 收錄與 export 偵測。
+- Validation results：
+  - `npm test`：通過，27 個 tests 全數成功。
+  - `npm run lab:validate`：通過，5 個 versions registry 驗證成功，且新增 renderer export 檢查。
+  - `npm run build`：通過，production bundle 成功；JS 約 667.54 kB、CSS 約 86.60 kB（未 gzip 前）。
+- Release results：
+  - 已建立本地 commit：`13ba706 Automate version renderer registry`。
+  - 已嘗試執行 `git push origin main`，但 sandbox DNS 無法解析 `github.com`，因此 push 失敗；本輪最高真實狀態仍是 `committed-not-pushed`。
+- Live verification results：
+  - 本輪沒有新的 hosted verification。
+  - 仍只保留最後一次已知觀測：2026-03-27T23:37:13+08:00 的 hosted page 尚未反映當時的 v005 工作樹。
+- Risks：
+  - 這輪解決的是 manifest 與 renderer registry 的一致性，不是 browser-level 互動整合測試；history、drawer 與 mobile shell 仍主要靠目前的 unit-level 保護層。
+  - shared shell 仍依賴 Vite `import.meta.glob()` 的 build-time module 收集；若未來 entry 命名慣例改變，需同步調整 glob 範圍。
+- Next likely direction：
+  - 若網路限制解除，先 push 目前累積的本地 commits，並重新核對 hosted HTML fingerprint。
+  - 若網路限制仍存在，下一步可補最小 integration-style navigator test，直接驗證 history / compare / storage 的協同狀態切換。
