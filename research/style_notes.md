@@ -420,3 +420,53 @@
 - 首頁敘事從 dashboard 轉成 cartographic navigation
 - annotation 的角色分配與空間階層
 - scene 與 metadata 的結合方式
+
+## 2026-03-28 / v006 Spectral Moth Research
+
+### Sources reviewed
+
+- user-provided monochrome data-decay prompt
+- [three.js responsive manual](https://threejs.org/manual/en/responsive.html)
+- [W3C WAI in-page navigation tutorial](https://www.w3.org/WAI/tutorials/page-structure/in-page-navigation/)
+- [Apple design guidance on reduced motion](https://developer.apple.com/news/?id=g9q8j4i8)
+
+### Source quality notes
+
+- user prompt：直接定義了黑白、高密度點陣、像素崩解與數位腐蝕這四個不能被稀釋的核心條件。
+- three.js responsive manual：保證 full-bleed monochrome poster 仍維持 renderer resize 與 pixel ratio 紀律，而不是為了氣氛犧牲穩定性。
+- W3C in-page navigation：提醒這種極端海報頁仍要保有清楚的 anchor flow，否則會只剩視覺衝擊沒有方向。
+- Apple reduced motion：glitch / flicker 類動效必須有收斂路徑，不能把刺激感直接硬塞給所有人。
+
+### Extracted principles
+
+- 黑白高對比頁面只能有一個真正主導的 silhouette；雜訊、點陣與 dispersion 都只能服務那個主體。
+- data decay 最有力的位置是在邊緣，而不是把整頁做成平均髒亂；形成 / 崩解必須被看得懂。
+- 若 UI 要和既有版本徹底切開，就不能沿用 card/grid 語氣，而要改成 poster、strip、field log 這種更偏印刷與訊號的骨架。
+- 動物主題不該靠插圖貼圖硬撐，而要讓版面對稱性、wing-like composition 與 scene core 一起傳遞物種感。
+- flicker 與 white-noise drift 可以提供 presence，但 reduced-motion 下必須可退回較穩定的 reveal。
+
+### Anti-patterns
+
+- 只是把舊版配色改黑白，卻沒有改變資訊層級與畫面主從。
+- 把 dither、halftone、pixel dispersion 平均鋪滿全頁，讓內容失去辨識度。
+- 用 generic cards 裝載 field log，結果語氣還是 dashboard。
+- 動物只出現在文案名詞裡，畫面本身卻沒有任何物種特徵。
+
+### Possible style families
+
+- Monochrome glitch fauna
+- White-noise specimen wall
+- Corrupted field poster
+- Simulation breakdown monograph
+
+### Preserve
+
+- 版本切換的可辨識性與 shared navigator 穩定度
+- scene cleanup / responsive renderer discipline
+- manifest / tokens / journal / preview artifact 註冊鏈
+
+### Reinvent
+
+- 視覺語言從彩色 atmosphere 改成黑白 poster violence
+- 內容容器從 panels 改成 strips / logs / specimen labels
+- scene 與版面之間的主從與對稱性

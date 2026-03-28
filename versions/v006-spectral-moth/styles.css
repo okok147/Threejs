@@ -1,0 +1,615 @@
+.version-shell-v006 {
+  --moth-ink: #ffffff;
+  --moth-soft: rgba(255, 255, 255, 0.76);
+  --moth-faint: rgba(255, 255, 255, 0.18);
+  --moth-line: rgba(255, 255, 255, 0.14);
+  --moth-line-strong: rgba(255, 255, 255, 0.32);
+  --moth-surface: rgba(255, 255, 255, 0.03);
+  color: var(--moth-ink);
+  background: #000;
+  font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+}
+
+.version-shell-v006 .moth-noise,
+.version-shell-v006 .moth-dot-grid,
+.version-shell-v006 .moth-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v006 .moth-noise {
+  z-index: 0;
+  opacity: 0.18;
+  background:
+    radial-gradient(circle at 14% 22%, rgba(255, 255, 255, 0.14) 0 1px, transparent 1px),
+    radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px),
+    radial-gradient(circle at 22% 72%, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 56%);
+  background-size: 116px 116px, 144px 144px, 128px 128px, 100% 100%;
+}
+
+.version-shell-v006 .moth-dot-grid {
+  z-index: 0;
+  opacity: 0.16;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.32) 0 1.4px, transparent 1.4px);
+  background-size: 16px 16px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 78%);
+}
+
+.version-shell-v006 .moth-vignette {
+  z-index: 0;
+  background:
+    radial-gradient(circle at center, transparent 34%, rgba(0, 0, 0, 0.74) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.02));
+}
+
+.version-shell-v006 .moth-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  width: min(1540px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--moth-line);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.64));
+  backdrop-filter: blur(14px);
+}
+
+.version-shell-v006 .moth-brand,
+.version-shell-v006 .moth-nav,
+.version-shell-v006 .moth-header-meta,
+.version-shell-v006 .moth-kicker,
+.version-shell-v006 .moth-section-label,
+.version-shell-v006 .moth-column-label,
+.version-shell-v006 .moth-route-order,
+.version-shell-v006 .moth-strip span,
+.version-shell-v006 .moth-reference span,
+.version-shell-v006 .moth-band span {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.version-shell-v006 .moth-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-weight: 600;
+}
+
+.version-shell-v006 .moth-brand-mark {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 50%, #ffffff 0 28%, transparent 28%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.56) 0 44%, transparent 44%);
+  filter: blur(0.2px);
+}
+
+.version-shell-v006 .moth-nav,
+.version-shell-v006 .moth-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--moth-soft);
+}
+
+.version-shell-v006 .moth-nav {
+  justify-content: center;
+}
+
+.version-shell-v006 .moth-nav a,
+.version-shell-v006 .moth-header-meta a {
+  padding-bottom: 0.22rem;
+  border-bottom: 1px solid transparent;
+  transition:
+    opacity 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v006 .moth-nav a:hover,
+.version-shell-v006 .moth-nav a.is-active,
+.version-shell-v006 .moth-header-meta a:hover {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.58);
+  transform: translateY(-1px);
+}
+
+.version-shell-v006 .moth-page {
+  position: relative;
+  z-index: 2;
+  width: min(1540px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 1rem 0 5rem;
+}
+
+.version-shell-v006 .moth-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(28rem, 1.04fr);
+  gap: 1.5rem;
+  align-items: center;
+  min-height: calc(100svh - 5.5rem);
+  padding: 1rem 0 2.4rem;
+}
+
+.version-shell-v006 .moth-copy h1,
+.version-shell-v006 .moth-section-head h2,
+.version-shell-v006 .moth-strip strong,
+.version-shell-v006 .moth-reference strong,
+.version-shell-v006 .moth-route-strip strong,
+.version-shell-v006 .moth-stage-caption strong,
+.version-shell-v006 .moth-band strong {
+  font-family: 'IBM Plex Sans Condensed', 'IBM Plex Sans', sans-serif;
+}
+
+.version-shell-v006 .moth-copy h1 {
+  max-width: 9.8ch;
+  font-size: clamp(3.9rem, 5vw + 1.2rem, 7.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.version-shell-v006 .moth-copy h1 span {
+  display: block;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.version-shell-v006 .moth-intro,
+.version-shell-v006 .moth-section-copy,
+.version-shell-v006 .moth-strip p,
+.version-shell-v006 .moth-reference strong,
+.version-shell-v006 .moth-route-strip p,
+.version-shell-v006 .moth-stage-caption p,
+.version-shell-v006 .moth-ledger dd,
+.version-shell-v006 .moth-bullet-list {
+  color: var(--moth-soft);
+}
+
+.version-shell-v006 .moth-intro {
+  max-width: 33rem;
+  margin-top: 1.2rem;
+  font-size: 1.04rem;
+  line-height: 1.74;
+}
+
+.version-shell-v006 .moth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.78rem;
+  margin-top: 1.4rem;
+}
+
+.version-shell-v006 .moth-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.12rem;
+  border: 1px solid var(--moth-line-strong);
+  font-weight: 600;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v006 .moth-button-primary {
+  background: #fff;
+  color: #000;
+}
+
+.version-shell-v006 .moth-button-secondary {
+  background: transparent;
+  color: #fff;
+}
+
+.version-shell-v006 .moth-button:hover {
+  transform: translateY(-1px);
+}
+
+.version-shell-v006 .moth-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--moth-line);
+}
+
+.version-shell-v006 .moth-ledger div {
+  display: grid;
+  gap: 0.16rem;
+}
+
+.version-shell-v006 .moth-ledger dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.version-shell-v006 .moth-ledger dd {
+  margin: 0;
+  line-height: 1.52;
+}
+
+.version-shell-v006 .moth-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.version-shell-v006 .moth-traits li {
+  padding: 0.3rem 0.66rem;
+  border: 1px solid var(--moth-line);
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.86rem;
+}
+
+.version-shell-v006 .moth-stage {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v006 .moth-stage-frame {
+  position: relative;
+  min-height: 42rem;
+  overflow: hidden;
+  border: 1px solid var(--moth-line-strong);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.1), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
+    #000;
+}
+
+.version-shell-v006 .moth-stage-frame::before,
+.version-shell-v006 .moth-stage-frame::after {
+  position: absolute;
+  left: 1rem;
+  z-index: 4;
+  color: rgba(255, 255, 255, 0.44);
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  content: '';
+}
+
+.version-shell-v006 .moth-stage-frame::before {
+  top: 1rem;
+  content: 'Spectral specimen';
+}
+
+.version-shell-v006 .moth-stage-frame::after {
+  bottom: 1rem;
+  content: 'Pixel dispersion active';
+}
+
+.version-shell-v006 .moth-stage-grid,
+.version-shell-v006 .moth-canvas,
+.version-shell-v006 .moth-stage-fragments {
+  position: absolute;
+  inset: 0;
+}
+
+.version-shell-v006 .moth-stage-grid {
+  z-index: 1;
+  opacity: 0.28;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.9) 0 1px, transparent 1px);
+  background-size: 12px 12px;
+  mask-image: radial-gradient(circle at center, black 0 42%, transparent 86%);
+}
+
+.version-shell-v006 .moth-stage-fragments {
+  z-index: 2;
+  opacity: 0.38;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.86) 0 4px,
+      transparent 4px 20px
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.36) 0 3px,
+      transparent 3px 18px
+    );
+  mask-repeat: no-repeat;
+}
+
+.version-shell-v006 .moth-stage-fragments-left {
+  mask-image: linear-gradient(90deg, transparent, black 16%, transparent 44%);
+  transform: translateX(-8%);
+}
+
+.version-shell-v006 .moth-stage-fragments-right {
+  mask-image: linear-gradient(90deg, transparent 56%, black 84%, transparent);
+  transform: translateX(8%);
+}
+
+.version-shell-v006 .moth-canvas {
+  z-index: 3;
+  opacity: 0;
+  filter: grayscale(1) contrast(1.16);
+  transition: opacity 900ms ease;
+}
+
+.version-shell-v006.is-ready .moth-canvas {
+  opacity: 0.92;
+}
+
+.version-shell-v006 .moth-stage-caption {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 4;
+  width: min(19rem, calc(100% - 2.4rem));
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--moth-line-strong);
+  backdrop-filter: blur(8px);
+}
+
+.version-shell-v006 .moth-stage-caption strong {
+  display: block;
+  font-size: 1.22rem;
+  line-height: 1.02;
+}
+
+.version-shell-v006 .moth-stage-readout,
+.version-shell-v006 .moth-band,
+.version-shell-v006 .moth-route-strip,
+.version-shell-v006 .moth-strip,
+.version-shell-v006 .moth-reference {
+  border-top: 1px solid var(--moth-line);
+}
+
+.version-shell-v006 .moth-stage-readout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding-top: 0.8rem;
+}
+
+.version-shell-v006 .moth-stage-readout span {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.46);
+}
+
+.version-shell-v006 .moth-stage-readout strong {
+  font-size: 0.98rem;
+  line-height: 1.52;
+}
+
+.version-shell-v006 .moth-band {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.9rem;
+  padding: 1rem 0;
+}
+
+.version-shell-v006 .moth-band div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.version-shell-v006 .moth-band strong {
+  font-size: 1.08rem;
+  line-height: 1.1;
+}
+
+.version-shell-v006 .moth-section {
+  padding-top: 4.2rem;
+}
+
+.version-shell-v006 .moth-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 28rem);
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.3rem;
+}
+
+.version-shell-v006 .moth-section-head h2 {
+  max-width: 12ch;
+  font-size: clamp(2.4rem, 2vw + 1.25rem, 4.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.version-shell-v006 .moth-route-stack,
+.version-shell-v006 .moth-reference-list,
+.version-shell-v006 .moth-archive-stack {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.version-shell-v006 .moth-route-strip {
+  display: grid;
+  grid-template-columns: auto minmax(0, 24rem) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 0;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v006 .moth-route-strip:hover,
+.version-shell-v006 .moth-route-strip.is-current {
+  background: #fff;
+  color: #000;
+}
+
+.version-shell-v006 .moth-route-strip:hover p,
+.version-shell-v006 .moth-route-strip.is-current p,
+.version-shell-v006 .moth-route-strip:hover i,
+.version-shell-v006 .moth-route-strip.is-current i {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+.version-shell-v006 .moth-route-strip:hover {
+  transform: translateX(8px);
+}
+
+.version-shell-v006 .moth-route-strip strong {
+  font-size: 1.36rem;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.version-shell-v006 .moth-route-strip p,
+.version-shell-v006 .moth-route-strip i {
+  color: rgba(255, 255, 255, 0.7);
+  font-style: normal;
+}
+
+.version-shell-v006 .moth-log-grid,
+.version-shell-v006 .moth-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.version-shell-v006 .moth-field-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+.version-shell-v006 .moth-column {
+  display: grid;
+  gap: 0;
+}
+
+.version-shell-v006 .moth-column-label {
+  margin-bottom: 0.6rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.version-shell-v006 .moth-strip,
+.version-shell-v006 .moth-reference {
+  display: grid;
+  gap: 0.18rem;
+  padding: 1rem 0;
+}
+
+.version-shell-v006 .moth-strip strong,
+.version-shell-v006 .moth-reference strong {
+  font-size: 1.14rem;
+  line-height: 1.02;
+  text-transform: uppercase;
+}
+
+.version-shell-v006 .moth-bullet-list {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.version-shell-v006 .moth-bullet-list li {
+  line-height: 1.64;
+}
+
+.version-shell-v006 .moth-archive-stack {
+  grid-template-columns: 1fr;
+}
+
+.version-shell-v006 .moth-header-meta a:focus-visible,
+.version-shell-v006 .moth-nav a:focus-visible,
+.version-shell-v006 .moth-button:focus-visible,
+.version-shell-v006 .moth-route-strip:focus-visible,
+.version-shell-v006 .moth-reference:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 -1px 0 #fff,
+    0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 1180px) {
+  .version-shell-v006 .moth-hero,
+  .version-shell-v006 .moth-section-head,
+  .version-shell-v006 .moth-log-grid,
+  .version-shell-v006 .moth-field-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v006 .moth-stage {
+    order: -1;
+  }
+
+  .version-shell-v006 .moth-stage-frame {
+    min-height: 31rem;
+  }
+
+  .version-shell-v006 .moth-band,
+  .version-shell-v006 .moth-ledger,
+  .version-shell-v006 .moth-stage-readout {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v006 .moth-route-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 880px) {
+  .version-shell-v006 .moth-header {
+    width: min(calc(100% - 24px), 1540px);
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .version-shell-v006 .moth-nav {
+    display: none;
+  }
+
+  .version-shell-v006 .moth-page {
+    width: min(calc(100% - 24px), 1540px);
+  }
+
+  .version-shell-v006 .moth-copy h1 {
+    font-size: clamp(3rem, 12vw, 5.6rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .version-shell-v006 .moth-section {
+    padding-top: 3rem;
+  }
+
+  .version-shell-v006 .moth-stage-frame {
+    min-height: 24rem;
+  }
+
+  .version-shell-v006 .moth-stage-caption {
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+  }
+
+  .version-shell-v006 .moth-route-strip strong,
+  .version-shell-v006 .moth-strip strong,
+  .version-shell-v006 .moth-reference strong,
+  .version-shell-v006 .moth-band strong {
+    font-size: 1rem;
+  }
+}

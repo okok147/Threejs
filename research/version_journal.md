@@ -540,3 +540,22 @@
 - Next likely direction：
   - 若網路限制解除，先 push 目前累積的本地 commits，並重新核對 hosted HTML fingerprint。
   - 若網路限制仍存在，下一步可補最小 integration-style navigator test，直接驗證 history / compare / storage 的協同狀態切換。
+
+## 2026-03-28T15:26:45+08:00 / v006-spectral-moth
+
+- 動作：新增第六個不可覆蓋版本，直接轉向黑白 glitch fauna 海報語言，讓 `v006` 和前面的 atlas / dashboard / exhibition 版本有明確斷層。
+- Visual thesis：monochrome dither poster + spectral moth silhouette + pixel dispersion edges。
+- Content plan：specimen poster -> pack index -> decay log -> white-noise field。
+- Interaction thesis：
+  - hero 以單一 poster 視覺錨點主導，3D core 像正在點陣裡形成與崩解的夜蛾標本。
+  - 版本切換被改寫成黑白 strips，hover 反相，讓瀏覽像掃描 field tape 而不是點卡片。
+  - noise、flicker 與 dispersion 都只放在邊界與 stage 周邊，維持高張力但不讓全頁失焦。
+- 為何它明顯不同：v005 是彩色 atlas / chart-window 長頁，v006 則把整個頁面改成黑底白噪海報；視覺語言、版面系統、導航模型、互動語氣與 scene treatment 都切到另一個世界。
+- 研究轉譯：
+  - user-provided prompt -> 把「高對比黑白 + heavy dithering + pixel dispersion + digital decay」直接變成版面和 stage 的核心條件。
+  - three.js responsive manual -> 保留 full-bleed poster 下的 renderer resize 與 pixel ratio discipline。
+  - W3C in-page navigation -> 即使是極端海報頁，也維持可掃描的 section anchors。
+  - Apple reduce motion -> flicker pulse 與 white-noise drift 在 reduced-motion 下仍有收斂路徑。
+- 快照：`screenshots/v006/poster.svg`
+- 風險：目前 `v006` 仍只有概念 poster，沒有真實瀏覽器截圖；此外這輪若尚未 push，線上 hosted site 仍會停在上一個已部署版本。
+- 下一個最佳方向：在 validation 通過後 push 新版本，然後直接核對 hosted HTML / bundle 是否已回傳 `v006` 指紋。

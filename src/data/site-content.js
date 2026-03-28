@@ -112,6 +112,12 @@ export const siteContent = {
       summary: '把版本當成海流與航道來讀，讓場景、導航與 annotation 像一張會發光的潮汐圖譜。',
     },
     {
+      name: 'Spectral Moth',
+      family: 'Glitch fauna',
+      fit: '極端視覺反差 / 黑白海報型首頁',
+      summary: '把動物殘影、dot matrix 與 pixel dispersion 疊成黑白 poster，讓版本切換像掃描一張正在腐蝕的標本。',
+    },
+    {
       name: 'Exhibition Monograph',
       family: 'Museum monograph',
       fit: '案例深讀 / 策展型作品頁',

@@ -1,0 +1,67 @@
+<svg width="1280" height="768" viewBox="0 0 1280 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="768" fill="black"/>
+  <g opacity="0.25" fill="white">
+    <circle cx="154" cy="114" r="2"/>
+    <circle cx="202" cy="142" r="1.5"/>
+    <circle cx="1046" cy="126" r="2"/>
+    <circle cx="1122" cy="172" r="1.5"/>
+    <circle cx="176" cy="634" r="2"/>
+    <circle cx="1088" cy="602" r="2"/>
+  </g>
+  <g opacity="0.18" fill="white">
+    <rect x="188" y="250" width="8" height="8"/>
+    <rect x="224" y="280" width="10" height="10"/>
+    <rect x="1080" y="262" width="8" height="8"/>
+    <rect x="1044" y="294" width="10" height="10"/>
+    <rect x="238" y="492" width="8" height="8"/>
+    <rect x="1020" y="480" width="8" height="8"/>
+  </g>
+  <g opacity="0.12" fill="white">
+    <circle cx="322" cy="384" r="2"/>
+    <circle cx="350" cy="412" r="2"/>
+    <circle cx="960" cy="372" r="2"/>
+    <circle cx="930" cy="404" r="2"/>
+    <circle cx="416" cy="206" r="1.5"/>
+    <circle cx="864" cy="214" r="1.5"/>
+  </g>
+  <g fill="white">
+    <path d="M640 178L602 230L560 300L528 388L498 470L440 526L364 560L310 562L292 544L318 512L374 474L430 420L470 360L506 286L554 222L608 176H640Z" fill="url(#leftWing)"/>
+    <path d="M640 178L678 230L720 300L752 388L782 470L840 526L916 560L970 562L988 544L962 512L906 474L850 420L810 360L774 286L726 222L672 176H640Z" fill="url(#rightWing)"/>
+    <path d="M640 196L606 298L604 416L640 560L676 416L674 298L640 196Z" fill="url(#body)"/>
+    <circle cx="640" cy="190" r="22" fill="white"/>
+  </g>
+  <g opacity="0.68" fill="white">
+    <rect x="468" y="248" width="10" height="10"/>
+    <rect x="452" y="262" width="8" height="8"/>
+    <rect x="438" y="280" width="8" height="8"/>
+    <rect x="822" y="248" width="10" height="10"/>
+    <rect x="840" y="264" width="8" height="8"/>
+    <rect x="856" y="282" width="8" height="8"/>
+    <rect x="394" y="456" width="10" height="10"/>
+    <rect x="882" y="448" width="10" height="10"/>
+    <rect x="914" y="422" width="8" height="8"/>
+    <rect x="360" y="430" width="8" height="8"/>
+  </g>
+  <g opacity="0.42">
+    <rect x="480" y="124" width="320" height="520" stroke="white" stroke-width="1"/>
+    <rect x="522" y="154" width="236" height="458" stroke="white" stroke-width="1" stroke-dasharray="2 10"/>
+  </g>
+  <text x="96" y="92" fill="white" fill-opacity="0.84" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4">V006 / SPECTRAL MOTH</text>
+  <text x="96" y="124" fill="white" fill-opacity="0.58" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="3">MONOCHROME GLITCH FAUNA / PIXEL DISPERSION STUDY</text>
+  <defs>
+    <linearGradient id="leftWing" x1="292" y1="370" x2="640" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0"/>
+      <stop offset="0.32" stop-color="white" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="white"/>
+    </linearGradient>
+    <linearGradient id="rightWing" x1="988" y1="370" x2="640" y2="370" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0"/>
+      <stop offset="0.32" stop-color="white" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="white"/>
+    </linearGradient>
+    <linearGradient id="body" x1="640" y1="196" x2="640" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+</svg>

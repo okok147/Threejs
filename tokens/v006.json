@@ -1,0 +1,25 @@
+{
+  "version": "v006",
+  "title": "Spectral Moth",
+  "colors": {
+    "background": "#000000",
+    "surface": "rgba(255,255,255,0.03)",
+    "text": "#ffffff",
+    "muted": "rgba(255,255,255,0.76)",
+    "line": "rgba(255,255,255,0.14)"
+  },
+  "typography": {
+    "display": "IBM Plex Sans Condensed",
+    "body": "IBM Plex Sans / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "24px",
+    "sectionPaddingDesktop": "68px",
+    "sectionPaddingMobile": "44px"
+  },
+  "motion": {
+    "heroEntrance": "860ms ease",
+    "sceneProfile": "flicker pulse with pixel shed"
+  }
+}

@@ -38,6 +38,11 @@ body[data-active-version='v003'] {
   color: #f4ead8;
 }
 
+body[data-active-version='v006'] {
+  background: #000;
+  color: #fff;
+}
+
 body.is-browser-open {
   overflow: hidden;
 }
