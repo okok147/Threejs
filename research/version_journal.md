@@ -597,3 +597,22 @@
 - 快照：`screenshots/v008/poster.svg`
 - 風險：目前 `v008` 仍只有概念 poster，沒有真實瀏覽器截圖；此外 shared shell 的 v008-specific 變形需要用實際 viewport 再做一次 browser-level 驗證。
 - 下一個最佳方向：先跑 validation 與 release path，確認 version-specific shared shell 覆寫不會破壞切換與 deploy。
+
+## 2026-03-28T16:28:00+08:00 / v009-network-concourse
+
+- 動作：新增第九個不可覆蓋版本，把版本實驗室翻成都市公共運輸導向系統，而不是再做另一個展示型首頁。
+- Visual thesis：night transit concourse + departure board + interchange line map + terminal notices。
+- Content plan：departure board -> interchange map -> service bulletins -> terminal notices。
+- Interaction thesis：
+  - 使用者角色從觀眾改成旅客，先選線、再轉乘、最後進入版本月台。
+  - 版本切換被改寫成三條 transit lines 與 stop map，current version 像 active platform，而不是 selected card。
+  - 方法、工程與 research 被翻成 ops timetable、service bulletin 與 exit wall，整頁都遵守同一套 wayfinding 語法。
+- 為何它明顯不同：v008 是實驗 studio essay，靠導演台、clipped cast 與 kinetic fragments 建立閱讀；v009 則直接切到 public-wayfinding world，資訊架構、導航模型、內容 framing、第一屏角色、3D 場景位置與情緒節奏都改成「轉乘大廳」而不是「創作工具」。
+- 研究轉譯：
+  - TfL Legible London Yellow Book -> 取 progressive disclosure、mental mapping 與 consistency / local character 的平衡，讓 route map 先服務決策，再服務風格。
+  - BART wayfinding upgrade notes -> 取 color cues、pictograms 與 real-time display 作為 transit 信息骨架，而不是裝飾性交通符號。
+  - US Access Board rail station sign requirements -> 取 uniform sign placement、route / destination clarity 與 visual / audible equivalence 原則，避免 transit 美學蓋過可讀性。
+  - three.js responsive manual -> 把 3D 壓進 bounded platform viewport，維持受控 resize 與 pixel ratio discipline。
+- 快照：`screenshots/v009/poster.svg`
+- 風險：目前 `v009` 仍只有概念 poster，尚未補真實瀏覽器截圖；此外 transit line map 雖已做成 semantic links，但仍需後續 browser-level 驗證手機長頁下的點擊與掃讀節奏。
+- 下一個最佳方向：若環境允許瀏覽器自動化，優先替 `v009` 補真實 screenshot / smoke test，驗證 transfer map 與 platform viewport 在 desktop / mobile 的可讀性。

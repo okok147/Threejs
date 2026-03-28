@@ -1,0 +1,59 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#07141D"/>
+  <rect x="44" y="44" width="1512" height="812" rx="28" fill="url(#bg)" stroke="rgba(248,241,223,0.14)"/>
+  <path d="M106 184H1494" stroke="#F8F1DF" stroke-opacity="0.12"/>
+  <path d="M106 734H1494" stroke="#F8F1DF" stroke-opacity="0.12"/>
+  <rect x="108" y="94" width="402" height="110" rx="22" fill="#0C2230" stroke="#F8F1DF" stroke-opacity="0.12"/>
+  <text x="142" y="132" fill="#F8F1DF" fill-opacity="0.58" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4">NETWORK CONCOURSE / V009</text>
+  <text x="142" y="176" fill="#F8F1DF" font-family="IBM Plex Sans Condensed, sans-serif" font-size="50" font-weight="700" letter-spacing="2">Transit Wayfinding Show</text>
+
+  <rect x="108" y="250" width="610" height="380" rx="28" fill="#0A1E2A" stroke="#F8F1DF" stroke-opacity="0.12"/>
+  <text x="148" y="306" fill="#F8F1DF" fill-opacity="0.65" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="4">DEPARTURE BOARD</text>
+  <text x="148" y="380" fill="#F8F1DF" font-family="IBM Plex Sans Condensed, sans-serif" font-size="86" font-weight="700" letter-spacing="-2">ROUTE</text>
+  <text x="148" y="456" fill="#F6C352" font-family="IBM Plex Sans Condensed, sans-serif" font-size="86" font-weight="700" letter-spacing="-2">SWITCH</text>
+  <text x="148" y="532" fill="#F8F1DF" font-family="IBM Plex Sans Condensed, sans-serif" font-size="86" font-weight="700" letter-spacing="-2">BY LINE</text>
+  <text x="148" y="588" fill="#F8F1DF" fill-opacity="0.72" font-family="IBM Plex Sans, sans-serif" font-size="28">把版本當成轉乘站、路線與終點，不再只是卡片列表。</text>
+
+  <rect x="770" y="250" width="680" height="380" rx="28" fill="#091922" stroke="#F8F1DF" stroke-opacity="0.12"/>
+  <rect x="812" y="294" width="260" height="30" rx="15" fill="#F6C352" fill-opacity="0.14" stroke="#F6C352" stroke-opacity="0.5"/>
+  <text x="840" y="315" fill="#F6C352" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="4">A / LAUNCH ARC</text>
+  <rect x="1094" y="294" width="260" height="30" rx="15" fill="#58E0C9" fill-opacity="0.14" stroke="#58E0C9" stroke-opacity="0.5"/>
+  <text x="1118" y="315" fill="#58E0C9" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="4">B / SYSTEMS LOOP</text>
+  <rect x="952" y="336" width="260" height="30" rx="15" fill="#FF6E6E" fill-opacity="0.14" stroke="#FF6E6E" stroke-opacity="0.5"/>
+  <text x="978" y="357" fill="#FF6E6E" font-family="IBM Plex Mono, monospace" font-size="16" letter-spacing="4">C / STAGE EXPRESS</text>
+
+  <path d="M884 436H1260" stroke="#F6C352" stroke-width="10" stroke-linecap="round"/>
+  <path d="M932 504H1308" stroke="#58E0C9" stroke-width="10" stroke-linecap="round"/>
+  <path d="M856 572H1232" stroke="#FF6E6E" stroke-width="10" stroke-linecap="round"/>
+
+  <circle cx="930" cy="436" r="16" fill="#07141D" stroke="#F6C352" stroke-width="8"/>
+  <circle cx="1080" cy="436" r="16" fill="#07141D" stroke="#F6C352" stroke-width="8"/>
+  <circle cx="1230" cy="436" r="16" fill="#07141D" stroke="#F6C352" stroke-width="8"/>
+  <circle cx="988" cy="504" r="16" fill="#07141D" stroke="#58E0C9" stroke-width="8"/>
+  <circle cx="1138" cy="504" r="16" fill="#07141D" stroke="#58E0C9" stroke-width="8"/>
+  <circle cx="1288" cy="504" r="16" fill="#07141D" stroke="#58E0C9" stroke-width="8"/>
+  <circle cx="914" cy="572" r="16" fill="#07141D" stroke="#FF6E6E" stroke-width="8"/>
+  <circle cx="1064" cy="572" r="16" fill="#07141D" stroke="#FF6E6E" stroke-width="8"/>
+  <circle cx="1214" cy="572" r="16" fill="#07141D" stroke="#FF6E6E" stroke-width="8"/>
+
+  <text x="896" y="466" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V001</text>
+  <text x="1046" y="466" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V002</text>
+  <text x="1196" y="466" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V003</text>
+  <text x="954" y="534" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V004</text>
+  <text x="1104" y="534" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V005</text>
+  <text x="1254" y="534" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V006</text>
+  <text x="880" y="602" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V007</text>
+  <text x="1030" y="602" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V008</text>
+  <text x="1180" y="602" fill="#F8F1DF" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="2">V009</text>
+
+  <rect x="108" y="684" width="1342" height="124" rx="24" fill="#0A1E2A" stroke="#F8F1DF" stroke-opacity="0.12"/>
+  <text x="146" y="730" fill="#F8F1DF" fill-opacity="0.58" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="4">WHOLE-SHOW DIFFERENCE</text>
+  <text x="146" y="778" fill="#F8F1DF" font-family="IBM Plex Sans, sans-serif" font-size="30">Departure board hero, interchange map navigation, service bulletin content framing, terminal-exit archive logic.</text>
+
+  <defs>
+    <linearGradient id="bg" x1="800" y1="44" x2="800" y2="856" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1F2A"/>
+      <stop offset="1" stop-color="#07141D"/>
+    </linearGradient>
+  </defs>
+</svg>

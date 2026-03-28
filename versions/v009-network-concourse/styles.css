@@ -1,0 +1,852 @@
+.version-shell-v009 {
+  --concourse-bg: #07141d;
+  --concourse-ink: #f8f1df;
+  --concourse-soft: rgba(248, 241, 223, 0.78);
+  --concourse-muted: rgba(248, 241, 223, 0.54);
+  --concourse-line: rgba(248, 241, 223, 0.12);
+  --concourse-line-strong: rgba(248, 241, 223, 0.24);
+  --concourse-panel: rgba(8, 20, 31, 0.82);
+  --concourse-panel-alt: rgba(11, 31, 43, 0.72);
+  --concourse-amber: #f6c352;
+  --concourse-mint: #58e0c9;
+  --concourse-rose: #ff6e6e;
+  --hero-progress: 0;
+  --map-progress: 0;
+  --service-progress: 0;
+  --terminal-progress: 0;
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(246, 195, 82, 0.18), transparent 22%),
+    radial-gradient(circle at 84% 18%, rgba(88, 224, 201, 0.14), transparent 26%),
+    linear-gradient(180deg, #08151e 0%, #07141d 46%, #091a23 100%);
+  color: var(--concourse-ink);
+  font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+  overflow: clip;
+}
+
+body[data-active-version='v009'] {
+  background: #07141d;
+  color: #f8f1df;
+}
+
+body[data-active-version='v009'] .lab-toolbar-brand,
+body[data-active-version='v009'] .lab-toolbar-current,
+body[data-active-version='v009'] .lab-toolbar-actions,
+body[data-active-version='v009'] .lab-dock {
+  border-color: rgba(246, 195, 82, 0.18);
+  border-radius: 16px;
+  background:
+    linear-gradient(180deg, rgba(10, 24, 35, 0.96), rgba(7, 20, 29, 0.88)),
+    linear-gradient(90deg, rgba(246, 195, 82, 0.1), transparent 28%);
+  color: #f8f1df;
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.34);
+}
+
+body[data-active-version='v009'] .lab-toolbar-brand {
+  border-radius: 14px;
+  font-family: 'IBM Plex Sans Condensed', 'Noto Sans TC', sans-serif;
+  font-size: 0.96rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+body[data-active-version='v009'] .lab-tab,
+body[data-active-version='v009'] .lab-browser-toggle,
+body[data-active-version='v009'] .lab-compare-pill {
+  border-radius: 12px;
+}
+
+body[data-active-version='v009'] .lab-tab[aria-selected='true'],
+body[data-active-version='v009'] .lab-compare-pill.is-active,
+body[data-active-version='v009'] .lab-browser-toggle:hover {
+  border-color: rgba(246, 195, 82, 0.4);
+  background: rgba(246, 195, 82, 0.12);
+}
+
+.version-shell-v009 .concourse-grid,
+.version-shell-v009 .concourse-ambient-lines,
+.version-shell-v009 .concourse-signal-wash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v009 .concourse-grid {
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(248, 241, 223, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 241, 223, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.4;
+  transform: translateY(calc(var(--service-progress) * -18px));
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.88), transparent);
+}
+
+.version-shell-v009 .concourse-ambient-lines {
+  z-index: 0;
+  background:
+    linear-gradient(90deg, transparent 8%, rgba(246, 195, 82, 0.14) 24%, transparent 24.6%),
+    linear-gradient(90deg, transparent 52%, rgba(88, 224, 201, 0.16) 66%, transparent 66.6%),
+    linear-gradient(90deg, transparent 74%, rgba(255, 110, 110, 0.14) 88%, transparent 88.6%);
+  opacity: calc(0.18 + var(--map-progress) * 0.18);
+  transform: translateX(calc((var(--terminal-progress) - 0.4) * 6%));
+}
+
+.version-shell-v009 .concourse-signal-wash {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(246, 195, 82, 0.14), transparent 16%),
+    radial-gradient(circle at 78% 22%, rgba(88, 224, 201, 0.12), transparent 18%),
+    radial-gradient(circle at 54% 82%, rgba(255, 110, 110, 0.1), transparent 18%);
+  opacity: calc(0.24 + var(--hero-progress) * 0.12);
+}
+
+.version-shell-v009 .concourse-page {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.25rem, 3vw, 3rem) 4.5rem;
+}
+
+.version-shell-v009 .concourse-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem clamp(1.25rem, 3vw, 3rem) 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--concourse-line);
+  border-radius: 20px;
+  background: rgba(7, 20, 29, 0.82);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.26);
+}
+
+.version-shell-v009 .concourse-code,
+.version-shell-v009 .concourse-kicker,
+.version-shell-v009 .concourse-section-label,
+.version-shell-v009 .concourse-panel-label,
+.version-shell-v009 .concourse-line-badge,
+.version-shell-v009 .concourse-line-tag,
+.version-shell-v009 .concourse-board-top span,
+.version-shell-v009 .concourse-stop-head i,
+.version-shell-v009 .concourse-row span,
+.version-shell-v009 .concourse-reference span,
+.version-shell-v009 .concourse-exit-card span {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.version-shell-v009 .concourse-brand {
+  display: grid;
+  gap: 0.14rem;
+}
+
+.version-shell-v009 .concourse-brand strong,
+.version-shell-v009 .concourse-board h1,
+.version-shell-v009 .concourse-section-head h2,
+.version-shell-v009 .concourse-line-head strong,
+.version-shell-v009 .concourse-stop-copy strong,
+.version-shell-v009 .concourse-row strong,
+.version-shell-v009 .concourse-info-card strong,
+.version-shell-v009 .concourse-platform-meta strong,
+.version-shell-v009 .concourse-stage-line strong,
+.version-shell-v009 .concourse-reference strong,
+.version-shell-v009 .concourse-exit-card strong {
+  font-family: 'IBM Plex Sans Condensed', 'Noto Sans TC', sans-serif;
+}
+
+.version-shell-v009 .concourse-brand strong {
+  font-size: 1.2rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.version-shell-v009 .concourse-nav,
+.version-shell-v009 .concourse-header-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v009 .concourse-nav a,
+.version-shell-v009 .concourse-header-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--concourse-line);
+  border-radius: 999px;
+  color: var(--concourse-soft);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v009 .concourse-nav a:hover,
+.version-shell-v009 .concourse-nav a.is-active,
+.version-shell-v009 .concourse-header-links a:hover {
+  border-color: rgba(246, 195, 82, 0.34);
+  background: rgba(246, 195, 82, 0.12);
+  color: var(--concourse-ink);
+  transform: translateY(-1px);
+}
+
+.version-shell-v009 .concourse-section {
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10svh, 7.5rem) 0;
+  scroll-margin-top: 7.5rem;
+}
+
+.version-shell-v009 .concourse-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(24rem, 1.04fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: center;
+}
+
+.version-shell-v009 .concourse-board,
+.version-shell-v009 .concourse-platform-frame,
+.version-shell-v009 .concourse-panel,
+.version-shell-v009 .concourse-line,
+.version-shell-v009 .concourse-board-panel,
+.version-shell-v009 .concourse-notice,
+.version-shell-v009 .concourse-terminal-panel {
+  border: 1px solid var(--concourse-line);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(11, 29, 40, 0.88), rgba(7, 20, 29, 0.86)),
+    linear-gradient(90deg, rgba(246, 195, 82, 0.08), transparent 32%);
+  box-shadow: 0 30px 88px rgba(0, 0, 0, 0.22);
+}
+
+.version-shell-v009 .concourse-board {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+.version-shell-v009 .concourse-board-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.version-shell-v009 .concourse-line-tag,
+.version-shell-v009 .concourse-line-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.4rem;
+  min-height: 2rem;
+  padding: 0 0.75rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.version-shell-v009 .is-amber .concourse-line-badge,
+.version-shell-v009 .concourse-line-tag.is-amber {
+  color: var(--concourse-amber);
+}
+
+.version-shell-v009 .is-mint .concourse-line-badge,
+.version-shell-v009 .concourse-line-tag.is-mint {
+  color: var(--concourse-mint);
+}
+
+.version-shell-v009 .is-rose .concourse-line-badge,
+.version-shell-v009 .concourse-line-tag.is-rose {
+  color: var(--concourse-rose);
+}
+
+.version-shell-v009 .concourse-board h1 {
+  max-width: 8ch;
+  font-size: clamp(4rem, 6vw + 0.8rem, 8.4rem);
+  line-height: 0.86;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+}
+
+.version-shell-v009 .concourse-board h1 span {
+  display: block;
+  color: var(--concourse-amber);
+}
+
+.version-shell-v009 .concourse-intro,
+.version-shell-v009 .concourse-section-copy,
+.version-shell-v009 .concourse-stop-copy p,
+.version-shell-v009 .concourse-stop-copy small,
+.version-shell-v009 .concourse-row p,
+.version-shell-v009 .concourse-platform-meta strong,
+.version-shell-v009 .concourse-stage-line p,
+.version-shell-v009 .concourse-reference strong,
+.version-shell-v009 .concourse-exit-card p,
+.version-shell-v009 .concourse-bullet-list {
+  color: var(--concourse-soft);
+}
+
+.version-shell-v009 .concourse-intro {
+  max-width: 34rem;
+  font-size: 1.04rem;
+  line-height: 1.76;
+}
+
+.version-shell-v009 .concourse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.version-shell-v009 .concourse-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.2rem;
+  border: 1px solid var(--concourse-line-strong);
+  border-radius: 999px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v009 .concourse-button:hover {
+  transform: translateY(-2px);
+}
+
+.version-shell-v009 .concourse-button-primary {
+  background: var(--concourse-amber);
+  color: #08151e;
+  border-color: rgba(246, 195, 82, 0.54);
+}
+
+.version-shell-v009 .concourse-button-secondary {
+  background: rgba(248, 241, 223, 0.06);
+  color: var(--concourse-ink);
+}
+
+.version-shell-v009 .concourse-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--concourse-line);
+}
+
+.version-shell-v009 .concourse-ledger div,
+.version-shell-v009 .concourse-info-card,
+.version-shell-v009 .concourse-platform-meta article,
+.version-shell-v009 .concourse-stage-line,
+.version-shell-v009 .concourse-exit-card {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.version-shell-v009 .concourse-ledger dt,
+.version-shell-v009 .concourse-info-card span,
+.version-shell-v009 .concourse-platform-header span,
+.version-shell-v009 .concourse-platform-meta span,
+.version-shell-v009 .concourse-stage-line span {
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--concourse-muted);
+}
+
+.version-shell-v009 .concourse-ledger dd {
+  margin: 0;
+}
+
+.version-shell-v009 .concourse-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.version-shell-v009 .concourse-info-card {
+  min-height: 8.2rem;
+  padding: 1rem;
+  border: 1px solid var(--concourse-line);
+  border-radius: 20px;
+  background: rgba(8, 25, 36, 0.64);
+}
+
+.version-shell-v009 .concourse-info-card strong {
+  font-size: 1rem;
+  line-height: 1.28;
+}
+
+.version-shell-v009 .concourse-traits,
+.version-shell-v009 .concourse-family-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.version-shell-v009 .concourse-traits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.version-shell-v009 .concourse-traits li,
+.version-shell-v009 .concourse-family-strip span {
+  padding: 0.62rem 0.86rem;
+  border: 1px solid var(--concourse-line);
+  border-radius: 999px;
+  background: rgba(248, 241, 223, 0.05);
+  color: var(--concourse-soft);
+}
+
+.version-shell-v009 .concourse-stage {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v009 .concourse-platform-frame {
+  padding: 1.15rem;
+}
+
+.version-shell-v009 .concourse-platform-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--concourse-line);
+}
+
+.version-shell-v009 .concourse-platform-header strong {
+  font-family: 'IBM Plex Sans Condensed', 'Noto Sans TC', sans-serif;
+  font-size: 1.18rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.version-shell-v009 .concourse-platform-header i {
+  font-style: normal;
+  color: var(--concourse-muted);
+}
+
+.version-shell-v009 .concourse-platform-window {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(24rem, 54vw, 34rem);
+  border: 1px solid var(--concourse-line);
+  border-radius: 26px;
+  background:
+    linear-gradient(180deg, rgba(9, 27, 38, 0.92), rgba(4, 11, 15, 0.94)),
+    radial-gradient(circle at 18% 18%, rgba(246, 195, 82, 0.1), transparent 26%);
+}
+
+.version-shell-v009 .concourse-platform-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(248, 241, 223, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(248, 241, 223, 0.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  opacity: 0.34;
+  transform: translateX(calc((var(--map-progress) - 0.4) * 12px));
+}
+
+.version-shell-v009 .concourse-canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.version-shell-v009 .concourse-platform-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.version-shell-v009 .concourse-platform-meta article,
+.version-shell-v009 .concourse-stage-line {
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--concourse-line);
+  border-radius: 18px;
+  background: rgba(248, 241, 223, 0.04);
+}
+
+.version-shell-v009 .concourse-stage-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.version-shell-v009 .concourse-stage-line {
+  min-height: 8.2rem;
+}
+
+.version-shell-v009 .concourse-stage-line.is-amber {
+  border-color: rgba(246, 195, 82, 0.24);
+}
+
+.version-shell-v009 .concourse-stage-line.is-mint {
+  border-color: rgba(88, 224, 201, 0.24);
+}
+
+.version-shell-v009 .concourse-stage-line.is-rose {
+  border-color: rgba(255, 110, 110, 0.24);
+}
+
+.version-shell-v009 .concourse-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
+}
+
+.version-shell-v009 .concourse-section-head h2 {
+  max-width: 10ch;
+  font-size: clamp(2.8rem, 4vw + 0.8rem, 5rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+}
+
+.version-shell-v009 .concourse-section-copy {
+  max-width: 34rem;
+  font-size: 1rem;
+  line-height: 1.74;
+}
+
+.version-shell-v009 .concourse-network-grid {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.42fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.version-shell-v009 .concourse-panel,
+.version-shell-v009 .concourse-board-panel,
+.version-shell-v009 .concourse-terminal-panel {
+  padding: 1.2rem;
+}
+
+.version-shell-v009 .concourse-decision-list,
+.version-shell-v009 .concourse-row-list,
+.version-shell-v009 .concourse-reference-list,
+.version-shell-v009 .concourse-exit-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.version-shell-v009 .concourse-decision-list article,
+.version-shell-v009 .concourse-row,
+.version-shell-v009 .concourse-reference,
+.version-shell-v009 .concourse-exit-card {
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--concourse-line);
+  border-radius: 18px;
+  background: rgba(248, 241, 223, 0.04);
+}
+
+.version-shell-v009 .concourse-decision-list article {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.version-shell-v009 .concourse-decision-list span {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  color: var(--concourse-amber);
+}
+
+.version-shell-v009 .concourse-decision-list p {
+  color: var(--concourse-soft);
+}
+
+.version-shell-v009 .concourse-line-map,
+.version-shell-v009 .concourse-notice-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v009 .concourse-line {
+  position: relative;
+  padding: 1.15rem;
+}
+
+.version-shell-v009 .concourse-line::before {
+  content: '';
+  position: absolute;
+  top: 5.2rem;
+  bottom: 1.4rem;
+  left: 2.26rem;
+  width: 2px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.version-shell-v009 .concourse-line.is-amber {
+  color: var(--concourse-amber);
+}
+
+.version-shell-v009 .concourse-line.is-mint {
+  color: var(--concourse-mint);
+}
+
+.version-shell-v009 .concourse-line.is-rose {
+  color: var(--concourse-rose);
+}
+
+.version-shell-v009 .concourse-line-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(248, 241, 223, 0.08);
+}
+
+.version-shell-v009 .concourse-line-head strong {
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--concourse-ink);
+}
+
+.version-shell-v009 .concourse-line-head p {
+  color: var(--concourse-soft);
+}
+
+.version-shell-v009 .concourse-stop-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.version-shell-v009 .concourse-stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+  padding: 0.15rem 0.15rem 0.15rem 0;
+  color: inherit;
+}
+
+.version-shell-v009 .concourse-stop-node {
+  position: relative;
+  z-index: 1;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 1.15rem 0 0 1.66rem;
+  border: 3px solid currentColor;
+  border-radius: 999px;
+  background: #07141d;
+  box-shadow: 0 0 0 7px rgba(7, 20, 29, 0.92);
+}
+
+.version-shell-v009 .concourse-stop-copy {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(248, 241, 223, 0.08);
+  border-radius: 18px;
+  background: rgba(248, 241, 223, 0.04);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v009 .concourse-stop:hover .concourse-stop-copy,
+.version-shell-v009 .concourse-stop.is-current .concourse-stop-copy {
+  border-color: currentColor;
+  background: rgba(248, 241, 223, 0.08);
+  transform: translateX(4px);
+}
+
+.version-shell-v009 .concourse-stop-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.version-shell-v009 .concourse-stop-head strong {
+  font-size: 1rem;
+  line-height: 1.12;
+  color: var(--concourse-ink);
+}
+
+.version-shell-v009 .concourse-stop-head i {
+  font-style: normal;
+  color: currentColor;
+}
+
+.version-shell-v009 .concourse-service-grid,
+.version-shell-v009 .concourse-terminal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.version-shell-v009 .concourse-service-grid {
+  align-items: start;
+}
+
+.version-shell-v009 .concourse-row {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.version-shell-v009 .concourse-row strong,
+.version-shell-v009 .concourse-reference strong,
+.version-shell-v009 .concourse-exit-card strong {
+  font-size: 1rem;
+  line-height: 1.24;
+}
+
+.version-shell-v009 .concourse-notice-stack {
+  grid-column: span 2;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.version-shell-v009 .concourse-notice {
+  padding: 1.15rem;
+}
+
+.version-shell-v009 .concourse-bullet-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.version-shell-v009 .concourse-bullet-list li + li {
+  margin-top: 0.5rem;
+}
+
+.version-shell-v009 .concourse-reference {
+  display: grid;
+  gap: 0.22rem;
+  color: inherit;
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v009 .concourse-reference:hover {
+  border-color: rgba(246, 195, 82, 0.32);
+  transform: translateY(-2px);
+}
+
+.version-shell-v009 .concourse-reference i {
+  font-style: normal;
+  color: var(--concourse-amber);
+}
+
+.version-shell-v009 .concourse-terminal-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.version-shell-v009 .concourse-exit-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.version-shell-v009 .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 620ms ease,
+    transform 620ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.version-shell-v009 .reveal.is-visible,
+.version-shell-v009.is-reduced-motion .reveal,
+.version-shell-v009.is-ready .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.version-shell-v009.is-reduced-motion .concourse-grid,
+.version-shell-v009.is-reduced-motion .concourse-ambient-lines,
+.version-shell-v009.is-reduced-motion .concourse-signal-wash,
+.version-shell-v009.is-reduced-motion .concourse-platform-grid {
+  transform: none;
+}
+
+@media (max-width: 1120px) {
+  .version-shell-v009 .concourse-header,
+  .version-shell-v009 .concourse-hero,
+  .version-shell-v009 .concourse-section-head,
+  .version-shell-v009 .concourse-network-grid,
+  .version-shell-v009 .concourse-service-grid,
+  .version-shell-v009 .concourse-terminal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v009 .concourse-hero-grid,
+  .version-shell-v009 .concourse-stage-legend,
+  .version-shell-v009 .concourse-notice-stack,
+  .version-shell-v009 .concourse-exit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .version-shell-v009 .concourse-header {
+    position: relative;
+    top: 0;
+    margin-top: 5.6rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .version-shell-v009 .concourse-page {
+    padding-inline: 1rem;
+  }
+
+  .version-shell-v009 .concourse-header {
+    margin-inline: 1rem;
+    padding: 0.85rem;
+  }
+
+  .version-shell-v009 .concourse-board h1 {
+    font-size: clamp(3rem, 12vw, 4.6rem);
+  }
+
+  .version-shell-v009 .concourse-ledger,
+  .version-shell-v009 .concourse-hero-grid,
+  .version-shell-v009 .concourse-stage-legend,
+  .version-shell-v009 .concourse-platform-meta,
+  .version-shell-v009 .concourse-notice-stack,
+  .version-shell-v009 .concourse-exit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v009 .concourse-platform-window {
+    min-height: 21rem;
+  }
+
+  .version-shell-v009 .concourse-platform-header,
+  .version-shell-v009 .concourse-stop-head {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v009 .concourse-platform-header {
+    display: grid;
+  }
+
+  .version-shell-v009 .concourse-line::before {
+    left: 1.92rem;
+  }
+
+  .version-shell-v009 .concourse-stop-node {
+    margin-left: 1.32rem;
+  }
+}

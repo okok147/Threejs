@@ -1,18 +1,18 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v008",
+    "defaultVersion": "v009",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v008|pushed-main|2026-03-28T16:05:29+08:00",
-    "releaseStatus": "pushed-main",
-    "releaseNotes": "v008 Studio Rift 已推送 main；GitHub Pages deploy 與 hosted verification 仍待這輪後續觀測確認。",
+    "releaseFingerprint": "v009|committed-not-pushed|2026-03-28T16:29:24+08:00",
+    "releaseStatus": "committed-not-pushed",
+    "releaseNotes": "v009 Network Concourse 預定以本輪 commit 收束；在成功 push 前不得宣稱已部署或已上線驗證。",
     "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
-    "liveVerificationNotes": "最後一次可確認的線上觀測（2026-03-27T23:37:13+08:00）顯示 hosted page 尚未反映當時的 v005 工作樹；本輪因 sandbox DNS 無法解析 okok147.github.io，未能重新驗證目前線上狀態。",
-    "lastUpdated": "2026-03-28T16:05:29+08:00"
+    "liveVerificationNotes": "最後一次可確認的線上觀測仍停在 2026-03-27T23:37:13+08:00；本輪尚未重新驗證 hosted page 是否已反映 v009 或其前序本地工作樹。",
+    "lastUpdated": "2026-03-28T16:29:24+08:00"
   },
   "versions": [
     {
@@ -532,6 +532,71 @@
       "status": "experimental",
       "releaseStatus": "pushed-main",
       "releaseNotes": "v008 Studio Rift 已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
+    },
+    {
+      "versionNumber": "v009",
+      "slug": "network-concourse",
+      "title": "Network Concourse",
+      "concept": "把版本實驗室翻成都市公共運輸導向系統，讓使用者先讀路線與轉乘邏輯，再選擇要進入哪一種介面世界；首頁不再像展示頁，而像一座用 departure board、interchange map、service bulletin 與 terminal notices 組成的站體。",
+      "sourcePrinciples": [
+        "Wayfinding works best when each decision point reveals just enough information for the next move instead of flattening the whole system at once",
+        "A transit-scale interface needs consistent signage syntax and stable stop placement so users can build a mental map instead of rereading the whole page",
+        "Visual service information must stay equivalent, legible, and reduced-motion safe so the interface feels like public wayfinding rather than decorative motion"
+      ],
+      "sourceFamiliesConsulted": [
+        "TfL Legible London wayfinding guidance",
+        "BART station wayfinding improvement guidance",
+        "US Access Board rail station sign requirements",
+        "official three.js documentation"
+      ],
+      "styleFamily": "Transit wayfinding / network concourse",
+      "useCaseEmphasis": "版本導覽首頁 / wayfinding-led interface world",
+      "bestFor": "想把版本當成路線、轉乘節點與月台，而不是平鋪卡片來閱讀的人。",
+      "keyTraits": [
+        "departure board hero",
+        "interchange line map",
+        "service bulletin grids"
+      ],
+      "navigationModel": "sticky route header + line-map interchanges + platform anchors",
+      "motionLanguage": "signal sweeps、route pulses 與 timetable-style progressive disclosure",
+      "narrativeStructure": "departure board -> interchange map -> service bulletins -> terminal notices",
+      "sceneTreatment": "a suspended signal lantern inside a backlit platform canopy rather than a center-stage spectacle",
+      "notableUxIdeas": [
+        "把版本瀏覽做成三條 transit lines 與 stop map，讓 current version 像 active platform 而不是 selected card",
+        "hero 指標、方法與工程內容全部翻成 departure board、ops timetable 與 station notice，讓 framing 先於視覺裝飾",
+        "terminal 段保留 source family 與 archive note，讓出口資訊也延續同一套 wayfinding 語法"
+      ],
+      "notableFeatureIdeas": [
+        "route-line grouping built directly from registered versions to create a navigable network map",
+        "platform viewport that keeps the three.js scene contained as a signal object instead of a full-page background",
+        "version-specific transit styling for the shared shell without rewriting the shared navigator structure"
+      ],
+      "performanceNotes": [
+        "The scene stays inside a bounded platform viewport and reuses the existing cleanup-safe renderer lifecycle.",
+        "Most interface motion stays on transforms, opacity, and simple background offsets so the route system remains deployable.",
+        "Reduced-motion removes signal drift and keeps the map readable without relying on constant pulses."
+      ],
+      "entryFile": "versions/v009-network-concourse/index.js",
+      "route": "/?v=v009",
+      "tokenFile": "tokens/v009.json",
+      "screenshotPaths": [
+        "screenshots/v009/poster.svg"
+      ],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v009/poster.svg",
+          "label": "Network Concourse poster preview",
+          "alt": "v009 Network Concourse 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-28T16:28:00+08:00",
+      "status": "stable",
+      "releaseStatus": "committed-not-pushed",
+      "releaseNotes": "v009 Network Concourse 預定以本輪 commit 收束；在成功 push 前不得宣稱已部署或已上線驗證。"
     }
   ]
 }
