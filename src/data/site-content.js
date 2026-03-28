@@ -124,6 +124,12 @@ export const siteContent = {
       summary: '把版本切換改寫成一場白天巡遊：hero 是舞台、版本列是 procession、研究與 lineage 則在 afterglow 裡繼續發光。',
     },
     {
+      name: 'Studio Rift',
+      family: 'Experimental studio rupture',
+      fit: '實驗型首頁 / motion-led design essay',
+      summary: '把 shared shell 與版本內容一起拉進創作工具語境：導演 rail、full-screen acts、cast stack 與 clipped fragments 同時取代原本的安穩頁面模式。',
+    },
+    {
       name: 'Exhibition Monograph',
       family: 'Museum monograph',
       fit: '案例深讀 / 策展型作品頁',

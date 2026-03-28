@@ -1,18 +1,18 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v007",
+    "defaultVersion": "v008",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v007|pushed-main|2026-03-28T15:47:34+08:00",
-    "releaseStatus": "pushed-main",
-    "releaseNotes": "v007 Chroma Parade 已推送 main；GitHub Pages deploy 與 hosted verification 仍待這輪後續觀測確認。",
+    "releaseFingerprint": "v008|committed-not-pushed|2026-03-28T16:05:01+08:00",
+    "releaseStatus": "committed-not-pushed",
+    "releaseNotes": "v008 Studio Rift 已完成 validation，接下來進入 commit / push / hosted verification 階段；在 push 成功前，shared lab 仍以 committed-not-pushed 記錄真實狀態。",
     "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
     "liveVerificationNotes": "最後一次可確認的線上觀測（2026-03-27T23:37:13+08:00）顯示 hosted page 尚未反映當時的 v005 工作樹；本輪因 sandbox DNS 無法解析 okok147.github.io，未能重新驗證目前線上狀態。",
-    "lastUpdated": "2026-03-28T15:47:34+08:00"
+    "lastUpdated": "2026-03-28T16:05:01+08:00"
   },
   "versions": [
     {
@@ -467,6 +467,71 @@
       "status": "stable",
       "releaseStatus": "pushed-main",
       "releaseNotes": "v007 Chroma Parade 已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
+    },
+    {
+      "versionNumber": "v008",
+      "slug": "studio-rift",
+      "title": "Studio Rift",
+      "concept": "把版本實驗室翻成一個被撕開的創作工具前台，讓 shared shell 在這一版也變形成導演台，而內容本身則用 full-screen acts、cast stack 與 clipped fragments 取代熟悉的版本頁骨架。",
+      "sourcePrinciples": [
+        "If the shared shell still feels like the old pattern, a new version has to redefine the outer navigator posture as well as the content composition",
+        "Experimental navigation should reorganize orientation into a new reading system instead of simply hiding familiar controls",
+        "Tool aesthetics and kinetic typography only work when hierarchy, pauses, and transform-first motion keep the interface legible and deployable"
+      ],
+      "sourceFamiliesConsulted": [
+        "curated award-winning interaction inspiration",
+        "curated experimental navigation inspiration",
+        "official scroll-linked motion guidance",
+        "official accessibility guidance"
+      ],
+      "styleFamily": "Experimental studio rupture / director-console essay",
+      "useCaseEmphasis": "實驗型首頁 / motion-led design essay",
+      "bestFor": "想看一個不只內容區改頭換面，連 shared shell 也在 active 時改變姿態的版本。",
+      "keyTraits": [
+        "full-screen acts",
+        "director rail",
+        "slashed cast stack"
+      ],
+      "navigationModel": "director rail + scene markers + cast stack",
+      "motionLanguage": "scroll-scrubbed layer drift、slit sweeps 與 clipped strip motion",
+      "narrativeStructure": "cold open -> cast stack -> breakdown fragments -> exit log",
+      "sceneTreatment": "a non-orbital studio stage built from silver slabs, scan lines, and kinetic type planes",
+      "notableUxIdeas": [
+        "在 v008 啟用 version-specific shared shell 變形，讓 toolbar 變成桌機側邊導演台",
+        "把版本切換做成帶時間碼的 cast strips，而不是重複既有 tabs / cards 語法",
+        "把方法與工程細節拆成 clipped fragments，讓閱讀更像 scrub 一段 motion essay"
+      ],
+      "notableFeatureIdeas": [
+        "right-side scene rail that keeps orientation without using a conventional top header",
+        "desktop-only director rail treatment for the shared version navigator when v008 is active",
+        "progressive-enhancement-friendly stage motion built from transform-first CSS layers"
+      ],
+      "performanceNotes": [
+        "Primary motion stays on transforms and opacity, with no dependency on a continuous orbiting WebGL core.",
+        "The most experimental layout changes are scoped to v008-specific selectors so other versions keep stable shared-shell behavior.",
+        "Reduced-motion collapses ticker drift, slab offsets, and scene sweeps to keep the interface readable."
+      ],
+      "entryFile": "versions/v008-studio-rift/index.js",
+      "route": "/?v=v008",
+      "tokenFile": "tokens/v008.json",
+      "screenshotPaths": [
+        "screenshots/v008/poster.svg"
+      ],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v008/poster.svg",
+          "label": "Studio Rift poster preview",
+          "alt": "v008 Studio Rift 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-28T15:56:39+08:00",
+      "status": "experimental",
+      "releaseStatus": "committed-not-pushed",
+      "releaseNotes": "v008 Studio Rift 已完成 validation 與版本註冊；待 push main 與 hosted verification 後再升級發布狀態。"
     }
   ]
 }

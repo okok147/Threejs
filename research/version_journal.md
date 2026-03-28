@@ -578,3 +578,22 @@
 - 快照：`screenshots/v007/poster.svg`
 - 風險：目前 `v007` 仍只有概念 poster，尚未補真實瀏覽器截圖；此外此刻 release truth 仍要等 validation、commit、push 與 hosted verification 完成後才能升級。
 - 下一個最佳方向：先跑完整 validation 與 release path，再核對 hosted HTML / bundle 是否已切到 `v007` 指紋。
+
+## 2026-03-28T15:56:39+08:00 / v008-studio-rift
+
+- 動作：新增第八個不可覆蓋版本，直接回應「其他元素還像舊 pattern」這個問題，讓 `v008` 不只改內容區，也在 active 時改寫 shared shell 的姿態。
+- Visual thesis：tool-aesthetic rupture + silver-black stage + acid-green ignition + clipped cast stack。
+- Content plan：cold open -> cast stack -> breakdown fragments -> exit log。
+- Interaction thesis：
+  - 內容頁不再有內建 header，而是改成 full-screen acts + right-side scene rail。
+  - shared toolbar 在 `v008` 桌機下被拉成左側 director rail，讓 version browser 也脫離原本的水平切換列感。
+  - 版本切換被翻成 slashed cast strips 與時間碼，不再沿用 card / tab 的既有語氣。
+- 為何它明顯不同：v007 雖然視覺已經改得很開，但 shared shell 仍保留較熟悉的姿態；v008 則把外層 navigator、頁面骨架、版本切換語法與動態語言一起拉向 experimental studio 方向，整體閱讀感更像 motion essay 而不是版本首頁。
+- 研究轉譯：
+  - Fine Thought -> 取 creative-tool aesthetic 與前台介面共存的張力，不照抄其具體畫面。
+  - Experimental Navigation Gallery -> 取重新編排方向感的原則，讓 navigation 變成導演 rail，而不是故意把導覽藏起來。
+  - Vintage 2021 -> 取 kinetic typography 作為構圖骨架的做法，而不是讓文字無意義地一直抖動。
+  - MDN scroll-driven animations -> 保留 experimental motion 的 progressive-enhancement 思維與 fallback 邊界。
+- 快照：`screenshots/v008/poster.svg`
+- 風險：目前 `v008` 仍只有概念 poster，沒有真實瀏覽器截圖；此外 shared shell 的 v008-specific 變形需要用實際 viewport 再做一次 browser-level 驗證。
+- 下一個最佳方向：先跑 validation 與 release path，確認 version-specific shared shell 覆寫不會破壞切換與 deploy。

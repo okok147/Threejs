@@ -520,3 +520,53 @@
 - 讓主動畫從 orbit core 轉到 page choreography
 - 把版本切換從 vertical list 變成橫向巡遊隊列
 - 用高彩 daylight palette 與 giant type 重建整個介面世界
+
+## 2026-03-28 / v008 Studio Rift Research
+
+### Sources reviewed
+
+- [Fine Thought - Awwwards](https://www.awwwards.com/sites/fine-thought)
+- [Experimental Navigation Gallery - Awwwards Inspiration](https://www.awwwards.com/inspiration/experimental-navigation-gallery)
+- [Vintage 2021 - Awwwards Honorable Mention](https://www.awwwards.com/sites/vintage-2021)
+- [CSS scroll-driven animations - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations)
+
+### Source quality notes
+
+- Fine Thought：最有價值的是它把工具感、創作流程感與高完成度前台介面揉在一起，而不是照搬 SaaS shell。
+- Experimental Navigation Gallery：提醒 experimental navigation 的價值在於重新組織方向感，而不是把正常導覽故意藏起來。
+- Vintage 2021：kinetic typography 的重點不是字一直動，而是字本身成為構圖、節奏與轉場的骨架。
+- MDN scroll-driven animations：提供實驗性 scroll-linked motion 的正式語法與 support 邊界，適合拿來做 progressive enhancement，而不是直接無 fallback 硬上。
+
+### Extracted principles
+
+- 如果使用者已經覺得 shared shell 還像舊模式，新的版本就不能只換內容區；外層切換介面在該版本下也要被重新定義。
+- experimental 不是混亂，而是把方向感重新編排成另一種閱讀機制，例如 director rail、scene markers、cast stack。
+- 當 giant type、tool aesthetics 與 clipped surfaces 同時存在時，真正的重點是節奏控制，不是元素數量。
+- 版本切換若要擺脫舊 pattern，可以把它從 tabs / cards 翻成場景卡帶、時間碼與 cast order。
+- scroll-linked motion 應保留 fallback，優先使用 transform / opacity 與 reduced-motion 收斂。
+
+### Anti-patterns
+
+- 只是把 shared toolbar 換色，外層結構和操作感完全不變。
+- 把 experimental 理解成亂排版，結果失去可預測的方向感。
+- 把 kinetic typography 變成一直晃動的大字，卻沒有資訊層級與停頓。
+- 將版本清單仍然做成普通卡片，只是在卡片外層加幾條斜線。
+
+### Possible style families
+
+- Experimental studio rupture
+- Director-console essay
+- Cast-stack interface
+- Tool aesthetic frontstage
+
+### Preserve
+
+- version switching 必須仍然清楚、可達、可搜尋
+- manifest / tokens / poster / journal 的版本治理鏈
+- reduced-motion 與 keyboard-friendly 導覽
+
+### Reinvent
+
+- shared shell 在 v008 下的空間編排與姿態
+- 版本列表從 tabs / browser list 轉為 cast stack 語法
+- 首頁骨架從長頁 section 轉為 full-screen acts

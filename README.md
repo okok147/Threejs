@@ -1,6 +1,6 @@
 # 光軌
 
-一個 versioned three.js frontend style laboratory。現在這個 repo 不再只保留單一首頁，而是會持續累積 `v001`、`v002`、`v003`、`v004`、`v005`、`v006`、`v007` 等完整網站版本，讓同一份內容可以被不同的風格、版面與 3D 語言重新翻譯。
+一個 versioned three.js frontend style laboratory。現在這個 repo 不再只保留單一首頁，而是會持續累積 `v001`、`v002`、`v003`、`v004`、`v005`、`v006`、`v007`、`v008` 等完整網站版本，讓同一份內容可以被不同的風格、版面與 3D 語言重新翻譯。
 
 ## 開發
 
@@ -37,6 +37,7 @@ npm run build
 - `v005 / Tidal Atlas`: 潮汐圖譜型探索頁，強調 chart window、route bands 與 beacon room
 - `v006 / Spectral Moth`: 黑白 glitch fauna 海報型首頁，強調 dither poster、pixel dispersion 與 field-log strips
 - `v007 / Chroma Parade`: 高彩巡遊型首頁，強調 giant type、parallax veils、procession lane 與 afterglow archive
+- `v008 / Studio Rift`: 極實驗型首頁，強調 full-screen acts、slashed cast stack、director rail 與 version-specific shared shell 變形
 
 ## Three.js 實作品質基線
 
@@ -52,7 +53,7 @@ npm run build
 ## Preview / Snapshot Provenance
 
 - `version-manifest.json` 會同時保留 `screenshotPaths` 與 `previewArtifacts`；前者維持 registry 相容性，後者則明確標註預覽資產的 `kind`、`origin` 與 `snapshotReadiness`。
-- 目前 `v001` 到 `v007` 都只有 repo 內維護的概念海報預覽，不是假裝成真實瀏覽器截圖。
+- 目前 `v001` 到 `v008` 都只有 repo 內維護的概念海報預覽，不是假裝成真實瀏覽器截圖。
 - 這個 sandbox 無法在本輪開本地 HTTP listener，因此真實 browser screenshot pipeline 仍待後續環境放行後再接上。
 
 ## Release Truth

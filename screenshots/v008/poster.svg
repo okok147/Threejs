@@ -1,0 +1,17 @@
+<svg width="1280" height="768" viewBox="0 0 1280 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="768" fill="#05060A"/>
+  <rect x="700" y="86" width="470" height="566" rx="30" fill="#0D1016"/>
+  <path d="M744 128H1088L1038 300H694L744 128Z" fill="#E7EDF6" fill-opacity="0.16" stroke="#E7EDF6" stroke-opacity="0.32"/>
+  <path d="M818 286H1126L1098 414H790L818 286Z" fill="#9CFF2E" fill-opacity="0.22" stroke="#9CFF2E" stroke-opacity="0.46"/>
+  <path d="M776 446H1116L1084 576H744L776 446Z" fill="#E7EDF6" fill-opacity="0.12" stroke="#E7EDF6" stroke-opacity="0.28"/>
+  <path d="M676 164L1168 596" stroke="#9CFF2E" stroke-opacity="0.52" stroke-width="2"/>
+  <path d="M676 238L1170 510" stroke="#E7EDF6" stroke-opacity="0.28" stroke-width="1.5"/>
+  <path d="M96 530H636" stroke="#E7EDF6" stroke-opacity="0.24" stroke-width="2" stroke-dasharray="12 14"/>
+  <path d="M96 576H636" stroke="#E7EDF6" stroke-opacity="0.24" stroke-width="2" stroke-dasharray="12 14"/>
+  <circle cx="1110" cy="138" r="44" fill="#9CFF2E" fill-opacity="0.16"/>
+  <text x="96" y="110" fill="#E7EDF6" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4">V008 / STUDIO RIFT</text>
+  <text x="96" y="148" fill="#E7EDF6" fill-opacity="0.7" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="3">EXPERIMENTAL TOOL AESTHETIC / SLASHED PANELS / FULL-SCREEN ACTS</text>
+  <text x="96" y="312" fill="#E7EDF6" font-family="IBM Plex Sans Condensed, sans-serif" font-size="184" font-weight="700" letter-spacing="-8">STUDIO</text>
+  <text x="96" y="454" fill="#9CFF2E" font-family="IBM Plex Sans Condensed, sans-serif" font-size="184" font-weight="700" letter-spacing="-8">RIFT</text>
+  <text x="96" y="650" fill="#E7EDF6" fill-opacity="0.72" font-family="IBM Plex Sans, sans-serif" font-size="28">把創作工具介面撕成前台舞台。</text>
+</svg>
