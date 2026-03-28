@@ -3,13 +3,13 @@ import manifest from '../version-manifest.json'
 import { siteContent } from './data/site-content.js'
 import { createBrowserDialogController } from './lib/browser-dialog.js'
 import {
+  buildNavigatorUrl,
   buildSearchIndex as buildNavigatorSearchIndex,
   getCompareAxes as getNavigatorCompareAxes,
   getSuggestedCompareVersions as getNavigatorSuggestedCompareVersions,
   getVersionTabIntent,
   isValidCompareTarget as isValidNavigatorCompareTarget,
-  resolveInitialCompareVersion,
-  resolveInitialVersion,
+  resolveNavigatorRouteState,
 } from './lib/version-navigator.js'
 import {
   getBrowserShortcutAction,
@@ -73,20 +73,16 @@ const versions = manifest.versions
 const versionNumbers = versions.map((version) => version.versionNumber)
 const versionMap = new Map(versions.map((version) => [version.versionNumber, version]))
 const hostedUrl = manifest.lab.hostedUrl || siteContent.liveUrl
-const initialParams = new URLSearchParams(window.location.search)
-
-let activeVersionNumber = resolveInitialVersion({
-  requestedVersion: initialParams.get('v'),
-  storedVersion: window.localStorage.getItem(STORAGE_KEY),
+const initialRouteState = resolveNavigatorRouteState({
+  search: window.location.search,
   defaultVersion: manifest.lab.defaultVersion,
   versionMap,
-})
-let compareVersionNumber = resolveInitialCompareVersion({
-  activeVersion: activeVersionNumber,
-  requestedCompare: initialParams.get('compare'),
+  storedVersion: window.localStorage.getItem(STORAGE_KEY),
   storedCompare: window.localStorage.getItem(COMPARE_STORAGE_KEY),
-  versionMap,
 })
+
+let activeVersionNumber = initialRouteState.activeVersionNumber
+let compareVersionNumber = initialRouteState.compareVersionNumber
 let disposeActiveVersion = () => {}
 let lastFilteredVersions = versions
 
@@ -357,9 +353,13 @@ window.addEventListener(
   { once: true }
 )
 
-renderLabVersion(activeVersionNumber)
+window.addEventListener('popstate', () => {
+  applyNavigatorRouteState({ historyMode: 'none' })
+})
 
-function renderLabVersion(versionNumber) {
+renderLabVersion(activeVersionNumber, { historyMode: 'replace' })
+
+function renderLabVersion(versionNumber, { historyMode = 'push' } = {}) {
   const manifestEntry = versionMap.get(versionNumber) ?? versionMap.get(manifest.lab.defaultVersion)
   const renderer = VERSION_RENDERERS[manifestEntry.versionNumber]
 
@@ -384,7 +384,7 @@ function renderLabVersion(versionNumber) {
   focusableVersionNumber = activeVersionNumber
   document.body.dataset.activeVersion = activeVersionNumber
   document.body.dataset.compareVersion = compareVersionNumber || ''
-  updateUrl(activeVersionNumber, compareVersionNumber)
+  syncNavigatorUrl(activeVersionNumber, compareVersionNumber, historyMode)
   window.localStorage.setItem(STORAGE_KEY, activeVersionNumber)
 
   if (compareVersionNumber) {
@@ -747,7 +747,7 @@ function toggleCompareVersion(versionNumber) {
 
   compareVersionNumber = compareVersionNumber === versionNumber ? '' : versionNumber
   updateDock(versionMap.get(activeVersionNumber))
-  updateUrl(activeVersionNumber, compareVersionNumber)
+  syncNavigatorUrl(activeVersionNumber, compareVersionNumber, 'push')
 
   if (compareVersionNumber) {
     window.localStorage.setItem(COMPARE_STORAGE_KEY, compareVersionNumber)
@@ -759,7 +759,7 @@ function toggleCompareVersion(versionNumber) {
 function clearCompareVersion() {
   compareVersionNumber = ''
   updateDock(versionMap.get(activeVersionNumber))
-  updateUrl(activeVersionNumber, compareVersionNumber)
+  syncNavigatorUrl(activeVersionNumber, compareVersionNumber, 'push')
   window.localStorage.removeItem(COMPARE_STORAGE_KEY)
 }
 
@@ -807,18 +807,53 @@ function setBrowserOpen(nextState) {
   browserDialog.setOpen(nextState)
 }
 
-function updateUrl(versionNumber, compareVersion) {
-  const params = new URLSearchParams(window.location.search)
-  params.set('v', versionNumber)
+function applyNavigatorRouteState({ historyMode = 'replace' } = {}) {
+  const routeState = resolveNavigatorRouteState({
+    search: window.location.search,
+    defaultVersion: manifest.lab.defaultVersion,
+    versionMap,
+  })
 
-  if (compareVersion) {
-    params.set('compare', compareVersion)
-  } else {
-    params.delete('compare')
+  compareVersionNumber = routeState.compareVersionNumber
+
+  if (routeState.activeVersionNumber !== activeVersionNumber) {
+    renderLabVersion(routeState.activeVersionNumber, { historyMode })
+    return
   }
 
-  const nextUrl = `${window.location.pathname}?${params.toString()}${window.location.hash}`
-  window.history.replaceState({}, '', nextUrl)
+  focusableVersionNumber = activeVersionNumber
+  document.body.dataset.compareVersion = compareVersionNumber || ''
+  syncNavigatorUrl(activeVersionNumber, compareVersionNumber, historyMode)
+
+  if (compareVersionNumber) {
+    window.localStorage.setItem(COMPARE_STORAGE_KEY, compareVersionNumber)
+  } else {
+    window.localStorage.removeItem(COMPARE_STORAGE_KEY)
+  }
+
+  updateDock(versionMap.get(activeVersionNumber))
+}
+
+function syncNavigatorUrl(versionNumber, compareVersion, historyMode = 'push') {
+  if (historyMode === 'none') {
+    return
+  }
+
+  const nextUrl = buildNavigatorUrl({
+    pathname: window.location.pathname,
+    search: window.location.search,
+    hash: window.location.hash,
+    versionNumber,
+    compareVersion,
+  })
+  const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`
+
+  if (nextUrl === currentUrl) {
+    return
+  }
+
+  const method = historyMode === 'replace' ? 'replaceState' : 'pushState'
+  window.history[method]({}, '', nextUrl)
 }
 
 function getPrimaryPreview(version) {

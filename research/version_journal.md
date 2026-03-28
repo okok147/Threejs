@@ -400,3 +400,38 @@
   - `npm run build`
 - 風險：目前快照仍是概念 poster，不是真實瀏覽器截圖；此外這份最新 v005 工作樹尚未推送 main，因此 hosted site 仍停留在上一個已部署版本。
 - 下一個最佳方向：先把這輪 commit 推上 main 並核對 hosted HTML fingerprint；若部署成功，再補最小 browser screenshot / smoke test 來替 v005 留下更可信的視覺證據。
+
+## 2026-03-28T09:19:36+08:00 / Navigator History State Sync
+
+- 動作類型：improve universal version navigator。
+- Thesis：把 shared navigator 從「只會改 query string」補成真正受 URL / history 驅動的切換器，讓版本與 compare 狀態能被瀏覽器前進 / 返回忠實重播，而不是只在單次 render 裡成立。
+- Sources consulted：
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js) 的現有 navigator wiring
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-navigator.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-navigator.js) 與既有 `tests/` 保護層
+  - 既有 journal 內的 manual-activation tabs / release truth 原則
+- Principles extracted：
+  - 版本切換若暴露 `?v=` / `?compare=`，就不能只有 shareable-looking URL；history stack 也必須能回放同一組狀態。
+  - 初始載入應用 `replace` 做 canonicalization，但使用者明確切換版本或 compare 時應建立新的 history entry。
+  - `popstate` 重播不能回頭讀 localStorage 決策，應以當前 URL 為準，否則返回行為會被本地偏好覆蓋。
+  - deployment truth 需要避免過時斷言；若本輪無法重新驗證 hosted site，就必須把線上觀測寫成帶時間戳的最後已知狀態。
+- Implementation summary：
+  - 擴充 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-navigator.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-navigator.js)，新增 `resolveNavigatorRouteState()` 與 `buildNavigatorUrl()`，集中管理 URL -> navigator state 與 canonical URL 組裝。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js)，讓初始 render 使用 `replace` 正規化 URL、使用者切換版本/compare 時改用 `pushState`，並補上 `popstate` 重播。
+  - 擴充 [`/Users/kelvinlau/Desktop/Repo/Threejs/tests/version-navigator.test.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/tests/version-navigator.test.mjs)，覆蓋 route-state 正規化、compare 清理、query/hash 保留與 canonical URL 組裝。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json) 與 [`/Users/kelvinlau/Desktop/Repo/Threejs/index.html`](/Users/kelvinlau/Desktop/Repo/Threejs/index.html)，把 lab release truth 降回 `committed-not-pushed`，並把 live note 改寫成「最後一次已知觀測」而非當前線上斷言。
+- Validation results：
+  - `npm test`：通過，18 個 tests 全數成功。
+  - `npm run lab:sync-html`：通過，已同步最新 `releaseFingerprint` 到 `index.html`。
+  - `npm run lab:check`：通過，串起 `npm test`、`npm run lab:validate` 與 `npm run build`；目前驗證 5 個 versions，production bundle 為 JS 約 664.63 kB、CSS 約 86.60 kB（未 gzip 前）。
+- Release results：
+  - 已嘗試執行 `git push origin main`。
+  - push 失敗：sandbox DNS 無法解析 `github.com`，因此本輪最高真實狀態仍是 `committed-not-pushed`。
+- Live verification results：
+  - 本輪無法重新抓取 hosted URL；因此沒有新的 live verification。
+  - 目前只保留最後一次已知觀測：2026-03-27T23:37:13+08:00 的 hosted page 尚未反映當時的 v005 工作樹。
+- Risks：
+  - 新增的是 browser history state correctness，不是真實瀏覽器自動化；仍缺少 browser-level smoke test 驗證不同瀏覽器對 back/forward、focus 與 compare 的整體互動。
+  - hosted site 目前狀態未知；直到網路限制解除前，都不能宣稱這輪 shared navigator 已上線。
+- Next likely direction：
+  - 若網路限制解除，先 push 這輪 commit 並重新核對 hosted HTML fingerprint。
+  - 之後再補最小 browser smoke test，直接驗證 back/forward、compare panel 與 mobile shell。

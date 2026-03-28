@@ -2,11 +2,13 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 import {
+  buildNavigatorUrl,
   buildSearchIndex,
   getCompareAxes,
   getSuggestedCompareVersions,
   getVersionTabIntent,
   isValidCompareTarget,
+  resolveNavigatorRouteState,
   resolveInitialCompareVersion,
   resolveInitialVersion,
 } from '../src/lib/version-navigator.js'
@@ -173,6 +175,71 @@ test('resolveInitialCompareVersion 只接受有效 compare target', () => {
       versionMap,
     }),
     ''
+  )
+})
+
+test('resolveNavigatorRouteState 會把 URL 狀態正規化成可切換版本', () => {
+  assert.deepEqual(
+    resolveNavigatorRouteState({
+      search: '?v=v002&compare=v003',
+      defaultVersion: 'v001',
+      versionMap,
+      storedVersion: 'v001',
+      storedCompare: 'v001',
+    }),
+    {
+      activeVersionNumber: 'v002',
+      compareVersionNumber: 'v003',
+    }
+  )
+
+  assert.deepEqual(
+    resolveNavigatorRouteState({
+      search: '?v=v999&compare=v001',
+      defaultVersion: 'v003',
+      versionMap,
+    }),
+    {
+      activeVersionNumber: 'v003',
+      compareVersionNumber: 'v001',
+    }
+  )
+
+  assert.deepEqual(
+    resolveNavigatorRouteState({
+      search: '?compare=v003',
+      defaultVersion: 'v001',
+      versionMap,
+      storedVersion: 'v002',
+      storedCompare: 'v001',
+    }),
+    {
+      activeVersionNumber: 'v002',
+      compareVersionNumber: 'v003',
+    }
+  )
+})
+
+test('buildNavigatorUrl 會保留其他 query/hash 並同步 compare 參數', () => {
+  assert.equal(
+    buildNavigatorUrl({
+      pathname: '/Threejs/',
+      search: '?theme=lab&v=v001&compare=v003',
+      hash: '#archive',
+      versionNumber: 'v002',
+    }),
+    '/Threejs/?theme=lab&v=v002#archive'
+  )
+
+  assert.equal(
+    buildNavigatorUrl({
+      pathname: '/Threejs/',
+      search: '?theme=lab',
+      hash: '#top',
+      versionNumber: 'v004',
+      compareVersion: 'v005',
+    }),
+    '/Threejs/?theme=lab&v=v004&compare=v005#top'
   )
 })
 

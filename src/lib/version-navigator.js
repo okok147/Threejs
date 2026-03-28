@@ -27,6 +27,52 @@ export function resolveInitialCompareVersion({
   return ''
 }
 
+export function resolveNavigatorRouteState({
+  search = '',
+  defaultVersion,
+  versionMap,
+  storedVersion = '',
+  storedCompare = '',
+}) {
+  const params = new URLSearchParams(search)
+  const activeVersionNumber = resolveInitialVersion({
+    requestedVersion: params.get('v'),
+    storedVersion,
+    defaultVersion,
+    versionMap,
+  })
+
+  return {
+    activeVersionNumber,
+    compareVersionNumber: resolveInitialCompareVersion({
+      activeVersion: activeVersionNumber,
+      requestedCompare: params.get('compare'),
+      storedCompare,
+      versionMap,
+    }),
+  }
+}
+
+export function buildNavigatorUrl({
+  pathname = '/',
+  search = '',
+  hash = '',
+  versionNumber = '',
+  compareVersion = '',
+}) {
+  const params = new URLSearchParams(search)
+  params.set('v', versionNumber)
+
+  if (compareVersion) {
+    params.set('compare', compareVersion)
+  } else {
+    params.delete('compare')
+  }
+
+  const queryString = params.toString()
+  return `${pathname}${queryString ? `?${queryString}` : ''}${hash}`
+}
+
 export function buildSearchIndex({ version, lab }) {
   return [
     version.versionNumber,
