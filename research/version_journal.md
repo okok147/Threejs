@@ -471,3 +471,38 @@
 - Next likely direction：
   - 若網路限制解除，先把目前本地 commit 推上 main，再重新核對 hosted HTML fingerprint 與 route-effective release badge 是否一致。
   - 若網路限制仍存在，下一步就補最小 browser smoke test，讓 shared navigator 的 compare / mobile shell 也有更接近真實互動層的保護網。
+
+## 2026-03-28T14:00:41+08:00 / Idempotent HTML Metadata Sync
+
+- 動作類型：improve deployment / release reliability。
+- Thesis：`lab:sync-html` 不應在每次執行時持續把 `<meta>` 行往右推，因為 release metadata 同步器若不冪等，就會讓 daily run 無端產生 drift，削弱發布真實度與工作樹可信度。
+- Sources consulted：
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/scripts/sync-html-metadata.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/scripts/sync-html-metadata.mjs) 的現有 HTML metadata 同步流程
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/index.html`](/Users/kelvinlau/Desktop/Repo/Threejs/index.html) 已出現的 meta 行縮排漂移
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/tests/`](/Users/kelvinlau/Desktop/Repo/Threejs/tests) 既有 Node test 保護方式
+- Principles extracted：
+  - release / deployment metadata 的同步器必須可重跑且不產生額外 diff，否則 daily automation 會被自己的工具污染。
+  - HTML metadata 的字串替換若會保留舊行前空白，就應先正規化整行，再寫入標準縮排。
+  - 這種 shared reliability 修補必須進可測 helper，而不是把 regex 細節留在 side-effect script 裡難以回歸驗證。
+- Implementation summary：
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/lab-html-metadata.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/lab-html-metadata.js)，集中處理 lab HTML metadata 的同步與 fingerprint 回傳，並把 `<meta>` 行替換改成整行正規化。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/scripts/sync-html-metadata.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/scripts/sync-html-metadata.mjs)，改為使用共享 helper，避免 script 本體再持有難測的替換邏輯。
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/tests/lab-html-metadata.test.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/tests/lab-html-metadata.test.mjs)，覆蓋漂移縮排正規化與 repeated sync idempotence。
+  - 重新同步 [`/Users/kelvinlau/Desktop/Repo/Threejs/index.html`](/Users/kelvinlau/Desktop/Repo/Threejs/index.html)，把 lab meta 行還原為穩定的四空格縮排。
+- Validation results：
+  - `npm test`：通過，24 個 tests 全數成功，包含新的 HTML metadata idempotence 回歸測試。
+  - `npm run lab:sync-html`：連續執行兩次後，`index.html` 的 SHA1 皆為 `98d8754a624ebd0ff94cb829d657f52212b46533`，確認同步器重跑不再產生新 diff。
+  - `npm run lab:validate`：通過，5 個 versions registry 與 HTML metadata schema 仍然有效。
+  - `npm run build`：通過，production bundle 成功；JS 約 666.74 kB、CSS 約 86.60 kB（未 gzip 前）。
+- Release results：
+  - 已建立本地 commit：`20e8346 Make lab HTML sync idempotent`。
+  - 已嘗試執行 `git push origin main`，但 sandbox DNS 無法解析 `github.com`，因此 push 失敗；本輪最高真實狀態仍是 `committed-not-pushed`。
+- Live verification results：
+  - 本輪沒有新的 hosted verification。
+  - 仍只保留最後一次已知觀測：2026-03-27T23:37:13+08:00 的 hosted page 尚未反映當時的 v005 工作樹。
+- Risks：
+  - 這輪修的是 metadata 同步器的冪等性，不是實際 deploy；線上頁面是否已更新仍未知。
+  - 目前仍缺少 browser-level smoke test，無法直接驗證 navigator 與 browser dialog 在真實 viewport 下的整體互動。
+- Next likely direction：
+  - 若網路限制解除，先 push 目前累積的本地 commits，並重新核對 hosted HTML fingerprint。
+  - 若網路限制仍存在，優先補最小 browser smoke test，覆蓋 tabs、history 與 browser dialog 的真實互動層。
