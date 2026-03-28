@@ -118,6 +118,12 @@ export const siteContent = {
       summary: '把動物殘影、dot matrix 與 pixel dispersion 疊成黑白 poster，讓版本切換像掃描一張正在腐蝕的標本。',
     },
     {
+      name: 'Chroma Parade',
+      family: 'Daylight performance system',
+      fit: '高能首頁 / typography-driven showcase',
+      summary: '把版本切換改寫成一場白天巡遊：hero 是舞台、版本列是 procession、研究與 lineage 則在 afterglow 裡繼續發光。',
+    },
+    {
       name: 'Exhibition Monograph',
       family: 'Museum monograph',
       fit: '案例深讀 / 策展型作品頁',

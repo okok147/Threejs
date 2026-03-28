@@ -470,3 +470,53 @@
 - 視覺語言從彩色 atmosphere 改成黑白 poster violence
 - 內容容器從 panels 改成 strips / logs / specimen labels
 - scene 與版面之間的主從與對稱性
+
+## 2026-03-28 / v007 Chroma Parade Research
+
+### Sources reviewed
+
+- [Maskatorium - Awwwards](https://www.awwwards.com/sites/maskatorium)
+- [Haus - Awwwards](https://www.awwwards.com/sites/haus-6)
+- [Responsive Design for Motion | WebKit](https://webkit.org/blog/7551/responsive-design-for-motion/)
+- [How to create high-performance CSS animations | web.dev](https://web.dev/animations-guide/)
+
+### Source quality notes
+
+- Maskatorium：它真正有價值的不是 exotic 題材，而是把 parallax、horizontal scroll 與 layered reveal 組成一條清楚的主體動線。
+- Haus：強項在於高對比 typography 與 image reveal 的節奏控制，證明少數元素也能撐起高張力首頁。
+- WebKit motion guidance：提醒動效應該服務理解與回饋，不是為了展示技術而無限制加速。
+- web.dev animation guide：提供 transform / opacity 優先與 compositor 友善的實務邊界，避免 stunning UI 變成掉幀 UI。
+
+### Extracted principles
+
+- 如果不要再靠 orbit 當主角，動勢就必須移到幕布、字體、帶狀資訊與 scroll choreography 本身。
+- 高彩頁面要先決定一個清楚的版面骨架，再把顏色當成節奏 cue；否則會只剩漂浮的色塊。
+- horizontal procession 應該像第二條敘事軸，而不是普通 carousel；它要承接 hero 之後的注意力轉換。
+- reveal 最有力的時候不是所有元素都同時飛進來，而是讓少數層級用不同速度交接。
+- stunning 依然要守住 reduced-motion 與 transform / opacity 為主的性能界線。
+
+### Anti-patterns
+
+- 把版本切換做成 generic cards，只是換鮮豔配色卻沒改閱讀方式。
+- 整頁同時用 parallax、marquee、mask、hover reveal，結果沒有主從節奏。
+- 用太多小元件破壞 giant type 的壓迫感，讓版面重新退回 dashboard 氣質。
+- 為了炫技改用 layout-heavy animation，讓高彩首頁在低階裝置直接失速。
+
+### Possible style families
+
+- Chroma parade / daylight performance system
+- Kinetic poster stage
+- Ribbon procession index
+- Afterglow archive
+
+### Preserve
+
+- shared navigator 的 current-version awareness 與 switchability
+- manifest / tokens / poster / journal 的正式版本註冊鏈
+- 清楚 anchor flow 與 reduced-motion 對應
+
+### Reinvent
+
+- 讓主動畫從 orbit core 轉到 page choreography
+- 把版本切換從 vertical list 變成橫向巡遊隊列
+- 用高彩 daylight palette 與 giant type 重建整個介面世界

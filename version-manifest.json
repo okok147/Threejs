@@ -1,18 +1,18 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v006",
+    "defaultVersion": "v007",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v006|pushed-main|2026-03-28T15:31:22+08:00",
-    "releaseStatus": "pushed-main",
-    "releaseNotes": "v006 Spectral Moth 與先前累積的 shared shell 改動都已推送 main；目前是否已完成 GitHub Pages deploy 仍待新的 hosted verification。",
+    "releaseFingerprint": "v007|committed-not-pushed|2026-03-28T15:46:51+08:00",
+    "releaseStatus": "committed-not-pushed",
+    "releaseNotes": "v007 Chroma Parade 已完成 validation，接下來進入 commit / push / hosted verification 階段；在 push 成功前，shared lab 仍以 committed-not-pushed 記錄真實狀態。",
     "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
     "liveVerificationNotes": "最後一次可確認的線上觀測（2026-03-27T23:37:13+08:00）顯示 hosted page 尚未反映當時的 v005 工作樹；本輪因 sandbox DNS 無法解析 okok147.github.io，未能重新驗證目前線上狀態。",
-    "lastUpdated": "2026-03-28T15:31:22+08:00"
+    "lastUpdated": "2026-03-28T15:46:51+08:00"
   },
   "versions": [
     {
@@ -402,6 +402,71 @@
       "status": "stable",
       "releaseStatus": "pushed-main",
       "releaseNotes": "這份版本註冊、研究註記與實作已推送 main；是否已進入目前 hosted site 仍以 lab-level live verification notes 為準。"
+    },
+    {
+      "versionNumber": "v007",
+      "slug": "chroma-parade",
+      "title": "Chroma Parade",
+      "concept": "把版本實驗室翻成一場白天進行的高彩巡遊，讓 giant type、layered veils、橫向隊列與 afterglow archive 共同取代 orbit-led hero，形成更像網頁劇場而不是單一 3D showcase 的首頁。",
+      "sourcePrinciples": [
+        "When orbit is no longer the main spectacle, motion must move into typography, layered masks, and page-level choreography instead of a single rotating core",
+        "A horizontal procession should behave like a second narrative rail, carrying version comparison forward without collapsing into a generic card carousel",
+        "High-chroma interfaces still need disciplined anchors, reduced-motion fallbacks, and transform-first animation choices to stay deployable"
+      ],
+      "sourceFamiliesConsulted": [
+        "curated Awwwards interaction inspiration",
+        "official platform motion guidance",
+        "official animation performance guidance",
+        "official accessibility guidance"
+      ],
+      "styleFamily": "Daylight performance system / chroma parade",
+      "useCaseEmphasis": "高能首頁 / typography-driven showcase",
+      "bestFor": "想看最不像 orbit demo 的版本：主動勢來自版面、字體與 procession，而不是中央旋轉物件。",
+      "keyTraits": [
+        "giant condensed type",
+        "parallax veils",
+        "procession lane"
+      ],
+      "navigationModel": "floating stage header + horizontal procession lane + score anchors",
+      "motionLanguage": "parallax veils、marquee drift 與 mask reveal",
+      "narrativeStructure": "overture stage -> procession lane -> score sheets -> afterglow archive",
+      "sceneTreatment": "bounded chroma stage with layered masks, giant words, and no orbit-led centerpiece",
+      "notableUxIdeas": [
+        "把版本切換做成橫向巡遊隊列，讓比較像觀看不同世界從舞台側面經過",
+        "hero 用 giant type 與彩色幕布主導，讓首屏重心來自 page choreography 而不是單一 3D 物件",
+        "用 dark afterglow archive 收尾，把 references、feature lineage 與 archive notes 留在同一個結尾空間"
+      ],
+      "notableFeatureIdeas": [
+        "high-key hero stage with layered veil motion and clipped chroma surfaces",
+        "procession lane that turns version switching into the page's secondary narrative axis",
+        "afterglow archive that shifts the palette at the end instead of repeating another light section"
+      ],
+      "performanceNotes": [
+        "Primary motion stays on CSS transforms and opacity instead of layout-heavy animation.",
+        "The version intentionally avoids a central orbit animation, reducing dependence on continuous scene-driven motion.",
+        "Reduced-motion collapses marquee drift and parallax layers so the page remains readable without spectacle."
+      ],
+      "entryFile": "versions/v007-chroma-parade/index.js",
+      "route": "/?v=v007",
+      "tokenFile": "tokens/v007.json",
+      "screenshotPaths": [
+        "screenshots/v007/poster.svg"
+      ],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v007/poster.svg",
+          "label": "Chroma Parade poster preview",
+          "alt": "v007 Chroma Parade 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-28T15:41:19+08:00",
+      "status": "stable",
+      "releaseStatus": "committed-not-pushed",
+      "releaseNotes": "v007 Chroma Parade 已完成 validation 與版本註冊；待 push main 與 hosted verification 後再升級發布狀態。"
     }
   ]
 }

@@ -1,0 +1,18 @@
+<svg width="1280" height="768" viewBox="0 0 1280 768" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="768" fill="#F7EFDB"/>
+  <rect x="700" y="78" width="454" height="528" rx="36" fill="#10131A"/>
+  <rect x="736" y="110" width="318" height="196" rx="28" transform="rotate(9 736 110)" fill="#FF5B36"/>
+  <rect x="798" y="278" width="286" height="148" rx="26" transform="rotate(-10 798 278)" fill="#266DFF"/>
+  <rect x="752" y="448" width="352" height="116" rx="24" transform="rotate(7 752 448)" fill="#D9FF42"/>
+  <circle cx="205" cy="144" r="86" fill="#FF5B36" fill-opacity="0.18"/>
+  <circle cx="1184" cy="162" r="58" fill="#266DFF" fill-opacity="0.18"/>
+  <circle cx="1028" cy="628" r="76" fill="#D9FF42" fill-opacity="0.24"/>
+  <path d="M92 524H650" stroke="#10131A" stroke-width="2" stroke-dasharray="10 14"/>
+  <path d="M92 566H650" stroke="#10131A" stroke-width="2" stroke-dasharray="10 14"/>
+  <path d="M92 608H650" stroke="#10131A" stroke-width="2" stroke-dasharray="10 14"/>
+  <text x="92" y="110" fill="#10131A" font-family="IBM Plex Mono, monospace" font-size="20" letter-spacing="4">V007 / CHROMA PARADE</text>
+  <text x="92" y="148" fill="#10131A" fill-opacity="0.72" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="3">DAYLIGHT PERFORMANCE UI / VEILS, RIBBONS, PROCESSION</text>
+  <text x="92" y="292" fill="#10131A" font-family="IBM Plex Sans Condensed, sans-serif" font-size="176" font-weight="700" letter-spacing="-8">CHROMA</text>
+  <text x="92" y="426" fill="#266DFF" font-family="IBM Plex Sans Condensed, sans-serif" font-size="176" font-weight="700" letter-spacing="-8">PARADE</text>
+  <text x="96" y="654" fill="#10131A" fill-opacity="0.7" font-family="IBM Plex Sans, sans-serif" font-size="28">高彩、分層、會巡遊的網頁劇場。</text>
+</svg>

@@ -559,3 +559,22 @@
 - 快照：`screenshots/v006/poster.svg`
 - 風險：目前 `v006` 仍只有概念 poster，沒有真實瀏覽器截圖；此外這輪若尚未 push，線上 hosted site 仍會停在上一個已部署版本。
 - 下一個最佳方向：在 validation 通過後 push 新版本，然後直接核對 hosted HTML / bundle 是否已回傳 `v006` 指紋。
+
+## 2026-03-28T15:41:19+08:00 / v007-chroma-parade
+
+- 動作：新增第七個不可覆蓋版本，明確離開 orbit-led hero，改用高彩、白天、typography-driven 的 procession UI。
+- Visual thesis：daylight chroma stage + layered veils + giant condensed type + afterglow archive。
+- Content plan：overture stage -> procession lane -> score sheets -> afterglow archive。
+- Interaction thesis：
+  - hero 不再依賴中央旋轉物件，而是讓多層幕布、色帶與巨型字體一起接管第一屏。
+  - 版本切換被改寫成 horizontal procession lane，閱讀節奏更像巡遊而不是列表。
+  - 後段用 dark afterglow room 收束 references 與 lineage，讓頁面在強首屏之後仍保留方向感。
+- 為何它明顯不同：v006 是黑白 glitch poster；v007 直接翻成高彩 daylight performance system，視覺語言、版面骨架、動態語法與敘事順序都切到另一個世界，而且主動畫不再由 orbit core 主導。
+- 研究轉譯：
+  - Maskatorium -> 取 layered parallax 與 horizontal scroll 的注意力交接方式，不複製其文化題材與具體構圖。
+  - Haus -> 取 giant type、強對比配色與 reveal 節奏，讓少量元素也能撐起高度表演感。
+  - WebKit responsive motion -> 保留 reduced-motion 路徑，避免大幅幕布與視差造成不必要刺激。
+  - web.dev animation guide -> 將主要動畫壓在 transform / opacity，讓 UI 高張力但仍維持可部署效能。
+- 快照：`screenshots/v007/poster.svg`
+- 風險：目前 `v007` 仍只有概念 poster，尚未補真實瀏覽器截圖；此外此刻 release truth 仍要等 validation、commit、push 與 hosted verification 完成後才能升級。
+- 下一個最佳方向：先跑完整 validation 與 release path，再核對 hosted HTML / bundle 是否已切到 `v007` 指紋。
