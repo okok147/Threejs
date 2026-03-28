@@ -7,12 +7,12 @@
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v005|committed-not-pushed|2026-03-28T09:19:36+08:00",
+    "releaseFingerprint": "v005|committed-not-pushed|2026-03-28T11:14:15+08:00",
     "releaseStatus": "committed-not-pushed",
-    "releaseNotes": "本輪已完成 shared navigator 的 URL / history sync 修補並通過本地驗證；預計以單一 commit 收束，但 sandbox DNS 無法解析 github.com，因此目前仍是 committed-not-pushed。",
+    "releaseNotes": "本輪已把 shared navigator 的發布顯示改成 route-effective release truth：當版本條目比 shared lab shell 更超前時，UI 會以較低的整體 route 狀態為準；本地驗證已通過，但 sandbox DNS 仍無法解析 github.com，因此目前仍是 committed-not-pushed。",
     "lastLiveVerificationAt": "2026-03-27T23:37:13+08:00",
     "liveVerificationNotes": "最後一次可確認的線上觀測（2026-03-27T23:37:13+08:00）顯示 hosted page 尚未反映當時的 v005 工作樹；本輪因 sandbox DNS 無法解析 okok147.github.io，未能重新驗證目前線上狀態。",
-    "lastUpdated": "2026-03-28T09:19:36+08:00"
+    "lastUpdated": "2026-03-28T11:14:15+08:00"
   },
   "versions": [
     {

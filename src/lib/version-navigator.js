@@ -1,3 +1,5 @@
+import { resolveEffectiveReleaseTruth } from './release-truth.js'
+
 export function resolveInitialVersion({ requestedVersion = '', storedVersion = '', defaultVersion, versionMap }) {
   if (hasVersion(versionMap, requestedVersion)) {
     return requestedVersion
@@ -74,6 +76,11 @@ export function buildNavigatorUrl({
 }
 
 export function buildSearchIndex({ version, lab }) {
+  const releaseTruth = resolveEffectiveReleaseTruth({
+    labReleaseStatus: lab.releaseStatus,
+    versionReleaseStatus: version.releaseStatus,
+  })
+
   return [
     version.versionNumber,
     version.slug,
@@ -90,6 +97,7 @@ export function buildSearchIndex({ version, lab }) {
     version.snapshotNotes,
     version.releaseStatus,
     version.releaseNotes,
+    releaseTruth.effectiveStatus,
     lab.releaseStatus,
     lab.releaseNotes,
     lab.hostedUrl,

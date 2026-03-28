@@ -435,3 +435,39 @@
 - Next likely direction：
   - 若網路限制解除，先 push 這輪 commit 並重新核對 hosted HTML fingerprint。
   - 之後再補最小 browser smoke test，直接驗證 back/forward、compare panel 與 mobile shell。
+
+## 2026-03-28T11:14:15+08:00 / Route-Effective Release Truth
+
+- 動作類型：improve deployment / release reliability。
+- Thesis：shared navigator 不應再把 `version.releaseStatus` 直接當成整體 route truth；當版本條目比 shared lab shell 更超前時，UI 必須自動降到較低的有效發布狀態，避免本地未推送的 shell 被錯看成已推送版本。
+- Sources consulted：
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json) 的 lab-level / version-level release metadata
+  - repo 內 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js) 的 shared navigator rendering
+  - repo 內既有 release truth journal 與 validator/fingerprint 結構
+- Principles extracted：
+  - 對使用者可見的 release badge 應描述「目前這條 route 的真實狀態」，而不是只描述某個版本條目的歷史狀態。
+  - shared lab shell 與 version entry 的發布真實度若不一致，整體 route 必須以較低狀態為準。
+  - `blocked` 應優先蓋過其他 release label，因為任何單層受阻都足以讓整體 route 失真。
+  - deployment truth 的補強要進 shared metadata 與 shared UI，而不是逐版手改文案。
+- Implementation summary：
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/release-truth.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/release-truth.js)，集中計算 lab shell 與 version entry 之間的有效發布狀態與限制層。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/main.js)，讓 toolbar、browser meta、compare card 與 browser card 都顯示 route-effective release truth，並在詳細區塊同時揭露 version entry / shared lab shell 的原始狀態。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-navigator.js`](/Users/kelvinlau/Desktop/Repo/Threejs/src/lib/version-navigator.js)，把 effective release status 也納入搜尋索引，避免搜尋與 UI 呈現使用不同 truth model。
+  - 新增 [`/Users/kelvinlau/Desktop/Repo/Threejs/tests/release-truth.test.mjs`](/Users/kelvinlau/Desktop/Repo/Threejs/tests/release-truth.test.mjs)，覆蓋 aligned、lab-limited、version-limited 與 blocked 四種 shared release truth 情境。
+  - 更新 [`/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json`](/Users/kelvinlau/Desktop/Repo/Threejs/version-manifest.json)，記錄這輪 route-effective release truth 調整與新的 lab `lastUpdated` / `releaseFingerprint`。
+- Validation results：
+  - `npm test`：通過，22 個 tests 全數成功，包含新的 shared release truth 規則。
+  - `npm run lab:validate`：通過，5 個 versions registry 與 HTML metadata schema 仍然有效。
+  - `npm run build`：通過，production bundle 成功；JS 約 666.71 kB、CSS 約 86.60 kB（未 gzip 前）。
+- Release results：
+  - 目前尚未建立新的本地 commit；本輪完成 shared system 變更與本地驗證後，下一步會先收斂成本地 commit。
+  - 依 sandbox 現況，仍不能假設 push / deploy 可成功。
+- Live verification results：
+  - 本輪沒有新的 hosted verification。
+  - 仍只保留最後一次已知觀測：2026-03-27T23:37:13+08:00 的 hosted page 尚未反映當時的 v005 工作樹。
+- Risks：
+  - 這輪補的是 release truth 呈現與 shared rule，不是實際 push / deploy；線上狀態依然未知。
+  - compare / browser cards 現在會顯示更保守的 route truth，但仍沒有 browser-level smoke test 驗證各 viewport 下的完整 DOM 互動。
+- Next likely direction：
+  - 若網路限制解除，先把目前本地 commit 推上 main，再重新核對 hosted HTML fingerprint 與 route-effective release badge 是否一致。
+  - 若網路限制仍存在，下一步就補最小 browser smoke test，讓 shared navigator 的 compare / mobile shell 也有更接近真實互動層的保護網。

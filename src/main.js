@@ -2,6 +2,7 @@ import './style.css'
 import manifest from '../version-manifest.json'
 import { siteContent } from './data/site-content.js'
 import { createBrowserDialogController } from './lib/browser-dialog.js'
+import { resolveEffectiveReleaseTruth } from './lib/release-truth.js'
 import {
   buildNavigatorUrl,
   buildSearchIndex as buildNavigatorSearchIndex,
@@ -459,13 +460,15 @@ function renderBrowserList(query = '') {
 }
 
 function renderToolbarCurrent(version) {
+  const routeReleaseTruth = getRouteReleaseTruth(version)
+
   return `
     <p class="lab-toolbar-label">Current Version</p>
     <div class="lab-toolbar-current-main">
       <strong>${escapeHtml(version.versionNumber)} / ${escapeHtml(version.title)}</strong>
       <div class="lab-toolbar-statuses">
         ${renderStatusChip(version.status)}
-        ${renderReleaseChip(version.releaseStatus)}
+        ${renderReleaseChip(routeReleaseTruth.effectiveStatus)}
       </div>
     </div>
     <p class="lab-toolbar-current-copy">${escapeHtml(version.bestFor)}</p>
@@ -497,6 +500,7 @@ function renderToolbarCompare(version) {
 
 function renderBrowserMeta(version) {
   const preview = getPrimaryPreview(version)
+  const routeReleaseTruth = getRouteReleaseTruth(version)
 
   return `
     <div class="lab-meta-block">
@@ -506,7 +510,7 @@ function renderBrowserMeta(version) {
         <span class="lab-chip">${escapeHtml(version.styleFamily)}</span>
         <span class="lab-chip">${escapeHtml(version.useCaseEmphasis)}</span>
         ${renderStatusChip(version.status)}
-        ${renderReleaseChip(version.releaseStatus)}
+        ${renderReleaseChip(routeReleaseTruth.effectiveStatus)}
       </div>
     </div>
 
@@ -527,12 +531,15 @@ function renderBrowserMeta(version) {
       </div>
 
       <div class="lab-meta-row">
-        <span class="lab-meta-label">Release truth</span>
+        <span class="lab-meta-label">Route release truth</span>
         <div class="lab-meta-statuses">
           ${renderStatusChip(version.status)}
-          ${renderReleaseChip(version.releaseStatus)}
+          ${renderReleaseChip(routeReleaseTruth.effectiveStatus)}
         </div>
-        <p>${escapeHtml(version.releaseNotes)}</p>
+        <p>${escapeHtml(formatReleaseTruthExplanation(routeReleaseTruth))}</p>
+        <p class="lab-meta-note">Version entry: <span class="lab-code">${escapeHtml(formatReleaseStatus(version.releaseStatus))}</span></p>
+        <p class="lab-meta-note">Shared lab shell: <span class="lab-code">${escapeHtml(formatReleaseStatus(manifest.lab.releaseStatus))}</span></p>
+        <p class="lab-meta-note">${escapeHtml(version.releaseNotes)}</p>
       </div>
 
       <div class="lab-meta-row">
@@ -638,6 +645,8 @@ function renderComparePanel(currentVersion) {
 }
 
 function renderCompareSummaryCard(version, label) {
+  const routeReleaseTruth = getRouteReleaseTruth(version)
+
   return `
     <article class="lab-compare-card">
       ${renderPreviewFrame(version, 'lab-preview-frame lab-preview-frame-compare')}
@@ -658,12 +667,16 @@ function renderCompareSummaryCard(version, label) {
           <strong>${escapeHtml(formatSnapshotReadiness(version.snapshotReadiness))}</strong>
         </li>
         <li>
-          <span>Release</span>
+          <span>Route release</span>
+          <strong>${escapeHtml(formatReleaseStatus(routeReleaseTruth.effectiveStatus))}</strong>
+        </li>
+        <li>
+          <span>Version entry</span>
           <strong>${escapeHtml(formatReleaseStatus(version.releaseStatus))}</strong>
         </li>
       </ul>
 
-      <p class="lab-compare-copy">${escapeHtml(version.snapshotNotes)}</p>
+      <p class="lab-compare-copy">${escapeHtml(`${version.snapshotNotes} ${formatReleaseTruthExplanation(routeReleaseTruth)}`)}</p>
     </article>
   `
 }
@@ -672,6 +685,7 @@ function renderBrowserCard(version) {
   const isActive = version.versionNumber === activeVersionNumber
   const isCompared = version.versionNumber === compareVersionNumber
   const preview = getPrimaryPreview(version)
+  const routeReleaseTruth = getRouteReleaseTruth(version)
 
   return `
     <article
@@ -696,14 +710,14 @@ function renderBrowserCard(version) {
       <p class="lab-browser-card-evidence">
         ${escapeHtml(formatSnapshotReadiness(version.snapshotReadiness))}
         ${preview ? ` / ${escapeHtml(formatPreviewKind(preview.kind))}` : ''}
-        / ${escapeHtml(formatReleaseStatus(version.releaseStatus))}
+        / 整體 ${escapeHtml(formatReleaseStatus(routeReleaseTruth.effectiveStatus))}
       </p>
 
       <div class="lab-browser-card-tags">
         <span class="lab-chip">${escapeHtml(version.styleFamily)}</span>
         <span class="lab-chip">${escapeHtml(version.useCaseEmphasis)}</span>
         ${renderStatusChip(version.status)}
-        ${renderReleaseChip(version.releaseStatus)}
+        ${renderReleaseChip(routeReleaseTruth.effectiveStatus)}
       </div>
 
       <div class="lab-browser-card-traits">
@@ -912,12 +926,43 @@ function renderReleaseChip(releaseStatus) {
   return `<span class="lab-chip lab-chip-release is-${escapeAttribute(releaseStatus)}">${escapeHtml(formatReleaseStatus(releaseStatus))}</span>`
 }
 
+function getRouteReleaseTruth(version) {
+  return resolveEffectiveReleaseTruth({
+    labReleaseStatus: manifest.lab.releaseStatus,
+    versionReleaseStatus: version.releaseStatus,
+  })
+}
+
 function formatStatus(status) {
   return STATUS_LABELS[status] ?? status
 }
 
 function formatReleaseStatus(releaseStatus) {
   return RELEASE_STATUS_LABELS[releaseStatus] ?? releaseStatus
+}
+
+function formatReleaseTruthExplanation({ effectiveStatus, limitingLayer, labReleaseStatus, versionReleaseStatus }) {
+  const effectiveLabel = formatReleaseStatus(effectiveStatus)
+  const labLabel = formatReleaseStatus(labReleaseStatus)
+  const versionLabel = formatReleaseStatus(versionReleaseStatus)
+
+  if (!effectiveStatus) {
+    return '目前沒有可判讀的 release truth。'
+  }
+
+  if (limitingLayer === 'aligned') {
+    return `共享 lab shell 與此版本條目都標記為「${effectiveLabel}」，目前 route truth 與版本 truth 一致。`
+  }
+
+  if (limitingLayer === 'lab') {
+    return `此版本條目是「${versionLabel}」，但共享 lab shell 仍是「${labLabel}」；整體 route 以較低的「${effectiveLabel}」為準。`
+  }
+
+  if (limitingLayer === 'version') {
+    return `共享 lab shell 是「${labLabel}」，但此版本條目仍是「${versionLabel}」；整體 route 以較低的「${effectiveLabel}」為準。`
+  }
+
+  return `目前 route truth 以「${effectiveLabel}」為準。`
 }
 
 function escapeHtml(value) {
