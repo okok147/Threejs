@@ -7,12 +7,12 @@
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v012|local-only|2026-03-29T20:02:29+08:00",
-    "releaseStatus": "local-only",
-    "releaseNotes": "v012 Detail Doctrine 已完成本地註冊與驗證，但在推送 main 與重新驗證 hosted HTML 之前，不能宣稱線上站點已更新。",
-    "lastLiveVerificationAt": "2026-03-29T12:14:10+08:00",
-    "liveVerificationNotes": "最近一次 live verification 仍是 2026-03-29T12:14:10+08:00；當時 hosted HTML 回傳 `lab-default-version=v011`、`lab-release-status=live-verified` 與對應 release fingerprint。",
-    "lastUpdated": "2026-03-29T20:02:29+08:00"
+    "releaseFingerprint": "v012|live-verified|2026-03-29T20:05:08+08:00",
+    "releaseStatus": "live-verified",
+    "releaseNotes": "v012 Detail Doctrine 已推送 main，且在 2026-03-29T20:05:08+08:00 重新驗證 hosted HTML 指紋與預設版本皆已更新。",
+    "lastLiveVerificationAt": "2026-03-29T20:05:08+08:00",
+    "liveVerificationNotes": "2026-03-29T20:05:08+08:00 以 `curl` 驗證 https://okok147.github.io/Threejs/，確認回傳 `lab-default-version=v012`、`lab-release-status=local-only` 與對應 release fingerprint，表示 v012 artifact 已上線；隨後將 lab truth 升級為 live-verified。",
+    "lastUpdated": "2026-03-29T20:05:08+08:00"
   },
   "versions": [
     {
@@ -790,8 +790,8 @@
       "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
       "timestamp": "2026-03-29T20:02:29+08:00",
       "status": "stable",
-      "releaseStatus": "local-only",
-      "releaseNotes": "v012 Detail Doctrine 已完成本地實作、註冊與檢查；待推送 main 並重新驗證 hosted HTML。"
+      "releaseStatus": "live-verified",
+      "releaseNotes": "v012 Detail Doctrine 已推送到 main，並在 2026-03-29T20:05:08+08:00 驗證 hosted HTML 已反映此版本。"
     }
   ]
 }
