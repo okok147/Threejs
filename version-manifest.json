@@ -1,18 +1,18 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v013",
+    "defaultVersion": "v014",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v013|live-verified|2026-03-29T20:44:00+08:00",
-    "releaseStatus": "live-verified",
-    "releaseNotes": "v013 Meridian Runway 已推送 main，且在 2026-03-29T20:44:00+08:00 重新驗證 hosted HTML 指紋與預設版本皆已更新。",
+    "releaseFingerprint": "v014|local-only|2026-03-29T21:20:00+08:00",
+    "releaseStatus": "local-only",
+    "releaseNotes": "v014 Parhelion Threshold 已在本地註冊為新預設版本，完成新的高級感 landing page shell，但尚未重新部署與驗證 hosted site。",
     "lastLiveVerificationAt": "2026-03-29T20:44:00+08:00",
-    "liveVerificationNotes": "2026-03-29T20:44:00+08:00 以 `curl` 驗證 https://okok147.github.io/Threejs/，確認回傳 `lab-default-version=v013`、`lab-release-status=local-only` 與對應 release fingerprint，表示 v013 artifact 已上線；隨後將 lab truth 升級為 live-verified。",
-    "lastUpdated": "2026-03-29T20:44:00+08:00"
+    "liveVerificationNotes": "2026-03-29T20:44:00+08:00 最後一次驗證 hosted site 時仍是 v013。這次已把本地預設切到 v014 Parhelion Threshold，因此 lab truth 暫時降回 local-only，等待重新部署與線上驗證。",
+    "lastUpdated": "2026-03-29T21:20:00+08:00"
   },
   "versions": [
     {
@@ -857,6 +857,71 @@
       "status": "stable",
       "releaseStatus": "live-verified",
       "releaseNotes": "v013 Meridian Runway 已推送到 main，並在 2026-03-29T20:44:00+08:00 驗證 hosted HTML 已反映此版本。"
+    },
+    {
+      "versionNumber": "v014",
+      "slug": "parhelion-threshold",
+      "title": "Parhelion Threshold",
+      "concept": "把版本實驗室翻成一個 destination-grade landing page：首屏像可捲動海報，版本列表像一條 edition procession，方法與 references 則被收進同一套高級而克制的敘事系統裡。",
+      "sourcePrinciples": [
+        "Poster-first landing pages need one dominant visual field and a narrow text column, not a hero stuffed with equal-weight modules",
+        "Premium website pacing comes from restraint, spacing, and section responsibility, not from piling gradients, cards, and novelty widgets into every viewport",
+        "Inspiration should be translated into structure, hierarchy, and motion rules so the result feels authored instead of derivative"
+      ],
+      "sourceFamiliesConsulted": [
+        "curated premium website inspiration",
+        "hospitality and destination storytelling",
+        "Apple reduce motion guidance",
+        "official three.js documentation"
+      ],
+      "styleFamily": "Solar editorial / immersive destination launch",
+      "useCaseEmphasis": "品牌首頁 / campaign launch / premium studio site",
+      "bestFor": "想先被第一屏的氣場抓住，再用清楚節奏把整個版本庫一路讀完的人。",
+      "keyTraits": [
+        "poster-first hero",
+        "edition procession archive",
+        "luminous threshold stage"
+      ],
+      "navigationModel": "sticky horizon header + section anchors + long-form edition procession",
+      "motionLanguage": "slow parallax glow、procession drift 與 restrained reveal timing",
+      "narrativeStructure": "arrival hero -> edition procession -> atelier spread -> departure desk",
+      "sceneTreatment": "a luminous horizon core suspended inside a tall threshold viewport so the shared three.js object feels like a destination image rather than a detached tech demo",
+      "notableUxIdeas": [
+        "把版本切換寫成一條 procession，讓使用者先用 title、concept 與 best-for 快速判斷，再決定切入哪個世界",
+        "hero 只保留一個真正主導視線的 stage，避免大標、規格、scene 與導航互相搶第一順位",
+        "尾段把 references 與 archive notes 收成 departure desk，讓最後一屏仍延續整站語境而不是掉回普通 footer"
+      ],
+      "notableFeatureIdeas": [
+        "version-specific dark horizon shell that turns the shared navigator into a warmer, sharper luxury instrument",
+        "tracked section mapping now explicitly feeds experience, stack, and references into the shared scene controller for more meaningful scroll response",
+        "poster SVG, tokens, and version manifest keep the new edition fully registered instead of hiding the redesign as an untracked overwrite"
+      ],
+      "performanceNotes": [
+        "The new hero still reuses the shared cleanup-safe renderer lifecycle and keeps the same lightweight geometry language.",
+        "Most of the premium feel comes from typography, spacing, gradients, and disciplined layout rather than heavier WebGL or post-processing cost.",
+        "Reduced-motion collapses the parallax glow and reveal drift while preserving the same order, hierarchy, and decision cues."
+      ],
+      "entryFile": "versions/v014-parhelion-threshold/index.js",
+      "route": "/?v=v014",
+      "tokenFile": "tokens/v014.json",
+      "screenshotPaths": [
+        "screenshots/v014/poster.svg"
+      ],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v014/poster.svg",
+          "label": "Parhelion Threshold poster preview",
+          "alt": "v014 Parhelion Threshold 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-29T21:20:00+08:00",
+      "status": "stable",
+      "releaseStatus": "local-only",
+      "releaseNotes": "v014 Parhelion Threshold 已在本地完成註冊並設為 lab 預設版本，等待部署與線上驗證。"
     }
   ]
 }

@@ -1,0 +1,42 @@
+<svg width="1600" height="960" viewBox="0 0 1600 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="960" fill="#081118"/>
+  <rect width="1600" height="960" fill="url(#bg)"/>
+  <rect x="64" y="64" width="1472" height="832" rx="28" stroke="#F5EFDF" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M122 182H560" stroke="#F1B35B" stroke-opacity="0.6" stroke-width="2"/>
+  <path d="M122 214H410" stroke="#F1B35B" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="120" y="150" fill="#F5EFDF" font-family="IBM Plex Mono, monospace" font-size="24" letter-spacing="5">PARHELION THRESHOLD / V014</text>
+  <text x="120" y="362" fill="#F5EFDF" font-family="Cormorant Garamond, serif" font-size="142" letter-spacing="-4">
+    <tspan x="120" dy="0">Borrow the</tspan>
+    <tspan x="120" dy="122">pace, not</tspan>
+    <tspan x="120" dy="122">the shell.</tspan>
+  </text>
+  <text x="124" y="770" fill="#D7D0C2" font-family="IBM Plex Sans, sans-serif" font-size="30">
+    Poster-first launch / warm horizon core / destination-grade pacing
+  </text>
+  <rect x="934" y="152" width="470" height="632" rx="22" fill="#070E15" fill-opacity="0.56" stroke="#F5EFDF" stroke-opacity="0.18"/>
+  <ellipse cx="1169" cy="338" rx="158" ry="158" fill="url(#glow)"/>
+  <ellipse cx="1169" cy="338" rx="86" ry="86" fill="#F4E6C5" fill-opacity="0.92"/>
+  <ellipse cx="1169" cy="338" rx="138" ry="138" stroke="#F1B35B" stroke-opacity="0.56" stroke-width="3"/>
+  <ellipse cx="1169" cy="338" rx="188" ry="72" transform="rotate(-20 1169 338)" stroke="#8AD0C0" stroke-opacity="0.52" stroke-width="3"/>
+  <ellipse cx="1169" cy="338" rx="226" ry="92" transform="rotate(22 1169 338)" stroke="#F5EFDF" stroke-opacity="0.24" stroke-width="2"/>
+  <text x="986" y="610" fill="#F1B35B" font-family="IBM Plex Mono, monospace" font-size="22" letter-spacing="4">HERO VIEWPORT</text>
+  <text x="986" y="652" fill="#F5EFDF" font-family="Cormorant Garamond, serif" font-size="68">Parhelion Threshold</text>
+  <text x="986" y="704" fill="#D7D0C2" font-family="IBM Plex Sans, sans-serif" font-size="26">
+    A destination-grade version shell with
+  </text>
+  <text x="986" y="738" fill="#D7D0C2" font-family="IBM Plex Sans, sans-serif" font-size="26">
+    a luminous stage and procession archive.
+  </text>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1169 338) rotate(90) scale(158)">
+      <stop stop-color="#F1B35B" stop-opacity="0.72"/>
+      <stop offset="0.5" stop-color="#8AD0C0" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#081118" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="960" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071018"/>
+      <stop offset="0.48" stop-color="#0B1620"/>
+      <stop offset="1" stop-color="#0D1821"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,702 @@
+.version-shell-v014 {
+  --parhelion-bg: #081118;
+  --parhelion-ink: #f5efdf;
+  --parhelion-soft: rgba(245, 239, 223, 0.74);
+  --parhelion-muted: rgba(245, 239, 223, 0.5);
+  --parhelion-line: rgba(245, 239, 223, 0.1);
+  --parhelion-line-strong: rgba(245, 239, 223, 0.2);
+  --parhelion-panel: rgba(10, 19, 27, 0.78);
+  --parhelion-panel-strong: rgba(8, 17, 24, 0.92);
+  --parhelion-accent: #f1b35b;
+  --parhelion-accent-cool: #8ad0c0;
+  --arrival-progress: 0;
+  --procession-progress: 0;
+  --atelier-progress: 0;
+  --departure-progress: 0;
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(241, 179, 91, 0.18), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(138, 208, 192, 0.12), transparent 18%),
+    linear-gradient(180deg, #071018 0%, #0b1620 42%, #0d1821 100%);
+  color: var(--parhelion-ink);
+  font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+  overflow: clip;
+}
+
+body[data-active-version='v014'] {
+  background: #081118;
+  color: #f5efdf;
+}
+
+body[data-active-version='v014'] .lab-toolbar-brand,
+body[data-active-version='v014'] .lab-toolbar-current,
+body[data-active-version='v014'] .lab-toolbar-actions,
+body[data-active-version='v014'] .lab-dock {
+  border-color: rgba(245, 239, 223, 0.08);
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(7, 14, 21, 0.95), rgba(8, 17, 24, 0.88)),
+    linear-gradient(90deg, rgba(241, 179, 91, 0.1), transparent 38%);
+  color: #f5efdf;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
+}
+
+body[data-active-version='v014'] .lab-toolbar-brand {
+  border-radius: 16px;
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  font-size: 1.2rem;
+}
+
+body[data-active-version='v014'] .lab-toolbar-current-copy,
+body[data-active-version='v014'] .lab-summary,
+body[data-active-version='v014'] .lab-concept,
+body[data-active-version='v014'] .lab-browser-card-concept,
+body[data-active-version='v014'] .lab-browser-empty p,
+body[data-active-version='v014'] .lab-search-results,
+body[data-active-version='v014'] .lab-best-for,
+body[data-active-version='v014'] .lab-source-line,
+body[data-active-version='v014'] .lab-browser-card-bestfor,
+body[data-active-version='v014'] .lab-compare-card-head p,
+body[data-active-version='v014'] .lab-compare-list span,
+body[data-active-version='v014'] .lab-meta-note,
+body[data-active-version='v014'] .lab-browser-card-evidence,
+body[data-active-version='v014'] .lab-compare-copy,
+body[data-active-version='v014'] .lab-meta-row p,
+body[data-active-version='v014'] .lab-browser-card-best-for,
+body[data-active-version='v014'] .lab-compare-card p,
+body[data-active-version='v014'] .lab-compare-suggestion small,
+body[data-active-version='v014'] .lab-text-button {
+  color: rgba(245, 239, 223, 0.68);
+}
+
+body[data-active-version='v014'] .lab-key-hint,
+body[data-active-version='v014'] .lab-meta-label,
+body[data-active-version='v014'] .lab-search-label,
+body[data-active-version='v014'] .lab-browser-toggle-copy small {
+  color: rgba(241, 179, 91, 0.82);
+}
+
+body[data-active-version='v014'] .lab-tab,
+body[data-active-version='v014'] .lab-browser-toggle,
+body[data-active-version='v014'] .lab-compare-pill,
+body[data-active-version='v014'] .lab-search-input,
+body[data-active-version='v014'] .lab-browser-card,
+body[data-active-version='v014'] .lab-compare-card,
+body[data-active-version='v014'] .lab-compare-diff,
+body[data-active-version='v014'] .lab-compare-panel {
+  border-color: rgba(245, 239, 223, 0.08);
+  background: rgba(8, 17, 24, 0.82);
+  color: #f5efdf;
+}
+
+body[data-active-version='v014'] .lab-tab[aria-selected='true'],
+body[data-active-version='v014'] .lab-compare-pill.is-active,
+body[data-active-version='v014'] .lab-browser-toggle:hover,
+body[data-active-version='v014'] .lab-browser-card.is-active {
+  border-color: rgba(241, 179, 91, 0.28);
+  background: rgba(241, 179, 91, 0.1);
+}
+
+.version-shell-v014 .parhelion-aurora,
+.version-shell-v014 .parhelion-grid,
+.version-shell-v014 .parhelion-beam {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v014 .parhelion-aurora {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(241, 179, 91, calc(0.18 + var(--arrival-progress) * 0.1)), transparent 22%),
+    radial-gradient(circle at 72% 18%, rgba(138, 208, 192, calc(0.12 + var(--procession-progress) * 0.08)), transparent 18%),
+    radial-gradient(circle at 52% 72%, rgba(255, 255, 255, calc(0.04 + var(--departure-progress) * 0.05)), transparent 20%);
+  filter: blur(8px);
+}
+
+.version-shell-v014 .parhelion-grid {
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(245, 239, 223, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 239, 223, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  opacity: 0.34;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.88), transparent);
+}
+
+.version-shell-v014 .parhelion-beam {
+  z-index: 1;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 12%,
+      rgba(241, 179, 91, calc(0.08 + var(--arrival-progress) * 0.06)) 28%,
+      transparent 44%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 64%,
+      rgba(138, 208, 192, calc(0.08 + var(--atelier-progress) * 0.05)) 78%,
+      transparent 88%
+    );
+  transform: translateX(calc((var(--departure-progress) - 0.45) * 4%));
+  opacity: 0.9;
+}
+
+.version-shell-v014 .parhelion-page {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.25rem, 3vw, 3rem) 5rem;
+}
+
+.version-shell-v014 .parhelion-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem clamp(1.25rem, 3vw, 3rem) 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--parhelion-line);
+  border-radius: 22px;
+  background: rgba(8, 17, 24, 0.84);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 22px 72px rgba(0, 0, 0, 0.3);
+}
+
+.version-shell-v014 .parhelion-code,
+.version-shell-v014 .parhelion-kicker,
+.version-shell-v014 .parhelion-section-label,
+.version-shell-v014 .parhelion-panel-label,
+.version-shell-v014 .parhelion-item-index,
+.version-shell-v014 .parhelion-item-meta span,
+.version-shell-v014 .parhelion-item-meta i,
+.version-shell-v014 .parhelion-row span,
+.version-shell-v014 .parhelion-reference span,
+.version-shell-v014 .parhelion-reference i,
+.version-shell-v014 .parhelion-assurance span,
+.version-shell-v014 .parhelion-stage-head span,
+.version-shell-v014 .parhelion-stage-head i,
+.version-shell-v014 .parhelion-stage-caption span,
+.version-shell-v014 .parhelion-stage-badge span,
+.version-shell-v014 .parhelion-trait-list span,
+.version-shell-v014 .parhelion-arrival-strip span,
+.version-shell-v014 .parhelion-chapter span,
+.version-shell-v014 .parhelion-chapter i,
+.version-shell-v014 .parhelion-family-strip span {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.version-shell-v014 .parhelion-brand strong,
+.version-shell-v014 .parhelion-copy h1,
+.version-shell-v014 .parhelion-section-head h2,
+.version-shell-v014 .parhelion-ledger dd,
+.version-shell-v014 .parhelion-specs strong,
+.version-shell-v014 .parhelion-stage-head strong,
+.version-shell-v014 .parhelion-stage-caption strong,
+.version-shell-v014 .parhelion-stage-badge strong,
+.version-shell-v014 .parhelion-trait-list strong,
+.version-shell-v014 .parhelion-item-main strong,
+.version-shell-v014 .parhelion-manifesto h3,
+.version-shell-v014 .parhelion-row strong,
+.version-shell-v014 .parhelion-reference strong,
+.version-shell-v014 .parhelion-assurance strong,
+.version-shell-v014 .parhelion-chapter strong {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+}
+
+.version-shell-v014 .parhelion-brand {
+  display: grid;
+  gap: 0.14rem;
+}
+
+.version-shell-v014 .parhelion-brand strong {
+  font-size: 1.24rem;
+  line-height: 1;
+}
+
+.version-shell-v014 .parhelion-nav,
+.version-shell-v014 .parhelion-header-links,
+.version-shell-v014 .parhelion-arrival-strip,
+.version-shell-v014 .parhelion-actions,
+.version-shell-v014 .parhelion-family-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v014 .parhelion-nav a,
+.version-shell-v014 .parhelion-header-links a,
+.version-shell-v014 .parhelion-button,
+.version-shell-v014 .parhelion-arrival-strip span,
+.version-shell-v014 .parhelion-family-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.95rem;
+  border: 1px solid var(--parhelion-line);
+  border-radius: 999px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v014 .parhelion-nav a,
+.version-shell-v014 .parhelion-header-links a {
+  color: var(--parhelion-soft);
+}
+
+.version-shell-v014 .parhelion-nav a:hover,
+.version-shell-v014 .parhelion-nav a.is-active,
+.version-shell-v014 .parhelion-header-links a:hover {
+  border-color: rgba(241, 179, 91, 0.32);
+  background: rgba(241, 179, 91, 0.12);
+  color: var(--parhelion-ink);
+  transform: translateY(-1px);
+}
+
+.version-shell-v014 .parhelion-section {
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10svh, 7.5rem) 0;
+  scroll-margin-top: 7.5rem;
+}
+
+.version-shell-v014 .parhelion-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(24rem, 1.08fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: stretch;
+}
+
+.version-shell-v014 .parhelion-copy,
+.version-shell-v014 .parhelion-stage-frame,
+.version-shell-v014 .parhelion-sheet,
+.version-shell-v014 .parhelion-note,
+.version-shell-v014 .parhelion-wall,
+.version-shell-v014 .parhelion-manifesto {
+  border: 1px solid var(--parhelion-line);
+  background:
+    linear-gradient(180deg, rgba(10, 19, 27, 0.94), rgba(8, 17, 24, 0.88)),
+    linear-gradient(90deg, rgba(241, 179, 91, 0.06), transparent 36%);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(12px);
+}
+
+.version-shell-v014 .parhelion-copy,
+.version-shell-v014 .parhelion-stage-frame {
+  min-height: min(78svh, 56rem);
+}
+
+.version-shell-v014 .parhelion-copy {
+  display: grid;
+  gap: 1.5rem;
+  align-content: center;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  transform: translateY(18px);
+  transition: transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.version-shell-v014 .parhelion-kicker,
+.version-shell-v014 .parhelion-section-label,
+.version-shell-v014 .parhelion-panel-label,
+.version-shell-v014 .parhelion-stage-head i,
+.version-shell-v014 .parhelion-trait-list span,
+.version-shell-v014 .parhelion-item-index,
+.version-shell-v014 .parhelion-item-meta span,
+.version-shell-v014 .parhelion-item-meta i,
+.version-shell-v014 .parhelion-row span,
+.version-shell-v014 .parhelion-reference span,
+.version-shell-v014 .parhelion-reference i,
+.version-shell-v014 .parhelion-assurance span,
+.version-shell-v014 .parhelion-chapter span,
+.version-shell-v014 .parhelion-chapter i {
+  color: var(--parhelion-accent);
+}
+
+.version-shell-v014 .parhelion-copy h1 {
+  max-width: 10ch;
+  font-size: clamp(3.8rem, 8vw, 8.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.version-shell-v014 .parhelion-intro,
+.version-shell-v014 .parhelion-section-copy,
+.version-shell-v014 .parhelion-item-main p,
+.version-shell-v014 .parhelion-row p,
+.version-shell-v014 .parhelion-assurance p,
+.version-shell-v014 .parhelion-chapter p {
+  color: var(--parhelion-soft);
+  line-height: 1.72;
+}
+
+.version-shell-v014 .parhelion-arrival-strip span,
+.version-shell-v014 .parhelion-family-strip span {
+  color: var(--parhelion-soft);
+  background: rgba(245, 239, 223, 0.03);
+}
+
+.version-shell-v014 .parhelion-button {
+  justify-content: center;
+  min-width: 11rem;
+  color: var(--parhelion-ink);
+}
+
+.version-shell-v014 .parhelion-button-primary {
+  border-color: rgba(241, 179, 91, 0.4);
+  background: linear-gradient(135deg, rgba(241, 179, 91, 0.96), rgba(220, 153, 63, 0.92));
+  color: #17120d;
+}
+
+.version-shell-v014 .parhelion-button-secondary {
+  background: rgba(245, 239, 223, 0.04);
+  color: var(--parhelion-ink);
+}
+
+.version-shell-v014 .parhelion-button:hover {
+  transform: translateY(-2px);
+}
+
+.version-shell-v014 .parhelion-ledger,
+.version-shell-v014 .parhelion-specs,
+.version-shell-v014 .parhelion-trait-list,
+.version-shell-v014 .parhelion-atelier-grid,
+.version-shell-v014 .parhelion-section-head,
+.version-shell-v014 .parhelion-departure-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v014 .parhelion-ledger,
+.version-shell-v014 .parhelion-specs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.version-shell-v014 .parhelion-ledger div,
+.version-shell-v014 .parhelion-specs article {
+  display: grid;
+  gap: 0.35rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--parhelion-line);
+}
+
+.version-shell-v014 .parhelion-ledger dt,
+.version-shell-v014 .parhelion-specs span {
+  color: var(--parhelion-muted);
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.version-shell-v014 .parhelion-ledger dd,
+.version-shell-v014 .parhelion-specs strong {
+  font-size: 1.1rem;
+}
+
+.version-shell-v014 .parhelion-stage-frame {
+  display: grid;
+  grid-template-rows: auto minmax(24rem, 1fr) auto;
+  gap: 1rem;
+  padding: clamp(1.15rem, 2vw, 1.6rem);
+  transform: translateY(22px);
+  transition: transform 820ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.version-shell-v014 .parhelion-stage-head,
+.version-shell-v014 .parhelion-stage-caption,
+.version-shell-v014 .parhelion-stage-badge,
+.version-shell-v014 .parhelion-item-main,
+.version-shell-v014 .parhelion-item-meta,
+.version-shell-v014 .parhelion-row,
+.version-shell-v014 .parhelion-reference,
+.version-shell-v014 .parhelion-assurance,
+.version-shell-v014 .parhelion-chapter {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.version-shell-v014 .parhelion-stage-head strong {
+  font-size: clamp(1.8rem, 2.6vw, 2.9rem);
+  line-height: 0.94;
+}
+
+.version-shell-v014 .parhelion-stage-window {
+  position: relative;
+  min-height: 34rem;
+  border: 1px solid rgba(245, 239, 223, 0.1);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(241, 179, 91, 0.2), transparent 22%),
+    linear-gradient(180deg, rgba(6, 12, 18, 0.88), rgba(8, 17, 24, 0.98));
+  overflow: hidden;
+}
+
+.version-shell-v014 .parhelion-stage-glow {
+  position: absolute;
+  inset: 8% 10% auto;
+  height: 22%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(241, 179, 91, 0.42), transparent 72%);
+  filter: blur(28px);
+  opacity: calc(0.62 + var(--arrival-progress) * 0.18);
+}
+
+.version-shell-v014 .parhelion-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.version-shell-v014 .parhelion-stage-caption,
+.version-shell-v014 .parhelion-stage-badge {
+  position: absolute;
+  z-index: 2;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(245, 239, 223, 0.12);
+  background: rgba(7, 14, 21, 0.68);
+  backdrop-filter: blur(10px);
+}
+
+.version-shell-v014 .parhelion-stage-caption {
+  left: 1rem;
+  bottom: 1rem;
+  max-width: min(20rem, calc(100% - 6rem));
+}
+
+.version-shell-v014 .parhelion-stage-badge {
+  right: 1rem;
+  top: 1rem;
+  justify-items: end;
+}
+
+.version-shell-v014 .parhelion-stage-badge strong {
+  font-size: 2.2rem;
+  line-height: 0.9;
+}
+
+.version-shell-v014 .parhelion-trait-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.version-shell-v014 .parhelion-trait-list article {
+  display: grid;
+  gap: 0.35rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--parhelion-line);
+}
+
+.version-shell-v014 .parhelion-trait-list strong {
+  font-size: 1.05rem;
+}
+
+.version-shell-v014 .parhelion-section-head {
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  align-items: end;
+  margin-bottom: 1.25rem;
+}
+
+.version-shell-v014 .parhelion-section-head h2 {
+  max-width: 12ch;
+  font-size: clamp(2.2rem, 3.6vw, 4.2rem);
+  line-height: 0.94;
+}
+
+.version-shell-v014 .parhelion-procession-list,
+.version-shell-v014 .parhelion-row-list,
+.version-shell-v014 .parhelion-reference-list,
+.version-shell-v014 .parhelion-assurance-list,
+.version-shell-v014 .parhelion-notes,
+.version-shell-v014 .parhelion-chapter-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.version-shell-v014 .parhelion-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1.2fr) minmax(16rem, 0.75fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--parhelion-line);
+  transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.version-shell-v014 .parhelion-item:first-child,
+.version-shell-v014 .parhelion-row:first-child,
+.version-shell-v014 .parhelion-reference:first-child,
+.version-shell-v014 .parhelion-assurance:first-child,
+.version-shell-v014 .parhelion-chapter:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.version-shell-v014 .parhelion-item:hover {
+  transform: translateX(4px);
+  border-color: var(--parhelion-line-strong);
+}
+
+.version-shell-v014 .parhelion-item.is-current .parhelion-item-index,
+.version-shell-v014 .parhelion-item.is-current .parhelion-item-meta i {
+  color: var(--parhelion-accent);
+}
+
+.version-shell-v014 .parhelion-item-main strong {
+  font-size: clamp(1.65rem, 2vw + 0.4rem, 2.5rem);
+  line-height: 0.94;
+}
+
+.version-shell-v014 .parhelion-item-meta {
+  padding-top: 0.2rem;
+}
+
+.version-shell-v014 .parhelion-item-meta i {
+  color: var(--parhelion-soft);
+  font-style: normal;
+}
+
+.version-shell-v014 .parhelion-atelier-grid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(18rem, 0.82fr);
+  align-items: start;
+}
+
+.version-shell-v014 .parhelion-manifesto,
+.version-shell-v014 .parhelion-sheet,
+.version-shell-v014 .parhelion-note,
+.version-shell-v014 .parhelion-wall {
+  padding: 1.35rem;
+}
+
+.version-shell-v014 .parhelion-manifesto h3 {
+  margin-bottom: 1rem;
+  font-size: clamp(1.9rem, 2.4vw, 3rem);
+  line-height: 0.98;
+}
+
+.version-shell-v014 .parhelion-row,
+.version-shell-v014 .parhelion-reference,
+.version-shell-v014 .parhelion-assurance,
+.version-shell-v014 .parhelion-chapter {
+  padding: 1rem 0;
+  border-top: 1px solid var(--parhelion-line);
+}
+
+.version-shell-v014 .parhelion-row strong,
+.version-shell-v014 .parhelion-reference strong,
+.version-shell-v014 .parhelion-assurance strong,
+.version-shell-v014 .parhelion-chapter strong {
+  font-size: 1.08rem;
+}
+
+.version-shell-v014 .parhelion-reference {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.version-shell-v014 .parhelion-reference strong {
+  grid-column: 1 / 2;
+}
+
+.version-shell-v014 .parhelion-reference i {
+  grid-column: 2 / 3;
+  grid-row: 1 / span 2;
+  justify-self: end;
+  font-style: normal;
+}
+
+.version-shell-v014 .parhelion-bullet-list {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1.05rem;
+  color: var(--parhelion-soft);
+}
+
+.version-shell-v014 .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 560ms ease,
+    transform 560ms ease;
+}
+
+.version-shell-v014 .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.version-shell-v014.is-ready .parhelion-copy,
+.version-shell-v014.is-ready .parhelion-stage-frame {
+  transform: none;
+}
+
+@media (max-width: 1260px) {
+  .version-shell-v014 .parhelion-hero,
+  .version-shell-v014 .parhelion-atelier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v014 .parhelion-stage-window {
+    min-height: 30rem;
+  }
+}
+
+@media (max-width: 920px) {
+  .version-shell-v014 .parhelion-header,
+  .version-shell-v014 .parhelion-section-head,
+  .version-shell-v014 .parhelion-ledger,
+  .version-shell-v014 .parhelion-specs,
+  .version-shell-v014 .parhelion-trait-list,
+  .version-shell-v014 .parhelion-departure-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v014 .parhelion-page {
+    padding-inline: 1rem;
+  }
+
+  .version-shell-v014 .parhelion-header {
+    margin-inline: 1rem;
+  }
+
+  .version-shell-v014 .parhelion-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .version-shell-v014 .parhelion-item-meta {
+    grid-column: 2 / 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .version-shell-v014 .parhelion-section {
+    min-height: auto;
+    padding-block: 4rem;
+  }
+
+  .version-shell-v014 .parhelion-copy h1,
+  .version-shell-v014 .parhelion-section-head h2 {
+    max-width: none;
+  }
+
+  .version-shell-v014 .parhelion-stage-window {
+    min-height: 23rem;
+  }
+
+  .version-shell-v014 .parhelion-item {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v014 .parhelion-item-meta {
+    grid-column: auto;
+  }
+}

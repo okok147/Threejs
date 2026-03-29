@@ -1,0 +1,28 @@
+{
+  "version": "v014",
+  "title": "Parhelion Threshold",
+  "colors": {
+    "background": "#081118",
+    "surface": "rgba(10,19,27,0.78)",
+    "text": "#f5efdf",
+    "muted": "rgba(245,239,223,0.74)",
+    "line": "rgba(245,239,223,0.1)",
+    "accentPrimary": "#f1b35b",
+    "accentSecondary": "#8ad0c0",
+    "accentTertiary": "#13222c"
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "IBM Plex Sans / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "20px",
+    "sectionPaddingDesktop": "96px",
+    "sectionPaddingMobile": "64px"
+  },
+  "motion": {
+    "heroEntrance": "680ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "sceneProfile": "poster-first horizon glow, edition procession drift, restrained reveal rows"
+  }
+}
