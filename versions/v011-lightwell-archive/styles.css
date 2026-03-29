@@ -1,0 +1,737 @@
+.version-shell-v011 {
+  --lightwell-bg: #eee7dc;
+  --lightwell-surface: rgba(248, 244, 238, 0.84);
+  --lightwell-surface-strong: rgba(255, 252, 248, 0.94);
+  --lightwell-ink: #1c2433;
+  --lightwell-soft: rgba(28, 36, 51, 0.72);
+  --lightwell-muted: rgba(28, 36, 51, 0.48);
+  --lightwell-line: rgba(28, 36, 51, 0.12);
+  --lightwell-line-strong: rgba(28, 36, 51, 0.22);
+  --lightwell-accent: #3157ff;
+  --hero-progress: 0;
+  --index-progress: 0;
+  --protocol-progress: 0;
+  --courtyard-progress: 0;
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 12%, rgba(49, 87, 255, 0.12), transparent 18%),
+    linear-gradient(180deg, #f4eee4 0%, #efe7da 46%, #ece3d7 100%);
+  color: var(--lightwell-ink);
+  font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+  overflow: clip;
+}
+
+body[data-active-version='v011'] {
+  background: #efe7da;
+  color: #1c2433;
+}
+
+body[data-active-version='v011'] .lab-toolbar-brand,
+body[data-active-version='v011'] .lab-toolbar-current,
+body[data-active-version='v011'] .lab-toolbar-actions,
+body[data-active-version='v011'] .lab-dock {
+  border-color: rgba(28, 36, 51, 0.1);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(244, 238, 228, 0.86)),
+    linear-gradient(90deg, rgba(49, 87, 255, 0.06), transparent 32%);
+  color: #1c2433;
+  box-shadow: 0 20px 64px rgba(28, 36, 51, 0.12);
+}
+
+body[data-active-version='v011'] .lab-toolbar-brand {
+  border-radius: 14px;
+  font-family: 'Fraunces', 'Noto Serif TC', serif;
+  font-size: 1rem;
+}
+
+body[data-active-version='v011'] .lab-toolbar-current-copy,
+body[data-active-version='v011'] .lab-summary,
+body[data-active-version='v011'] .lab-concept,
+body[data-active-version='v011'] .lab-browser-card-concept,
+body[data-active-version='v011'] .lab-browser-empty p,
+body[data-active-version='v011'] .lab-search-results,
+body[data-active-version='v011'] .lab-best-for,
+body[data-active-version='v011'] .lab-source-line,
+body[data-active-version='v011'] .lab-browser-card-bestfor,
+body[data-active-version='v011'] .lab-compare-card-head p,
+body[data-active-version='v011'] .lab-compare-list span,
+body[data-active-version='v011'] .lab-meta-note,
+body[data-active-version='v011'] .lab-browser-card-evidence,
+body[data-active-version='v011'] .lab-compare-copy,
+body[data-active-version='v011'] .lab-meta-row p,
+body[data-active-version='v011'] .lab-browser-card-best-for,
+body[data-active-version='v011'] .lab-compare-card p,
+body[data-active-version='v011'] .lab-compare-suggestion small,
+body[data-active-version='v011'] .lab-text-button {
+  color: rgba(28, 36, 51, 0.64);
+}
+
+body[data-active-version='v011'] .lab-key-hint,
+body[data-active-version='v011'] .lab-meta-label,
+body[data-active-version='v011'] .lab-search-label,
+body[data-active-version='v011'] .lab-browser-toggle-copy small {
+  color: rgba(49, 87, 255, 0.72);
+}
+
+body[data-active-version='v011'] .lab-tab,
+body[data-active-version='v011'] .lab-browser-toggle,
+body[data-active-version='v011'] .lab-compare-pill,
+body[data-active-version='v011'] .lab-search-input,
+body[data-active-version='v011'] .lab-browser-card,
+body[data-active-version='v011'] .lab-compare-card,
+body[data-active-version='v011'] .lab-compare-diff,
+body[data-active-version='v011'] .lab-compare-panel {
+  border-color: rgba(28, 36, 51, 0.1);
+  background: rgba(255, 252, 248, 0.78);
+  color: #1c2433;
+}
+
+body[data-active-version='v011'] .lab-tab[aria-selected='true'],
+body[data-active-version='v011'] .lab-compare-pill.is-active,
+body[data-active-version='v011'] .lab-browser-toggle:hover,
+body[data-active-version='v011'] .lab-browser-card.is-active {
+  border-color: rgba(49, 87, 255, 0.24);
+  background: rgba(49, 87, 255, 0.08);
+}
+
+.version-shell-v011 .lightwell-grid,
+.version-shell-v011 .lightwell-glow,
+.version-shell-v011 .lightwell-columns {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v011 .lightwell-grid {
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(28, 36, 51, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 36, 51, 0.04) 1px, transparent 1px);
+  background-size: 54px 54px;
+  opacity: 0.28;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent);
+}
+
+.version-shell-v011 .lightwell-glow {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(49, 87, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 52% 34%, rgba(255, 255, 255, 0.36), transparent 16%);
+  opacity: calc(0.34 + var(--hero-progress) * 0.16);
+}
+
+.version-shell-v011 .lightwell-columns {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, transparent 18%, rgba(255, 255, 255, 0.46) 28%, transparent 39%),
+    linear-gradient(90deg, transparent 61%, rgba(255, 255, 255, 0.42) 72%, transparent 82%);
+  opacity: calc(0.32 + var(--courtyard-progress) * 0.12);
+  transform: translateY(calc(var(--index-progress) * -3.5%));
+}
+
+.version-shell-v011 .lightwell-page {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.25rem, 3vw, 3rem) 5rem;
+}
+
+.version-shell-v011 .lightwell-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem clamp(1.25rem, 3vw, 3rem) 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--lightwell-line);
+  border-radius: 20px;
+  background: rgba(255, 252, 248, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 60px rgba(28, 36, 51, 0.08);
+}
+
+.version-shell-v011 .lightwell-code,
+.version-shell-v011 .lightwell-kicker,
+.version-shell-v011 .lightwell-section-label,
+.version-shell-v011 .lightwell-panel-label,
+.version-shell-v011 .lightwell-level-mark,
+.version-shell-v011 .lightwell-level i,
+.version-shell-v011 .lightwell-row span,
+.version-shell-v011 .lightwell-reference span,
+.version-shell-v011 .lightwell-archive-card span,
+.version-shell-v011 .lightwell-frame-head span,
+.version-shell-v011 .lightwell-frame-head i,
+.version-shell-v011 .lightwell-hanger {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.version-shell-v011 .lightwell-brand strong,
+.version-shell-v011 .lightwell-copy h1,
+.version-shell-v011 .lightwell-section-head h2,
+.version-shell-v011 .lightwell-level-copy strong,
+.version-shell-v011 .lightwell-row strong,
+.version-shell-v011 .lightwell-reference strong,
+.version-shell-v011 .lightwell-archive-card strong,
+.version-shell-v011 .lightwell-ledger dd,
+.version-shell-v011 .lightwell-copy-grid strong,
+.version-shell-v011 .lightwell-frame-head strong,
+.version-shell-v011 .lightwell-traits strong {
+  font-family: 'Fraunces', 'Noto Serif TC', serif;
+}
+
+.version-shell-v011 .lightwell-brand {
+  display: grid;
+  gap: 0.14rem;
+}
+
+.version-shell-v011 .lightwell-brand strong {
+  font-size: 1.18rem;
+  line-height: 1;
+}
+
+.version-shell-v011 .lightwell-nav,
+.version-shell-v011 .lightwell-header-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v011 .lightwell-nav a,
+.version-shell-v011 .lightwell-header-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--lightwell-line);
+  border-radius: 999px;
+  color: var(--lightwell-soft);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v011 .lightwell-nav a:hover,
+.version-shell-v011 .lightwell-nav a.is-active,
+.version-shell-v011 .lightwell-header-links a:hover {
+  border-color: rgba(49, 87, 255, 0.24);
+  background: rgba(49, 87, 255, 0.08);
+  color: var(--lightwell-ink);
+  transform: translateY(-1px);
+}
+
+.version-shell-v011 .lightwell-section {
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10svh, 7.5rem) 0;
+  scroll-margin-top: 7.5rem;
+}
+
+.version-shell-v011 .lightwell-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(24rem, 1.14fr);
+  gap: clamp(1rem, 2vw, 2.2rem);
+  align-items: stretch;
+}
+
+.version-shell-v011 .lightwell-copy,
+.version-shell-v011 .lightwell-frame,
+.version-shell-v011 .lightwell-slab,
+.version-shell-v011 .lightwell-note,
+.version-shell-v011 .lightwell-wall {
+  border: 1px solid var(--lightwell-line);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 248, 0.92), rgba(244, 238, 228, 0.84)),
+    linear-gradient(90deg, rgba(49, 87, 255, 0.05), transparent 36%);
+  box-shadow: 0 28px 80px rgba(28, 36, 51, 0.08);
+}
+
+.version-shell-v011 .lightwell-copy,
+.version-shell-v011 .lightwell-frame {
+  border-radius: 32px;
+}
+
+.version-shell-v011 .lightwell-slab,
+.version-shell-v011 .lightwell-note,
+.version-shell-v011 .lightwell-wall {
+  border-radius: 28px;
+}
+
+.version-shell-v011 .lightwell-copy {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.7rem, 3vw, 2.6rem);
+}
+
+.version-shell-v011 .lightwell-copy h1 {
+  max-width: 8.4ch;
+  font-size: clamp(3.9rem, 5.8vw + 0.8rem, 8.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+.version-shell-v011 .lightwell-copy h1 span {
+  display: block;
+  color: var(--lightwell-accent);
+}
+
+.version-shell-v011 .lightwell-intro,
+.version-shell-v011 .lightwell-section-copy,
+.version-shell-v011 .lightwell-level-copy p,
+.version-shell-v011 .lightwell-level i,
+.version-shell-v011 .lightwell-row p,
+.version-shell-v011 .lightwell-reference strong,
+.version-shell-v011 .lightwell-archive-card p,
+.version-shell-v011 .lightwell-bullet-list,
+.version-shell-v011 .lightwell-copy-grid strong,
+.version-shell-v011 .lightwell-frame-head i,
+.version-shell-v011 .lightwell-traits strong {
+  color: var(--lightwell-soft);
+}
+
+.version-shell-v011 .lightwell-intro {
+  max-width: 34rem;
+  line-height: 1.78;
+  font-size: 1.04rem;
+}
+
+.version-shell-v011 .lightwell-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.version-shell-v011 .lightwell-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.2rem;
+  border: 1px solid var(--lightwell-line-strong);
+  border-radius: 999px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v011 .lightwell-button:hover {
+  transform: translateY(-1px);
+}
+
+.version-shell-v011 .lightwell-button-primary {
+  border-color: rgba(49, 87, 255, 0.24);
+  background: rgba(49, 87, 255, 0.08);
+}
+
+.version-shell-v011 .lightwell-button-primary:hover,
+.version-shell-v011 .lightwell-button-secondary:hover {
+  background: rgba(49, 87, 255, 0.12);
+}
+
+.version-shell-v011 .lightwell-ledger,
+.version-shell-v011 .lightwell-copy-grid,
+.version-shell-v011 .lightwell-traits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.version-shell-v011 .lightwell-ledger div,
+.version-shell-v011 .lightwell-copy-grid article,
+.version-shell-v011 .lightwell-traits article {
+  min-height: 100%;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--lightwell-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.version-shell-v011 .lightwell-ledger dt,
+.version-shell-v011 .lightwell-copy-grid span,
+.version-shell-v011 .lightwell-traits span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--lightwell-muted);
+}
+
+.version-shell-v011 .lightwell-ledger dd,
+.version-shell-v011 .lightwell-copy-grid strong,
+.version-shell-v011 .lightwell-traits strong {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.42;
+}
+
+.version-shell-v011 .lightwell-stage {
+  display: grid;
+}
+
+.version-shell-v011 .lightwell-frame {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+}
+
+.version-shell-v011 .lightwell-frame-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.version-shell-v011 .lightwell-frame-head strong {
+  font-size: 1.15rem;
+}
+
+.version-shell-v011 .lightwell-frame-window {
+  position: relative;
+  aspect-ratio: 0.92;
+  overflow: hidden;
+  border: 1px solid rgba(28, 36, 51, 0.08);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(234, 228, 218, 0.92)),
+    radial-gradient(circle at 50% 6%, rgba(49, 87, 255, 0.12), transparent 18%);
+}
+
+.version-shell-v011 .lightwell-frame-beams {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent 36%),
+    linear-gradient(90deg, transparent 34%, rgba(255, 255, 255, 0.7) 50%, transparent 66%);
+  opacity: calc(0.52 + var(--hero-progress) * 0.14);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.version-shell-v011 .lightwell-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.version-shell-v011 .lightwell-hangers {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.version-shell-v011 .lightwell-hanger {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(28, 36, 51, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 252, 248, 0.86);
+  color: var(--lightwell-muted);
+  transform: translateY(calc(var(--hanger-offset) * 12px + var(--index-progress) * 12px));
+}
+
+.version-shell-v011 .lightwell-hanger.is-current {
+  color: var(--lightwell-accent);
+  border-color: rgba(49, 87, 255, 0.2);
+}
+
+.version-shell-v011 .lightwell-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(18rem, 0.7fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: end;
+  margin-bottom: 1.4rem;
+}
+
+.version-shell-v011 .lightwell-section-head h2 {
+  max-width: 10ch;
+  font-size: clamp(2.6rem, 4vw + 0.5rem, 4.8rem);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.version-shell-v011 .lightwell-level-list,
+.version-shell-v011 .lightwell-protocol-grid,
+.version-shell-v011 .lightwell-courtyard-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v011 .lightwell-level {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border-top: 1px solid rgba(28, 36, 51, 0.08);
+  background: rgba(255, 252, 248, 0.7);
+  border-radius: 22px;
+  box-shadow: 0 16px 36px rgba(28, 36, 51, 0.06);
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.version-shell-v011 .lightwell-level:hover {
+  transform: translateX(4px);
+}
+
+.version-shell-v011 .lightwell-level.is-current {
+  border-color: rgba(49, 87, 255, 0.2);
+  background: rgba(49, 87, 255, 0.08);
+}
+
+.version-shell-v011 .lightwell-level-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5.4rem;
+  min-height: 2.4rem;
+  padding: 0 0.8rem;
+  border: 1px solid rgba(28, 36, 51, 0.12);
+  border-radius: 999px;
+  color: var(--lightwell-accent);
+}
+
+.version-shell-v011 .lightwell-level-copy {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.version-shell-v011 .lightwell-level-copy strong {
+  font-size: 1.16rem;
+  line-height: 1.08;
+}
+
+.version-shell-v011 .lightwell-level-copy p {
+  line-height: 1.68;
+}
+
+.version-shell-v011 .lightwell-protocol-grid {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.9fr) minmax(18rem, 0.82fr);
+  align-items: start;
+}
+
+.version-shell-v011 .lightwell-slab,
+.version-shell-v011 .lightwell-note,
+.version-shell-v011 .lightwell-wall {
+  padding: 1.2rem;
+}
+
+.version-shell-v011 .lightwell-panel-label {
+  margin-bottom: 1rem;
+  color: var(--lightwell-accent);
+}
+
+.version-shell-v011 .lightwell-row-list,
+.version-shell-v011 .lightwell-reference-list,
+.version-shell-v011 .lightwell-archive-list,
+.version-shell-v011 .lightwell-notes {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v011 .lightwell-row,
+.version-shell-v011 .lightwell-reference,
+.version-shell-v011 .lightwell-archive-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(28, 36, 51, 0.08);
+}
+
+.version-shell-v011 .lightwell-row:first-child,
+.version-shell-v011 .lightwell-reference:first-child,
+.version-shell-v011 .lightwell-archive-card:first-child {
+  border-top: 0;
+}
+
+.version-shell-v011 .lightwell-row strong,
+.version-shell-v011 .lightwell-reference strong,
+.version-shell-v011 .lightwell-archive-card strong {
+  font-size: 1.08rem;
+  line-height: 1.26;
+}
+
+.version-shell-v011 .lightwell-row p,
+.version-shell-v011 .lightwell-archive-card p {
+  line-height: 1.7;
+}
+
+.version-shell-v011 .lightwell-bullet-list {
+  display: grid;
+  gap: 0.72rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.72;
+}
+
+.version-shell-v011 .lightwell-courtyard-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+
+.version-shell-v011 .lightwell-reference {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  column-gap: 0.9rem;
+  transition: transform 180ms ease;
+}
+
+.version-shell-v011 .lightwell-reference:hover {
+  transform: translateX(4px);
+}
+
+.version-shell-v011 .lightwell-reference span {
+  color: var(--lightwell-muted);
+}
+
+.version-shell-v011 .lightwell-reference i {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--lightwell-accent);
+}
+
+.version-shell-v011 .lightwell-family-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.version-shell-v011 .lightwell-family-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(28, 36, 51, 0.1);
+  border-radius: 999px;
+  color: var(--lightwell-soft);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.version-shell-v011 .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 560ms ease,
+    transform 560ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.version-shell-v011 .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.version-shell-v011.is-ready .lightwell-frame {
+  box-shadow: 0 34px 86px rgba(28, 36, 51, 0.1);
+}
+
+.version-shell-v011.is-reduced-motion .lightwell-columns,
+.version-shell-v011.is-reduced-motion .lightwell-hanger {
+  transform: none;
+}
+
+@media (max-width: 1180px) {
+  .version-shell-v011 .lightwell-header,
+  .version-shell-v011 .lightwell-hero,
+  .version-shell-v011 .lightwell-section-head,
+  .version-shell-v011 .lightwell-protocol-grid,
+  .version-shell-v011 .lightwell-courtyard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v011 .lightwell-copy h1,
+  .version-shell-v011 .lightwell-section-head h2 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .version-shell-v011 .lightwell-page {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .version-shell-v011 .lightwell-header {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .version-shell-v011 .lightwell-ledger,
+  .version-shell-v011 .lightwell-copy-grid,
+  .version-shell-v011 .lightwell-traits {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v011 .lightwell-level {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v011 .lightwell-reference i {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .version-shell-v011 .lightwell-section {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .version-shell-v011 .lightwell-copy,
+  .version-shell-v011 .lightwell-frame,
+  .version-shell-v011 .lightwell-slab,
+  .version-shell-v011 .lightwell-note,
+  .version-shell-v011 .lightwell-wall,
+  .version-shell-v011 .lightwell-level {
+    border-radius: 22px;
+  }
+
+  .version-shell-v011 .lightwell-copy h1 {
+    font-size: clamp(3rem, 18vw, 5.4rem);
+  }
+
+  .version-shell-v011 .lightwell-section-head h2 {
+    font-size: clamp(2.1rem, 12vw, 3.4rem);
+  }
+
+  .version-shell-v011 .lightwell-nav,
+  .version-shell-v011 .lightwell-header-links {
+    width: 100%;
+  }
+
+  .version-shell-v011 .lightwell-nav a,
+  .version-shell-v011 .lightwell-header-links a {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+  }
+
+  .version-shell-v011 .lightwell-frame-window {
+    aspect-ratio: 0.8;
+  }
+
+  .version-shell-v011 .lightwell-hangers {
+    flex-wrap: wrap;
+  }
+}

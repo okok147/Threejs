@@ -1,0 +1,28 @@
+{
+  "version": "v011",
+  "title": "Lightwell Archive",
+  "colors": {
+    "background": "#efe7da",
+    "surface": "rgba(248,244,238,0.84)",
+    "text": "#1c2433",
+    "muted": "rgba(28,36,51,0.72)",
+    "line": "rgba(28,36,51,0.12)",
+    "accentPrimary": "#3157ff",
+    "accentSecondary": "#ffffff",
+    "accentTertiary": "#d9d0c3"
+  },
+  "typography": {
+    "display": "Fraunces",
+    "body": "IBM Plex Sans / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "20px",
+    "sectionPaddingDesktop": "92px",
+    "sectionPaddingMobile": "64px"
+  },
+  "motion": {
+    "heroEntrance": "620ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "sceneProfile": "light shafts, level drift, restrained vertical reveals"
+  }
+}

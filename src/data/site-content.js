@@ -130,6 +130,24 @@ export const siteContent = {
       summary: '把 shared shell 與版本內容一起拉進創作工具語境：導演 rail、full-screen acts、cast stack 與 clipped fragments 同時取代原本的安穩頁面模式。',
     },
     {
+      name: 'Network Concourse',
+      family: 'Transit wayfinding',
+      fit: '版本導覽首頁 / wayfinding-led interface world',
+      summary: '把版本當成路線、轉乘點與月台來讀，先完成方向判斷，再進入對應的介面世界。',
+    },
+    {
+      name: 'Broadcast Array',
+      family: 'Broadcast rundown / signal array',
+      fit: '首頁編排 / schedule-led interface world',
+      summary: '把版本切換改寫成 on-air board、program lineup 與 closing crawl，讓 current version 像直播 feed，其餘版本則排成可掃描的節目表。',
+    },
+    {
+      name: 'Lightwell Archive',
+      family: 'Architectural lightwell / vertical archive',
+      fit: '建築型首頁 / vertical wayfinding world',
+      summary: '把版本當成垂直中庭裡的樓層與吊掛標識來讀，先判斷要進哪一層，再進入對應的介面語言。',
+    },
+    {
       name: 'Exhibition Monograph',
       family: 'Museum monograph',
       fit: '案例深讀 / 策展型作品頁',

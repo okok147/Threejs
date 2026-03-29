@@ -1,0 +1,72 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#06070A"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.2">
+    <path d="M0 140H1600" stroke="#F7F1E8" stroke-opacity="0.18"/>
+    <path d="M0 280H1600" stroke="#F7F1E8" stroke-opacity="0.12"/>
+    <path d="M0 420H1600" stroke="#F7F1E8" stroke-opacity="0.12"/>
+    <path d="M0 560H1600" stroke="#F7F1E8" stroke-opacity="0.12"/>
+    <path d="M0 700H1600" stroke="#F7F1E8" stroke-opacity="0.18"/>
+    <path d="M220 0V900" stroke="#F7F1E8" stroke-opacity="0.12"/>
+    <path d="M520 0V900" stroke="#F7F1E8" stroke-opacity="0.08"/>
+    <path d="M980 0V900" stroke="#F7F1E8" stroke-opacity="0.08"/>
+    <path d="M1320 0V900" stroke="#F7F1E8" stroke-opacity="0.12"/>
+  </g>
+  <rect x="74" y="72" width="1452" height="756" rx="36" fill="url(#panel)" stroke="#F7F1E8" stroke-opacity="0.12"/>
+  <rect x="110" y="110" width="1380" height="76" rx="20" fill="#0D0E12" stroke="#F7F1E8" stroke-opacity="0.08"/>
+  <text x="148" y="158" fill="#FFBF47" font-size="28" font-family="'IBM Plex Mono', monospace" letter-spacing="6">BROADCAST ARRAY / V010</text>
+  <text x="110" y="330" fill="#F7F1E8" font-size="168" font-family="'IBM Plex Sans Condensed', sans-serif" font-weight="700" letter-spacing="-8">ON AIR</text>
+  <text x="110" y="468" fill="#FF5D5D" font-size="168" font-family="'IBM Plex Sans Condensed', sans-serif" font-weight="700" letter-spacing="-8">SIGNAL</text>
+  <text x="110" y="540" fill="#F7F1E8" fill-opacity="0.74" font-size="34" font-family="'IBM Plex Sans', sans-serif">
+    把版本實驗室翻成正在播送的節目排程，讓版本切換像 cue stack 與 closing crawl。
+  </text>
+  <g filter="url(#glow)">
+    <rect x="924" y="222" width="452" height="332" rx="28" fill="#0C0D11" stroke="#F7F1E8" stroke-opacity="0.12"/>
+    <rect x="948" y="248" width="404" height="240" rx="22" fill="url(#screen)"/>
+    <path d="M948 282H1352" stroke="#F7F1E8" stroke-opacity="0.1"/>
+    <path d="M948 314H1352" stroke="#F7F1E8" stroke-opacity="0.08"/>
+    <path d="M948 346H1352" stroke="#F7F1E8" stroke-opacity="0.08"/>
+    <path d="M948 378H1352" stroke="#F7F1E8" stroke-opacity="0.08"/>
+    <circle cx="1150" cy="368" r="78" fill="url(#orb)"/>
+    <circle cx="1150" cy="368" r="110" stroke="#8AD8FF" stroke-opacity="0.22"/>
+    <circle cx="1150" cy="368" r="136" stroke="#FF5D5D" stroke-opacity="0.18"/>
+  </g>
+  <rect x="950" y="502" width="402" height="38" rx="14" fill="#101117" stroke="#F7F1E8" stroke-opacity="0.08"/>
+  <text x="974" y="528" fill="#FF5D5D" font-size="20" font-family="'IBM Plex Mono', monospace" letter-spacing="3">NOW AIRING</text>
+  <text x="1146" y="528" fill="#F7F1E8" font-size="26" font-family="'IBM Plex Sans Condensed', sans-serif" font-weight="700">Broadcast Array</text>
+  <g>
+    <rect x="110" y="620" width="592" height="58" rx="18" fill="#0D0E12" stroke="#F7F1E8" stroke-opacity="0.08"/>
+    <text x="142" y="658" fill="#FFBF47" font-size="22" font-family="'IBM Plex Mono', monospace" letter-spacing="4">19:00</text>
+    <text x="264" y="658" fill="#F7F1E8" font-size="32" font-family="'IBM Plex Sans Condensed', sans-serif" font-weight="700">v010 / Broadcast Array</text>
+    <text x="110" y="758" fill="#F7F1E8" fill-opacity="0.58" font-size="22" font-family="'IBM Plex Mono', monospace" letter-spacing="4">
+      CH-A PRIME FEED  •  PROGRAM LINEUP  •  SIGNAL STANDARDS  •  CLOSING CRAWL
+    </text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0B10"/>
+      <stop offset="0.46" stop-color="#08090D"/>
+      <stop offset="1" stop-color="#12131B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="800" y1="72" x2="800" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14151C" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#090A0E" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="948" y1="248" x2="1352" y2="488" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#221116"/>
+      <stop offset="0.44" stop-color="#0C0D11"/>
+      <stop offset="1" stop-color="#101A1F"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1150 368) rotate(90) scale(78)">
+      <stop stop-color="#F7F1E8"/>
+      <stop offset="0.32" stop-color="#FFBF47"/>
+      <stop offset="0.64" stop-color="#FF5D5D" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#8AD8FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="884" y="182" width="532" height="412" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur"/>
+    </filter>
+  </defs>
+</svg>

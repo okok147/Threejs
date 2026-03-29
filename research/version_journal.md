@@ -616,3 +616,41 @@
 - 快照：`screenshots/v009/poster.svg`
 - 風險：目前 `v009` 仍只有概念 poster，尚未補真實瀏覽器截圖；此外 transit line map 雖已做成 semantic links，但仍需後續 browser-level 驗證手機長頁下的點擊與掃讀節奏。
 - 下一個最佳方向：若環境允許瀏覽器自動化，優先替 `v009` 補真實 screenshot / smoke test，驗證 transfer map 與 platform viewport 在 desktop / mobile 的可讀性。
+
+## 2026-03-29T11:59:42+08:00 / v010-broadcast-array
+
+- 動作：新增第十個不可覆蓋版本，把版本實驗室翻成一個正在播送的節目編排系統，而不是繼續沿用交通、工作台或展示頁語氣。
+- Visual thesis：night broadcast wall + on-air monitor + lower-third tape + closing crawl。
+- Content plan：on-air board -> program lineup -> signal standards -> closing crawl。
+- Interaction thesis：
+  - 使用者先看到 current version 正在播送，再沿著 lineup 判斷下一個該切去哪個頻道與時段。
+  - 3D 場景被收進 studio monitor，保留首屏的強視覺錨點，但不回到滿版 spectacle。
+  - scanline、ticker 與 cue reveal 都維持受控節奏；reduced-motion 下則收斂成靜態 hierarchy。
+- 為何它明顯不同：v009 是公共空間導向，把切換理解成 route map 與轉乘；v010 則改成時間序列與播送序列，current version 不再像月台，而像 live feed。首頁的判讀方式從「我要去哪一站」變成「現在播什麼、下一段播什麼」。
+- 研究轉譯：
+  - broadcast graphics systems -> 取遠距可讀的 hierarchy、持續一致的 lower-third 語法與 on-air state 表達，而不是模仿特定頻道皮膚。
+  - TV program guide layouts -> 取穩定時段、欄位重複與 sequence-first 的掃讀方式，讓版本列表有節目表的節奏而不是卡片牆。
+  - Apple reduce motion guidance -> 把 ticker、scanline 與背景掃動都設成可收斂的輕量 motion，而不是把 broadcast 感建立在強制動態上。
+  - three.js responsive manual -> 延續 bounded monitor viewport、受控 pixel ratio 與 cleanup-safe renderer lifecycle。
+- 快照：`screenshots/v010/poster.svg`
+- 風險：目前 `v010` 仍只有概念 poster，尚未補真實瀏覽器截圖；此外 lineup 與 closing crawl 雖已在語意上清楚分區，仍需要後續 browser-level 驗證桌機與手機的掃讀效率。
+- 下一個最佳方向：若環境允許瀏覽器自動化，優先替 `v010` 補真實 screenshot / smoke test，驗證 monitor wall、lineup rows 與 shared shell 在不同 viewport 下的閱讀品質。
+
+## 2026-03-29T12:08:30+08:00 / v011-lightwell-archive
+
+- 動作：新增第十一個不可覆蓋版本，把版本實驗室翻成一座垂直中庭，而不是再沿用節目表、交通網或控制台語法。
+- Visual thesis：sunlit stone atrium + skylight shaft + suspended level tags + courtyard inscriptions。
+- Content plan：skylight foyer -> level index -> material protocol -> courtyard notes。
+- Interaction thesis：
+  - 首屏主角是一條垂直 lightwell，3D 場景被框進光井，而不是佔滿整個舞台。
+  - 版本切換被翻成樓層與 landing 語法，使用者像在中庭裡往上看、往下選層，而不是選 route 或節目時段。
+  - 滾動時只讓光帶、吊掛標識與欄線有節制位移；reduced-motion 下保留階層，不保留飄動感。
+- 為何它明顯不同：v010 是 broadcast world，靠 on-air 狀態與 rundown 序列建立節奏；v011 則把閱讀姿態改成建築式定位，current version 不再像 live feed，而像當前所在樓層。首頁判讀方式從「現在播什麼」變成「我現在站在哪一層，下一層去哪裡」。
+- 研究轉譯：
+  - architectural wayfinding systems -> 取垂直導向、樓層標識與光井空間的穩定定位感，而不是模仿某個商場或博物館的表層造型。
+  - editorial architectural photography -> 取大面積留白、單一強軸線與材質節奏，讓 hero 真正像空間攝影而不是功能面板。
+  - Apple reduce motion guidance -> 讓光帶與吊掛標識在 reduced-motion 下回到靜態階層，避免把建築感建立在連續飄動上。
+  - three.js responsive manual -> 延續受控 viewport、pixel ratio 與 cleanup-safe renderer lifecycle，確保 lightwell 只是 framing，不是額外的渲染負擔。
+- 快照：`screenshots/v011/poster.svg`
+- 風險：目前 `v011` 仍只有概念 poster，尚未補真實瀏覽器截圖；此外 vertical level index 與 lightwell framing 仍需要後續 browser-level 驗證在窄螢幕下的掃讀效率。
+- 下一個最佳方向：若環境允許瀏覽器自動化，優先替 `v011` 補真實 screenshot / smoke test，驗證 skylight hero、level index 與 shared shell 在 desktop / mobile 的可讀性。

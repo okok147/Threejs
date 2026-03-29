@@ -1,0 +1,79 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#EFE7DA"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.26">
+    <path d="M0 164H1600" stroke="#1C2433" stroke-opacity="0.08"/>
+    <path d="M0 328H1600" stroke="#1C2433" stroke-opacity="0.06"/>
+    <path d="M0 492H1600" stroke="#1C2433" stroke-opacity="0.06"/>
+    <path d="M0 656H1600" stroke="#1C2433" stroke-opacity="0.08"/>
+    <path d="M280 0V900" stroke="#1C2433" stroke-opacity="0.06"/>
+    <path d="M800 0V900" stroke="#1C2433" stroke-opacity="0.08"/>
+    <path d="M1280 0V900" stroke="#1C2433" stroke-opacity="0.06"/>
+  </g>
+  <rect x="74" y="72" width="1452" height="756" rx="38" fill="url(#panel)" stroke="#1C2433" stroke-opacity="0.1"/>
+  <path d="M610 74L814 74L1032 828L416 828L610 74Z" fill="url(#shaft)" fill-opacity="0.64"/>
+  <path d="M712 74L804 74L914 828L604 828L712 74Z" fill="url(#beam)" fill-opacity="0.9"/>
+  <text x="124" y="154" fill="#3157FF" font-size="28" font-family="'IBM Plex Mono', monospace" letter-spacing="6">LIGHTWELL ARCHIVE / V011</text>
+  <text x="124" y="330" fill="#1C2433" font-size="150" font-family="'Fraunces', serif" font-weight="700" letter-spacing="-7">LIGHTWELL</text>
+  <text x="124" y="466" fill="#3157FF" font-size="150" font-family="'Fraunces', serif" font-weight="700" letter-spacing="-7">ARCHIVE</text>
+  <text x="124" y="540" fill="#1C2433" fill-opacity="0.72" font-size="34" font-family="'IBM Plex Sans', sans-serif">
+    把版本實驗室翻成垂直中庭，讓版本像吊掛樓層與光井裡的層層平台。
+  </text>
+  <g filter="url(#glow)">
+    <rect x="990" y="188" width="330" height="520" rx="28" fill="#F9F5EE" stroke="#1C2433" stroke-opacity="0.08"/>
+    <rect x="1022" y="226" width="266" height="392" rx="20" fill="url(#atrium)"/>
+    <circle cx="1155" cy="422" r="82" fill="url(#orb)"/>
+    <path d="M1022 290H1288" stroke="#1C2433" stroke-opacity="0.08"/>
+    <path d="M1022 356H1288" stroke="#1C2433" stroke-opacity="0.06"/>
+    <path d="M1022 422H1288" stroke="#1C2433" stroke-opacity="0.06"/>
+    <path d="M1022 488H1288" stroke="#1C2433" stroke-opacity="0.06"/>
+    <path d="M1022 554H1288" stroke="#1C2433" stroke-opacity="0.08"/>
+  </g>
+  <g>
+    <rect x="1016" y="126" width="102" height="36" rx="18" fill="#FFFFFF" stroke="#1C2433" stroke-opacity="0.08"/>
+    <rect x="1152" y="126" width="102" height="36" rx="18" fill="#FFFFFF" stroke="#1C2433" stroke-opacity="0.08"/>
+    <text x="1040" y="150" fill="#3157FF" font-size="18" font-family="'IBM Plex Mono', monospace" letter-spacing="2">LVL 11</text>
+    <text x="1176" y="150" fill="#1C2433" fill-opacity="0.6" font-size="18" font-family="'IBM Plex Mono', monospace" letter-spacing="2">LVL 10</text>
+  </g>
+  <g>
+    <rect x="124" y="634" width="620" height="56" rx="18" fill="#FFFFFF" stroke="#1C2433" stroke-opacity="0.08"/>
+    <text x="156" y="669" fill="#3157FF" font-size="22" font-family="'IBM Plex Mono', monospace" letter-spacing="4">CURRENT LEVEL</text>
+    <text x="390" y="669" fill="#1C2433" font-size="32" font-family="'Fraunces', serif" font-weight="700">v011 / Lightwell Archive</text>
+    <text x="124" y="760" fill="#1C2433" fill-opacity="0.52" font-size="22" font-family="'IBM Plex Mono', monospace" letter-spacing="4">
+      SKYLIGHT FOYER  •  LEVEL INDEX  •  MATERIAL PROTOCOL  •  COURTYARD NOTES
+    </text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F0E6"/>
+      <stop offset="1" stop-color="#EDE3D6"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="800" y1="72" x2="800" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBF8F2" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#F3EBE0" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="shaft" x1="724" y1="74" x2="724" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#DCD4C7" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="759" y1="74" x2="759" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.42" stop-color="#BFCBFF" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="atrium" x1="1155" y1="226" x2="1155" y2="618" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FCF9F3"/>
+      <stop offset="1" stop-color="#E4DACE"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1155 422) rotate(90) scale(82)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.42" stop-color="#3157FF" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#3157FF" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="950" y="86" width="410" height="662" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="10" result="effect1_foregroundBlur"/>
+    </filter>
+  </defs>
+</svg>

@@ -1,0 +1,28 @@
+{
+  "version": "v010",
+  "title": "Broadcast Array",
+  "colors": {
+    "background": "#06070a",
+    "surface": "rgba(11,11,15,0.82)",
+    "text": "#f7f1e8",
+    "muted": "rgba(247,241,232,0.78)",
+    "line": "rgba(247,241,232,0.12)",
+    "accentPrimary": "#ff5d5d",
+    "accentSecondary": "#ffbf47",
+    "accentTertiary": "#8ad8ff"
+  },
+  "typography": {
+    "display": "IBM Plex Sans Condensed",
+    "body": "IBM Plex Sans / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "20px",
+    "sectionPaddingDesktop": "88px",
+    "sectionPaddingMobile": "64px"
+  },
+  "motion": {
+    "heroEntrance": "640ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "sceneProfile": "scanline shimmer, ticker drift, controlled cue reveals"
+  }
+}
