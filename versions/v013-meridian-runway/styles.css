@@ -1,0 +1,711 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;700;800&display=swap');
+
+.version-shell-v013 {
+  --runway-bg: #f3ede3;
+  --runway-surface: rgba(255, 251, 246, 0.82);
+  --runway-surface-strong: rgba(255, 251, 246, 0.94);
+  --runway-ink: #171310;
+  --runway-soft: rgba(23, 19, 16, 0.7);
+  --runway-muted: rgba(23, 19, 16, 0.46);
+  --runway-line: rgba(23, 19, 16, 0.12);
+  --runway-line-strong: rgba(23, 19, 16, 0.2);
+  --runway-accent: #0e7b66;
+  --runway-accent-soft: #d9c091;
+  --runway-hero-progress: 0;
+  --runway-collection-progress: 0;
+  --runway-atelier-progress: 0;
+  --runway-service-progress: 0;
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 14% 14%, rgba(217, 192, 145, 0.28), transparent 22%),
+    radial-gradient(circle at 82% 18%, rgba(14, 123, 102, 0.12), transparent 18%),
+    linear-gradient(180deg, #f7f2ea 0%, #f1ebdf 52%, #ece4d8 100%);
+  color: var(--runway-ink);
+  font-family: 'Manrope', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+  overflow: clip;
+}
+
+body[data-active-version='v013'] {
+  background: #f3ede3;
+  color: #171310;
+}
+
+body[data-active-version='v013'] .lab-toolbar-brand,
+body[data-active-version='v013'] .lab-toolbar-current,
+body[data-active-version='v013'] .lab-toolbar-actions,
+body[data-active-version='v013'] .lab-dock {
+  border-color: rgba(23, 19, 16, 0.08);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 251, 246, 0.94), rgba(248, 241, 232, 0.9)),
+    linear-gradient(90deg, rgba(14, 123, 102, 0.05), transparent 36%);
+  color: #171310;
+  box-shadow: 0 24px 60px rgba(81, 58, 34, 0.08);
+}
+
+body[data-active-version='v013'] .lab-toolbar-brand {
+  font-family: 'Fraunces', 'Noto Serif TC', serif;
+}
+
+body[data-active-version='v013'] .lab-toolbar-current-copy,
+body[data-active-version='v013'] .lab-summary,
+body[data-active-version='v013'] .lab-concept,
+body[data-active-version='v013'] .lab-browser-card-concept,
+body[data-active-version='v013'] .lab-browser-empty p,
+body[data-active-version='v013'] .lab-search-results,
+body[data-active-version='v013'] .lab-best-for,
+body[data-active-version='v013'] .lab-source-line,
+body[data-active-version='v013'] .lab-browser-card-bestfor,
+body[data-active-version='v013'] .lab-compare-card-head p,
+body[data-active-version='v013'] .lab-compare-list span,
+body[data-active-version='v013'] .lab-meta-note,
+body[data-active-version='v013'] .lab-browser-card-evidence,
+body[data-active-version='v013'] .lab-compare-copy,
+body[data-active-version='v013'] .lab-meta-row p,
+body[data-active-version='v013'] .lab-browser-card-best-for,
+body[data-active-version='v013'] .lab-compare-card p,
+body[data-active-version='v013'] .lab-compare-suggestion small,
+body[data-active-version='v013'] .lab-text-button {
+  color: rgba(23, 19, 16, 0.58);
+}
+
+body[data-active-version='v013'] .lab-key-hint,
+body[data-active-version='v013'] .lab-meta-label,
+body[data-active-version='v013'] .lab-search-label,
+body[data-active-version='v013'] .lab-browser-toggle-copy small {
+  color: rgba(14, 123, 102, 0.82);
+}
+
+body[data-active-version='v013'] .lab-tab,
+body[data-active-version='v013'] .lab-browser-toggle,
+body[data-active-version='v013'] .lab-compare-pill,
+body[data-active-version='v013'] .lab-search-input,
+body[data-active-version='v013'] .lab-browser-card,
+body[data-active-version='v013'] .lab-compare-card,
+body[data-active-version='v013'] .lab-compare-diff,
+body[data-active-version='v013'] .lab-compare-panel {
+  border-color: rgba(23, 19, 16, 0.08);
+  background: rgba(255, 250, 244, 0.88);
+  color: #171310;
+}
+
+body[data-active-version='v013'] .lab-tab[aria-selected='true'],
+body[data-active-version='v013'] .lab-compare-pill.is-active,
+body[data-active-version='v013'] .lab-browser-toggle:hover,
+body[data-active-version='v013'] .lab-browser-card.is-active {
+  border-color: rgba(14, 123, 102, 0.28);
+  background: rgba(14, 123, 102, 0.08);
+}
+
+.version-shell-v013 .runway-grain,
+.version-shell-v013 .runway-fold,
+.version-shell-v013 .runway-inkline {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v013 .runway-grain {
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(23, 19, 16, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 19, 16, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent);
+}
+
+.version-shell-v013 .runway-fold {
+  z-index: 0;
+  background:
+    linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.42) 38%, transparent 52%),
+    linear-gradient(180deg, transparent 58%, rgba(14, 123, 102, 0.06) 76%, transparent 100%);
+  opacity: calc(0.22 + var(--runway-hero-progress) * 0.16);
+}
+
+.version-shell-v013 .runway-inkline {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, transparent 74%, rgba(23, 19, 16, 0.06) 75%, transparent 76%),
+    linear-gradient(180deg, transparent 64%, rgba(23, 19, 16, 0.06) 65%, transparent 66%);
+  opacity: calc(0.2 + var(--runway-service-progress) * 0.16);
+}
+
+.version-shell-v013 .runway-page {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.25rem, 3vw, 3rem) 5rem;
+}
+
+.version-shell-v013 .runway-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem clamp(1.25rem, 3vw, 3rem) 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--runway-line);
+  border-radius: 22px;
+  background: rgba(249, 242, 234, 0.84);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 20px 56px rgba(86, 64, 38, 0.08);
+}
+
+.version-shell-v013 .runway-code,
+.version-shell-v013 .runway-kicker,
+.version-shell-v013 .runway-section-label,
+.version-shell-v013 .runway-panel-label,
+.version-shell-v013 .runway-item-index,
+.version-shell-v013 .runway-item-fit strong,
+.version-shell-v013 .runway-item-fit span,
+.version-shell-v013 .runway-row span,
+.version-shell-v013 .runway-reference span,
+.version-shell-v013 .runway-assurance span,
+.version-shell-v013 .runway-stage-head span,
+.version-shell-v013 .runway-stage-head i,
+.version-shell-v013 .runway-stage-caption span,
+.version-shell-v013 .runway-stage-ticket span,
+.version-shell-v013 .runway-stage-ticket i,
+.version-shell-v013 .runway-stage-meta span,
+.version-shell-v013 .runway-ledger dt,
+.version-shell-v013 .runway-spec-grid span {
+  font-family: 'JetBrains Mono', 'SFMono-Regular', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.version-shell-v013 .runway-brand strong,
+.version-shell-v013 .runway-buy h1,
+.version-shell-v013 .runway-section-head h2,
+.version-shell-v013 .runway-ledger dd,
+.version-shell-v013 .runway-spec-grid strong,
+.version-shell-v013 .runway-stage-head strong,
+.version-shell-v013 .runway-stage-ticket strong,
+.version-shell-v013 .runway-stage-meta strong,
+.version-shell-v013 .runway-item-copy strong,
+.version-shell-v013 .runway-reference strong,
+.version-shell-v013 .runway-assurance strong {
+  font-family: 'Fraunces', 'Noto Serif TC', serif;
+}
+
+.version-shell-v013 .runway-brand {
+  display: grid;
+  gap: 0.14rem;
+}
+
+.version-shell-v013 .runway-brand strong {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.version-shell-v013 .runway-nav,
+.version-shell-v013 .runway-header-links,
+.version-shell-v013 .runway-marquee,
+.version-shell-v013 .runway-materials {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v013 .runway-nav a,
+.version-shell-v013 .runway-header-links a,
+.version-shell-v013 .runway-marquee span,
+.version-shell-v013 .runway-materials span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0 0.88rem;
+  border: 1px solid var(--runway-line);
+  border-radius: 999px;
+  color: var(--runway-soft);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v013 .runway-nav a:hover,
+.version-shell-v013 .runway-nav a.is-active,
+.version-shell-v013 .runway-header-links a:hover,
+.version-shell-v013 .runway-materials span:hover {
+  border-color: rgba(14, 123, 102, 0.26);
+  background: rgba(14, 123, 102, 0.08);
+  color: var(--runway-ink);
+  transform: translateY(-1px);
+}
+
+.version-shell-v013 .runway-marquee span {
+  min-height: 2rem;
+  padding: 0 0.8rem;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.version-shell-v013 .runway-section {
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10svh, 7.5rem) 0;
+  scroll-margin-top: 7.5rem;
+}
+
+.version-shell-v013 .runway-hero {
+  display: grid;
+  grid-template-columns: minmax(24rem, 1.08fr) minmax(0, 0.92fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: stretch;
+}
+
+.version-shell-v013 .runway-stage-sheet,
+.version-shell-v013 .runway-buy,
+.version-shell-v013 .runway-sheet,
+.version-shell-v013 .runway-note,
+.version-shell-v013 .runway-wall {
+  border: 1px solid var(--runway-line);
+  background:
+    linear-gradient(180deg, rgba(255, 251, 246, 0.94), rgba(247, 241, 233, 0.92)),
+    linear-gradient(90deg, rgba(14, 123, 102, 0.06), transparent 32%);
+  box-shadow: 0 30px 90px rgba(98, 77, 49, 0.08);
+}
+
+.version-shell-v013 .runway-stage-sheet,
+.version-shell-v013 .runway-buy {
+  border-radius: 34px;
+}
+
+.version-shell-v013 .runway-sheet,
+.version-shell-v013 .runway-note,
+.version-shell-v013 .runway-wall {
+  border-radius: 28px;
+}
+
+.version-shell-v013 .runway-stage {
+  display: grid;
+}
+
+.version-shell-v013 .runway-stage-sheet {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.version-shell-v013 .runway-stage-head,
+.version-shell-v013 .runway-stage-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v013 .runway-stage-head strong,
+.version-shell-v013 .runway-stage-ticket strong {
+  font-size: 1.08rem;
+}
+
+.version-shell-v013 .runway-stage-window {
+  position: relative;
+  min-height: clamp(28rem, 74svh, 46rem);
+  overflow: hidden;
+  border: 1px solid var(--runway-line);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.92), transparent 28%),
+    linear-gradient(180deg, #f8f4ee 0%, #efe7dc 54%, #e6dccf 100%);
+}
+
+.version-shell-v013 .runway-stage-light {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 26%),
+    linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.56) 36%, transparent 52%);
+  opacity: calc(0.42 + var(--runway-hero-progress) * 0.16);
+  pointer-events: none;
+}
+
+.version-shell-v013 .runway-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.version-shell-v013 .runway-stage-ticket,
+.version-shell-v013 .runway-stage-caption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  display: grid;
+  gap: 0.28rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(23, 19, 16, 0.1);
+  border-radius: 20px;
+  background: rgba(255, 250, 244, 0.76);
+  backdrop-filter: blur(12px);
+}
+
+.version-shell-v013 .runway-stage-ticket {
+  top: 1rem;
+  right: auto;
+  width: min(12rem, calc(100% - 2rem));
+}
+
+.version-shell-v013 .runway-stage-caption {
+  bottom: 1rem;
+}
+
+.version-shell-v013 .runway-stage-ticket span,
+.version-shell-v013 .runway-stage-caption span {
+  color: rgba(14, 123, 102, 0.88);
+}
+
+.version-shell-v013 .runway-stage-meta,
+.version-shell-v013 .runway-ledger,
+.version-shell-v013 .runway-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.version-shell-v013 .runway-stage-meta article,
+.version-shell-v013 .runway-ledger div,
+.version-shell-v013 .runway-spec-grid article {
+  min-height: 100%;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--runway-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.version-shell-v013 .runway-stage-meta span,
+.version-shell-v013 .runway-spec-grid span,
+.version-shell-v013 .runway-ledger dt {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--runway-muted);
+}
+
+.version-shell-v013 .runway-stage-meta strong,
+.version-shell-v013 .runway-ledger dd,
+.version-shell-v013 .runway-spec-grid strong {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.42;
+}
+
+.version-shell-v013 .runway-buy {
+  display: grid;
+  align-content: start;
+  gap: 1.2rem;
+  padding: clamp(1.7rem, 3vw, 2.7rem);
+}
+
+.version-shell-v013 .runway-buy h1 {
+  max-width: 10ch;
+  font-size: clamp(3.3rem, 5vw + 0.8rem, 6.6rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+
+.version-shell-v013 .runway-intro,
+.version-shell-v013 .runway-section-copy,
+.version-shell-v013 .runway-item-copy p,
+.version-shell-v013 .runway-item-fit span,
+.version-shell-v013 .runway-item > i,
+.version-shell-v013 .runway-row p,
+.version-shell-v013 .runway-reference strong,
+.version-shell-v013 .runway-assurance p,
+.version-shell-v013 .runway-bullet-list,
+.version-shell-v013 .runway-stage-head i,
+.version-shell-v013 .runway-stage-meta strong {
+  color: var(--runway-soft);
+}
+
+.version-shell-v013 .runway-intro {
+  max-width: 34rem;
+  font-size: 1.04rem;
+  line-height: 1.74;
+}
+
+.version-shell-v013 .runway-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.version-shell-v013 .runway-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.2rem;
+  border: 1px solid var(--runway-line-strong);
+  border-radius: 999px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v013 .runway-button:hover {
+  transform: translateY(-1px);
+}
+
+.version-shell-v013 .runway-button-primary {
+  border-color: rgba(14, 123, 102, 0.3);
+  background: rgba(14, 123, 102, 0.1);
+}
+
+.version-shell-v013 .runway-button-primary:hover,
+.version-shell-v013 .runway-button-secondary:hover {
+  background: rgba(14, 123, 102, 0.14);
+}
+
+.version-shell-v013 .runway-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(18rem, 0.76fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: end;
+  margin-bottom: 1.4rem;
+}
+
+.version-shell-v013 .runway-section-head h2 {
+  max-width: 11ch;
+  font-size: clamp(2.6rem, 4vw + 0.4rem, 5rem);
+  line-height: 0.94;
+  letter-spacing: -0.05em;
+}
+
+.version-shell-v013 .runway-collection-list,
+.version-shell-v013 .runway-atelier-grid,
+.version-shell-v013 .runway-service-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v013 .runway-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1.15fr) minmax(16rem, 0.68fr) minmax(12rem, 0.55fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1.3rem 0;
+  border-top: 1px solid var(--runway-line);
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.version-shell-v013 .runway-item:first-child {
+  border-top: 0;
+}
+
+.version-shell-v013 .runway-item:hover {
+  transform: translateX(4px);
+}
+
+.version-shell-v013 .runway-item.is-current .runway-item-index,
+.version-shell-v013 .runway-item.is-current .runway-item-fit strong {
+  color: var(--runway-accent);
+}
+
+.version-shell-v013 .runway-item-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.version-shell-v013 .runway-item-copy strong {
+  font-size: clamp(1.5rem, 2vw + 0.4rem, 2.3rem);
+  line-height: 0.96;
+}
+
+.version-shell-v013 .runway-item-copy p {
+  line-height: 1.72;
+}
+
+.version-shell-v013 .runway-item-fit {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.version-shell-v013 .runway-item-fit strong {
+  color: var(--runway-ink);
+}
+
+.version-shell-v013 .runway-item > i {
+  font-style: normal;
+}
+
+.version-shell-v013 .runway-atelier-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(18rem, 0.9fr);
+  align-items: start;
+}
+
+.version-shell-v013 .runway-sheet,
+.version-shell-v013 .runway-note,
+.version-shell-v013 .runway-wall {
+  padding: 1.35rem;
+}
+
+.version-shell-v013 .runway-row-list,
+.version-shell-v013 .runway-reference-list,
+.version-shell-v013 .runway-assurance-list,
+.version-shell-v013 .runway-notes {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.version-shell-v013 .runway-row,
+.version-shell-v013 .runway-reference,
+.version-shell-v013 .runway-assurance {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--runway-line);
+}
+
+.version-shell-v013 .runway-row:first-child,
+.version-shell-v013 .runway-reference:first-child,
+.version-shell-v013 .runway-assurance:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.version-shell-v013 .runway-row strong,
+.version-shell-v013 .runway-reference strong,
+.version-shell-v013 .runway-assurance strong {
+  font-size: 1.05rem;
+}
+
+.version-shell-v013 .runway-row p,
+.version-shell-v013 .runway-assurance p {
+  line-height: 1.68;
+}
+
+.version-shell-v013 .runway-reference {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.version-shell-v013 .runway-reference span,
+.version-shell-v013 .runway-reference i {
+  color: var(--runway-accent);
+}
+
+.version-shell-v013 .runway-reference strong {
+  grid-column: 1 / 2;
+}
+
+.version-shell-v013 .runway-reference i {
+  grid-column: 2 / 3;
+  grid-row: 1 / span 2;
+  justify-self: end;
+  font-style: normal;
+}
+
+.version-shell-v013 .runway-bullet-list {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1.05rem;
+}
+
+.version-shell-v013 .runway-assurance-list {
+  margin-bottom: 1rem;
+}
+
+.version-shell-v013 .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 560ms ease,
+    transform 560ms ease;
+}
+
+.version-shell-v013 .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.version-shell-v013.is-ready .runway-buy,
+.version-shell-v013.is-ready .runway-stage-sheet {
+  transform: none;
+}
+
+@media (max-width: 1180px) {
+  .version-shell-v013 .runway-hero,
+  .version-shell-v013 .runway-atelier-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v013 .runway-stage-window {
+    min-height: 32rem;
+  }
+
+  .version-shell-v013 .runway-item {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .version-shell-v013 .runway-item-fit,
+  .version-shell-v013 .runway-item > i {
+    grid-column: 2 / 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .version-shell-v013 .runway-header,
+  .version-shell-v013 .runway-section-head {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v013 .runway-page {
+    padding-inline: 1rem;
+  }
+
+  .version-shell-v013 .runway-header {
+    margin-inline: 1rem;
+  }
+
+  .version-shell-v013 .runway-stage-meta,
+  .version-shell-v013 .runway-ledger,
+  .version-shell-v013 .runway-spec-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .version-shell-v013 .runway-section {
+    min-height: auto;
+    padding-block: 4rem;
+  }
+
+  .version-shell-v013 .runway-buy h1,
+  .version-shell-v013 .runway-section-head h2 {
+    max-width: none;
+  }
+
+  .version-shell-v013 .runway-stage-window {
+    min-height: 24rem;
+  }
+
+  .version-shell-v013 .runway-item {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v013 .runway-item-index,
+  .version-shell-v013 .runway-item-fit,
+  .version-shell-v013 .runway-item > i {
+    grid-column: auto;
+  }
+
+  .version-shell-v013 .runway-actions {
+    flex-direction: column;
+  }
+
+  .version-shell-v013 .runway-button {
+    width: 100%;
+  }
+}

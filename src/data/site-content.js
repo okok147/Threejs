@@ -159,6 +159,12 @@ export const siteContent = {
       fit: '宣言型首頁 / portfolio-led showcase',
       summary: '把版本切換改寫成 award portfolio 的 selected works 長列，讓巨大宣言字、persistent hero stage 與 reference credits 一起主導閱讀節奏。',
     },
+    {
+      name: 'Meridian Runway',
+      family: 'Luxury commerce / product launch runway',
+      fit: '高端產品首頁 / commerce-led showcase',
+      summary: '把版本庫翻成一個 collection launch：明亮商品舞台、購物化資訊面板、edition shelf 與售後式 references 共同構成整頁。',
+    },
   ],
   methodSteps: [
     {

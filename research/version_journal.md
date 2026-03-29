@@ -1,5 +1,24 @@
 # Version Journal
 
+## 2026-03-29 / v013-meridian-runway
+
+- 動作：新增第十三個不可覆蓋版本，把實驗室徹底翻成 luxury commerce / product launch runway，而不是繼續沿用 portfolio 或 architectural archive 的語法。
+- Visual thesis：bright showroom + product stage + precision spec sheet + collection shelf。
+- Content plan：launch hero -> collection shelf -> atelier notes -> service & dispatch。
+- Interaction thesis：
+  - 首屏像商品發布頁：主打款先站穩，資訊面板再像 buying panel 一樣接手決策。
+  - 版本列表被改寫成 collection shelf，每個版本像一個 edition，而不是中性的 archive entry。
+  - 結尾做成 service / care guide，讓 references、performance guardrail 與 lineage 都留在同一個商業語境裡。
+- 為何它明顯不同：v012 是 manifesto showcase；v013 則是 commerce launch。重心從態度宣言切到商品敘事、規格信任與 collection browsing。
+- 研究轉譯：
+  - luxury ecommerce launch pages -> 借用明亮商品舞台、稀疏 chrome 與 buying-panel hierarchy。
+  - fashion product storytelling -> 取其 collection / drop / service 語法，讓版本庫像一季作品而不是純技術索引。
+  - official three.js documentation -> 延續 shared scene preset 與 cleanup-safe renderer lifecycle。
+  - Apple reduce motion guidance -> 把光折與 shelf glide 留在低振幅區間，reduced-motion 下仍保留相同信息階層。
+- 快照：`screenshots/v013/poster.svg`
+- 風險：目前仍只有 concept poster，沒有真實 browser capture；commerce 語法若失控，容易退化成只換標籤的表層模仿。
+- 下一個最佳方向：若還要繼續拉開差距，可以探索極端 utility app / data room 類型，或先補 browser capture pipeline 讓 collection shelf 不再只有概念海報。
+
 ## 2026-03-29 / v012-detail-doctrine
 
 - 動作：新增第十二個不可覆蓋版本，把首頁徹底翻成 award-portfolio / manifesto 的閱讀姿態，而不是延續前一版的建築剖面。

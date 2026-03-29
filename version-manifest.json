@@ -1,18 +1,18 @@
 {
   "lab": {
     "title": "光軌 Style Laboratory",
-    "defaultVersion": "v012",
+    "defaultVersion": "v013",
     "switcherMode": "hybrid-browser-compare-manual-tabs",
     "compareMode": "nearby-summary",
     "hostedUrl": "https://okok147.github.io/Threejs/",
     "htmlTitle": "光軌 | Versioned Three.js Style Laboratory",
     "htmlDescription": "光軌是一個版本化的 three.js 前端風格實驗室，使用者可以切換並比較多個完整網站版本。",
-    "releaseFingerprint": "v012|live-verified|2026-03-29T20:05:08+08:00",
-    "releaseStatus": "live-verified",
-    "releaseNotes": "v012 Detail Doctrine 已推送 main，且在 2026-03-29T20:05:08+08:00 重新驗證 hosted HTML 指紋與預設版本皆已更新。",
+    "releaseFingerprint": "v013|local-only|2026-03-29T20:38:46+08:00",
+    "releaseStatus": "local-only",
+    "releaseNotes": "v013 Meridian Runway 已完成本地註冊與驗證，但在推送 main 與重新驗證 hosted HTML 之前，不能宣稱線上站點已更新。",
     "lastLiveVerificationAt": "2026-03-29T20:05:08+08:00",
-    "liveVerificationNotes": "2026-03-29T20:05:08+08:00 以 `curl` 驗證 https://okok147.github.io/Threejs/，確認回傳 `lab-default-version=v012`、`lab-release-status=local-only` 與對應 release fingerprint，表示 v012 artifact 已上線；隨後將 lab truth 升級為 live-verified。",
-    "lastUpdated": "2026-03-29T20:05:08+08:00"
+    "liveVerificationNotes": "最近一次 live verification 仍是 2026-03-29T20:05:08+08:00；當時 hosted HTML 回傳 `lab-default-version=v012`、`lab-release-status=live-verified` 與對應 release fingerprint。",
+    "lastUpdated": "2026-03-29T20:38:46+08:00"
   },
   "versions": [
     {
@@ -792,6 +792,71 @@
       "status": "stable",
       "releaseStatus": "live-verified",
       "releaseNotes": "v012 Detail Doctrine 已推送到 main，並在 2026-03-29T20:05:08+08:00 驗證 hosted HTML 已反映此版本。"
+    },
+    {
+      "versionNumber": "v013",
+      "slug": "meridian-runway",
+      "title": "Meridian Runway",
+      "concept": "把版本實驗室翻成一個 luxury commerce launch：明亮商品舞台、購物化資訊面板、collection shelf 與售後式 references 一起組成首頁，讓使用者像在挑一季主打商品那樣挑版本。",
+      "sourcePrinciples": [
+        "Product-launch pages work when the hero behaves like one dominant item, not a pile of equal modules competing for attention",
+        "Luxury commerce needs restrained chrome, generous whitespace, and a precise information panel so the page feels intentional instead of noisy",
+        "Borrowing ecommerce language should translate hierarchy, trust signals, and buying flow, not copy another site's exact visuals or merchandising gimmicks"
+      ],
+      "sourceFamiliesConsulted": [
+        "luxury ecommerce launch pages",
+        "fashion product storytelling",
+        "Apple reduce motion guidance",
+        "official three.js documentation"
+      ],
+      "styleFamily": "Luxury commerce / product launch runway",
+      "useCaseEmphasis": "高端產品首頁 / commerce-led showcase",
+      "bestFor": "想先用商品化語境快速判斷這一版值不值得切入，再進一步瀏覽整個版本 collection 的人。",
+      "keyTraits": [
+        "bright product stage",
+        "collection shelf",
+        "house assurance wall"
+      ],
+      "navigationModel": "sticky launch header + collection shelf + service-driven closing layout",
+      "motionLanguage": "lightroom fold sheen、product drift 與 restrained shelf glide",
+      "narrativeStructure": "launch hero -> collection shelf -> atelier notes -> service & dispatch",
+      "sceneTreatment": "a bright showroom core framed like a premium launch image rather than a mood-heavy stage or manifesto backdrop",
+      "notableUxIdeas": [
+        "把版本切換改寫成 collection shopping flow，讓 current version 像主打款，其餘版本像同季 edition",
+        "hero 右側 buying panel 保留決策資訊，讓 best-for、use-case 與 release truth 像商品規格一樣立即可讀",
+        "尾段把 references 與 archive notes 翻成 service / care guide，讓收尾仍維持商業世界觀而不是掉回一般 footer"
+      ],
+      "notableFeatureIdeas": [
+        "version-specific light theme that turns the shared navigator into a premium showroom shell",
+        "collection shelf rows generated from registered versions so the commerce metaphor stays honest as the archive grows",
+        "emerald-and-ivory scene preset tuned to feel like a bright launch image instead of a dark atmospheric artifact"
+      ],
+      "performanceNotes": [
+        "The bright product stage still reuses the shared cleanup-safe renderer lifecycle without adding heavier model or post-processing cost.",
+        "Most of the new feel comes from typography, layout, gradients, and restrained transforms rather than more expensive WebGL layers.",
+        "Reduced-motion removes the fold sheen and shelf glide while keeping the same launch hierarchy and service information order."
+      ],
+      "entryFile": "versions/v013-meridian-runway/index.js",
+      "route": "/?v=v013",
+      "tokenFile": "tokens/v013.json",
+      "screenshotPaths": [
+        "screenshots/v013/poster.svg"
+      ],
+      "previewArtifacts": [
+        {
+          "path": "screenshots/v013/poster.svg",
+          "label": "Meridian Runway poster preview",
+          "alt": "v013 Meridian Runway 的概念海報預覽",
+          "kind": "illustrated-poster",
+          "origin": "repo 內維護的向量海報預覽"
+        }
+      ],
+      "snapshotReadiness": "preview-only",
+      "snapshotNotes": "目前只有概念海報預覽，這一輪尚未在 sandbox 內產生真實瀏覽器截圖。",
+      "timestamp": "2026-03-29T20:38:46+08:00",
+      "status": "stable",
+      "releaseStatus": "local-only",
+      "releaseNotes": "v013 Meridian Runway 已完成本地實作、註冊與檢查；待推送 main 並重新驗證 hosted HTML。"
     }
   ]
 }

@@ -1,0 +1,50 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F3EDE3"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="62" y="62" width="1476" height="776" rx="40" fill="url(#panel)" stroke="#171310" stroke-opacity="0.08"/>
+  <path d="M98 180H1502" stroke="#171310" stroke-opacity="0.08"/>
+  <path d="M98 728H1502" stroke="#171310" stroke-opacity="0.08"/>
+  <rect x="938" y="156" width="442" height="528" rx="30" fill="#FBF6EE" stroke="#171310" stroke-opacity="0.08"/>
+  <rect x="972" y="194" width="374" height="452" rx="24" fill="url(#stage)"/>
+  <circle cx="1159" cy="416" r="94" fill="url(#orb)"/>
+  <circle cx="1159" cy="416" r="132" stroke="#0E7B66" stroke-opacity="0.16"/>
+  <text x="126" y="146" fill="#0E7B66" font-size="28" font-family="'JetBrains Mono', monospace" letter-spacing="5">MERIDIAN RUNWAY / V013</text>
+  <text x="126" y="320" fill="#171310" font-size="132" font-family="'Fraunces', serif" font-weight="700" letter-spacing="-6">COLLECTION</text>
+  <text x="126" y="432" fill="#171310" font-size="132" font-family="'Fraunces', serif" font-weight="700" letter-spacing="-6">DROP /</text>
+  <text x="126" y="544" fill="#0E7B66" font-size="132" font-family="'Fraunces', serif" font-weight="700" letter-spacing="-6">RUNWAY</text>
+  <text x="126" y="646" fill="#171310" fill-opacity="0.72" font-size="34" font-family="'Manrope', sans-serif">
+    一個把版本庫翻成 luxury commerce launch 的首頁：明亮底、產品舞台、collection shelf 與 house assurances。
+  </text>
+  <g>
+    <rect x="126" y="736" width="704" height="56" rx="18" fill="#FFF9F1" stroke="#171310" stroke-opacity="0.08"/>
+    <text x="160" y="771" fill="#171310" fill-opacity="0.62" font-size="22" font-family="'JetBrains Mono', monospace" letter-spacing="4">
+      LAUNCH  •  COLLECTION  •  ATELIER NOTES  •  SERVICE
+    </text>
+  </g>
+  <g>
+    <rect x="988" y="608" width="342" height="42" rx="16" fill="#FFF9F1" stroke="#171310" stroke-opacity="0.08"/>
+    <text x="1012" y="635" fill="#0E7B66" font-size="19" font-family="'JetBrains Mono', monospace" letter-spacing="3">CURRENT DROP</text>
+    <text x="1180" y="635" fill="#171310" font-size="26" font-family="'Fraunces', serif" font-weight="700">v013 / Meridian Runway</text>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F3EB"/>
+      <stop offset="1" stop-color="#EEE5D8"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="800" y1="62" x2="800" y2="838" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9F1" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#F6EEE1" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="stage" x1="972" y1="194" x2="1346" y2="646" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF9"/>
+      <stop offset="0.55" stop-color="#EEE5D8"/>
+      <stop offset="1" stop-color="#E3D6C5"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1159 416) rotate(90) scale(94)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.4" stop-color="#E6CB9D"/>
+      <stop offset="0.76" stop-color="#0E7B66"/>
+      <stop offset="1" stop-color="#0E7B66" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
