@@ -1,0 +1,704 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@500;700&family=Sora:wght@400;500;600;700;800&display=swap');
+
+.version-shell-v015 {
+  --gilded-bg: #f7f0e4;
+  --gilded-surface: rgba(255, 250, 241, 0.84);
+  --gilded-surface-strong: rgba(255, 250, 241, 0.96);
+  --gilded-ink: #17130f;
+  --gilded-soft: rgba(23, 19, 15, 0.68);
+  --gilded-muted: rgba(23, 19, 15, 0.48);
+  --gilded-line: rgba(23, 19, 15, 0.12);
+  --gilded-line-strong: rgba(23, 19, 15, 0.2);
+  --gilded-gold: #bf8444;
+  --gilded-petrol: #204e4f;
+  --gilded-cream: #fff9ef;
+  --gilded-shadow: 0 32px 90px rgba(76, 51, 24, 0.11);
+  --gilded-hero-progress: 0;
+  --gilded-salon-progress: 0;
+  --gilded-method-progress: 0;
+  --gilded-patron-progress: 0;
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 14% 12%, rgba(191, 132, 68, 0.2), transparent 24%),
+    radial-gradient(circle at 84% 18%, rgba(32, 78, 79, 0.16), transparent 20%),
+    linear-gradient(180deg, #fbf4ea 0%, #f5ede0 48%, #eee2d2 100%);
+  color: var(--gilded-ink);
+  font-family: 'Sora', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+  overflow: clip;
+}
+
+body[data-active-version='v015'] {
+  background: #f7f0e4;
+  color: #17130f;
+}
+
+body[data-active-version='v015'] .lab-toolbar-brand,
+body[data-active-version='v015'] .lab-toolbar-current,
+body[data-active-version='v015'] .lab-toolbar-actions,
+body[data-active-version='v015'] .lab-dock {
+  border-color: rgba(23, 19, 15, 0.08);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 241, 0.94), rgba(247, 238, 224, 0.92)),
+    linear-gradient(90deg, rgba(191, 132, 68, 0.06), transparent 36%);
+  color: #17130f;
+  box-shadow: 0 24px 60px rgba(85, 58, 28, 0.08);
+}
+
+body[data-active-version='v015'] .lab-toolbar-brand {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+}
+
+body[data-active-version='v015'] .lab-toolbar-current-copy,
+body[data-active-version='v015'] .lab-summary,
+body[data-active-version='v015'] .lab-concept,
+body[data-active-version='v015'] .lab-browser-card-concept,
+body[data-active-version='v015'] .lab-browser-empty p,
+body[data-active-version='v015'] .lab-search-results,
+body[data-active-version='v015'] .lab-best-for,
+body[data-active-version='v015'] .lab-source-line,
+body[data-active-version='v015'] .lab-browser-card-bestfor,
+body[data-active-version='v015'] .lab-compare-card-head p,
+body[data-active-version='v015'] .lab-compare-list span,
+body[data-active-version='v015'] .lab-meta-note,
+body[data-active-version='v015'] .lab-browser-card-evidence,
+body[data-active-version='v015'] .lab-compare-copy,
+body[data-active-version='v015'] .lab-meta-row p,
+body[data-active-version='v015'] .lab-browser-card-best-for,
+body[data-active-version='v015'] .lab-compare-card p,
+body[data-active-version='v015'] .lab-compare-suggestion small,
+body[data-active-version='v015'] .lab-text-button {
+  color: rgba(23, 19, 15, 0.6);
+}
+
+body[data-active-version='v015'] .lab-key-hint,
+body[data-active-version='v015'] .lab-meta-label,
+body[data-active-version='v015'] .lab-search-label,
+body[data-active-version='v015'] .lab-browser-toggle-copy small {
+  color: rgba(32, 78, 79, 0.82);
+}
+
+body[data-active-version='v015'] .lab-tab,
+body[data-active-version='v015'] .lab-browser-toggle,
+body[data-active-version='v015'] .lab-compare-pill,
+body[data-active-version='v015'] .lab-search-input,
+body[data-active-version='v015'] .lab-browser-card,
+body[data-active-version='v015'] .lab-compare-card,
+body[data-active-version='v015'] .lab-compare-diff,
+body[data-active-version='v015'] .lab-compare-panel {
+  border-color: rgba(23, 19, 15, 0.08);
+  background: rgba(255, 250, 242, 0.9);
+  color: #17130f;
+}
+
+body[data-active-version='v015'] .lab-tab[aria-selected='true'],
+body[data-active-version='v015'] .lab-compare-pill.is-active,
+body[data-active-version='v015'] .lab-browser-toggle:hover,
+body[data-active-version='v015'] .lab-browser-card.is-active {
+  border-color: rgba(191, 132, 68, 0.3);
+  background: rgba(191, 132, 68, 0.08);
+}
+
+.version-shell-v015 .gilded-veil,
+.version-shell-v015 .gilded-beam,
+.version-shell-v015 .gilded-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v015 .gilded-veil {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.74), transparent 20%),
+    linear-gradient(90deg, transparent 0%, rgba(191, 132, 68, 0.05) 48%, transparent 100%);
+  opacity: calc(0.28 + var(--gilded-hero-progress) * 0.14);
+}
+
+.version-shell-v015 .gilded-beam {
+  z-index: 0;
+  background:
+    linear-gradient(108deg, transparent 28%, rgba(255, 255, 255, 0.52) 42%, transparent 56%),
+    linear-gradient(180deg, transparent 62%, rgba(32, 78, 79, 0.08) 100%);
+  opacity: calc(0.24 + var(--gilded-salon-progress) * 0.2);
+}
+
+.version-shell-v015 .gilded-noise {
+  z-index: 1;
+  background-image:
+    linear-gradient(rgba(23, 19, 15, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 19, 15, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 94%);
+}
+
+.version-shell-v015 .gilded-page {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.1rem, 3vw, 3rem) 5rem;
+}
+
+.version-shell-v015 .gilded-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem clamp(1.1rem, 3vw, 3rem) 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--gilded-line);
+  border-radius: 24px;
+  background: rgba(251, 244, 234, 0.84);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 64px rgba(76, 51, 24, 0.09);
+}
+
+.version-shell-v015 .gilded-code,
+.version-shell-v015 .gilded-kicker,
+.version-shell-v015 .gilded-section-label,
+.version-shell-v015 .gilded-panel-label,
+.version-shell-v015 .gilded-salon-index,
+.version-shell-v015 .gilded-salon-meta span,
+.version-shell-v015 .gilded-salon-meta strong,
+.version-shell-v015 .gilded-ledger dt,
+.version-shell-v015 .gilded-specs span,
+.version-shell-v015 .gilded-stage-head span,
+.version-shell-v015 .gilded-stage-head i,
+.version-shell-v015 .gilded-stage-card span,
+.version-shell-v015 .gilded-traits span,
+.version-shell-v015 .gilded-row span,
+.version-shell-v015 .gilded-reference span,
+.version-shell-v015 .gilded-mini-list span,
+.version-shell-v015 .gilded-materials span {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.version-shell-v015 .gilded-brand strong,
+.version-shell-v015 .gilded-copy h1,
+.version-shell-v015 .gilded-section-head h2,
+.version-shell-v015 .gilded-ledger dd,
+.version-shell-v015 .gilded-specs strong,
+.version-shell-v015 .gilded-stage-head strong,
+.version-shell-v015 .gilded-stage-card strong,
+.version-shell-v015 .gilded-traits strong,
+.version-shell-v015 .gilded-salon-copy strong,
+.version-shell-v015 .gilded-row strong,
+.version-shell-v015 .gilded-reference strong,
+.version-shell-v015 .gilded-mini-list strong {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+}
+
+.version-shell-v015 .gilded-brand {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.version-shell-v015 .gilded-brand strong {
+  font-size: 1.24rem;
+  line-height: 1;
+}
+
+.version-shell-v015 .gilded-nav,
+.version-shell-v015 .gilded-header-links,
+.version-shell-v015 .gilded-materials {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v015 .gilded-nav a,
+.version-shell-v015 .gilded-header-links a,
+.version-shell-v015 .gilded-materials span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.4rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--gilded-line);
+  border-radius: 999px;
+  color: var(--gilded-soft);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.version-shell-v015 .gilded-nav a:hover,
+.version-shell-v015 .gilded-nav a.is-active,
+.version-shell-v015 .gilded-header-links a:hover,
+.version-shell-v015 .gilded-materials span:hover {
+  border-color: rgba(191, 132, 68, 0.3);
+  background: rgba(191, 132, 68, 0.08);
+  color: var(--gilded-ink);
+  transform: translateY(-1px);
+}
+
+.version-shell-v015 .gilded-section {
+  min-height: 100svh;
+  padding: clamp(4.8rem, 10svh, 7.8rem) 0;
+  scroll-margin-top: 7.5rem;
+}
+
+.version-shell-v015 .gilded-hero {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.92fr) minmax(0, 1.08fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: stretch;
+}
+
+.version-shell-v015 .gilded-copy,
+.version-shell-v015 .gilded-stage,
+.version-shell-v015 .gilded-panel,
+.version-shell-v015 .gilded-note {
+  border: 1px solid var(--gilded-line);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 241, 0.96), rgba(247, 238, 224, 0.94)),
+    linear-gradient(90deg, rgba(32, 78, 79, 0.05), transparent 34%);
+  box-shadow: var(--gilded-shadow);
+}
+
+.version-shell-v015 .gilded-copy,
+.version-shell-v015 .gilded-stage {
+  border-radius: 34px;
+}
+
+.version-shell-v015 .gilded-panel,
+.version-shell-v015 .gilded-note {
+  border-radius: 28px;
+}
+
+.version-shell-v015 .gilded-copy {
+  display: grid;
+  gap: 1.3rem;
+  padding: clamp(1.4rem, 2vw, 2rem);
+  align-content: start;
+}
+
+.version-shell-v015 .gilded-manifesto {
+  display: grid;
+  gap: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.version-shell-v015 .gilded-manifesto span {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.version-shell-v015 .gilded-copy h1 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.version-shell-v015 .gilded-intro,
+.version-shell-v015 .gilded-section-copy,
+.version-shell-v015 .gilded-salon-copy p,
+.version-shell-v015 .gilded-row p,
+.version-shell-v015 .gilded-reference strong,
+.version-shell-v015 .gilded-mini-list p {
+  color: var(--gilded-soft);
+  line-height: 1.66;
+}
+
+.version-shell-v015 .gilded-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.version-shell-v015 .gilded-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.2rem;
+  padding: 0 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--gilded-line-strong);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.version-shell-v015 .gilded-button:hover {
+  transform: translateY(-1px);
+}
+
+.version-shell-v015 .gilded-button-primary {
+  background: linear-gradient(135deg, #c58c4e, #aa6f37);
+  color: #fffaf2;
+  box-shadow: 0 20px 44px rgba(170, 111, 55, 0.22);
+}
+
+.version-shell-v015 .gilded-button-secondary {
+  background: rgba(255, 255, 255, 0.42);
+  color: var(--gilded-ink);
+}
+
+.version-shell-v015 .gilded-ledger,
+.version-shell-v015 .gilded-specs,
+.version-shell-v015 .gilded-traits,
+.version-shell-v015 .gilded-method-grid,
+.version-shell-v015 .gilded-patron-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v015 .gilded-ledger {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.version-shell-v015 .gilded-ledger div,
+.version-shell-v015 .gilded-specs article,
+.version-shell-v015 .gilded-traits article,
+.version-shell-v015 .gilded-mini-list article {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--gilded-line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.version-shell-v015 .gilded-ledger dd,
+.version-shell-v015 .gilded-specs strong,
+.version-shell-v015 .gilded-traits strong {
+  font-size: 1.18rem;
+  line-height: 1.08;
+}
+
+.version-shell-v015 .gilded-specs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.version-shell-v015 .gilded-stage {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.version-shell-v015 .gilded-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v015 .gilded-stage-head strong,
+.version-shell-v015 .gilded-stage-card strong {
+  font-size: 1.16rem;
+}
+
+.version-shell-v015 .gilded-stage-window {
+  position: relative;
+  min-height: clamp(30rem, 74svh, 48rem);
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid var(--gilded-line);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.94), transparent 24%),
+    linear-gradient(180deg, #fff9f1 0%, #efe1ce 58%, #e4d1ba 100%);
+}
+
+.version-shell-v015 .gilded-stage-glow {
+  position: absolute;
+  inset: auto auto 10% 50%;
+  width: 46%;
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(191, 132, 68, 0.28), rgba(32, 78, 79, 0.08) 52%, transparent 72%);
+  filter: blur(18px);
+}
+
+.version-shell-v015 .gilded-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.version-shell-v015 .gilded-stage-card {
+  position: absolute;
+  display: grid;
+  gap: 0.28rem;
+  max-width: min(20rem, 44%);
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(23, 19, 15, 0.1);
+  border-radius: 24px;
+  background: rgba(255, 250, 241, 0.82);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 44px rgba(76, 51, 24, 0.08);
+}
+
+.version-shell-v015 .gilded-stage-card-ticket {
+  top: 1rem;
+  left: 1rem;
+}
+
+.version-shell-v015 .gilded-stage-card-release {
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.version-shell-v015 .gilded-traits {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.version-shell-v015 .gilded-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.4rem;
+}
+
+.version-shell-v015 .gilded-section-head h2 {
+  font-size: clamp(2rem, 3vw, 3.3rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.version-shell-v015 .gilded-salon-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.version-shell-v015 .gilded-salon-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(18rem, 0.72fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1.15rem 1.2rem;
+  border: 1px solid var(--gilded-line);
+  border-radius: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 241, 0.84), rgba(247, 238, 224, 0.8)),
+    linear-gradient(90deg, rgba(191, 132, 68, 0.05), transparent 40%);
+  box-shadow: 0 18px 40px rgba(76, 51, 24, 0.06);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.version-shell-v015 .gilded-salon-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(191, 132, 68, 0.24);
+  box-shadow: 0 24px 56px rgba(76, 51, 24, 0.09);
+}
+
+.version-shell-v015 .gilded-salon-item.is-current {
+  border-color: rgba(32, 78, 79, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 241, 0.94), rgba(244, 236, 224, 0.92)),
+    linear-gradient(90deg, rgba(32, 78, 79, 0.08), rgba(191, 132, 68, 0.05) 56%, transparent 100%);
+}
+
+.version-shell-v015 .gilded-salon-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.3rem;
+  min-height: 3.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--gilded-line);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.version-shell-v015 .gilded-salon-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.version-shell-v015 .gilded-salon-copy strong {
+  font-size: clamp(1.5rem, 2vw, 2.1rem);
+  line-height: 0.98;
+}
+
+.version-shell-v015 .gilded-salon-meta {
+  display: grid;
+  gap: 0.45rem;
+  padding-top: 0.15rem;
+}
+
+.version-shell-v015 .gilded-salon-meta strong {
+  font-size: 1rem;
+  color: var(--gilded-petrol);
+}
+
+.version-shell-v015 .gilded-method-grid,
+.version-shell-v015 .gilded-patron-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.version-shell-v015 .gilded-panel,
+.version-shell-v015 .gilded-note {
+  padding: 1.2rem;
+}
+
+.version-shell-v015 .gilded-row-list,
+.version-shell-v015 .gilded-reference-list,
+.version-shell-v015 .gilded-mini-list,
+.version-shell-v015 .gilded-dual-stack,
+.version-shell-v015 .gilded-side-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.version-shell-v015 .gilded-row,
+.version-shell-v015 .gilded-reference {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--gilded-line);
+}
+
+.version-shell-v015 .gilded-row:first-child,
+.version-shell-v015 .gilded-reference:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.version-shell-v015 .gilded-row strong,
+.version-shell-v015 .gilded-reference strong,
+.version-shell-v015 .gilded-mini-list strong {
+  font-size: 1.3rem;
+  line-height: 1.04;
+}
+
+.version-shell-v015 .gilded-bullet-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--gilded-soft);
+}
+
+.version-shell-v015 .gilded-reference {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: 1rem;
+}
+
+.version-shell-v015 .gilded-reference i {
+  font-style: normal;
+  color: var(--gilded-petrol);
+}
+
+.version-shell-v015 .gilded-reference span,
+.version-shell-v015 .gilded-mini-list span {
+  color: var(--gilded-muted);
+}
+
+.version-shell-v015 .gilded-materials {
+  margin-top: 1rem;
+}
+
+.version-shell-v015 .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 560ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms),
+    transform 560ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms);
+}
+
+.version-shell-v015 .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.version-shell-v015.is-reduced-motion .reveal,
+.version-shell-v015.is-reduced-motion .gilded-salon-item,
+.version-shell-v015.is-reduced-motion .gilded-button,
+.version-shell-v015.is-reduced-motion .gilded-nav a,
+.version-shell-v015.is-reduced-motion .gilded-header-links a,
+.version-shell-v015.is-reduced-motion .gilded-materials span {
+  transition-duration: 0.01ms;
+}
+
+@media (max-width: 1100px) {
+  .version-shell-v015 .gilded-header,
+  .version-shell-v015 .gilded-hero,
+  .version-shell-v015 .gilded-section-head,
+  .version-shell-v015 .gilded-method-grid,
+  .version-shell-v015 .gilded-patron-grid,
+  .version-shell-v015 .gilded-salon-item {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v015 .gilded-stage-window {
+    min-height: 34rem;
+  }
+
+  .version-shell-v015 .gilded-ledger,
+  .version-shell-v015 .gilded-specs,
+  .version-shell-v015 .gilded-traits {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v015 .gilded-salon-meta {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .version-shell-v015 .gilded-page {
+    padding-inline: 0.9rem;
+  }
+
+  .version-shell-v015 .gilded-header {
+    margin-inline: 0.9rem;
+    top: 0.7rem;
+    padding: 0.9rem;
+  }
+
+  .version-shell-v015 .gilded-section {
+    min-height: auto;
+    padding: 4.6rem 0;
+  }
+
+  .version-shell-v015 .gilded-copy,
+  .version-shell-v015 .gilded-stage,
+  .version-shell-v015 .gilded-panel,
+  .version-shell-v015 .gilded-note {
+    border-radius: 24px;
+  }
+
+  .version-shell-v015 .gilded-stage-window {
+    min-height: 27rem;
+    border-radius: 22px;
+  }
+
+  .version-shell-v015 .gilded-stage-card {
+    position: absolute;
+    max-width: calc(100% - 1.4rem);
+    padding: 0.9rem;
+    border-radius: 20px;
+  }
+
+  .version-shell-v015 .gilded-stage-card-ticket {
+    top: 0.7rem;
+    left: 0.7rem;
+  }
+
+  .version-shell-v015 .gilded-stage-card-release {
+    right: 0.7rem;
+    bottom: 0.7rem;
+  }
+
+  .version-shell-v015 .gilded-manifesto span {
+    font-size: clamp(2.1rem, 12vw, 3.6rem);
+  }
+}

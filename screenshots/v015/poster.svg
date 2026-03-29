@@ -1,0 +1,46 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F7F0E4"/>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="60" y="60" width="1480" height="780" rx="40" fill="url(#panel)" stroke="#17130F" stroke-opacity="0.08"/>
+  <path d="M102 172H1498" stroke="#17130F" stroke-opacity="0.08"/>
+  <path d="M102 732H1498" stroke="#17130F" stroke-opacity="0.08"/>
+  <rect x="894" y="146" width="488" height="542" rx="32" fill="#FFF9EF" stroke="#17130F" stroke-opacity="0.08"/>
+  <rect x="932" y="188" width="412" height="460" rx="28" fill="url(#stage)"/>
+  <circle cx="1138" cy="410" r="92" fill="url(#orb)"/>
+  <circle cx="1138" cy="410" r="138" stroke="#204E4F" stroke-opacity="0.18"/>
+  <rect x="110" y="742" width="760" height="58" rx="18" fill="#FFF9EF" stroke="#17130F" stroke-opacity="0.08"/>
+  <text x="142" y="778" fill="#17130F" fill-opacity="0.62" font-size="22" font-family="'IBM Plex Mono', monospace" letter-spacing="4">
+    ARRIVAL  •  SALON REGISTRY  •  HOUSE METHOD  •  PATRON LEDGER
+  </text>
+  <text x="110" y="142" fill="#204E4F" font-size="28" font-family="'IBM Plex Mono', monospace" letter-spacing="5">GILDED STAGE / V015</text>
+  <text x="110" y="304" fill="#17130F" font-size="138" font-family="'Cormorant Garamond', serif" font-weight="700" letter-spacing="-6">PRIVATE</text>
+  <text x="110" y="418" fill="#17130F" font-size="138" font-family="'Cormorant Garamond', serif" font-weight="700" letter-spacing="-6">SALON</text>
+  <text x="110" y="532" fill="#BF8444" font-size="138" font-family="'Cormorant Garamond', serif" font-weight="700" letter-spacing="-6">STAGE</text>
+  <text x="110" y="634" fill="#17130F" fill-opacity="0.72" font-size="34" font-family="'Sora', sans-serif">
+    把版本庫翻成一個高端 showcase salon：巨大宣言字、明亮舞台、可切換 rooms 與可被信任的 closing ledger。
+  </text>
+  <rect x="968" y="598" width="334" height="44" rx="16" fill="#FFF9EF" stroke="#17130F" stroke-opacity="0.08"/>
+  <text x="992" y="626" fill="#204E4F" font-size="19" font-family="'IBM Plex Mono', monospace" letter-spacing="3">CURRENT SALON</text>
+  <text x="1168" y="626" fill="#17130F" font-size="26" font-family="'Cormorant Garamond', serif" font-weight="700">v015 / Gilded Stage</text>
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBF4EA"/>
+      <stop offset="1" stop-color="#EEDFCF"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="800" y1="60" x2="800" y2="840" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF9EF" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#F5E9D7" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="stage" x1="932" y1="188" x2="1344" y2="648" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF7"/>
+      <stop offset="0.54" stop-color="#EFE0CA"/>
+      <stop offset="1" stop-color="#E1C8A9"/>
+    </linearGradient>
+    <radialGradient id="orb" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1138 410) rotate(90) scale(92)">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.38" stop-color="#EFC98F"/>
+      <stop offset="0.76" stop-color="#204E4F"/>
+      <stop offset="1" stop-color="#204E4F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

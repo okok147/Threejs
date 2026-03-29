@@ -165,6 +165,12 @@ export const siteContent = {
       fit: '高端產品首頁 / commerce-led showcase',
       summary: '把版本庫翻成一個 collection launch：明亮商品舞台、購物化資訊面板、edition shelf 與售後式 references 共同構成整頁。',
     },
+    {
+      name: 'Gilded Stage',
+      family: 'Private salon / hospitality-led showcase',
+      fit: '高獎項感首頁 / destination-style showcase',
+      summary: '把版本庫翻成一間私享 salon：巨大宣言字、明亮主舞台、rooms registry 與 patron ledger 一起撐起整頁層次。',
+    },
   ],
   methodSteps: [
     {

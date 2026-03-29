@@ -1,0 +1,28 @@
+{
+  "version": "v015",
+  "title": "Gilded Stage",
+  "colors": {
+    "background": "#f7f0e4",
+    "surface": "rgba(255,250,241,0.84)",
+    "text": "#17130f",
+    "muted": "rgba(23,19,15,0.68)",
+    "line": "rgba(23,19,15,0.12)",
+    "accentPrimary": "#bf8444",
+    "accentSecondary": "#204e4f",
+    "accentTertiary": "#fff9ef"
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "Sora / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "18px",
+    "sectionPaddingDesktop": "104px",
+    "sectionPaddingMobile": "72px"
+  },
+  "motion": {
+    "heroEntrance": "560ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "sceneProfile": "gilded salon stage, hospitality-style registry, restrained beam drift"
+  }
+}
