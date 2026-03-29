@@ -1,0 +1,28 @@
+{
+  "version": "v012",
+  "title": "Detail Doctrine",
+  "colors": {
+    "background": "#090806",
+    "surface": "rgba(16,13,10,0.82)",
+    "text": "#f5ecdf",
+    "muted": "rgba(245,236,223,0.76)",
+    "line": "rgba(245,236,223,0.12)",
+    "accentPrimary": "#ff6a32",
+    "accentSecondary": "#ffffff",
+    "accentTertiary": "#2a1d17"
+  },
+  "typography": {
+    "display": "Cormorant Garamond",
+    "body": "IBM Plex Sans / Noto Sans TC",
+    "mono": "IBM Plex Mono"
+  },
+  "spacing": {
+    "pageInset": "20px",
+    "sectionPaddingDesktop": "92px",
+    "sectionPaddingMobile": "64px"
+  },
+  "motion": {
+    "heroEntrance": "620ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+    "sceneProfile": "sheen band, manifesto drift, restrained reveal rows"
+  }
+}

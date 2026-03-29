@@ -153,6 +153,12 @@ export const siteContent = {
       fit: '案例深讀 / 策展型作品頁',
       summary: '把 3D 物件當成展件，讓註腳、版本牆與研究來源一起進入主舞台。',
     },
+    {
+      name: 'Detail Doctrine',
+      family: 'Award portfolio / manifesto stage',
+      fit: '宣言型首頁 / portfolio-led showcase',
+      summary: '把版本切換改寫成 award portfolio 的 selected works 長列，讓巨大宣言字、persistent hero stage 與 reference credits 一起主導閱讀節奏。',
+    },
   ],
   methodSteps: [
     {

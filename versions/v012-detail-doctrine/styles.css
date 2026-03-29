@@ -1,0 +1,722 @@
+.version-shell-v012 {
+  --doctrine-bg: #090806;
+  --doctrine-panel: rgba(16, 13, 10, 0.82);
+  --doctrine-panel-strong: rgba(22, 18, 14, 0.94);
+  --doctrine-ink: #f5ecdf;
+  --doctrine-soft: rgba(245, 236, 223, 0.76);
+  --doctrine-muted: rgba(245, 236, 223, 0.5);
+  --doctrine-line: rgba(245, 236, 223, 0.12);
+  --doctrine-line-strong: rgba(245, 236, 223, 0.22);
+  --doctrine-accent: #ff6a32;
+  --hero-progress: 0;
+  --works-progress: 0;
+  --method-progress: 0;
+  --close-progress: 0;
+  position: relative;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(255, 106, 50, 0.18), transparent 22%),
+    linear-gradient(180deg, #090806 0%, #0c0907 42%, #120e0a 100%);
+  color: var(--doctrine-ink);
+  font-family: 'IBM Plex Sans', 'Noto Sans TC', sans-serif;
+  isolation: isolate;
+  overflow: clip;
+}
+
+body[data-active-version='v012'] {
+  background: #090806;
+  color: #f5ecdf;
+}
+
+body[data-active-version='v012'] .lab-toolbar-brand,
+body[data-active-version='v012'] .lab-toolbar-current,
+body[data-active-version='v012'] .lab-toolbar-actions,
+body[data-active-version='v012'] .lab-dock {
+  border-color: rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(17, 14, 11, 0.94), rgba(10, 8, 6, 0.88)),
+    linear-gradient(90deg, rgba(255, 106, 50, 0.1), transparent 34%);
+  color: #f5ecdf;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
+}
+
+body[data-active-version='v012'] .lab-toolbar-brand {
+  border-radius: 14px;
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+  font-size: 1.18rem;
+}
+
+body[data-active-version='v012'] .lab-toolbar-current-copy,
+body[data-active-version='v012'] .lab-summary,
+body[data-active-version='v012'] .lab-concept,
+body[data-active-version='v012'] .lab-browser-card-concept,
+body[data-active-version='v012'] .lab-browser-empty p,
+body[data-active-version='v012'] .lab-search-results,
+body[data-active-version='v012'] .lab-best-for,
+body[data-active-version='v012'] .lab-source-line,
+body[data-active-version='v012'] .lab-browser-card-bestfor,
+body[data-active-version='v012'] .lab-compare-card-head p,
+body[data-active-version='v012'] .lab-compare-list span,
+body[data-active-version='v012'] .lab-meta-note,
+body[data-active-version='v012'] .lab-browser-card-evidence,
+body[data-active-version='v012'] .lab-compare-copy,
+body[data-active-version='v012'] .lab-meta-row p,
+body[data-active-version='v012'] .lab-browser-card-best-for,
+body[data-active-version='v012'] .lab-compare-card p,
+body[data-active-version='v012'] .lab-compare-suggestion small,
+body[data-active-version='v012'] .lab-text-button {
+  color: rgba(245, 236, 223, 0.66);
+}
+
+body[data-active-version='v012'] .lab-key-hint,
+body[data-active-version='v012'] .lab-meta-label,
+body[data-active-version='v012'] .lab-search-label,
+body[data-active-version='v012'] .lab-browser-toggle-copy small {
+  color: rgba(255, 106, 50, 0.76);
+}
+
+body[data-active-version='v012'] .lab-tab,
+body[data-active-version='v012'] .lab-browser-toggle,
+body[data-active-version='v012'] .lab-compare-pill,
+body[data-active-version='v012'] .lab-search-input,
+body[data-active-version='v012'] .lab-browser-card,
+body[data-active-version='v012'] .lab-compare-card,
+body[data-active-version='v012'] .lab-compare-diff,
+body[data-active-version='v012'] .lab-compare-panel {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(16, 13, 10, 0.82);
+  color: #f5ecdf;
+}
+
+body[data-active-version='v012'] .lab-tab[aria-selected='true'],
+body[data-active-version='v012'] .lab-compare-pill.is-active,
+body[data-active-version='v012'] .lab-browser-toggle:hover,
+body[data-active-version='v012'] .lab-browser-card.is-active {
+  border-color: rgba(255, 106, 50, 0.28);
+  background: rgba(255, 106, 50, 0.1);
+}
+
+.version-shell-v012 .doctrine-grid,
+.version-shell-v012 .doctrine-glow,
+.version-shell-v012 .doctrine-band {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.version-shell-v012 .doctrine-grid {
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(245, 236, 223, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 236, 223, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.32;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.88), transparent);
+}
+
+.version-shell-v012 .doctrine-glow {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 74% 18%, rgba(255, 106, 50, 0.14), transparent 18%),
+    radial-gradient(circle at 46% 74%, rgba(255, 255, 255, 0.08), transparent 18%);
+  opacity: calc(0.24 + var(--hero-progress) * 0.14);
+}
+
+.version-shell-v012 .doctrine-band {
+  z-index: 1;
+  background:
+    linear-gradient(120deg, transparent 14%, rgba(255, 106, 50, 0.08) 32%, transparent 52%),
+    linear-gradient(90deg, transparent 66%, rgba(255, 255, 255, 0.06) 76%, transparent 86%);
+  opacity: calc(0.18 + var(--works-progress) * 0.16);
+  transform: translateX(calc((var(--close-progress) - 0.4) * 4%));
+}
+
+.version-shell-v012 .doctrine-page {
+  position: relative;
+  z-index: 2;
+  padding: 0 clamp(1.25rem, 3vw, 3rem) 5rem;
+}
+
+.version-shell-v012 .doctrine-header {
+  position: sticky;
+  top: 1rem;
+  z-index: 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  margin: 1rem clamp(1.25rem, 3vw, 3rem) 0;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--doctrine-line);
+  border-radius: 20px;
+  background: rgba(10, 8, 6, 0.84);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 22px 72px rgba(0, 0, 0, 0.28);
+}
+
+.version-shell-v012 .doctrine-code,
+.version-shell-v012 .doctrine-kicker,
+.version-shell-v012 .doctrine-section-label,
+.version-shell-v012 .doctrine-panel-label,
+.version-shell-v012 .doctrine-work-index,
+.version-shell-v012 .doctrine-work-meta span,
+.version-shell-v012 .doctrine-work-meta i,
+.version-shell-v012 .doctrine-row span,
+.version-shell-v012 .doctrine-reference span,
+.version-shell-v012 .doctrine-archive-card span,
+.version-shell-v012 .doctrine-stage-head span,
+.version-shell-v012 .doctrine-stage-head i,
+.version-shell-v012 .doctrine-stage-caption span,
+.version-shell-v012 .doctrine-traits span {
+  font-family: 'IBM Plex Mono', 'SFMono-Regular', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.version-shell-v012 .doctrine-brand strong,
+.version-shell-v012 .doctrine-creed span,
+.version-shell-v012 .doctrine-section-head h2,
+.version-shell-v012 .doctrine-ledger dd,
+.version-shell-v012 .doctrine-copy-grid strong,
+.version-shell-v012 .doctrine-stage-head strong,
+.version-shell-v012 .doctrine-stage-caption strong,
+.version-shell-v012 .doctrine-traits strong,
+.version-shell-v012 .doctrine-work-copy strong,
+.version-shell-v012 .doctrine-row strong,
+.version-shell-v012 .doctrine-reference strong,
+.version-shell-v012 .doctrine-archive-card strong {
+  font-family: 'Cormorant Garamond', 'Noto Serif TC', serif;
+}
+
+.version-shell-v012 .doctrine-brand {
+  display: grid;
+  gap: 0.14rem;
+}
+
+.version-shell-v012 .doctrine-brand strong {
+  font-size: 1.24rem;
+  line-height: 1;
+}
+
+.version-shell-v012 .doctrine-nav,
+.version-shell-v012 .doctrine-header-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v012 .doctrine-nav a,
+.version-shell-v012 .doctrine-header-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--doctrine-line);
+  border-radius: 999px;
+  color: var(--doctrine-soft);
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v012 .doctrine-nav a:hover,
+.version-shell-v012 .doctrine-nav a.is-active,
+.version-shell-v012 .doctrine-header-links a:hover {
+  border-color: rgba(255, 106, 50, 0.3);
+  background: rgba(255, 106, 50, 0.12);
+  color: var(--doctrine-ink);
+  transform: translateY(-1px);
+}
+
+.version-shell-v012 .doctrine-section {
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10svh, 7.5rem) 0;
+  scroll-margin-top: 7.5rem;
+}
+
+.version-shell-v012 .doctrine-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(24rem, 1.02fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: stretch;
+}
+
+.version-shell-v012 .doctrine-copy,
+.version-shell-v012 .doctrine-stage-frame,
+.version-shell-v012 .doctrine-sheet,
+.version-shell-v012 .doctrine-note,
+.version-shell-v012 .doctrine-wall {
+  border: 1px solid var(--doctrine-line);
+  background:
+    linear-gradient(180deg, rgba(18, 14, 11, 0.92), rgba(10, 8, 6, 0.9)),
+    linear-gradient(90deg, rgba(255, 106, 50, 0.08), transparent 36%);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.26);
+}
+
+.version-shell-v012 .doctrine-copy,
+.version-shell-v012 .doctrine-stage-frame {
+  border-radius: 32px;
+}
+
+.version-shell-v012 .doctrine-sheet,
+.version-shell-v012 .doctrine-note,
+.version-shell-v012 .doctrine-wall {
+  border-radius: 28px;
+}
+
+.version-shell-v012 .doctrine-copy {
+  display: grid;
+  gap: 1.2rem;
+  padding: clamp(1.7rem, 3vw, 2.7rem);
+}
+
+.version-shell-v012 .doctrine-creed {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.version-shell-v012 .doctrine-creed span {
+  display: block;
+  font-size: clamp(3.8rem, 6vw + 0.6rem, 8.2rem);
+  line-height: 0.86;
+  letter-spacing: -0.08em;
+}
+
+.version-shell-v012 .doctrine-creed span:nth-child(2) {
+  color: var(--doctrine-accent);
+}
+
+.version-shell-v012 .doctrine-intro,
+.version-shell-v012 .doctrine-section-copy,
+.version-shell-v012 .doctrine-work-copy p,
+.version-shell-v012 .doctrine-work-meta span,
+.version-shell-v012 .doctrine-work-meta i,
+.version-shell-v012 .doctrine-row p,
+.version-shell-v012 .doctrine-reference strong,
+.version-shell-v012 .doctrine-archive-card p,
+.version-shell-v012 .doctrine-bullet-list,
+.version-shell-v012 .doctrine-copy-grid strong,
+.version-shell-v012 .doctrine-stage-head i,
+.version-shell-v012 .doctrine-traits strong {
+  color: var(--doctrine-soft);
+}
+
+.version-shell-v012 .doctrine-intro {
+  max-width: 36rem;
+  line-height: 1.78;
+  font-size: 1.04rem;
+}
+
+.version-shell-v012 .doctrine-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.version-shell-v012 .doctrine-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0 1.2rem;
+  border: 1px solid var(--doctrine-line-strong);
+  border-radius: 999px;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.version-shell-v012 .doctrine-button:hover {
+  transform: translateY(-1px);
+}
+
+.version-shell-v012 .doctrine-button-primary {
+  border-color: rgba(255, 106, 50, 0.32);
+  background: rgba(255, 106, 50, 0.12);
+}
+
+.version-shell-v012 .doctrine-button-primary:hover,
+.version-shell-v012 .doctrine-button-secondary:hover {
+  background: rgba(255, 106, 50, 0.16);
+}
+
+.version-shell-v012 .doctrine-ledger,
+.version-shell-v012 .doctrine-copy-grid,
+.version-shell-v012 .doctrine-traits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.version-shell-v012 .doctrine-ledger div,
+.version-shell-v012 .doctrine-copy-grid article,
+.version-shell-v012 .doctrine-traits article {
+  min-height: 100%;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--doctrine-line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.version-shell-v012 .doctrine-ledger dt,
+.version-shell-v012 .doctrine-copy-grid span,
+.version-shell-v012 .doctrine-traits span {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--doctrine-muted);
+}
+
+.version-shell-v012 .doctrine-ledger dd,
+.version-shell-v012 .doctrine-copy-grid strong,
+.version-shell-v012 .doctrine-traits strong {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.version-shell-v012 .doctrine-stage {
+  display: grid;
+}
+
+.version-shell-v012 .doctrine-stage-frame {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.version-shell-v012 .doctrine-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.version-shell-v012 .doctrine-stage-head strong {
+  font-size: 1.12rem;
+}
+
+.version-shell-v012 .doctrine-stage-window {
+  position: relative;
+  aspect-ratio: 1.02;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 80% 14%, rgba(255, 106, 50, 0.2), transparent 18%),
+    linear-gradient(180deg, rgba(18, 14, 11, 0.92), rgba(10, 8, 6, 0.98));
+}
+
+.version-shell-v012 .doctrine-stage-sheen {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 18%, rgba(255, 255, 255, 0.12) 36%, transparent 54%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 28%);
+  opacity: calc(0.28 + var(--hero-progress) * 0.14);
+  pointer-events: none;
+}
+
+.version-shell-v012 .doctrine-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.version-shell-v012 .doctrine-stage-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(11, 9, 7, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+.version-shell-v012 .doctrine-stage-caption span {
+  color: var(--doctrine-accent);
+}
+
+.version-shell-v012 .doctrine-stage-caption strong {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.version-shell-v012 .doctrine-section-head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(18rem, 0.72fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: end;
+  margin-bottom: 1.4rem;
+}
+
+.version-shell-v012 .doctrine-section-head h2 {
+  max-width: 10ch;
+  font-size: clamp(2.7rem, 4vw + 0.5rem, 5rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+.version-shell-v012 .doctrine-work-list,
+.version-shell-v012 .doctrine-method-grid,
+.version-shell-v012 .doctrine-close-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v012 .doctrine-work {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  gap: 1rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 180ms ease,
+    color 180ms ease;
+}
+
+.version-shell-v012 .doctrine-work:first-child {
+  border-top: 0;
+}
+
+.version-shell-v012 .doctrine-work:hover {
+  transform: translateX(4px);
+}
+
+.version-shell-v012 .doctrine-work.is-current .doctrine-work-index,
+.version-shell-v012 .doctrine-work.is-current .doctrine-work-meta i {
+  color: var(--doctrine-accent);
+}
+
+.version-shell-v012 .doctrine-work-copy {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.version-shell-v012 .doctrine-work-copy strong {
+  font-size: clamp(1.6rem, 2vw + 0.5rem, 2.6rem);
+  line-height: 0.94;
+}
+
+.version-shell-v012 .doctrine-work-copy p {
+  line-height: 1.7;
+}
+
+.version-shell-v012 .doctrine-work-meta {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.version-shell-v012 .doctrine-method-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 0.92fr) minmax(18rem, 0.76fr);
+  align-items: start;
+}
+
+.version-shell-v012 .doctrine-sheet,
+.version-shell-v012 .doctrine-note,
+.version-shell-v012 .doctrine-wall {
+  padding: 1.2rem;
+}
+
+.version-shell-v012 .doctrine-panel-label {
+  margin-bottom: 1rem;
+  color: var(--doctrine-accent);
+}
+
+.version-shell-v012 .doctrine-row-list,
+.version-shell-v012 .doctrine-reference-list,
+.version-shell-v012 .doctrine-archive-list,
+.version-shell-v012 .doctrine-notes {
+  display: grid;
+  gap: 1rem;
+}
+
+.version-shell-v012 .doctrine-row,
+.version-shell-v012 .doctrine-reference,
+.version-shell-v012 .doctrine-archive-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.version-shell-v012 .doctrine-row:first-child,
+.version-shell-v012 .doctrine-reference:first-child,
+.version-shell-v012 .doctrine-archive-card:first-child {
+  border-top: 0;
+}
+
+.version-shell-v012 .doctrine-row strong,
+.version-shell-v012 .doctrine-reference strong,
+.version-shell-v012 .doctrine-archive-card strong {
+  font-size: 1.12rem;
+  line-height: 1.24;
+}
+
+.version-shell-v012 .doctrine-row p,
+.version-shell-v012 .doctrine-archive-card p {
+  line-height: 1.7;
+}
+
+.version-shell-v012 .doctrine-bullet-list {
+  display: grid;
+  gap: 0.72rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.74;
+}
+
+.version-shell-v012 .doctrine-close-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+}
+
+.version-shell-v012 .doctrine-reference {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  column-gap: 0.9rem;
+  transition: transform 180ms ease;
+}
+
+.version-shell-v012 .doctrine-reference:hover {
+  transform: translateX(4px);
+}
+
+.version-shell-v012 .doctrine-reference span {
+  color: var(--doctrine-muted);
+}
+
+.version-shell-v012 .doctrine-reference i {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--doctrine-accent);
+}
+
+.version-shell-v012 .doctrine-family-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.version-shell-v012 .doctrine-family-strip span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  color: var(--doctrine-soft);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.version-shell-v012 .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 560ms ease,
+    transform 560ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.version-shell-v012 .reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.version-shell-v012.is-ready .doctrine-stage-frame {
+  box-shadow: 0 38px 92px rgba(0, 0, 0, 0.32);
+}
+
+.version-shell-v012.is-reduced-motion .doctrine-band {
+  transform: none;
+}
+
+@media (max-width: 1180px) {
+  .version-shell-v012 .doctrine-header,
+  .version-shell-v012 .doctrine-hero,
+  .version-shell-v012 .doctrine-section-head,
+  .version-shell-v012 .doctrine-method-grid,
+  .version-shell-v012 .doctrine-close-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v012 .doctrine-section-head h2 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .version-shell-v012 .doctrine-page {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .version-shell-v012 .doctrine-header {
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+
+  .version-shell-v012 .doctrine-ledger,
+  .version-shell-v012 .doctrine-copy-grid,
+  .version-shell-v012 .doctrine-traits,
+  .version-shell-v012 .doctrine-work {
+    grid-template-columns: 1fr;
+  }
+
+  .version-shell-v012 .doctrine-reference i {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .version-shell-v012 .doctrine-section {
+    min-height: auto;
+    padding: 4rem 0;
+  }
+
+  .version-shell-v012 .doctrine-copy,
+  .version-shell-v012 .doctrine-stage-frame,
+  .version-shell-v012 .doctrine-sheet,
+  .version-shell-v012 .doctrine-note,
+  .version-shell-v012 .doctrine-wall {
+    border-radius: 22px;
+  }
+
+  .version-shell-v012 .doctrine-creed span {
+    font-size: clamp(3.2rem, 18vw, 5.6rem);
+  }
+
+  .version-shell-v012 .doctrine-section-head h2 {
+    font-size: clamp(2.2rem, 12vw, 3.5rem);
+  }
+
+  .version-shell-v012 .doctrine-nav,
+  .version-shell-v012 .doctrine-header-links {
+    width: 100%;
+  }
+
+  .version-shell-v012 .doctrine-nav a,
+  .version-shell-v012 .doctrine-header-links a {
+    flex: 1 1 calc(50% - 0.5rem);
+    justify-content: center;
+  }
+
+  .version-shell-v012 .doctrine-stage-window {
+    aspect-ratio: 0.9;
+  }
+}

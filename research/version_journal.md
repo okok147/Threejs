@@ -1,5 +1,24 @@
 # Version Journal
 
+## 2026-03-29 / v012-detail-doctrine
+
+- 動作：新增第十二個不可覆蓋版本，把首頁徹底翻成 award-portfolio / manifesto 的閱讀姿態，而不是延續前一版的建築剖面。
+- Visual thesis：giant creed typography + selected works long list + persistent hero stage。
+- Content plan：creed hero -> selected works -> operating method -> reference close。
+- Interaction thesis：
+  - hero 先用巨型宣言字與單一舞台定錨，再讓長列版本條目接手 scanning rhythm。
+  - 版本清單不再假裝等價 tab，而是像得獎作品集的 selected works，一列一列給 title、concept 與 best-for。
+  - 結尾改成 credits / references 的 closing wall，避免 footer 感把整體氣勢截斷。
+- 為何它明顯不同：v011 是 vertical archive；v012 則是 manifesto showcase。重心從空間定位改成態度陳述與作品條目節奏。
+- 研究轉譯：
+  - award-recognized portfolio sites -> 借用巨型標題、長列條目與 sparse chrome 的閱讀句法。
+  - `rauno.me` -> 取其克制但強烈的 personal manifesto / project listing 節奏，不照抄實際版面。
+  - official three.js documentation -> 延續 shared scene preset 與 cleanup-safe renderer lifecycle。
+  - Apple reduce motion guidance -> 保留 manifesto 節奏，但在 reduced-motion 下取消 sheen / drift 的浮動感。
+- 快照：`screenshots/v012/poster.svg`
+- 風險：目前仍只有 concept poster，沒有真實 browser capture；award-site 的語法雖然被借用，但後續仍要持續防止版面退化成純模仿。
+- 下一個最佳方向：如果還要往前推，可以探索更極端的 commerce / editorial hybrid，或直接補 browser capture pipeline 讓 archive browser 不再只有 poster preview。
+
 ## 2026-03-26 / v001-orbit-cinematic
 
 - 動作：把原本單一首頁封裝成第一個不可覆蓋版本。

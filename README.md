@@ -1,6 +1,6 @@
 # 光軌
 
-一個 versioned three.js frontend style laboratory。現在這個 repo 不再只保留單一首頁，而是會持續累積 `v001`、`v002`、`v003`、`v004`、`v005`、`v006`、`v007`、`v008`、`v009`、`v010`、`v011` 等完整網站版本，讓同一份內容可以被不同的風格、版面與 3D 語言重新翻譯。
+一個 versioned three.js frontend style laboratory。現在這個 repo 不再只保留單一首頁，而是會持續累積 `v001`、`v002`、`v003`、`v004`、`v005`、`v006`、`v007`、`v008`、`v009`、`v010`、`v011`、`v012` 等完整網站版本，讓同一份內容可以被不同的風格、版面與 3D 語言重新翻譯。
 
 ## 開發
 
@@ -41,6 +41,7 @@ npm run build
 - `v009 / Network Concourse`: 都市轉乘型首頁，強調 departure board、interchange line map、service bulletins 與 terminal notices
 - `v010 / Broadcast Array`: 直播編排型首頁，強調 on-air hero、program lineup、monitor wall 與 closing crawl
 - `v011 / Lightwell Archive`: 建築光井型首頁，強調 skylight shaft、vertical level index、material slabs 與 courtyard notes
+- `v012 / Detail Doctrine`: award-portfolio 宣言型首頁，強調巨大 creed typography、selected works 長列與 persistent hero stage
 
 ## Three.js 實作品質基線
 
@@ -56,7 +57,7 @@ npm run build
 ## Preview / Snapshot Provenance
 
 - `version-manifest.json` 會同時保留 `screenshotPaths` 與 `previewArtifacts`；前者維持 registry 相容性，後者則明確標註預覽資產的 `kind`、`origin` 與 `snapshotReadiness`。
-- 目前 `v001` 到 `v011` 都只有 repo 內維護的概念海報預覽，不是假裝成真實瀏覽器截圖。
+- 目前 `v001` 到 `v012` 都只有 repo 內維護的概念海報預覽，不是假裝成真實瀏覽器截圖。
 - 這個 sandbox 無法在本輪開本地 HTTP listener，因此真實 browser screenshot pipeline 仍待後續環境放行後再接上。
 
 ## Release Truth
